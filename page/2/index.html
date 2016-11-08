@@ -1,87 +1,21 @@
-<!doctype html>
-
-
-
-  
-
-
-<html class="theme-next muse use-motion">
+<!DOCTYPE html>
+<html lang="zh-Hans">
 <head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<meta name="author" content="Hanson" />
 
 
-
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
-
-
-
-
-  
-  
-  
-  
-
-  
     
     
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-    
-    
-    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-  
-
-
-
-
-
-
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
-
-
-  <meta name="keywords" content="Hexo, NexT" />
-
-
-
-
-
-
-
-
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
-
-
-
-
 
 
 <meta name="description" content="iOS开发者，python/js爱好者，现在就职业酷狗音乐">
@@ -94,411 +28,403 @@
 <meta name="twitter:title" content="Hanson的博客">
 <meta name="twitter:description" content="iOS开发者，python/js爱好者，现在就职业酷狗音乐">
 
+<link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
 
-<script type="text/javascript" id="hexo.configuration">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    scheme: 'Muse',
-    sidebar: {"position":"left","display":"post"},
-    fancybox: true,
-    motion: true,
-    duoshuo: {
-      userId: '0',
-      author: '博主'
+    <link rel="alternate" href="/atom.xml" title="Hanson的博客" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="/favicon.png">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+    <style> .article { opacity: 0;} </style>
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>Hanson的博客</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: true,
+        isPost: false,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: true
     }
-  };
 </script>
 
 
+    <script> yiliaConfig.jquery_ui = [false]; </script>
 
 
-  <link rel="canonical" href="hanson647.com/page/2/"/>
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
 
 
-  <title> Hanson的博客 </title>
+
+
+
+
 </head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/avatar.png" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">Hanson</a></h1>
+        </hgroup>
 
-<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+        
 
-  
+        
+            <form id="search-form">
+            <input type="text" id="local-search-input" name="q" placeholder="search..." class="search form-control" autocomplete="off" autocorrect="off" searchonload="false" />
+            <i class="fa fa-times" onclick="resetSearch()"></i>
+            </form>
+            <div id="local-search-result"></div>
+            <p class='no-result'>No results found <i class='fa fa-spinner fa-pulse'></i></p>
+        
 
 
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
 
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" href="mailto:123@123.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" href="#" title="GitHub"></a>
+                            
+                                <a class="fa RSS" href="/atom.xml" title="RSS"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/RN/">RN</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iOS基础知识/">iOS基础知识</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iOS进阶/">iOS进阶</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/工具/">工具</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/流媒体/">流媒体</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算机基础/">计算机基础</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                    
+                    </div>
+                </section>
+                
 
-
-
-
-
-
-
-  
-  
-    
-  
-
-  <div class="container one-collumn sidebar-position-left 
-   page-home 
- ">
-    <div class="headband"></div>
-
-    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
-      <div class="header-inner"><div class="site-meta ">
-  
-
-  <div class="custom-logo-site-title">
-    <a href="/"  class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
-      <span class="site-title">Hanson的博客</span>
-      <span class="logo-line-after"><i></i></span>
-    </a>
-  </div>
-  <p class="site-subtitle"></p>
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">专注于iOS开发</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
 </div>
-
-<div class="site-nav-toggle">
-  <button>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-  </button>
-</div>
-
-<nav class="site-nav">
-  
-
-  
-    <ul id="menu" class="menu">
-      
-        
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-            首页
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-archives">
-          <a href="/archives" rel="section">
-            
-            归档
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-tags">
-          <a href="/tags" rel="section">
-            
-            标签
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-schedule">
-          <a href="/schedule" rel="section">
-            
-            日程
-          </a>
-        </li>
-      
-
-      
-        <li class="menu-item menu-item-search">
-          
-            <a href="javascript:;" class="popup-trigger">
-          
-            
-            搜索
-          </a>
-        </li>
-      
-    </ul>
-  
-
-  
-    <div class="site-search">
-      
-  <div class="popup">
- <span class="search-icon fa fa-search"></span>
- <input type="text" id="local-search-input">
- <div id="local-search-result"></div>
- <span class="popup-btn-close">close</span>
-</div>
-
-
     </div>
-  
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">Hanson</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/avatar.png" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">Hanson</a></h1>
+            </hgroup>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:123@123.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="#" title="GitHub"></a>
+                            
+                                <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
 </nav>
+      <div class="body-wrap">
+  
+    <article id="post-2016/转-delegate-KVO-Notification选择" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/03/18/2016/转-delegate-KVO-Notification选择/" class="article-date">
+      <time datetime="2016-03-18T08:03:41.000Z" itemprop="datePublished">2016-03-18</time>
+</a>
 
- </div>
-    </header>
 
-    <main id="main" class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          <div id="content" class="content">
-            
-  <section id="posts" class="posts-expand">
+    </div>
+  
+  <div class="article-inner">
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
+      <input type="hidden" class="isFancy" />
     
-      <header class="post-header">
-
+    
+      <header class="article-header">
         
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/03/18/2016/转-delegate-KVO-Notification选择/" itemprop="url">
-                  (转)delegate/KVO/Notification选择
-                </a>
-              
-            
-          </h1>
-        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/03/18/2016/转-delegate-KVO-Notification选择/">(转)delegate/KVO/Notification选择</a>
+    </h1>
+  
 
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-03-18T16:03:41+08:00" content="2016-03-18">
-              2016-03-18
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
       </header>
+      
     
-
-
-    <div class="post-body" itemprop="articleBody">
-
+    <div class="article-entry" itemprop="articleBody">
       
-      
-
-      
-        
-          <p>前面分别讲了delegate、notification和KVO的实现原理，以及实际使用步骤，我们心中不禁有个疑问，他们的功能比较类似，那么在实际的编程中，如何选择这些方式呢？<br>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/03/18/2016/转-delegate-KVO-Notification选择/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
+          
+              <p>前面分别讲了delegate、notification和KVO的实现原理，以及实际使用步骤，我们心中不禁有个疑问，他们的功能比较类似，那么在实际的编程中，如何选择这些方式呢？<br>
+          
       
     </div>
-
-    <div>
+    
+    <div class="article-info article-info-index">
       
+      
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS基础知识/">iOS基础知识</a></li></ul>
     </div>
 
-    <div>
       
+        <p class="article-more-link">
+          <a href="/2016/03/18/2016/转-delegate-KVO-Notification选择/#more">阅读全文 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
     </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
     
-      
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
 
   
+    <article id="post-2016/iOS技能总结" class="article article-type-post" itemscope itemprop="blogPost">
   
+    <div class="article-meta">
+      <a href="/2016/02/19/2016/iOS技能总结/" class="article-date">
+      <time datetime="2016-02-19T05:59:43.000Z" itemprop="datePublished">2016-02-19</time>
+</a>
 
-  
-  
-  
 
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
+    </div>
+  
+  <div class="article-inner">
     
-      <header class="post-header">
-
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
         
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/02/19/2016/iOS技能总结/" itemprop="url">
-                  iOS技能总结
-                </a>
-              
-            
-          </h1>
-        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/02/19/2016/iOS技能总结/">iOS技能总结</a>
+    </h1>
+  
 
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-02-19T13:59:43+08:00" content="2016-02-19">
-              2016-02-19
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
       </header>
+      
     
-
-
-    <div class="post-body" itemprop="articleBody">
-
+    <div class="article-entry" itemprop="articleBody">
       
-      
-
-      
-        
-          <p>参考–唐巧，iOS技能图谱<br>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/02/19/2016/iOS技能总结/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
+          
+              <p>参考–唐巧，iOS技能图谱<br>
+          
       
     </div>
-
-    <div>
+    
+    <div class="article-info article-info-index">
       
+      
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS进阶/">iOS进阶</a></li></ul>
     </div>
 
-    <div>
       
+        <p class="article-more-link">
+          <a href="/2016/02/19/2016/iOS技能总结/#more">阅读全文 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
     </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
     
-      
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
 
   
+    <article id="post-2016/iOS中的屏幕旋转" class="article article-type-post" itemscope itemprop="blogPost">
   
+    <div class="article-meta">
+      <a href="/2016/02/12/2016/iOS中的屏幕旋转/" class="article-date">
+      <time datetime="2016-02-12T14:14:43.000Z" itemprop="datePublished">2016-02-12</time>
+</a>
 
-  
-  
-  
 
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
+    </div>
+  
+  <div class="article-inner">
     
-      <header class="post-header">
-
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
         
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/02/12/2016/iOS中的屏幕旋转/" itemprop="url">
-                  iOS中的屏幕旋转
-                </a>
-              
-            
-          </h1>
-        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/02/12/2016/iOS中的屏幕旋转/">iOS中的屏幕旋转</a>
+    </h1>
+  
 
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-02-12T22:14:43+08:00" content="2016-02-12">
-              2016-02-12
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
       </header>
+      
     
-
-
-    <div class="post-body" itemprop="articleBody">
-
+    <div class="article-entry" itemprop="articleBody">
       
-      
-
-      
-        
           
-            <ul>
+        <ul>
 <li>旋转事件只传递给主window</li>
 <li>当我们使用webView播放视频的时候，它会创建一个UIViewController，然后创建一个window，让这个控制器成为这个window的根控制器，然后再将视频显示的view添加到这个UIViewController的控制器view上</li>
 <li>屏幕选中的本质是当前主控制器的view跟随屏幕的旋转而旋转，并且调整大小至当前的宽高，所以我们要做的就是控制当前控制器要不要旋转</li>
@@ -565,388 +491,254 @@
 <h4 id="整体是支持竖屏，但是某个界面可以横屏"><a href="#整体是支持竖屏，但是某个界面可以横屏" class="headerlink" title="整体是支持竖屏，但是某个界面可以横屏"></a>整体是支持竖屏，但是某个界面可以横屏</h4><p>这种需求，只能通过加判断代码来做到</p>
 <h4 id="控制通过webView加载的视频全屏时的横竖屏"><a href="#控制通过webView加载的视频全屏时的横竖屏" class="headerlink" title="控制通过webView加载的视频全屏时的横竖屏"></a>控制通过webView加载的视频全屏时的横竖屏</h4><p>webView的视频在全屏的时候，会新创建一个window，所以你在Appdelegate或者当前根控制器下的控制代码统统不会生效，并且以UIViewController为根控制器，所以我们要把控制代码加到UIViewController的分类中，又因为其它的控制器全部继承自这个控制器，所以我们要在这个里边加判断<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">#import &quot;UIViewController+Extension.h&quot;</div><div class="line"></div><div class="line">@implementation UIViewController (Extension)</div><div class="line"></div><div class="line">#pragma mark - 下面的两个方法主要用于控制webView播放视屏的时候，该是否是否应该横屏</div><div class="line">/**</div><div class="line"> * 如果当前keywindow的rootController类型为UIViewController，就返回YES，否则返回NO</div><div class="line"> *</div><div class="line"> *  @return 返回是否</div><div class="line"> */</div><div class="line">- (BOOL)shouldAutorotate &#123;</div><div class="line">    //拿到当前主窗口的根控制器类型名称</div><div class="line">    NSString *className = NSStringFromClass([[UIApplication sharedApplication].keyWindow.rootViewController class]);</div><div class="line">    //如果是UIViewController就返回YES，让这个控制器view可以跟随屏幕旋转</div><div class="line">    if ([className isEqualToString:@&quot;UIViewController&quot;]) &#123;</div><div class="line">        return YES;</div><div class="line">    &#125; else &#123;</div><div class="line">        return NO;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (UIInterfaceOrientationMask)supportedInterfaceOrientations &#123;</div><div class="line">    </div><div class="line">    return UIInterfaceOrientationMaskAll;</div><div class="line">&#125;</div><div class="line">@end</div></pre></td></tr></table></figure></p>
 
-          
-        
       
     </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
     
+    <div class="article-info article-info-index">
+      
       
 
-  
-  
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS基础知识/">iOS基础知识</a></li></ul>
+    </div>
 
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
+      
+      <div class="clearfix"></div>
+    </div>
     
-      <header class="post-header">
+  </div>
+  
+</article>
 
+
+
+
+
+
+
+
+
+  
+    <article id="post-2016/转-项目优化-安装包体积控制" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/01/18/2016/转-项目优化-安装包体积控制/" class="article-date">
+      <time datetime="2016-01-18T09:20:43.000Z" itemprop="datePublished">2016-01-18</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
         
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/01/18/2016/转-项目优化-安装包体积控制/" itemprop="url">
-                  (转)项目优化--安装包体积控制
-                </a>
-              
-            
-          </h1>
-        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/01/18/2016/转-项目优化-安装包体积控制/">(转)项目优化--安装包体积控制</a>
+    </h1>
+  
 
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-01-18T17:20:43+08:00" content="2016-01-18">
-              2016-01-18
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
       </header>
+      
     
-
-
-    <div class="post-body" itemprop="articleBody">
-
+    <div class="article-entry" itemprop="articleBody">
       
-      
-
-      
-        
-          <blockquote>
+          
+              <blockquote>
 <p>iOS微信安装包瘦身<br>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/01/18/2016/转-项目优化-安装包体积控制/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
+          
       
     </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
     
+    <div class="article-info article-info-index">
+      
       
 
-  
-  
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS进阶/">iOS进阶</a></li></ul>
+    </div>
 
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
+      
+        <p class="article-more-link">
+          <a href="/2016/01/18/2016/转-项目优化-安装包体积控制/#more">阅读全文 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
     
-      <header class="post-header">
+  </div>
+  
+</article>
 
+
+
+
+
+
+
+
+
+  
+    <article id="post-2016/热修复技术在移动端的应用" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/01/12/2016/热修复技术在移动端的应用/" class="article-date">
+      <time datetime="2016-01-12T10:07:04.000Z" itemprop="datePublished">2016-01-12</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
         
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/01/12/2016/热修复技术在移动端的应用/" itemprop="url">
-                  热修复技术在移动端的应用
-                </a>
-              
-            
-          </h1>
-        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/01/12/2016/热修复技术在移动端的应用/">热修复技术在移动端的应用</a>
+    </h1>
+  
 
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-01-12T18:07:04+08:00" content="2016-01-12">
-              2016-01-12
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
       </header>
+      
     
-
-
-    <div class="post-body" itemprop="articleBody">
-
+    <div class="article-entry" itemprop="articleBody">
       
-      
-
-      
-        
-          <h3 id="热修复技术概述"><a href="#热修复技术概述" class="headerlink" title="热修复技术概述"></a>热修复技术概述</h3><p>移动应用的部署方式，即发布-&gt;下载-&gt;安装-&gt;运行，决定了他不具备Web的高灵活性，尤其新版本上线后发现有个严重的bug，可能会导致crash率激增，可能会使网络请求无法发出，这时能做的只是赶紧修复bug然后提交等待漫长的AppStore审核，再盼望用户快点升级，付出巨大的人力和时间成本，才能完成此次bug的修复。<br>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/01/12/2016/热修复技术在移动端的应用/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
+          
+              <h3 id="热修复技术概述"><a href="#热修复技术概述" class="headerlink" title="热修复技术概述"></a>热修复技术概述</h3><p>移动应用的部署方式，即发布-&gt;下载-&gt;安装-&gt;运行，决定了他不具备Web的高灵活性，尤其新版本上线后发现有个严重的bug，可能会导致crash率激增，可能会使网络请求无法发出，这时能做的只是赶紧修复bug然后提交等待漫长的AppStore审核，再盼望用户快点升级，付出巨大的人力和时间成本，才能完成此次bug的修复。<br>
+          
       
     </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
     
+    <div class="article-info article-info-index">
+      
       
 
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
+      
+      
+        <p class="article-more-link">
+          <a href="/2016/01/12/2016/热修复技术在移动端的应用/#more">阅读全文 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
     
-      <header class="post-header">
+  </div>
+  
+</article>
 
+
+
+
+
+
+
+
+
+  
+    <article id="post-2015/category内部实现原理" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/12/15/2015/category内部实现原理/" class="article-date">
+      <time datetime="2015-12-15T07:28:20.000Z" itemprop="datePublished">2015-12-15</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
         
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/12/15/2015/category内部实现原理/" itemprop="url">
-                  category内部实现原理
-                </a>
-              
-            
-          </h1>
-        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/12/15/2015/category内部实现原理/">category内部实现原理</a>
+    </h1>
+  
 
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2015-12-15T15:28:20+08:00" content="2015-12-15">
-              2015-12-15
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
       </header>
+      
     
-
-
-    <div class="post-body" itemprop="articleBody">
-
+    <div class="article-entry" itemprop="articleBody">
       
-      
-
-      
-        
-          <p>见过的比较好的一篇讲述category实现的博客，在此做个记录<br>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2015/12/15/2015/category内部实现原理/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
+          
+              <p>见过的比较好的一篇讲述category实现的博客，在此做个记录<br>
+          
       
     </div>
-
-    <div>
+    
+    <div class="article-info article-info-index">
       
+      
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS进阶/">iOS进阶</a></li></ul>
     </div>
 
-    <div>
       
+        <p class="article-more-link">
+          <a href="/2015/12/15/2015/category内部实现原理/#more">阅读全文 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
     </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
     
-      
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
 
   
+    <article id="post-2015/runtime概述" class="article article-type-post" itemscope itemprop="blogPost">
   
+    <div class="article-meta">
+      <a href="/2015/08/10/2015/runtime概述/" class="article-date">
+      <time datetime="2015-08-10T03:31:29.000Z" itemprop="datePublished">2015-08-10</time>
+</a>
 
-  
-  
-  
 
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
+    </div>
+  
+  <div class="article-inner">
     
-      <header class="post-header">
-
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
         
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/08/10/2015/runtime概述/" itemprop="url">
-                  runtime概述
-                </a>
-              
-            
-          </h1>
-        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/08/10/2015/runtime概述/">runtime概述</a>
+    </h1>
+  
 
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2015-08-10T11:31:29+08:00" content="2015-08-10">
-              2015-08-10
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
       </header>
+      
     
-
-
-    <div class="post-body" itemprop="articleBody">
-
+    <div class="article-entry" itemprop="articleBody">
       
-      
-
-      
-        
           
-            <a id="more"></a>
+        <a id="more"></a>
 <h2 id="runtime概述"><a href="#runtime概述" class="headerlink" title="runtime概述"></a>runtime概述</h2><blockquote>
 <p><strong>什么是runtime?</strong><br>runtime直译就是运行时间,run(跑,运行) time(时间),网上大家都叫它运行时,它是一套比较底层的纯C语言API,属于一个C语言库,包含了很多底层的C语言API,它是OC的幕后工作者,我们平时写的OC代码,在运行过程时,都会转为runtime的C语言代码</p>
 <h3 id="类与对象"><a href="#类与对象" class="headerlink" title="类与对象"></a>类与对象</h3><p>####Object<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">interface NSObject &lt;NSObject&gt; &#123;</div><div class="line">    Class isa  OBJC_ISA_AVAILABILITY;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
@@ -1072,99 +864,65 @@
 <p>参考：<br><a href="http://southpeak.github.io/blog/2014/10/25/objective-c-runtime-yun-xing-shi-zhi-lei-yu-dui-xiang/" target="_blank" rel="external">南峰子-runtime</a></p>
 <p><a href="http://www.jianshu.com/p/927c8384855a" target="_blank" rel="external">iOS-runtime理解-简书</a></p>
 
-          
-        
       
     </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
     
+    <div class="article-info article-info-index">
+      
       
 
-  
-  
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS进阶/">iOS进阶</a></li></ul>
+    </div>
 
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
+      
+      <div class="clearfix"></div>
+    </div>
     
-      <header class="post-header">
+  </div>
+  
+</article>
 
+
+
+
+
+
+
+
+
+  
+    <article id="post-2015/Runloop概述" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/07/21/2015/Runloop概述/" class="article-date">
+      <time datetime="2015-07-21T01:35:22.000Z" itemprop="datePublished">2015-07-21</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
         
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/07/21/2015/Runloop概述/" itemprop="url">
-                  Runloop概述
-                </a>
-              
-            
-          </h1>
-        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/07/21/2015/Runloop概述/">Runloop概述</a>
+    </h1>
+  
 
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2015-07-21T09:35:22+08:00" content="2015-07-21">
-              2015-07-21
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
       </header>
+      
     
-
-
-    <div class="post-body" itemprop="articleBody">
-
+    <div class="article-entry" itemprop="articleBody">
       
-      
-
-      
-        
           
-            <h2 id="1-基本概念"><a href="#1-基本概念" class="headerlink" title="1.基本概念"></a>1.基本概念</h2><h3 id="为什么需要runloop"><a href="#为什么需要runloop" class="headerlink" title="为什么需要runloop"></a>为什么需要runloop</h3><ul>
+        <h2 id="1-基本概念"><a href="#1-基本概念" class="headerlink" title="1.基本概念"></a>1.基本概念</h2><h3 id="为什么需要runloop"><a href="#为什么需要runloop" class="headerlink" title="为什么需要runloop"></a>为什么需要runloop</h3><ul>
 <li>使程序一直活着</li>
 <li>决定程序何时应该处理哪些event</li>
 <li>调用解耦(message queue)</li>
@@ -1317,553 +1075,257 @@
 <p>验证方法是，打断点，lldb上边的调用栈</p>
 <h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>如果我们想要打断一个方法的执行，一个办法就是用<code>[self performSelector:@selector(perform4) withObject:nil afterDelay:0.005];</code>来连接方法的执行，这里延迟时间设置为0有时是无效的，我们可以给一个很小的时间，</p>
 
-          
-        
       
     </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
     
+    <div class="article-info article-info-index">
+      
       
 
-  
-  
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS进阶/">iOS进阶</a></li></ul>
+    </div>
 
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
+      
+      <div class="clearfix"></div>
+    </div>
     
-      <header class="post-header">
+  </div>
+  
+</article>
 
+
+
+
+
+
+
+
+
+  
+    <article id="post-2015/转-视音频编解码技术零基础学习方法" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/07/17/2015/转-视音频编解码技术零基础学习方法/" class="article-date">
+      <time datetime="2015-07-17T12:06:07.000Z" itemprop="datePublished">2015-07-17</time>
+</a>
+
+
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
         
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/07/17/2015/转-视音频编解码技术零基础学习方法/" itemprop="url">
-                  (转)视音频编解码技术零基础学习方法
-                </a>
-              
-            
-          </h1>
-        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/07/17/2015/转-视音频编解码技术零基础学习方法/">(转)视音频编解码技术零基础学习方法</a>
+    </h1>
+  
 
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2015-07-17T20:06:07+08:00" content="2015-07-17">
-              2015-07-17
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
       </header>
+      
     
-
-
-    <div class="post-body" itemprop="articleBody">
-
+    <div class="article-entry" itemprop="articleBody">
       
-      
-
-      
-        
-          <p>原文地址<a href="http://blog.csdn.net/leixiaohua1020/article/details/18893769">http://blog.csdn.net/leixiaohua1020/article/details/18893769</a><br>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2015/07/17/2015/转-视音频编解码技术零基础学习方法/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
+          
+              <p>原文地址<a href="http://blog.csdn.net/leixiaohua1020/article/details/18893769">http://blog.csdn.net/leixiaohua1020/article/details/18893769</a><br>
+          
       
     </div>
-
-    <div>
+    
+    <div class="article-info article-info-index">
       
+      
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/流媒体/">流媒体</a></li></ul>
     </div>
 
-    <div>
       
+        <p class="article-more-link">
+          <a href="/2015/07/17/2015/转-视音频编解码技术零基础学习方法/#more">阅读全文 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
     </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
     
-      
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
 
   
+    <article id="post-2015/转-音视频基础概念汇总" class="article article-type-post" itemscope itemprop="blogPost">
   
+    <div class="article-meta">
+      <a href="/2015/07/17/2015/转-音视频基础概念汇总/" class="article-date">
+      <time datetime="2015-07-17T11:56:08.000Z" itemprop="datePublished">2015-07-17</time>
+</a>
 
-  
-  
-  
 
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
+    </div>
+  
+  <div class="article-inner">
     
-      <header class="post-header">
-
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
         
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/07/17/2015/转-音视频基础概念汇总/" itemprop="url">
-                  (转)音视频基础概念汇总
-                </a>
-              
-            
-          </h1>
-        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/07/17/2015/转-音视频基础概念汇总/">(转)音视频基础概念汇总</a>
+    </h1>
+  
 
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2015-07-17T19:56:08+08:00" content="2015-07-17">
-              2015-07-17
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
       </header>
+      
     
-
-
-    <div class="post-body" itemprop="articleBody">
-
+    <div class="article-entry" itemprop="articleBody">
       
-      
-
-      
-        
-          <h2 id="第一部分：基本概念讲解"><a href="#第一部分：基本概念讲解" class="headerlink" title="第一部分：基本概念讲解"></a>第一部分：基本概念讲解</h2><ul>
+          
+              <h2 id="第一部分：基本概念讲解"><a href="#第一部分：基本概念讲解" class="headerlink" title="第一部分：基本概念讲解"></a>第一部分：基本概念讲解</h2><ul>
 <li>媒体：是表示，传输，存储信息的载体，常人们见到的文字、声音、图像、图形等都是表示信息的媒体。
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2015/07/17/2015/转-音视频基础概念汇总/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
+          
       
     </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
     
-  </section>
+    <div class="article-info article-info-index">
+      
+      
 
-  
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
-  </nav>
-
-
-
-          </div>
-          
-
-
-          
-
-        </div>
-        
-          
-  
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/流媒体/">流媒体</a></li></ul>
     </div>
+
+      
+        <p class="article-more-link">
+          <a href="/2015/07/17/2015/转-音视频基础概念汇总/#more">阅读全文 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
   </div>
+  
+</article>
 
-  <aside id="sidebar" class="sidebar">
-    <div class="sidebar-inner">
 
-      
 
-      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="/images/avatar.gif"
-               alt="Hanson" />
-          <p class="site-author-name" itemprop="name">Hanson</p>
-          <p class="site-description motion-element" itemprop="description">iOS开发者，python/js爱好者，现在就职业酷狗音乐</p>
-        </div>
-        <nav class="site-state motion-element">
-          <div class="site-state-item site-state-posts">
-            <a href="/archives">
-              <span class="site-state-item-count">34</span>
-              <span class="site-state-item-name">日志</span>
-            </a>
-          </div>
 
-          
 
-          
-            <div class="site-state-item site-state-tags">
-              <a href="/tags">
-                <span class="site-state-item-count">6</span>
-                <span class="site-state-item-name">标签</span>
-              </a>
+
+
+
+  
+  
+    <nav id="page-nav">
+      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
+    </nav>
+  
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2015-2016 Hanson
             </div>
-          
-
-        </nav>
-
-        
-
-        <div class="links-of-author motion-element">
-          
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
         </div>
-
         
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" >本站到访数: 
+                            <span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>, </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit">本页阅读量: 
+                            <span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
         
-
-        
-        
-
-      </section>
-
-      
-
     </div>
-  </aside>
-
-
-        
-      </div>
-    </main>
-
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright" >
-  
-  &copy; 
-  <span itemprop="copyrightYear">2016</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">Hanson</span>
-</div>
-
-<div class="powered-by">
-  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
-</div>
-
-<div class="theme-info">
-  主题 -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Muse
-  </a>
-</div>
-
-        
-
-        
-      </div>
-    </footer>
-
-    <div class="back-to-top">
-      <i class="fa fa-arrow-up"></i>
+</footer>
     </div>
-  </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
 
-  
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 5;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
 
-<script type="text/javascript">
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
-  }
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    // Open in New Window
+    
+        var oOpenInNew = {
+            
+            
+            
+            
+            
+            
+             archives: ".archive-article-title", 
+             miniArchives: "a.post-list-link", 
+            
+             friends: "#js-friends a", 
+             socail: ".social a" 
+        }
+        for (var x in oOpenInNew) {
+            $(oOpenInNew[x]).attr("target", "_blank");
+        }
+    
 </script>
 
-
-
-
-
-
-
-
-
-  
-
-
-
-  
-  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-
-  
-  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-
-  
-  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
-
-
-
-  
-  
-
-  
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
-
-
-
-  
-
-
-
-  
-
-
-
-
-  
-  
-  <script type="text/javascript">
-    // Popup Window;
-    var isfetched = false;
-    // Search DB path;
-    var search_path = "search.xml";
-    if (search_path.length == 0) {
-       search_path = "search.xml";
-    }
-    var path = "/" + search_path;
-    // monitor main search box;
-
-    function proceedsearch() {
-      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
-      $('.popup').toggle();
-
-    }
-    // search function;
-    var searchFunc = function(path, search_id, content_id) {
-    'use strict';
-    $.ajax({
-        url: path,
-        dataType: "xml",
-        async: true,
-        success: function( xmlResponse ) {
-            // get the contents from search data
-            isfetched = true;
-            $('.popup').detach().appendTo('.header-inner');
-            var datas = $( "entry", xmlResponse ).map(function() {
-                return {
-                    title: $( "title", this ).text(),
-                    content: $("content",this).text(),
-                    url: $( "url" , this).text()
-                };
-            }).get();
-            var $input = document.getElementById(search_id);
-            var $resultContent = document.getElementById(content_id);
-            $input.addEventListener('input', function(){
-                var matchcounts = 0;
-                var str='<ul class=\"search-result-list\">';
-                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
-                $resultContent.innerHTML = "";
-                if (this.value.trim().length > 1) {
-                // perform local searching
-                datas.forEach(function(data) {
-                    var isMatch = false;
-                    var content_index = [];
-                    var data_title = data.title.trim().toLowerCase();
-                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
-                    var data_url = decodeURIComponent(data.url);
-                    var index_title = -1;
-                    var index_content = -1;
-                    var first_occur = -1;
-                    // only match artiles with not empty titles and contents
-                    if(data_title != '') {
-                        keywords.forEach(function(keyword, i) {
-                            index_title = data_title.indexOf(keyword);
-                            index_content = data_content.indexOf(keyword);
-                            if( index_title >= 0 || index_content >= 0 ){
-                                isMatch = true;
-								if (i == 0) {
-                                    first_occur = index_content;
-                                }
-                            } 
-							
-                        });
-                    }
-                    // show search results
-                    if (isMatch) {
-                        matchcounts += 1;
-                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
-                        var content = data.content.trim().replace(/<[^>]+>/g,"");
-                        if (first_occur >= 0) {
-                            // cut out 100 characters
-                            var start = first_occur - 20;
-                            var end = first_occur + 80;
-                            if(start < 0){
-                                start = 0;
-                            }
-                            if(start == 0){
-                                end = 50;
-                            }
-                            if(end > content.length){
-                                end = content.length;
-                            }
-                            var match_content = content.substring(start, end);
-                            // highlight all keywords
-                            keywords.forEach(function(keyword){
-                                var regS = new RegExp(keyword, "gi");
-                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
-                            });
-
-                            str += "<p class=\"search-result\">" + match_content +"...</p>"
-                        }
-                        str += "</li>";
-                    }
-                })};
-                str += "</ul>";
-                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
-                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
-                $resultContent.innerHTML = str;
-            });
-            proceedsearch();
-        }
-    });}
-
-    // handle and trigger popup window;
-    $('.popup-trigger').click(function(e) {
-      e.stopPropagation();
-      if (isfetched == false) {
-        searchFunc(path, 'local-search-input', 'local-search-result');
-      } else {
-        proceedsearch();
-      };
-
-    });
-
-    $('.popup-btn-close').click(function(e){
-      $('.popup').hide();
-      $(".popoverlay").remove();
-      $('body').css('overflow', '');
-    });
-    $('.popup').click(function(e){
-      e.stopPropagation();
-    });
-  </script>
-
-
-  
-
-  
-
-  
-
-  
-
-
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
 </body>
 </html>
