@@ -441,7 +441,8 @@
 <li>iOS进阶<br>categories: iOS</li>
 </ul>
 <hr>
-<h2 id="本系列博文总结自《Pro-Multithreading-and-Memory-Management-for-iOS-and-OS-X-with-ARC》"><a href="#本系列博文总结自《Pro-Multithreading-and-Memory-Management-for-iOS-and-OS-X-with-ARC》" class="headerlink" title="本系列博文总结自《Pro Multithreading and Memory Management for iOS and OS X with ARC》"></a>本系列博文总结自《Pro Multithreading and Memory Management for iOS and OS X with ARC》</h2><a id="more"></a>
+<p>本系列博文总结自《Pro Multithreading and Memory Management for iOS and OS X with ARC》</p>
+<a id="more"></a>
 <p>block 顾名思义就是代码块，将同一逻辑的代码放在一个块，使代码更简洁紧凑，易于阅读，而且它比函数使用更方便，代码更美观，因而广受开发者欢迎。但同时 block 也是 iOS 开发中坑最多的地方之一，因此有必要了解下 block 的实现原理，知其然，更知其所以然，才能从根本上避免挖坑和踩坑。</p>
 <p>需要知道的是，block 只是 Objective-C 对闭包的实现，并不是 iOS 独有的概念，在 C++、Java 等语言也有实现闭包，名称不同而已。</p>
 <blockquote>
