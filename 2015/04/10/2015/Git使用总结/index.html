@@ -100,7 +100,7 @@ git config --global credential.helper &amp;q">
 <meta property="og:image" content="/./1445907817063.png">
 <meta property="og:image" content="/./1445907861804.png">
 <meta property="og:image" content="/./1446522847566.png">
-<meta property="og:updated_time" content="2016-07-11T02:39:20.000Z">
+<meta property="og:updated_time" content="2016-11-09T07:07:53.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Git使用总结">
 <meta name="twitter:description" content="1.配置：1.设置你的名字与邮箱（可与 git 帐号无关）：
@@ -409,6 +409,9 @@ git config --global credential.helper &amp;q">
 <p>1-press “i”<br>2-write your merge message<br>3-press “esc”<br>4-write “:wq” then press enter</p>
 </blockquote>
 <h3 id="8-配置SSH"><a href="#8-配置SSH" class="headerlink" title="8.配置SSH"></a>8.配置SSH</h3><ul>
+<li>查看git用户名<br><code>git config user.name</code></li>
+<li>查看git邮箱<br><code>git config user.email</code></li>
+<li>修改git用户名和邮箱<br><code>git config --global user.name &quot;username&quot;</code><br><code>git config --global user.email &quot;email&quot;</code></li>
 <li>查看是否已经有了ssh密钥：<br><code>cd ~/.ssh</code></li>
 <li>生成SSH<br><code>ssh-keygen -t rsa -C &quot;你的邮箱&quot;</code></li>
 <li>查看SSH<br><code>cat ~/.ssh/id_rsa.pub</code><br>将下面出现的这些个东西都拷贝到你的SSH面板中<br><img src="./1445907817063.png" alt="Alt text"><br><img src="./1445907861804.png" alt="Alt text"></li>
@@ -534,7 +537,7 @@ git config --global credential.helper &amp;q">
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-count">3</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
