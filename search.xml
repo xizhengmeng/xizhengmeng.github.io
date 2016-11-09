@@ -5,7 +5,7 @@
     
     <entry>
       <title><![CDATA[React Native概述]]></title>
-      <url>hanson647.com/2016/08/02/React-Native%E6%A6%82%E8%BF%B0/</url>
+      <url>http://yoursite.com/2016/08/02/React-Native%E6%A6%82%E8%BF%B0/</url>
       <content type="html"><![CDATA[<h2 id="什么是RN"><a href="#什么是RN" class="headerlink" title="什么是RN"></a>什么是RN</h2><p>React 是一个用于创建用户界面的 JavaScript 函数库，通常被表述为 MVC 中的 V（View，视图）。</p>
 <p>React 知道根据组件的状态进行重新渲染，并且保存一个虚拟 DOM 以实现高效的重新渲染。这种方法非常棒，因为我们写代码时就好像在重新渲染整个模板，而实际上 React 只会更新发生过改动的 DOM。</p>
 <blockquote>
@@ -44,7 +44,7 @@
     
     <entry>
       <title><![CDATA[FLV格式解析]]></title>
-      <url>hanson647.com/2016/07/30/FLV%E6%A0%BC%E5%BC%8F%E8%A7%A3%E6%9E%90/</url>
+      <url>http://yoursite.com/2016/07/30/FLV%E6%A0%BC%E5%BC%8F%E8%A7%A3%E6%9E%90/</url>
       <content type="html"><![CDATA[<p>FLV 是 FLASH VIDEO 的简称,，FLV流媒体格式是一种新的视频格式，全称为Flash Video。FLV 压缩与转换非常方便，适合做短片.，并且 FLV 可以很好的保护原始地址，不容易下载到，可以起到保护版权的目的<br><a id="more"></a></p>
 <p>最近要用到flv，整理了一些flv格式的资料，供参考。 flv文件主要由两部分组成：header和body。</p>
 <h2 id="1-header"><a href="#1-header" class="headerlink" title="1.header"></a>1.header</h2><p>header部分记录了flv的类型、版本等信息，是flv的开头，一般都差不多，占9bytes。具体格式如下：</p>
@@ -188,7 +188,7 @@
     
     <entry>
       <title><![CDATA[性能优化总结]]></title>
-      <url>hanson647.com/2016/07/24/2016/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E6%80%BB%E7%BB%93/</url>
+      <url>http://yoursite.com/2016/07/24/2016/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E6%80%BB%E7%BB%93/</url>
       <content type="html"><![CDATA[<p>性能优化总的来讲可以分为下面几个方面<br><a id="more"></a></p>
 <ul>
 <li>性能优化<ul>
@@ -250,7 +250,7 @@
     
     <entry>
       <title><![CDATA[iOS性能优化概述]]></title>
-      <url>hanson647.com/2016/07/21/2016/iOS%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E6%A6%82%E8%BF%B0/</url>
+      <url>http://yoursite.com/2016/07/21/2016/iOS%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E6%A6%82%E8%BF%B0/</url>
       <content type="html"><![CDATA[<h2 id="响应速度与运行速度"><a href="#响应速度与运行速度" class="headerlink" title="响应速度与运行速度"></a>响应速度与运行速度</h2><p>响应速度和运行速度之间有着微妙的区别，响应速度是指监听用户输入到反馈用户的速度，而运行速度是指处理任务的速度。<br><a id="more"></a><br>用户都讨厌等待，所以你会说让App运行的更快非常重要。确实如此，但是运行速度的提升有一个边界，假如数据要通过网络下载，或者要进行复杂的计算和渲染，那么App不可能立即显示这些内容。这种情况下用户实际上还是愿意等待的，但是你要针对他们的操作给出即时的响应，这种响应可以是简单的按钮状态的改变也可以是复杂的动画效果。让App运行更快很重要，让其迅速响应同样重要。<br>使用现实中真实的按钮和开关时会让人感觉靠谱，当按下按钮或者打开开关时你可以百分百确定你进行了操作。但是在触摸屏上你无法感知，所以视觉响应非常重要。如果一个App不能提供这种即时的响应那体验将变得非常糟糕，更具体点说就是响应时间不要超过三分之一秒。当你点击了某个位置但是没有任何事情发生，你会自然而然的认为点击有可能没有被接受。绝大多数人在这时会再点击一次，这可能造成重复的操作。</p>
 <p>关于响应速度的三个原则：</p>
 <ul>
@@ -404,7 +404,7 @@
     
     <entry>
       <title><![CDATA[多线程技术--GCD]]></title>
-      <url>hanson647.com/2016/07/19/2016/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E6%8A%80%E6%9C%AF-GCD/</url>
+      <url>http://yoursite.com/2016/07/19/2016/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E6%8A%80%E6%9C%AF-GCD/</url>
       <content type="html"><![CDATA[<h2 id="什么是GCD"><a href="#什么是GCD" class="headerlink" title="什么是GCD"></a>什么是GCD</h2><a id="more"></a>
 <h2 id="GCD的API"><a href="#GCD的API" class="headerlink" title="GCD的API"></a>GCD的API</h2><ul>
 <li>Dipatch是调度的意思</li>
@@ -461,7 +461,7 @@
     
     <entry>
       <title><![CDATA[block进阶4--block的逻辑理解]]></title>
-      <url>hanson647.com/2016/06/29/2016/block%E8%BF%9B%E9%98%B64-block%E7%9A%84%E9%80%BB%E8%BE%91%E7%90%86%E8%A7%A3/</url>
+      <url>http://yoursite.com/2016/06/29/2016/block%E8%BF%9B%E9%98%B64-block%E7%9A%84%E9%80%BB%E8%BE%91%E7%90%86%E8%A7%A3/</url>
       <content type="html"><![CDATA[<p>对为什么要像前边三篇文章分析的那样去实现block？<br>block是一种类似于闭包的技术，也就是将一段代码保存，然后在需要的时候再执行，这样就带来了两个问题<br><a id="more"></a></p>
 <ul>
 <li>我怎么保证当我需要执行这段block代码的时候，block本身是存在的</li>
@@ -488,7 +488,7 @@
     
     <entry>
       <title><![CDATA[(转)block进阶3--block和对象的内存管理]]></title>
-      <url>hanson647.com/2016/06/25/2016/%E8%BD%AC-block%E8%BF%9B%E9%98%B63-block%E5%92%8C%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/</url>
+      <url>http://yoursite.com/2016/06/25/2016/%E8%BD%AC-block%E8%BF%9B%E9%98%B63-block%E5%92%8C%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/</url>
       <content type="html"><![CDATA[<p>原文链接<a href="https://www.zybuluo.com/MicroCai/note/51116" target="_blank" rel="external">https://www.zybuluo.com/MicroCai/note/51116</a><br>在上一篇文章中，我们讲了很多关于 block 和基础变量的内存管理，接着我们聊聊 block 和对象的内存管理，如 block 经常会碰到的循环引用问题等等。</p>
 <p>获取对象<br><a id="more"></a><br>照例先来段代码轻松下，瞧瞧 block 是怎么获取外部对象的<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">/********************** capturing objects **********************/</div><div class="line">typedef void (^blk_t)(id obj);</div><div class="line">blk_t blk;</div><div class="line">- (void)viewDidLoad</div><div class="line">&#123;</div><div class="line">    [self captureObject];</div><div class="line">    blk([[NSObject alloc] init]);</div><div class="line">    blk([[NSObject alloc] init]);</div><div class="line">    blk([[NSObject alloc] init]);</div><div class="line">&#125;</div><div class="line">- (void)captureObject</div><div class="line">&#123;</div><div class="line">    id array = [[NSMutableArray alloc] init];</div><div class="line">    blk = [^(id obj) &#123;</div><div class="line">             [array addObject:obj];</div><div class="line">             NSLog(@&quot;array count = %ld&quot;, [array count]);</div><div class="line">          &#125; copy];</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>翻译后的关键代码摘录如下</p>
@@ -551,7 +551,7 @@
     
     <entry>
       <title><![CDATA[(转)block进阶2--block和变量内存管理]]></title>
-      <url>hanson647.com/2016/06/25/2016/%E8%BD%AC-block%E8%BF%9B%E9%98%B62-block%E5%92%8C%E5%8F%98%E9%87%8F%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/</url>
+      <url>http://yoursite.com/2016/06/25/2016/%E8%BD%AC-block%E8%BF%9B%E9%98%B62-block%E5%92%8C%E5%8F%98%E9%87%8F%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/</url>
       <content type="html"><![CDATA[<p>了解了 block的实现，我们接着来聊聊 block 和变量的内存管理。本文将介绍可写变量、block的内存段、__block变量的内存段等内容，看完本文会对 block 和变量的内存管理有更加清晰的认识。<br><a id="more"></a><br>上篇文章举了个例子，在 block 内获取了一个外部的局部变量，可以读取，但无法进行写入的修改操作。在 C 语言中有三种类型的变量，可在 block 内进行读写操作</p>
 <blockquote>
 <ul>
@@ -637,7 +637,7 @@
     
     <entry>
       <title><![CDATA[(转)block进阶1--block实现]]></title>
-      <url>hanson647.com/2016/06/25/2016/%E8%BD%AC-block%E8%BF%9B%E9%98%B61-block%E5%AE%9E%E7%8E%B0/</url>
+      <url>http://yoursite.com/2016/06/25/2016/%E8%BD%AC-block%E8%BF%9B%E9%98%B61-block%E5%AE%9E%E7%8E%B0/</url>
       <content type="html"><![CDATA[<hr>
 <h2 id="本系列博文总结自《Pro-Multithreading-and-Memory-Management-for-iOS-and-OS-X-with-ARC》"><a href="#本系列博文总结自《Pro-Multithreading-and-Memory-Management-for-iOS-and-OS-X-with-ARC》" class="headerlink" title="本系列博文总结自《Pro Multithreading and Memory Management for iOS and OS X with ARC》"></a>本系列博文总结自《Pro Multithreading and Memory Management for iOS and OS X with ARC》</h2><a id="more"></a>
 <p>block 顾名思义就是代码块，将同一逻辑的代码放在一个块，使代码更简洁紧凑，易于阅读，而且它比函数使用更方便，代码更美观，因而广受开发者欢迎。但同时 block 也是 iOS 开发中坑最多的地方之一，因此有必要了解下 block 的实现原理，知其然，更知其所以然，才能从根本上避免挖坑和踩坑。</p>
@@ -700,7 +700,7 @@
     
     <entry>
       <title><![CDATA[(转)delegate/KVO/Notification选择]]></title>
-      <url>hanson647.com/2016/03/18/2016/%E8%BD%AC-delegate-KVO-Notification%E9%80%89%E6%8B%A9/</url>
+      <url>http://yoursite.com/2016/03/18/2016/%E8%BD%AC-delegate-KVO-Notification%E9%80%89%E6%8B%A9/</url>
       <content type="html"><![CDATA[<p>前面分别讲了delegate、notification和KVO的实现原理，以及实际使用步骤，我们心中不禁有个疑问，他们的功能比较类似，那么在实际的编程中，如何选择这些方式呢？<br><a id="more"></a><br>在网上看到一个博客上详细的分析了三者之间的区别以及各自的优势，博文地址为<a href="http://blog.shinetech.com/2011/06/14/delegation-notification-and-observation/" target="_blank" rel="external">http://blog.shinetech.com/2011/06/14/delegation-notification-and-observation/</a>，因为博文是用英文写的，下面将其翻译成中文。</p>
 <p>在开发ios应用的时候，我们会经常遇到一个常见的问题：在不过分耦合的前提下，controllers间怎么进行通信。在IOS应用不断的出现三种模式来实现这种通信：</p>
 <p>1.委托delegation；</p>
@@ -766,7 +766,7 @@
     
     <entry>
       <title><![CDATA[iOS技能总结]]></title>
-      <url>hanson647.com/2016/02/19/2016/iOS%E6%8A%80%E8%83%BD%E6%80%BB%E7%BB%93/</url>
+      <url>http://yoursite.com/2016/02/19/2016/iOS%E6%8A%80%E8%83%BD%E6%80%BB%E7%BB%93/</url>
       <content type="html"><![CDATA[<p>参考–唐巧，iOS技能图谱<br><a id="more"></a></p>
 <h3 id="编程语言"><a href="#编程语言" class="headerlink" title="编程语言"></a>编程语言</h3><ul>
 <li>Swift</li>
@@ -939,7 +939,7 @@
     
     <entry>
       <title><![CDATA[iOS中的屏幕旋转]]></title>
-      <url>hanson647.com/2016/02/12/2016/iOS%E4%B8%AD%E7%9A%84%E5%B1%8F%E5%B9%95%E6%97%8B%E8%BD%AC/</url>
+      <url>http://yoursite.com/2016/02/12/2016/iOS%E4%B8%AD%E7%9A%84%E5%B1%8F%E5%B9%95%E6%97%8B%E8%BD%AC/</url>
       <content type="html"><![CDATA[<ul>
 <li>旋转事件只传递给主window</li>
 <li>当我们使用webView播放视频的时候，它会创建一个UIViewController，然后创建一个window，让这个控制器成为这个window的根控制器，然后再将视频显示的view添加到这个UIViewController的控制器view上</li>
@@ -1011,7 +1011,7 @@
     
     <entry>
       <title><![CDATA[(转)项目优化--安装包体积控制]]></title>
-      <url>hanson647.com/2016/01/18/2016/%E8%BD%AC-%E9%A1%B9%E7%9B%AE%E4%BC%98%E5%8C%96-%E5%AE%89%E8%A3%85%E5%8C%85%E4%BD%93%E7%A7%AF%E6%8E%A7%E5%88%B6/</url>
+      <url>http://yoursite.com/2016/01/18/2016/%E8%BD%AC-%E9%A1%B9%E7%9B%AE%E4%BC%98%E5%8C%96-%E5%AE%89%E8%A3%85%E5%8C%85%E4%BD%93%E7%A7%AF%E6%8E%A7%E5%88%B6/</url>
       <content type="html"><![CDATA[<blockquote>
 <p>iOS微信安装包瘦身<br><a id="more"></a></p>
 <h2 id="前提"><a href="#前提" class="headerlink" title="前提"></a>前提</h2></blockquote>
@@ -1109,7 +1109,7 @@
     
     <entry>
       <title><![CDATA[热修复技术在移动端的应用]]></title>
-      <url>hanson647.com/2016/01/12/2016/%E7%83%AD%E4%BF%AE%E5%A4%8D%E6%8A%80%E6%9C%AF%E5%9C%A8%E7%A7%BB%E5%8A%A8%E7%AB%AF%E7%9A%84%E5%BA%94%E7%94%A8/</url>
+      <url>http://yoursite.com/2016/01/12/2016/%E7%83%AD%E4%BF%AE%E5%A4%8D%E6%8A%80%E6%9C%AF%E5%9C%A8%E7%A7%BB%E5%8A%A8%E7%AB%AF%E7%9A%84%E5%BA%94%E7%94%A8/</url>
       <content type="html"><![CDATA[<h3 id="热修复技术概述"><a href="#热修复技术概述" class="headerlink" title="热修复技术概述"></a>热修复技术概述</h3><p>移动应用的部署方式，即发布-&gt;下载-&gt;安装-&gt;运行，决定了他不具备Web的高灵活性，尤其新版本上线后发现有个严重的bug，可能会导致crash率激增，可能会使网络请求无法发出，这时能做的只是赶紧修复bug然后提交等待漫长的AppStore审核，再盼望用户快点升级，付出巨大的人力和时间成本，才能完成此次bug的修复。<br><a id="more"></a><br>热修复技术(HotfixPatch)，是一种基于原生应用开发的灵活性解决方案，可以在不改变开发人员技能要求和已有的开发方式的前提下，给于应用在发布后改变程序行为的能力。<br>热补丁的主要优势是不会使设备当前正在运行的业务中断，即在不重启设备的情况下可以对设备当前软件版本的缺陷进行修复。一般用于某个函数导致的bug，如果是某个类导致的bug，或者增减业务模块，不建议使用热修复，而使用Reactive Native。</p>
 <h4 id="市场中的热修复技术方案对比"><a href="#市场中的热修复技术方案对比" class="headerlink" title="市场中的热修复技术方案对比"></a>市场中的热修复技术方案对比</h4><ul>
 <li>WaxPatch(阿里在维护)</li>
@@ -1244,7 +1244,7 @@
     
     <entry>
       <title><![CDATA[category内部实现原理]]></title>
-      <url>hanson647.com/2015/12/15/2015/category%E5%86%85%E9%83%A8%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/</url>
+      <url>http://yoursite.com/2015/12/15/2015/category%E5%86%85%E9%83%A8%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/</url>
       <content type="html"><![CDATA[<p>见过的比较好的一篇讲述category实现的博客，在此做个记录<br><a id="more"></a></p>
 <p>转载自：<a href="http://tech.meituan.com/DiveIntoCategory.html" target="_blank" rel="external">http://tech.meituan.com/DiveIntoCategory.html</a></p>
 <p>无论一个类设计的多么完美，在未来的需求演进中，都有可能会碰到一些无法预测的情况。那怎么扩展已有的类呢？一般而言，继承和组合是不错的选择。但是在Objective-C 2.0中，又提供了category这个语言特性，可以动态地为已有类添加新行为。如今category已经遍布于Objective-C代码的各个角落，从Apple官方的framework到各个开源框架，从功能繁复的大型APP到简单的应用，catagory无处不在。本文对category做了比较全面的整理，希望对读者有所裨益。</p>
@@ -1316,7 +1316,7 @@
     
     <entry>
       <title><![CDATA[runtime概述]]></title>
-      <url>hanson647.com/2015/08/10/2015/runtime%E6%A6%82%E8%BF%B0/</url>
+      <url>http://yoursite.com/2015/08/10/2015/runtime%E6%A6%82%E8%BF%B0/</url>
       <content type="html"><![CDATA[<a id="more"></a>
 <h2 id="runtime概述"><a href="#runtime概述" class="headerlink" title="runtime概述"></a>runtime概述</h2><blockquote>
 <p><strong>什么是runtime?</strong><br>runtime直译就是运行时间,run(跑,运行) time(时间),网上大家都叫它运行时,它是一套比较底层的纯C语言API,属于一个C语言库,包含了很多底层的C语言API,它是OC的幕后工作者,我们平时写的OC代码,在运行过程时,都会转为runtime的C语言代码</p>
@@ -1447,7 +1447,7 @@
     
     <entry>
       <title><![CDATA[Runloop概述]]></title>
-      <url>hanson647.com/2015/07/21/2015/Runloop%E6%A6%82%E8%BF%B0/</url>
+      <url>http://yoursite.com/2015/07/21/2015/Runloop%E6%A6%82%E8%BF%B0/</url>
       <content type="html"><![CDATA[<h2 id="1-基本概念"><a href="#1-基本概念" class="headerlink" title="1.基本概念"></a>1.基本概念</h2><h3 id="为什么需要runloop"><a href="#为什么需要runloop" class="headerlink" title="为什么需要runloop"></a>为什么需要runloop</h3><ul>
 <li>使程序一直活着</li>
 <li>决定程序何时应该处理哪些event</li>
@@ -1605,7 +1605,7 @@
     
     <entry>
       <title><![CDATA[(转)视音频编解码技术零基础学习方法]]></title>
-      <url>hanson647.com/2015/07/17/2015/%E8%BD%AC-%E8%A7%86%E9%9F%B3%E9%A2%91%E7%BC%96%E8%A7%A3%E7%A0%81%E6%8A%80%E6%9C%AF%E9%9B%B6%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/</url>
+      <url>http://yoursite.com/2015/07/17/2015/%E8%BD%AC-%E8%A7%86%E9%9F%B3%E9%A2%91%E7%BC%96%E8%A7%A3%E7%A0%81%E6%8A%80%E6%9C%AF%E9%9B%B6%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/</url>
       <content type="html"><![CDATA[<p>原文地址<a href="http://blog.csdn.net/leixiaohua1020/article/details/18893769" target="_blank" rel="external">http://blog.csdn.net/leixiaohua1020/article/details/18893769</a><br><a id="more"></a></p>
 <h2 id="视频播放器原理"><a href="#视频播放器原理" class="headerlink" title="视频播放器原理"></a>视频播放器原理</h2><p>视音频技术主要包含以下几点：封装技术，视频压缩编码技术以及音频压缩编码技术。如果考虑到网络传输的话，还包括流媒体协议技术。<br>视频播放器的源代码详细解析（Media Player Classic - HC，Mplayer，FFplay，XBMC）可以参考系列文章：<br>Media Player Classic：Media Player Classic - HC源代码分析 1：整体结构[系列文章]<br>Mplayer：MPlayer源代码分析<br>FFplay： FFplay源代码分析：整体流程图<br>XBMC： XBMC源代码分析 1：整体结构以及编译方法[系列文章]<br>在这里不细说了，仅简要说明一下视频播放器的原理。<br>视频播放器播放一个互联网上的视频文件，需要经过以下几个步骤：解协议，解封装，解码视音频，视音频同步。如果播放本地文件则不需要解协议，为以下几个步骤：解封装，解码视音频，视音频同步。他们的过程如图所示。<br><img src="http://7xrn7f.com1.z0.glb.clouddn.com/16-7-17/69435586.jpg" alt=""></p>
 <p>解协议的作用，就是将流媒体协议的数据，解析为标准的相应的封装格式数据。视音频在网络上传播的时候，常常采用各种流媒体协议，例如HTTP，RTMP，或是MMS等等。这些协议在传输视音频数据的同时，也会传输一些信令数据。这些信令数据包括对播放的控制（播放，暂停，停止），或者对网络状态的描述等。解协议的过程中会去除掉信令数据而只保留视音频数据。例如，采用RTMP协议传输的数据，经过解协议操作后，输出FLV格式的数据。<br>解封装的作用，就是将输入的封装格式的数据，分离成为音频流压缩编码数据和视频流压缩编码数据。封装格式种类很多，例如MP4，MKV，RMVB，TS，FLV，AVI等等，它的作用就是将已经压缩编码的视频数据和音频数据按照一定的格式放到一起。例如，FLV格式的数据，经过解封装操作后，输出H.264编码的视频码流和AAC编码的音频码流。<br>解码的作用，就是将视频/音频压缩编码数据，解码成为非压缩的视频/音频原始数据。音频的压缩编码标准包含AAC，MP3，AC-3等等，视频的压缩编码标准则包含H.264，MPEG2，VC-1等等。解码是整个系统中最重要也是最复杂的一个环节。通过解码，压缩编码的视频数据输出成为非压缩的颜色数据，例如YUV420P，RGB等等；压缩编码的音频数据输出成为非压缩的音频抽样数据，例如PCM数据。<br>视音频同步的作用，就是根据解封装模块处理过程中获取到的参数信息，同步解码出来的视频和音频数据，并将视频音频数据送至系统的显卡和声卡播放出来。<br>接下来的几节我们将会列出主要的流媒体协议，封装格式，以及视音频编码标准。更详细的比较可以参考：<br>视频参数（流媒体系统，封装格式，视频编码，音频编码，播放器）对比<br>有关本文中涉及到的协议数据、封装格式数据、视频编码数据、音频编码数据、视频像素数据、音频采样数</p>
@@ -1626,7 +1626,7 @@
     
     <entry>
       <title><![CDATA[(转)音视频基础概念汇总]]></title>
-      <url>hanson647.com/2015/07/17/2015/%E8%BD%AC-%E9%9F%B3%E8%A7%86%E9%A2%91%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5%E6%B1%87%E6%80%BB/</url>
+      <url>http://yoursite.com/2015/07/17/2015/%E8%BD%AC-%E9%9F%B3%E8%A7%86%E9%A2%91%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5%E6%B1%87%E6%80%BB/</url>
       <content type="html"><![CDATA[<h2 id="第一部分：基本概念讲解"><a href="#第一部分：基本概念讲解" class="headerlink" title="第一部分：基本概念讲解"></a>第一部分：基本概念讲解</h2><ul>
 <li>媒体：是表示，传输，存储信息的载体，常人们见到的文字、声音、图像、图形等都是表示信息的媒体。<a id="more"></a></li>
 <li><p>多媒体： 是声音、动画、文字、图像和录像等各种媒体的组合，以图文并茂，生动活泼的动态形式表现出来，给人以很强的视觉冲击力，留下深刻印象</p>
@@ -1865,7 +1865,7 @@
     
     <entry>
       <title><![CDATA[OC中的各种变量]]></title>
-      <url>hanson647.com/2015/06/10/2015/OC%E4%B8%AD%E7%9A%84%E5%90%84%E7%A7%8D%E5%8F%98%E9%87%8F/</url>
+      <url>http://yoursite.com/2015/06/10/2015/OC%E4%B8%AD%E7%9A%84%E5%90%84%E7%A7%8D%E5%8F%98%E9%87%8F/</url>
       <content type="html"><![CDATA[<p>首先看一下几个概念分类：</p>
 <ul>
 <li>成员变量</li>
@@ -2027,7 +2027,7 @@
     
     <entry>
       <title><![CDATA[Block使用总结]]></title>
-      <url>hanson647.com/2015/05/02/2015/Block%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/</url>
+      <url>http://yoursite.com/2015/05/02/2015/Block%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/</url>
       <content type="html"><![CDATA[<p>block用来保存一段代码，在需要的时候回调，是对闭包的实现<br><a id="more"></a></p>
 <p>所以，切勿将过程代码当做block的实际实现，切记切记！！！</p>
 <h2 id="block的声明"><a href="#block的声明" class="headerlink" title="block的声明"></a>block的声明</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">//变量</div><div class="line">void (^myBlock)();</div><div class="line">int (^myBlock1)(int, int);</div><div class="line"></div><div class="line">//属性1</div><div class="line">typydef void(^Myblock)();//这样Myblock就代表一个block类型了</div><div class="line">@property (nonatomic, copy) Myblock myblock; </div><div class="line"></div><div class="line">//属性2</div><div class="line">@property (nonatomic, copy) void(^myBlock)(int);//这样仍然是一个block，而且名字就是myBlock</div><div class="line"></div><div class="line">//参数</div><div class="line">- (void) modifyUserInfoWithNickName:(NSString *) nickName</div><div class="line">                           userLogo:(NSString *) userLogo</div><div class="line">                                sex:(NSNumber *) sex</div><div class="line">                           location:(NSString *) location</div><div class="line">                            succeed:(void(^)())successBlock</div><div class="line">                               fail:(void(^)(NSError *error))errorBlock;</div><div class="line">                               //这个时候的格式就变成了(返回+(^)(参数))名字</div><div class="line">                               </div><div class="line">也可以这样</div><div class="line"></div><div class="line">typedef void(^FXSuccessBlock)(id result);</div><div class="line">typedef void(^FXFailBlock)(NSError *error);</div><div class="line"></div><div class="line">- (void)onlyGetLoginUserInfo:(FXSuccessBlock)successHandler</div><div class="line">                 failHandler:(FXFailBlock)failHandler;</div></pre></td></tr></table></figure>
@@ -2064,7 +2064,7 @@
     
     <entry>
       <title><![CDATA[iOS中的屏幕旋转]]></title>
-      <url>hanson647.com/2015/04/12/2015/iOS%E4%B8%AD%E7%9A%84%E5%B1%8F%E5%B9%95%E6%97%8B%E8%BD%AC/</url>
+      <url>http://yoursite.com/2015/04/12/2015/iOS%E4%B8%AD%E7%9A%84%E5%B1%8F%E5%B9%95%E6%97%8B%E8%BD%AC/</url>
       <content type="html"><![CDATA[<h3 id="总述"><a href="#总述" class="headerlink" title="总述"></a>总述</h3><ul>
 <li>旋转事件只传递给主window</li>
 <li>当我们使用webView播放视频的时候，它会创建一个UIViewController，然后创建一个window，让这个控制器成为这个window的根控制器，然后再将视频显示的view添加到这个UIViewController的控制器view上<a id="more"></a></li>
@@ -2136,7 +2136,7 @@
     
     <entry>
       <title><![CDATA[Git使用总结]]></title>
-      <url>hanson647.com/2015/04/10/2015/Git%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/</url>
+      <url>http://yoursite.com/2015/04/10/2015/Git%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/</url>
       <content type="html"><![CDATA[<h3 id="1-配置："><a href="#1-配置：" class="headerlink" title="1.配置："></a>1.配置：</h3><p><strong>1.设置你的名字与邮箱（可与 git 帐号无关）：</strong></p>
 <p><code>git config --global user.name &quot;Your Name&quot;</code><br><code>git config --global user.email your@email.com</code></p>
 <p>缓存一段时间的 git 帐号密码（timeout 单位：秒）：</p>
@@ -2245,7 +2245,7 @@
     
     <entry>
       <title><![CDATA[Hexo 配置教程]]></title>
-      <url>hanson647.com/2015/03/09/2015/Hexo-%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B/</url>
+      <url>http://yoursite.com/2015/03/09/2015/Hexo-%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B/</url>
       <content type="html"><![CDATA[<h3 id="hexo安装"><a href="#hexo安装" class="headerlink" title="hexo安装"></a>hexo安装</h3><blockquote>
 <p>前提已经安装了node.js和git</p>
 </blockquote>
@@ -2316,7 +2316,7 @@
     
     <entry>
       <title><![CDATA[iOS中的空值]]></title>
-      <url>hanson647.com/2015/02/15/2015/iOS%E4%B8%AD%E7%9A%84%E7%A9%BA%E5%80%BC/</url>
+      <url>http://yoursite.com/2015/02/15/2015/iOS%E4%B8%AD%E7%9A%84%E7%A9%BA%E5%80%BC/</url>
       <content type="html"><![CDATA[<p>nil和NULL和Nil和NSNull的区别<br><a id="more"></a></p>
 <h2 id="nil"><a href="#nil" class="headerlink" title="nil"></a>nil</h2><ul>
 <li>nil 是 ObjC 对象的字面空值，对应 id 类型的对象，或者使用 @interface 声明的 ObjC 对象。</li>
@@ -2353,7 +2353,7 @@
     
     <entry>
       <title><![CDATA[iOS中的定时和延时]]></title>
-      <url>hanson647.com/2015/01/23/2015/iOS%E4%B8%AD%E7%9A%84%E5%AE%9A%E6%97%B6%E5%92%8C%E5%BB%B6%E6%97%B6/</url>
+      <url>http://yoursite.com/2015/01/23/2015/iOS%E4%B8%AD%E7%9A%84%E5%AE%9A%E6%97%B6%E5%92%8C%E5%BB%B6%E6%97%B6/</url>
       <content type="html"><![CDATA[<p>我们使用延时和定时可以使用以下方法：</p>
 <ul>
 <li>NSTimer</li>
@@ -2366,13 +2366,13 @@
     
     <entry>
       <title><![CDATA[多线程技术概述]]></title>
-      <url>hanson647.com/2015/01/19/2015/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E6%8A%80%E6%9C%AF%E6%A6%82%E8%BF%B0/</url>
+      <url>http://yoursite.com/2015/01/19/2015/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E6%8A%80%E6%9C%AF%E6%A6%82%E8%BF%B0/</url>
       <content type="html"></content>
     </entry>
     
     <entry>
       <title><![CDATA[流媒体技术概述]]></title>
-      <url>hanson647.com/2015/01/17/2015/%E6%B5%81%E5%AA%92%E4%BD%93%E6%8A%80%E6%9C%AF%E6%A6%82%E8%BF%B0/</url>
+      <url>http://yoursite.com/2015/01/17/2015/%E6%B5%81%E5%AA%92%E4%BD%93%E6%8A%80%E6%9C%AF%E6%A6%82%E8%BF%B0/</url>
       <content type="html"><![CDATA[<h2 id="什么是流媒体技术"><a href="#什么是流媒体技术" class="headerlink" title="什么是流媒体技术"></a>什么是流媒体技术</h2><p>随着现代技术的发展，网络带给人们形式多样的信息，从第一张图片出现在网络上到如今各种形式的网络视频和三维动画，网络让人们的视听觉得到了很大的满足。然而在流媒体技术出现之前，人们必须要先下载这些多媒体内容到本地计算机，在漫长的等待之后（因为受限于带宽，下载通常要花上较长的时间），才可以看到或听到媒体传达的信息。令人欣慰的是，在流媒体技术出现之后，人们便无需再等待媒体完全下载完成了。<br><a id="more"></a><br>流媒体就是指采用流式传输技术在网络上连续实时播放的媒体格式，如音频、视频或多媒体文件。流媒体技术也称流式媒体技术.所谓流媒体技术就是把连续的影像和声音信息经过压缩处理后放上网站服务器,由视频服务器向用户计算机顺序或实时地传送各个压缩包，让用户一边下载一边观看、收听，而不要等整个压缩文件下载到自己的计算机上才可以观看的网络传输技术。该技术先在使用者端的计算机上创建一个缓冲区，在播放前预先下一段数据作为缓冲，在网路实际连线速度小于播放所耗的速度时，播放程序就会取用一小段缓冲区内的数据，这样可以避免播放的中断，也使得播放品质得以保证。</p>
 <h2 id="流媒体技术的应用分类"><a href="#流媒体技术的应用分类" class="headerlink" title="流媒体技术的应用分类"></a>流媒体技术的应用分类</h2><p>流媒体应用形式可以简单分为3类：点播型应用、直播型应用和会议型应用。</p>
 <ul>
@@ -2430,7 +2430,7 @@
     
     <entry>
       <title><![CDATA[UIKit系列---UITextField]]></title>
-      <url>hanson647.com/2014/12/12/2014/UIKit%E7%B3%BB%E5%88%97-UITextField/</url>
+      <url>http://yoursite.com/2014/12/12/2014/UIKit%E7%B3%BB%E5%88%97-UITextField/</url>
       <content type="html"><![CDATA[<h3 id="总述"><a href="#总述" class="headerlink" title="总述"></a>总述</h3><p>我们监听textfield的事件总结来看有两种途径，第一种是代理，第二种是通知，代理能够监听的更加广泛一些<br><a id="more"></a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField;        // return NO to disallow editing.</div><div class="line">- (void)textFieldDidBeginEditing:(UITextField *)textField;           // became first responder</div><div class="line">- (BOOL)textFieldShouldEndEditing:(UITextField *)textField;          // return YES to allow editing to stop and to resign first responder status. NO to disallow the editing session to end</div><div class="line">- (void)textFieldDidEndEditing:(UITextField *)textField;             // may be called if forced even if shouldEndEditing returns NO (e.g. view removed from window) or endEditing:YES called</div><div class="line"></div><div class="line">- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string;   // return NO to not change text</div><div class="line"></div><div class="line">- (BOOL)textFieldShouldClear:(UITextField *)textField;               // called when clear button pressed. return NO to ignore (no notifications)</div><div class="line">- (BOOL)textFieldShouldReturn:(UITextField *)textField;              // called when &apos;return&apos; key pressed. return NO to ignore.</div><div class="line"></div><div class="line">@end</div><div class="line"></div><div class="line">UIKIT_EXTERN NSString *const UITextFieldTextDidBeginEditingNotification;</div><div class="line">UIKIT_EXTERN NSString *const UITextFieldTextDidEndEditingNotification;</div><div class="line">UIKIT_EXTERN NSString *const UITextFieldTextDidChangeNotification;</div></pre></td></tr></table></figure></p>
 <h3 id="1-监听输入"><a href="#1-监听输入" class="headerlink" title="1.监听输入"></a>1.监听输入</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">[textField addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];</div><div class="line">- (void) textFieldDidChange:(UITextField *) TextField&#123; &#125;</div></pre></td></tr></table></figure>
 <h3 id="2-输入限制"><a href="#2-输入限制" class="headerlink" title="2.输入限制"></a>2.输入限制</h3><h4 id="2-1长度"><a href="#2-1长度" class="headerlink" title="2.1长度"></a>2.1长度</h4><blockquote>
@@ -2465,7 +2465,7 @@
     
     <entry>
       <title><![CDATA[UIKit系列---UIButton]]></title>
-      <url>hanson647.com/2014/12/03/2014/UIKit%E7%B3%BB%E5%88%97-UIButton/</url>
+      <url>http://yoursite.com/2014/12/03/2014/UIKit%E7%B3%BB%E5%88%97-UIButton/</url>
       <content type="html"><![CDATA[<h3 id="1-一个界面内有多个button要防止同时点击"><a href="#1-一个界面内有多个button要防止同时点击" class="headerlink" title="1.一个界面内有多个button要防止同时点击"></a>1.一个界面内有多个button要防止同时点击</h3><p>每个button都设置该属性<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[btn setExclusiveTouch:YES];</div></pre></td></tr></table></figure></p>
 <a id="more"></a>
 <h3 id="2-button不同状态下图片切换失效"><a href="#2-button不同状态下图片切换失效" class="headerlink" title="2.button不同状态下图片切换失效"></a>2.button不同状态下图片切换失效</h3><p>如果你设置了normal状态下的button的图片，然后你设置disable状态下图片为nil，你会发现当你切换状态的时候，图片并不会变成nil，你许雅做的事，做一张像素为空的图片，然后在disable状态下，把按钮的图片设置为这个像素为空的图片</p>
@@ -2481,7 +2481,7 @@
     
     <entry>
       <title><![CDATA[iOS设计模式]]></title>
-      <url>hanson647.com/2014/11/18/2014/iOS%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</url>
+      <url>http://yoursite.com/2014/11/18/2014/iOS%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</url>
       <content type="html"><![CDATA[<blockquote>
 <p>设计模式的功能是在软件设计当中是解决一些重复的公共问题。他们是一些模板来帮助你更容易的书写代码和复用你的代码。他们还可能帮助你创建低耦合的代码，你可以很轻松的修改和替换其中的组件。<br><a id="more"></a></p>
 <h2 id="MVC"><a href="#MVC" class="headerlink" title="MVC"></a>MVC</h2><p>现在可能更流行的是MVVM，首先，你要保证在你的项目中任何一个类都有一个控制器，一个模型，一个视图，一个类中的函数不能有两种作用</p>
@@ -2512,13 +2512,13 @@
     
     <entry>
       <title><![CDATA[事件与响应者链]]></title>
-      <url>hanson647.com/2014/07/21/2014/%E4%BA%8B%E4%BB%B6%E4%B8%8E%E5%93%8D%E5%BA%94%E8%80%85%E9%93%BE/</url>
+      <url>http://yoursite.com/2014/07/21/2014/%E4%BA%8B%E4%BB%B6%E4%B8%8E%E5%93%8D%E5%BA%94%E8%80%85%E9%93%BE/</url>
       <content type="html"></content>
     </entry>
     
     <entry>
       <title><![CDATA[计算机网络概述--TCP/IP]]></title>
-      <url>hanson647.com/2014/07/18/2014/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%A6%82%E8%BF%B0/</url>
+      <url>http://yoursite.com/2014/07/18/2014/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%A6%82%E8%BF%B0/</url>
       <content type="html"><![CDATA[<p>计算机基础<br><a id="more"></a></p>
 <blockquote>
 <p>TPC/IP协议是传输层协议，主要解决数据如何在网络中传输，而HTTP是应用层协议，主要解决如何包装数据。关于TCP/IP和HTTP协议的关系，网络有一段比较容易理解的介绍：“我们在传输数据时，可以只使用（传输层）TCP/IP协议，但是那样的话，如果没有应用层，便无法识别数据内容，如果想要使传输的数据有意义，则必须使用到应用层协议，应用层协议有很多，比如HTTP、FTP、TELNET等，也可以自己定义应用层协议。WEB使用HTTP协议作应用层协议，以封装HTTP 文本信息，然后使用TCP/IP做传输层协议将它发到网络上。”</p>
