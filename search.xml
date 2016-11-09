@@ -2307,7 +2307,14 @@
 <h4 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h4><p>在工程的_config文件中，要将url对应的字段设置为/，否则你会发现搜索会自动加上一个前置的url，这样就又错乱了</p>
 <h3 id="添加标签以及标签云页面"><a href="#添加标签以及标签云页面" class="headerlink" title="添加标签以及标签云页面"></a>添加标签以及标签云页面</h3><ul>
 <li>创建tags页面<code>hexo new page tags</code></li>
-<li>直接在文章中的tags关键字后边添加对应的标签就好<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">tags:</div><div class="line">- 工具</div></pre></td></tr></table></figure>
+<li><p>直接在文章中的tags关键字后边添加对应的标签就好</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">tags:</div><div class="line">- 工具</div></pre></td></tr></table></figure>
+</li>
+<li><p>编辑刚才创建的tags页面，将其类型更改为tags</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">title: tags</div><div class="line">date: </div><div class="line">type: &quot;tags&quot;</div></pre></td></tr></table></figure>
+</li>
+<li><p>在主题配置文件中，将tags添加到menu中</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">menu:</div><div class="line">  home: /</div><div class="line">  archives: /archives</div><div class="line">  tags: /tags</div></pre></td></tr></table></figure>
 </li>
 </ul>
 <h3 id="创建关于页面"><a href="#创建关于页面" class="headerlink" title="创建关于页面"></a>创建关于页面</h3><p><code>hexo new page about</code></p>
