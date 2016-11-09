@@ -79,7 +79,7 @@
     
     <entry>
       <title><![CDATA[React Native概述]]></title>
-      <url>/2016/08/02/React-Native%E6%A6%82%E8%BF%B0/</url>
+      <url>/2016/08/02/2016/React-Native%E6%A6%82%E8%BF%B0/</url>
       <content type="html"><![CDATA[<h2 id="什么是RN"><a href="#什么是RN" class="headerlink" title="什么是RN"></a>什么是RN</h2><p>React 是一个用于创建用户界面的 JavaScript 函数库，通常被表述为 MVC 中的 V（View，视图）。</p>
 <p>React 知道根据组件的状态进行重新渲染，并且保存一个虚拟 DOM 以实现高效的重新渲染。这种方法非常棒，因为我们写代码时就好像在重新渲染整个模板，而实际上 React 只会更新发生过改动的 DOM。</p>
 <blockquote>
@@ -118,7 +118,7 @@
     
     <entry>
       <title><![CDATA[FLV格式解析]]></title>
-      <url>/2016/07/30/FLV%E6%A0%BC%E5%BC%8F%E8%A7%A3%E6%9E%90/</url>
+      <url>/2016/07/30/2016/FLV%E6%A0%BC%E5%BC%8F%E8%A7%A3%E6%9E%90/</url>
       <content type="html"><![CDATA[<p>FLV 是 FLASH VIDEO 的简称,，FLV流媒体格式是一种新的视频格式，全称为Flash Video。FLV 压缩与转换非常方便，适合做短片.，并且 FLV 可以很好的保护原始地址，不容易下载到，可以起到保护版权的目的<br><a id="more"></a></p>
 <p>最近要用到flv，整理了一些flv格式的资料，供参考。 flv文件主要由两部分组成：header和body。</p>
 <h2 id="1-header"><a href="#1-header" class="headerlink" title="1.header"></a>1.header</h2><p>header部分记录了flv的类型、版本等信息，是flv的开头，一般都差不多，占9bytes。具体格式如下：</p>
@@ -2318,7 +2318,7 @@
     </entry>
     
     <entry>
-      <title><![CDATA[Hexo 配置教程]]></title>
+      <title><![CDATA[Hexo 配置/使用教程]]></title>
       <url>/2015/03/09/2015/Hexo-%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B/</url>
       <content type="html"><![CDATA[<h3 id="hexo安装"><a href="#hexo安装" class="headerlink" title="hexo安装"></a>hexo安装</h3><blockquote>
 <p>前提已经安装了node.js和git</p>
@@ -2347,6 +2347,8 @@
 <li><code>hexo clean</code></li>
 <li><code>hexo g</code>//生成</li>
 <li><code>hexo d</code>//推送到github服务器</li>
+<li><code>hexo new &quot;fileName&quot;</code>创建新的文件，在_post文件中</li>
+<li><code>hexo new page fileName</code>创建一个文件夹，然后在其中创建一个index.md文件，比如标签云页面，或者分类页面</li>
 </ul>
 <h3 id="绑定域名"><a href="#绑定域名" class="headerlink" title="绑定域名"></a>绑定域名</h3><ul>
 <li>申请域名，直接搜索<code>hexo和github，域名和github绑定的问题</code></li>
@@ -2392,7 +2394,14 @@
 </li>
 </ul>
 <h3 id="创建关于页面"><a href="#创建关于页面" class="headerlink" title="创建关于页面"></a>创建关于页面</h3><p><code>hexo new page about</code></p>
-<h3 id="容易出现的问题"><a href="#容易出现的问题" class="headerlink" title="容易出现的问题"></a>容易出现的问题</h3><h4 id="hexo-d"><a href="#hexo-d" class="headerlink" title="hexo d"></a>hexo d</h4><p><code>Error: ssh_exchange_identification: read: Connection reset by peer</code><br>说明是网关的问题，我是解决了一下网络解决的，一开始连接的是京东的guest网络，出现该问题，切换为access解决</p>
+<h3 id="容易出现的问题"><a href="#容易出现的问题" class="headerlink" title="容易出现的问题"></a>容易出现的问题</h3><h4 id="hexo-d"><a href="#hexo-d" class="headerlink" title="hexo d"></a>hexo d</h4><ul>
+<li><code>Error: ssh_exchange_identification: read: Connection reset by peer</code><br>说明是网关的问题，我是解决了一下网络解决的，一开始连接的是京东的guest网络，出现该问题，切换为access解决</li>
+</ul>
+<h4 id="md文件格式"><a href="#md文件格式" class="headerlink" title="md文件格式"></a>md文件格式</h4><p>标题中#号要与后边的标题留出间隙，也就是一个空格，否则hexo渲染是不认的</p>
+<h3 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h3><ul>
+<li>next主题设置<a href="http://theme-next.iissnan.com" target="_blank" rel="external">http://theme-next.iissnan.com</a></li>
+<li>hexo官网<a href="https://hexo.io/zh-cn/" target="_blank" rel="external">https://hexo.io/zh-cn/</a></li>
+</ul>
 ]]></content>
     </entry>
     
