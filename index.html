@@ -262,6 +262,100 @@
             
               
                 
+                <a class="post-title-link" href="/2016/11/15/NSString/" itemprop="url">
+                  NSString
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-11-15T18:08:53+08:00" content="2016-11-15">
+              2016-11-15
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="去除字符串中的中文"><a href="#去除字符串中的中文" class="headerlink" title="去除字符串中的中文"></a>去除字符串中的中文</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">- (NSString *)removeChinese:(NSString *)string &#123;</div><div class="line"></div><div class="line">    NSString *chi = [self getChineseStringWithString:string];</div><div class="line"></div><div class="line">    return [string stringByReplacingOccurrencesOfString:chi withString:@&quot;&quot;];</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (NSString *)getChineseStringWithString:(NSString *)string</div><div class="line">&#123;</div><div class="line">    //(unicode中文编码范围是0x4e00~0x9fa5)</div><div class="line">    for (int i = 0; i &lt; string.length; i++) &#123;</div><div class="line">        int utfCode = 0;</div><div class="line">        void *buffer = &amp;utfCode;</div><div class="line">        NSRange range = NSMakeRange(i, 1);</div><div class="line"></div><div class="line">        BOOL b = [string getBytes:buffer maxLength:2 usedLength:NULL encoding:NSUTF16LittleEndianStringEncoding options:NSStringEncodingConversionExternalRepresentation range:range remainingRange:NULL];</div><div class="line"></div><div class="line">        if (b &amp;&amp; (utfCode &gt;= 0x4e00 &amp;&amp; utfCode &lt;= 0x9fa5)) &#123;</div><div class="line">            return [string substringFromIndex:i];</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    return nil;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/11/15/UICollectionView/" itemprop="url">
                   UICollectionView
                 </a>
@@ -1206,122 +1300,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/06/25/2016/转-block进阶3-block和对象的内存管理/" itemprop="url">
-                  (转)block进阶3--block和对象的内存管理
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-06-25T14:16:13+08:00" content="2016-06-25">
-              2016-06-25
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/iOS/" itemprop="url" rel="index">
-                    <span itemprop="name">iOS</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>原文链接<a href="https://www.zybuluo.com/MicroCai/note/51116">https://www.zybuluo.com/MicroCai/note/51116</a><br>在上一篇文章中，我们讲了很多关于 block 和基础变量的内存管理，接着我们聊聊 block 和对象的内存管理，如 block 经常会碰到的循环引用问题等等。</p>
-<p>获取对象<br>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/06/25/2016/转-block进阶3-block和对象的内存管理/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1367,7 +1345,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">34</span>
+              <span class="site-state-item-count">35</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
