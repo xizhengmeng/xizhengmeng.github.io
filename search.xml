@@ -4,6 +4,22 @@
   
     
     <entry>
+      <title><![CDATA[UICollectionView]]></title>
+      <url>/2016/11/15/UICollectionView/</url>
+      <content type="html"><![CDATA[<h3 id="iOS中的新变化"><a href="#iOS中的新变化" class="headerlink" title="iOS中的新变化"></a>iOS中的新变化</h3><p>在iOS10中，重用的加载机制发生了变化，会提前加在一个cell，这就意味着，cellforrow会被提前一个调用，这个可以通过属性直接关闭，这里要注意</p>
+]]></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[iOS知识小集合]]></title>
+      <url>/2016/11/15/iOS%E7%9F%A5%E8%AF%86%E5%B0%8F%E9%9B%86/</url>
+      <content type="html"><![CDATA[<ul>
+<li>1.dealloc方法是不能被覆盖的的，我们在子类中写的dealloc会被调用，同时父类的dealloc也会被调用，无需在子类中写上[super dealloc]</li>
+</ul>
+]]></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[UIPikerView-日期选择器]]></title>
       <url>/2016/11/15/UIPikerView-%E6%97%A5%E6%9C%9F%E9%80%89%E6%8B%A9%E5%99%A8/</url>
       <content type="html"><![CDATA[<h2 id="日期选择器"><a href="#日期选择器" class="headerlink" title="日期选择器"></a>日期选择器</h2><a id="more"></a>
