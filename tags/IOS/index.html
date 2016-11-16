@@ -87,7 +87,7 @@
 <meta name="description" content="iOS开发者，python/js爱好者，现在就职业京东金融">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Hanson的博客">
-<meta property="og:url" content="/tags/iOS/index.html">
+<meta property="og:url" content="/tags/IOS/index.html">
 <meta property="og:site_name" content="Hanson的博客">
 <meta property="og:description" content="iOS开发者，python/js爱好者，现在就职业京东金融">
 <meta name="twitter:card" content="summary">
@@ -113,10 +113,10 @@
 
 
 
-  <link rel="canonical" href="/tags/iOS/"/>
+  <link rel="canonical" href="/tags/IOS/"/>
 
 
-  <title> 标签: iOS | Hanson的博客 </title>
+  <title> 标签: IOS | Hanson的博客 </title>
 </head>
 
 <body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
@@ -241,7 +241,7 @@
   <div id="posts" class="posts-collapse">
     <div class="collection-title">
       <h2 >
-        iOS
+        IOS
         <small>标签</small>
       </h2>
     </div>
@@ -254,9 +254,9 @@
 
       <h1 class="post-title">
         
-            <a class="post-title-link" href="/2016/11/15/NSString/" itemprop="url">
+            <a class="post-title-link" href="/2016/11/15/2016/iOS知识小集/" itemprop="url">
               
-                <span itemprop="name">NSString</span>
+                <span itemprop="name">iOS知识小集合</span>
               
             </a>
         
@@ -264,7 +264,7 @@
 
       <div class="post-meta">
         <time class="post-time" itemprop="dateCreated"
-              datetime="2016-11-15T18:08:53+08:00"
+              datetime="2016-11-15T14:34:32+08:00"
               content="2016-11-15" >
           11-15
         </time>
@@ -282,9 +282,9 @@
 
       <h1 class="post-title">
         
-            <a class="post-title-link" href="/2016/11/15/UICollectionView/" itemprop="url">
+            <a class="post-title-link" href="/2014/12/15/2014/UIKit系列-UIPikerView-日期选择器/" itemprop="url">
               
-                <span itemprop="name">UICollectionView</span>
+                <span itemprop="name">UIKit系列-UIPikerView-日期选择器</span>
               
             </a>
         
@@ -292,9 +292,9 @@
 
       <div class="post-meta">
         <time class="post-time" itemprop="dateCreated"
-              datetime="2016-11-15T14:36:57+08:00"
-              content="2016-11-15" >
-          11-15
+              datetime="2014-12-15T11:52:49+08:00"
+              content="2014-12-15" >
+          12-15
         </time>
       </div>
 
@@ -344,7 +344,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">35</span>
+              <span class="site-state-item-count">36</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -643,7 +643,32 @@
 
 </body>
 </html>
-pt>
+     $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
 
 
   
