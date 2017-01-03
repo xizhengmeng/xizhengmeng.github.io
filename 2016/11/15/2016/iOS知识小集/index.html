@@ -84,16 +84,22 @@
 
 
 
-<meta name="description" content="1.dealloc方法是不能被覆盖的的，我们在子类中写的dealloc会被调用，同时父类的dealloc也会被调用，无需在子类中写上[super dealloc]">
+<meta name="description" content="1.dealloc方法是不能被覆盖的的，我们在子类中写的dealloc会被调用，同时父类的dealloc也会被调用，无需在子类中写上[super dealloc]
+
+获取实际的启动图1234567891011121314151617- (NSString *)getLaunchImageName&amp;#123;CGSize viewSize = self.window.bounds.size;//">
 <meta property="og:type" content="article">
 <meta property="og:title" content="iOS知识小集合">
 <meta property="og:url" content="/2016/11/15/2016/iOS知识小集/index.html">
 <meta property="og:site_name" content="Hanson的博客">
-<meta property="og:description" content="1.dealloc方法是不能被覆盖的的，我们在子类中写的dealloc会被调用，同时父类的dealloc也会被调用，无需在子类中写上[super dealloc]">
-<meta property="og:updated_time" content="2016-11-15T06:36:42.000Z">
+<meta property="og:description" content="1.dealloc方法是不能被覆盖的的，我们在子类中写的dealloc会被调用，同时父类的dealloc也会被调用，无需在子类中写上[super dealloc]
+
+获取实际的启动图1234567891011121314151617- (NSString *)getLaunchImageName&amp;#123;CGSize viewSize = self.window.bounds.size;//">
+<meta property="og:updated_time" content="2016-11-20T07:08:39.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS知识小集合">
-<meta name="twitter:description" content="1.dealloc方法是不能被覆盖的的，我们在子类中写的dealloc会被调用，同时父类的dealloc也会被调用，无需在子类中写上[super dealloc]">
+<meta name="twitter:description" content="1.dealloc方法是不能被覆盖的的，我们在子类中写的dealloc会被调用，同时父类的dealloc也会被调用，无需在子类中写上[super dealloc]
+
+获取实际的启动图1234567891011121314151617- (NSString *)getLaunchImageName&amp;#123;CGSize viewSize = self.window.bounds.size;//">
 
 
 
@@ -303,6 +309,10 @@
         <ul>
 <li>1.dealloc方法是不能被覆盖的的，我们在子类中写的dealloc会被调用，同时父类的dealloc也会被调用，无需在子类中写上[super dealloc]</li>
 </ul>
+<h3 id="获取实际的启动图"><a href="#获取实际的启动图" class="headerlink" title="获取实际的启动图"></a>获取实际的启动图</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">- (NSString *)getLaunchImageName</div><div class="line">&#123;</div><div class="line">CGSize viewSize = self.window.bounds.size;</div><div class="line">// 竖屏</div><div class="line">NSString *viewOrientation = @&quot;Portrait&quot;;</div><div class="line">NSString *launchImageName = nil;</div><div class="line">NSArray* imagesDict = [[[NSBundle mainBundle] infoDictionary] valueForKey:@&quot;UILaunchImages&quot;];</div><div class="line">for (NSDictionary* dict in imagesDict)</div><div class="line">&#123;</div><div class="line">CGSize imageSize = CGSizeFromString(dict[@&quot;UILaunchImageSize&quot;]);</div><div class="line">if (CGSizeEqualToSize(imageSize, viewSize) &amp;&amp; [viewOrientation isEqualToString:dict[@&quot;UILaunchImageOrientation&quot;]])</div><div class="line">&#123;</div><div class="line">launchImageName = dict[@&quot;UILaunchImageName&quot;];</div><div class="line">&#125;</div><div class="line">&#125;</div><div class="line">return launchImageName;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="手动更改状态栏颜色"><a href="#手动更改状态栏颜色" class="headerlink" title="手动更改状态栏颜色"></a>手动更改状态栏颜色</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">- (void)setStatusBarBackgroundColor:(UIColor *)color</div><div class="line">&#123;</div><div class="line">UIView *statusBar = [[[UIApplication sharedApplication] valueForKey:@&quot;statusBarWindow&quot;] valueForKey:@&quot;statusBar&quot;];</div><div class="line">if ([statusBar respondsToSelector:@selector(setBackgroundColor:)])</div><div class="line">&#123;</div><div class="line">statusBar.backgroundColor = color;</div><div class="line">&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="禁止锁屏"><a href="#禁止锁屏" class="headerlink" title="禁止锁屏"></a>禁止锁屏</h3><p>默认情况下，当设备一段时间没有触控动作时，iOS会锁住屏幕。但有一些应用是不需要锁屏的，比如视频播放器。</p>
+<p>[UIApplication sharedApplication].idleTimerDisabled = YES;<br>或<br>[[UIApplication sharedApplication] setIdleTimerDisabled:YES];</p>
 
       
     </div>
@@ -412,7 +422,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">36</span>
+              <span class="site-state-item-count">41</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -429,7 +439,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-count">9</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -458,7 +468,7 @@
               
             
             
-              <p class="post-toc-empty">此文章未包含目录</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#获取实际的启动图"><span class="nav-number">1.</span> <span class="nav-text">获取实际的启动图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#手动更改状态栏颜色"><span class="nav-number">2.</span> <span class="nav-text">手动更改状态栏颜色</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#禁止锁屏"><span class="nav-number">3.</span> <span class="nav-text">禁止锁屏</span></a></li></ol></div>
             
           </div>
         </section>
@@ -477,7 +487,7 @@
         <div class="copyright" >
   
   &copy; 
-  <span itemprop="copyrightYear">2016</span>
+  <span itemprop="copyrightYear">2017</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
