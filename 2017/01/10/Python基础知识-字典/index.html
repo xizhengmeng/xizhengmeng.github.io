@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="Python," />
 
 
 
@@ -84,16 +84,19 @@
 
 
 
-<meta name="description" content="iOS开发者，python/js爱好者，现在就职业京东金融">
+<meta name="description" content="字典这种数据结构，我们又称之为映射(mapping)，在java中也是这么称呼的，但是在python中我们称之为字典，与OC中的叫法一致。
+创建字典1234567891011121314&amp;gt;&amp;gt;&amp;gt; dicts = &amp;#123;&amp;apos;name&amp;apos;:&amp;apos;han&amp;apos;,&amp;apos;tele&amp;apos;:&amp;apos;136&amp;apos;&amp;#125;//直接创建&amp;gt">
 <meta property="og:type" content="article">
-<meta property="og:title" content="事件与响应者链">
-<meta property="og:url" content="/2014/07/21/2014/事件与响应者链/index.html">
+<meta property="og:title" content="Python基础知识-字典">
+<meta property="og:url" content="/2017/01/10/Python基础知识-字典/index.html">
 <meta property="og:site_name" content="Hanson的博客">
-<meta property="og:description" content="iOS开发者，python/js爱好者，现在就职业京东金融">
-<meta property="og:updated_time" content="2016-07-30T07:11:00.000Z">
+<meta property="og:description" content="字典这种数据结构，我们又称之为映射(mapping)，在java中也是这么称呼的，但是在python中我们称之为字典，与OC中的叫法一致。
+创建字典1234567891011121314&amp;gt;&amp;gt;&amp;gt; dicts = &amp;#123;&amp;apos;name&amp;apos;:&amp;apos;han&amp;apos;,&amp;apos;tele&amp;apos;:&amp;apos;136&amp;apos;&amp;#125;//直接创建&amp;gt">
+<meta property="og:updated_time" content="2017-01-10T03:32:17.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="事件与响应者链">
-<meta name="twitter:description" content="iOS开发者，python/js爱好者，现在就职业京东金融">
+<meta name="twitter:title" content="Python基础知识-字典">
+<meta name="twitter:description" content="字典这种数据结构，我们又称之为映射(mapping)，在java中也是这么称呼的，但是在python中我们称之为字典，与OC中的叫法一致。
+创建字典1234567891011121314&amp;gt;&amp;gt;&amp;gt; dicts = &amp;#123;&amp;apos;name&amp;apos;:&amp;apos;han&amp;apos;,&amp;apos;tele&amp;apos;:&amp;apos;136&amp;apos;&amp;#125;//直接创建&amp;gt">
 
 
 
@@ -114,10 +117,10 @@
 
 
 
-  <link rel="canonical" href="/2014/07/21/2014/事件与响应者链/"/>
+  <link rel="canonical" href="/2017/01/10/Python基础知识-字典/"/>
 
 
-  <title> 事件与响应者链 | Hanson的博客 </title>
+  <title> Python基础知识-字典 | Hanson的博客 </title>
 </head>
 
 <body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
@@ -260,7 +263,7 @@
             
             
               
-                事件与响应者链
+                Python基础知识-字典
               
             
           </h1>
@@ -272,8 +275,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2014-07-21T10:43:38+08:00" content="2014-07-21">
-              2014-07-21
+            <time itemprop="dateCreated" datetime="2017-01-10T10:55:29+08:00" content="2017-01-10">
+              2017-01-10
             </time>
           </span>
 
@@ -300,7 +303,20 @@
       
 
       
-        
+        <p>字典这种数据结构，我们又称之为映射(mapping)，在java中也是这么称呼的，但是在python中我们称之为字典，与OC中的叫法一致。</p>
+<h2 id="创建字典"><a href="#创建字典" class="headerlink" title="创建字典"></a>创建字典</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; dicts = &#123;&apos;name&apos;:&apos;han&apos;,&apos;tele&apos;:&apos;136&apos;&#125;//直接创建</div><div class="line"></div><div class="line">&gt;&gt;&gt; xiaohan = (&apos;xiaohan&apos;,42)//利用dict函数来创建</div><div class="line">&gt;&gt;&gt; xiaoming = (&apos;xiaoming&apos;,45)</div><div class="line">&gt;&gt;&gt; items = [xiaohan,xiaoming]</div><div class="line">&gt;&gt;&gt; d = dict(items)</div><div class="line">&gt;&gt;&gt; d</div><div class="line">&#123;&apos;xiaohan&apos;: 42, &apos;xiaoming&apos;: 45&#125;</div><div class="line">&gt;&gt;&gt; </div><div class="line"></div><div class="line">&gt;&gt;&gt; d = dict(name=&apos;han&apos;,age=43)//或者dict函数还可以这样来用</div><div class="line">&gt;&gt;&gt; d</div><div class="line">&#123;&apos;age&apos;: 43, &apos;name&apos;: &apos;han&apos;&#125;</div><div class="line">&gt;&gt;&gt;</div></pre></td></tr></table></figure>
+<h2 id="基本操作"><a href="#基本操作" class="headerlink" title="基本操作"></a>基本操作</h2><ul>
+<li>len(d)返回d中键值对的数量</li>
+<li>d[k]返回关联到k上的值</li>
+<li>d[k]=v将值v关联到键为k的项上</li>
+<li>del d[k]删除键为k的项</li>
+<li>k in d检查d中是否含有键为k的项</li>
+<li>键类型可以是任意类型，比如元组，浮点数或者字符串</li>
+<li>自动添加，及时键起出在字典中并不存在，也可以赋值，这样字典就会建立起新的项</li>
+<li>成员资格:用k in d查找的是键而不是值，而在列表中，v in l是用值在查找，而不是键</li>
+</ul>
+<h2 id="字典方法"><a href="#字典方法" class="headerlink" title="字典方法"></a>字典方法</h2><h3 id="clear"><a href="#clear" class="headerlink" title="clear"></a>clear</h3><p>### </p>
+
       
     </div>
 
@@ -320,22 +336,24 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/Python/" rel="tag">#Python</a>
+          
+        </div>
+      
 
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2014/07/18/2014/计算机网络概述/" rel="next" title="计算机网络概述--TCP/IP">
-                <i class="fa fa-chevron-left"></i> 计算机网络概述--TCP/IP
+              <a href="/2017/01/06/2017年死磕几件事/" rel="next" title="2017年死磕几件事">
+                <i class="fa fa-chevron-left"></i> 2017年死磕几件事
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2014/10/16/UIImage/" rel="prev" title="UIImage">
-                UIImage <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -449,7 +467,7 @@
               
             
             
-              <p class="post-toc-empty">此文章未包含目录</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#创建字典"><span class="nav-number">1.</span> <span class="nav-text">创建字典</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基本操作"><span class="nav-number">2.</span> <span class="nav-text">基本操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字典方法"><span class="nav-number">3.</span> <span class="nav-text">字典方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#clear"><span class="nav-number">3.1.</span> <span class="nav-text">clear</span></a></li></ol></li></ol></div>
             
           </div>
         </section>
