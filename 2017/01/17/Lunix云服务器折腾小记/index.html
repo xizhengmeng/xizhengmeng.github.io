@@ -106,7 +106,7 @@
 这样文件会被传输到你的用户名下的文件夹下
 
 下载1scp root@127.987.883.888:~／ces">
-<meta property="og:updated_time" content="2017-01-17T09:36:34.000Z">
+<meta property="og:updated_time" content="2017-01-17T13:02:50.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Lunix云服务器折腾小记">
 <meta name="twitter:description" content="Mac登录云服务器1ssh root@127.987.883.888
@@ -335,6 +335,32 @@
 <li>下载<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">scp root@127.987.883.888:~／ceshi.txt ceshi.txt</div></pre></td></tr></table></figure>
 </li>
 </ul>
+<h3 id="apache安装"><a href="#apache安装" class="headerlink" title="apache安装"></a>apache安装</h3><p>-1. 运行 Terminal，输入命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ssh username@ip，然后输入密码。</div></pre></td></tr></table></figure></p>
+<ol>
+<li><p>安装 Apache 软件：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yum install httpd</div></pre></td></tr></table></figure>
+</li>
+<li><p>设置 Apache 在服务器启动时运行：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">chkconfig --levels 235 httpd on</div></pre></td></tr></table></figure>
+</li>
+<li><p>在 Apache 配置文件中配置域名：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">vi /etc/httpd/conf/httpd.conf，找到 ServerName ，添加“域名:80”，保存并退出。</div></pre></td></tr></table></figure>
+</li>
+<li><p>重启 Apache：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">service httpd restart</div></pre></td></tr></table></figure>
+</li>
+<li><p>浏览器中访问第4步配置的域名，如果出现“Apache 2 Test Page powered by CentOS”的页面，说明配置成功。</p>
+</li>
+</ol>
+<h3 id="django安装"><a href="#django安装" class="headerlink" title="django安装"></a>django安装</h3><ul>
+<li><p>安装工具</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yum install setuptools</div></pre></td></tr></table></figure>
+</li>
+<li><p>pip安装</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pip install Django</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="重新格式化云服务器之后登录不上怎么办"><a href="#重新格式化云服务器之后登录不上怎么办" class="headerlink" title="重新格式化云服务器之后登录不上怎么办"></a>重新格式化云服务器之后登录不上怎么办</h3><p>将本地的./ssh文件夹中的know_hosts里边对应的ip的记录删除掉，重新生成</p>
 
       
     </div>
@@ -486,7 +512,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Mac登录云服务器"><span class="nav-number">1.</span> <span class="nav-text">Mac登录云服务器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#文件的上传和下载"><span class="nav-number">2.</span> <span class="nav-text">文件的上传和下载</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Mac登录云服务器"><span class="nav-number">1.</span> <span class="nav-text">Mac登录云服务器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#文件的上传和下载"><span class="nav-number">2.</span> <span class="nav-text">文件的上传和下载</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#apache安装"><span class="nav-number">3.</span> <span class="nav-text">apache安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#django安装"><span class="nav-number">4.</span> <span class="nav-text">django安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#重新格式化云服务器之后登录不上怎么办"><span class="nav-number">5.</span> <span class="nav-text">重新格式化云服务器之后登录不上怎么办</span></a></li></ol></div>
             
           </div>
         </section>
