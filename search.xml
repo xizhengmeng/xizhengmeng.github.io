@@ -4,6 +4,43 @@
   
     
     <entry>
+      <title><![CDATA[Lunix云服务器折腾小记]]></title>
+      <url>/2017/01/17/Lunix%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%8A%98%E8%85%BE%E5%B0%8F%E8%AE%B0/</url>
+      <content type="html"><![CDATA[<h3 id="Mac登录云服务器"><a href="#Mac登录云服务器" class="headerlink" title="Mac登录云服务器"></a>Mac登录云服务器</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ssh root@127.987.883.888</div></pre></td></tr></table></figure>
+<p>这样再输入密码我们就进入了我们的服务器的命令行界面，这里执行的命令行与本机是一致的，不过你看到的是你服务器的一些情况</p>
+<h3 id="文件的上传和下载"><a href="#文件的上传和下载" class="headerlink" title="文件的上传和下载"></a>文件的上传和下载</h3><ul>
+<li>上传<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">scp ceshi.txt root@127.987.883.888:~</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>这样文件会被传输到你的用户名下的文件夹下</p>
+<ul>
+<li>下载<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">scp root@127.987.883.888:~／ceshi.txt ceshi.txt</div></pre></td></tr></table></figure>
+</li>
+</ul>
+]]></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[寒假tips]]></title>
+      <url>/2017/01/16/%E5%AF%92%E5%81%87tips/</url>
+      <content type="html"><![CDATA[<p>这个假期你可以选择一个或者几个方面作为了解，不建议深入，旨在提供应用级的观察视角和思考方向，这里能给你提供的包括但不局限于以下几个方面</p>
+<ul>
+<li>关于互联网金融业务在中国的发展现状，以及京东金融的业务模式和一些基础的金融知识</li>
+<li>以后只要是从事开发工作都将会使用到的日常技能<ul>
+<li>代码管理git</li>
+<li>lunix/unix命令行</li>
+<li>脚本语言</li>
+</ul>
+</li>
+<li>目前it行业比较前沿的技术方向和发展现状</li>
+<li>不同开发语言的发展现状以及应用领域</li>
+<li>移动开发现状及发展</li>
+<li>区块链技术在支付系统中的应用探索</li>
+</ul>
+]]></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[2017年死磕几件事]]></title>
       <url>/2017/01/06/2017%E5%B9%B4%E6%AD%BB%E7%A3%95%E5%87%A0%E4%BB%B6%E4%BA%8B/</url>
       <content type="html"><![CDATA[<ul>
