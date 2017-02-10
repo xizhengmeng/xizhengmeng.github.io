@@ -262,6 +262,106 @@
             
               
                 
+                <a class="post-title-link" href="/2016/11/15/2016/iOS知识小集/" itemprop="url">
+                  iOS知识小集合
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-11-15T14:34:32+08:00" content="2016-11-15">
+              2016-11-15
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ul>
+<li>1.dealloc方法是不能被覆盖的的，我们在子类中写的dealloc会被调用，同时父类的dealloc也会被调用，无需在子类中写上[super dealloc]</li>
+</ul>
+<h3 id="获取实际的启动图"><a href="#获取实际的启动图" class="headerlink" title="获取实际的启动图"></a>获取实际的启动图</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">- (NSString *)getLaunchImageName</div><div class="line">&#123;</div><div class="line">CGSize viewSize = self.window.bounds.size;</div><div class="line">// 竖屏</div><div class="line">NSString *viewOrientation = @&quot;Portrait&quot;;</div><div class="line">NSString *launchImageName = nil;</div><div class="line">NSArray* imagesDict = [[[NSBundle mainBundle] infoDictionary] valueForKey:@&quot;UILaunchImages&quot;];</div><div class="line">for (NSDictionary* dict in imagesDict)</div><div class="line">&#123;</div><div class="line">CGSize imageSize = CGSizeFromString(dict[@&quot;UILaunchImageSize&quot;]);</div><div class="line">if (CGSizeEqualToSize(imageSize, viewSize) &amp;&amp; [viewOrientation isEqualToString:dict[@&quot;UILaunchImageOrientation&quot;]])</div><div class="line">&#123;</div><div class="line">launchImageName = dict[@&quot;UILaunchImageName&quot;];</div><div class="line">&#125;</div><div class="line">&#125;</div><div class="line">return launchImageName;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="手动更改状态栏颜色"><a href="#手动更改状态栏颜色" class="headerlink" title="手动更改状态栏颜色"></a>手动更改状态栏颜色</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">- (void)setStatusBarBackgroundColor:(UIColor *)color</div><div class="line">&#123;</div><div class="line">UIView *statusBar = [[[UIApplication sharedApplication] valueForKey:@&quot;statusBarWindow&quot;] valueForKey:@&quot;statusBar&quot;];</div><div class="line">if ([statusBar respondsToSelector:@selector(setBackgroundColor:)])</div><div class="line">&#123;</div><div class="line">statusBar.backgroundColor = color;</div><div class="line">&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="禁止锁屏"><a href="#禁止锁屏" class="headerlink" title="禁止锁屏"></a>禁止锁屏</h3><p>默认情况下，当设备一段时间没有触控动作时，iOS会锁住屏幕。但有一些应用是不需要锁屏的，比如视频播放器。</p>
+<p>[UIApplication sharedApplication].idleTimerDisabled = YES;<br>或<br>[[UIApplication sharedApplication] setIdleTimerDisabled:YES];</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/11/09/2016/Django部署-apache-mod-wsgi/" itemprop="url">
                   Django部署+apache+mod_wsgi
                 </a>
@@ -1305,132 +1405,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/04/10/Python基础知识-字典/" itemprop="url">
-                  Python基础知识-字典
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-04-10T10:55:29+08:00" content="2016-04-10">
-              2016-04-10
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Python/" itemprop="url" rel="index">
-                    <span itemprop="name">Python</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>字典这种数据结构，我们又称之为映射(mapping)，在java中也是这么称呼的，但是在python中我们称之为字典，与OC中的叫法一致。</p>
-<h2 id="创建字典"><a href="#创建字典" class="headerlink" title="创建字典"></a>创建字典</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; dicts = &#123;&apos;name&apos;:&apos;han&apos;,&apos;tele&apos;:&apos;136&apos;&#125;//直接创建</div><div class="line"></div><div class="line">&gt;&gt;&gt; xiaohan = (&apos;xiaohan&apos;,42)//利用dict函数来创建</div><div class="line">&gt;&gt;&gt; xiaoming = (&apos;xiaoming&apos;,45)</div><div class="line">&gt;&gt;&gt; items = [xiaohan,xiaoming]</div><div class="line">&gt;&gt;&gt; d = dict(items)</div><div class="line">&gt;&gt;&gt; d</div><div class="line">&#123;&apos;xiaohan&apos;: 42, &apos;xiaoming&apos;: 45&#125;</div><div class="line">&gt;&gt;&gt; </div><div class="line"></div><div class="line">&gt;&gt;&gt; d = dict(name=&apos;han&apos;,age=43)//或者dict函数还可以这样来用</div><div class="line">&gt;&gt;&gt; d</div><div class="line">&#123;&apos;age&apos;: 43, &apos;name&apos;: &apos;han&apos;&#125;</div><div class="line">&gt;&gt;&gt;</div></pre></td></tr></table></figure>
-<h2 id="基本操作"><a href="#基本操作" class="headerlink" title="基本操作"></a>基本操作</h2><ul>
-<li>len(d)返回d中键值对的数量</li>
-<li>d[k]返回关联到k上的值</li>
-<li>d[k]=v将值v关联到键为k的项上</li>
-<li>del d[k]删除键为k的项</li>
-<li>k in d检查d中是否含有键为k的项</li>
-<li>键类型可以是任意类型，比如元组，浮点数或者字符串</li>
-<li>自动添加，及时键起出在字典中并不存在，也可以赋值，这样字典就会建立起新的项</li>
-<li>成员资格:用k in d查找的是键而不是值，而在列表中，v in l是用值在查找，而不是索引</li>
-</ul>
-<h2 id="字典方法"><a href="#字典方法" class="headerlink" title="字典方法"></a>字典方法</h2><h3 id="clear"><a href="#clear" class="headerlink" title="clear"></a>clear</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
-<p>### </p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1476,7 +1450,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">47</span>
+              <span class="site-state-item-count">48</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
