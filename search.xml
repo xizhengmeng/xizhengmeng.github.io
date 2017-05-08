@@ -165,9 +165,20 @@
 <li>安装andorid studio</li>
 <li>copy一份sdk过来</li>
 <li>设置andorid studio的sdk路径</li>
-<li>安装sdkman</li>
-<li>安装andorid studio中认可的gradle版本</li>
-<li>升级jdk到andorid studio认可的版本比如说1.7</li>
+<li><p>安装sdkman</p>
+<ul>
+<li><p>在控制台或者item2中输入</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">curl -s https://get.sdkman.io | bash</div><div class="line">source &quot;$HOME/.sdkman/bin/sdkman-init.sh&quot;</div></pre></td></tr></table></figure>
+<p>检验sdkman是否安装成功</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sdk version</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>安装andorid studio中认可的gradle版本</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sdk install gradle 2.8</div></pre></td></tr></table></figure>
+</li>
+<li><p>升级jdk到andorid studio认可的版本比如说1.7</p>
+</li>
 <li>到工程根目录，执行gradle build就可以了</li>
 <li>打包出来的文件在outputs中</li>
 </ul>
