@@ -262,6 +262,103 @@
             
               
                 
+                <a class="post-title-link" href="/2017/05/17/mongodb使用小结/" itemprop="url">
+                  mongodb使用小结
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-05-17T14:46:54+08:00" content="2017-05-17">
+              2017-05-17
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="创建一个mongo数据库"><a href="#创建一个mongo数据库" class="headerlink" title="创建一个mongo数据库"></a>创建一个mongo数据库</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">from pymongo import MongoClient</div><div class="line">import json,time</div><div class="line"></div><div class="line">connection = MongoClient(&quot;localhost&quot;,27017)</div><div class="line">mydb = connection.mydb # new a database</div><div class="line">myser = mydb.allindex # new a table</div></pre></td></tr></table></figure>
+<h3 id="查"><a href="#查" class="headerlink" title="查"></a>查</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">dicn = &#123;&#125;</div><div class="line">dicn[&apos;indexname&apos;] = item</div><div class="line">dicn[&apos;date&apos;] = dateString</div><div class="line">dbs = myser.find(dicn)</div><div class="line"></div><div class="line">for item in dbs:</div><div class="line"></div><div class="line">  dic = &#123;&#125;</div><div class="line">  datestring = item[&apos;date&apos;]</div><div class="line">  datestring = datestring.encode(&apos;utf-8&apos;)</div><div class="line">  dic[&apos;date&apos;] = datestring</div><div class="line">  dic[&apos;earyeild&apos;] = item[&apos;earyeild&apos;]</div><div class="line">  dic[&apos;indexname&apos;] = item[&apos;indexname&apos;]</div></pre></td></tr></table></figure>
+<h3 id="增"><a href="#增" class="headerlink" title="增"></a>增</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">myser.save(&#123;&apos;指数名称&apos;:item,&apos;市盈率&apos;:pe,&apos;盈利收益率&apos;:roe,&apos;日期&apos;:date,&apos;市净率&apos;:pb,&apos;股息率&apos;:rate&#125;)</div></pre></td></tr></table></figure>
+<h3 id="时间的用法"><a href="#时间的用法" class="headerlink" title="时间的用法"></a>时间的用法</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">current = time.localtime(time.time())</div><div class="line">year = current.tm_year</div><div class="line">month = current.tm_mon</div><div class="line">day = current.tm_mday</div><div class="line"></div><div class="line">yearStr = &apos;%i&apos; % year</div><div class="line">yearList = list(yearStr)</div><div class="line">yearStr1 = yearList[-1]</div><div class="line">yearStr2 = yearList[-2]</div><div class="line">yearStr = yearStr2 + yearStr1</div><div class="line"></div><div class="line">monthStr = months[month - 1]</div><div class="line"></div><div class="line">targetStr = &apos;idx_%i%s%s&apos; % (day,monthStr,yearStr)</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2017/02/26/iOS工程小知识/" itemprop="url">
                   iOS工程小知识
                 </a>
@@ -1226,107 +1323,11 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/11/30/UIKit-UITableView/" itemprop="url">
-                  UIKit-UITableView
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-11-30T17:30:22+08:00" content="2016-11-30">
-              2016-11-30
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="更改cell点击的高亮色"><a href="#更改cell点击的高亮色" class="headerlink" title="更改cell点击的高亮色"></a>更改cell点击的高亮色</h3><p>在具体的Cell中重写函数：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">- (void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated&#123;//重写高亮函数</div><div class="line">if (highlighted) &#123;</div><div class="line">self.textLabel.backgroundColor = [UIColor yellowColor];</div><div class="line">self.textLabel.textColor = [UIColor redColor];</div><div class="line">self.textLabel.text = [NSString stringWithFormat:@&quot;这是第%ld行  点中我啦哈哈哈&quot;,(long)self.tag];</div><div class="line">&#125;else&#123;</div><div class="line">self.textLabel.backgroundColor = [UIColor clearColor];</div><div class="line">self.textLabel.textColor = [UIColor blackColor];</div><div class="line">self.textLabel.text = [NSString stringWithFormat:@&quot;这是第%ld行  哈哈哈&quot;,(long)self.tag];</div><div class="line">&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<h3 id="如何来写分割线"><a href="#如何来写分割线" class="headerlink" title="如何来写分割线"></a>如何来写分割线</h3><p>你在第一次cell创建的时候去布局，会发现取到的self.height永远是44，是因为后边系统才会根据你设置的高度来确定这个高度，也就是说它会再次赋值，调用layoutsubviews会再次，所以你的布局方法应该写到这个方法里边，才能够保证你的布局和取到的size是正确的，否则一切都是白费<br>最佳实践是把布局的方法写到reloadmodel方法里边去，分割线的位置要写到layoutsubviews中去，这样拿到self.height的高度才是准确的，其他的控件是从上到下布局的，所以无所谓，但是从下到上布局的控件就要放倒这个方法中去</p>
-<h3 id="cell的预加载"><a href="#cell的预加载" class="headerlink" title="cell的预加载"></a>cell的预加载</h3><p>一旦调用cellfor，紧接着就会调用willdispaly，这个时候这个cell已经出现在了visiblecells里边了，其实这个时候这个cell已经应该出现在屏幕上了，所以预加载的说法在tableview上是不存在的</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1367,7 +1368,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">50</span>
+              <span class="site-state-item-count">51</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1384,7 +1385,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-count">13</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
