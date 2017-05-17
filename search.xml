@@ -243,6 +243,25 @@
 <blockquote>
 <p>django.middleware.csrf.CsrfViewMiddleware</p>
 </blockquote>
+<h3 id="安装pymongo"><a href="#安装pymongo" class="headerlink" title="安装pymongo"></a>安装pymongo</h3><p>首先要安装pip，然后用pip安装pymongo<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo easy_install pip</div></pre></td></tr></table></figure></p>
+<p>然后使用pip安装pymongo<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo pip install pymongo</div></pre></td></tr></table></figure></p>
+<p>这个时候进入python环境使用命令行去访问pymongo应该是没有问题的，但是你使用web调用的方式去调用不一定能够访问到mongo，这可能是因为你使用的python安装路径的问题<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">which python</div></pre></td></tr></table></figure></p>
+<p>看一下当前加载的python，不出意外应该是/usr/local/bin/python，这个是登录状态下才能加载的一个环境和路径，而web是非登录的，所以很多功能访问不到正常，我们要做的就是让系统直接加载/usr/bin/python，这就涉及到一个加载优先级的问题<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo emacs /etc/paths</div></pre></td></tr></table></figure></p>
+<blockquote>
+<p>/usr/local/bin<br>/usr/bin<br>/bin<br>/usr/sbin<br>/sbin</p>
+<p>tips:<br>現在要把 /usr/local/bin 移到上面去</p>
+</blockquote>
+<p>control + k：把一行字剪下來</p>
+<p>control + y：把字貼上</p>
+<p>control + x + s：存檔</p>
+<p>control + x + c：關掉 emacs</p>
+<p>然后再执行下边这句<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">echo $PATH</div></pre></td></tr></table></figure></p>
+<p>这个时候你再打开<br>发现已经变成了下边这样</p>
+<blockquote>
+<p>/usr/bin<br>/usr/local/bin<br>/bin<br>/usr/sbin<br>/sbin</p>
+</blockquote>
+<p>这个时候你再执行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">which python</div></pre></td></tr></table></figure></p>
+<p>发现已经变成了<code>/usr/bin/python</code><br>现在看来，系统加载某个功能的逻辑，就是直接在这些个加载列表中找这些个功能，如果逐个加载了一遍发现没有这个功能，那么就会报错，如果第一路径下有这个功能，第二路径下也有这个功能，那么就会用第一路径下的，所以我们更改第一路径是有意义的</p>
 ]]></content>
     </entry>
     

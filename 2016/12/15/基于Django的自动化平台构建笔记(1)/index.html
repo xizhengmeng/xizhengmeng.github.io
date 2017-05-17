@@ -100,7 +100,7 @@ JSON自动转模型
 JSON自动转模型
 自动打包服务
 其他效率工具的链接">
-<meta property="og:updated_time" content="2017-01-16T06:56:20.000Z">
+<meta property="og:updated_time" content="2017-05-17T02:11:28.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="基于Django的自动化平台构建笔记(1)">
 <meta name="twitter:description" content="现在提供的服务主要有：
@@ -370,6 +370,25 @@ JSON自动转模型
 <blockquote>
 <p>django.middleware.csrf.CsrfViewMiddleware</p>
 </blockquote>
+<h3 id="安装pymongo"><a href="#安装pymongo" class="headerlink" title="安装pymongo"></a>安装pymongo</h3><p>首先要安装pip，然后用pip安装pymongo<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo easy_install pip</div></pre></td></tr></table></figure></p>
+<p>然后使用pip安装pymongo<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo pip install pymongo</div></pre></td></tr></table></figure></p>
+<p>这个时候进入python环境使用命令行去访问pymongo应该是没有问题的，但是你使用web调用的方式去调用不一定能够访问到mongo，这可能是因为你使用的python安装路径的问题<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">which python</div></pre></td></tr></table></figure></p>
+<p>看一下当前加载的python，不出意外应该是/usr/local/bin/python，这个是登录状态下才能加载的一个环境和路径，而web是非登录的，所以很多功能访问不到正常，我们要做的就是让系统直接加载/usr/bin/python，这就涉及到一个加载优先级的问题<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo emacs /etc/paths</div></pre></td></tr></table></figure></p>
+<blockquote>
+<p>/usr/local/bin<br>/usr/bin<br>/bin<br>/usr/sbin<br>/sbin</p>
+<p>tips:<br>現在要把 /usr/local/bin 移到上面去</p>
+</blockquote>
+<p>control + k：把一行字剪下來</p>
+<p>control + y：把字貼上</p>
+<p>control + x + s：存檔</p>
+<p>control + x + c：關掉 emacs</p>
+<p>然后再执行下边这句<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">echo $PATH</div></pre></td></tr></table></figure></p>
+<p>这个时候你再打开<br>发现已经变成了下边这样</p>
+<blockquote>
+<p>/usr/bin<br>/usr/local/bin<br>/bin<br>/usr/sbin<br>/sbin</p>
+</blockquote>
+<p>这个时候你再执行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">which python</div></pre></td></tr></table></figure></p>
+<p>发现已经变成了<code>/usr/bin/python</code><br>现在看来，系统加载某个功能的逻辑，就是直接在这些个加载列表中找这些个功能，如果逐个加载了一遍发现没有这个功能，那么就会报错，如果第一路径下有这个功能，第二路径下也有这个功能，那么就会用第一路径下的，所以我们更改第一路径是有意义的</p>
 
       
     </div>
@@ -519,7 +538,7 @@ JSON自动转模型
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Django使用简解"><span class="nav-number">1.</span> <span class="nav-text">Django使用简解</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#urls-py"><span class="nav-number">1.1.</span> <span class="nav-text">urls.py</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#views-py"><span class="nav-number">1.2.</span> <span class="nav-text">views.py</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#返回json"><span class="nav-number">1.2.1.</span> <span class="nav-text">返回json</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#返回一个html文件"><span class="nav-number">1.2.2.</span> <span class="nav-text">返回一个html文件</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#返回跳一个其他的url，比如跳baidu或者条服务器的某个文件夹都是可以的"><span class="nav-number">1.2.3.</span> <span class="nav-text">返回跳一个其他的url，比如跳baidu或者条服务器的某个文件夹都是可以的</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自动打包服务的构建过程"><span class="nav-number">2.</span> <span class="nav-text">自动打包服务的构建过程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#app转换为-ipa"><span class="nav-number">2.1.</span> <span class="nav-text">.app转换为.ipa</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#xcode-XCBuildConfiguration配置文件自动设置"><span class="nav-number">2.2.</span> <span class="nav-text">xcode XCBuildConfiguration配置文件自动设置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#gradle无法调用"><span class="nav-number">2.3.</span> <span class="nav-text">gradle无法调用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#苹果的开发者证书不能读取"><span class="nav-number">2.4.</span> <span class="nav-text">苹果的开发者证书不能读取</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#git-pull命令需要用户名和密码"><span class="nav-number">2.5.</span> <span class="nav-text">git pull命令需要用户名和密码</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#django中使用ajax的post方法"><span class="nav-number">3.</span> <span class="nav-text">django中使用ajax的post方法</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Django使用简解"><span class="nav-number">1.</span> <span class="nav-text">Django使用简解</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#urls-py"><span class="nav-number">1.1.</span> <span class="nav-text">urls.py</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#views-py"><span class="nav-number">1.2.</span> <span class="nav-text">views.py</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#返回json"><span class="nav-number">1.2.1.</span> <span class="nav-text">返回json</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#返回一个html文件"><span class="nav-number">1.2.2.</span> <span class="nav-text">返回一个html文件</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#返回跳一个其他的url，比如跳baidu或者条服务器的某个文件夹都是可以的"><span class="nav-number">1.2.3.</span> <span class="nav-text">返回跳一个其他的url，比如跳baidu或者条服务器的某个文件夹都是可以的</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自动打包服务的构建过程"><span class="nav-number">2.</span> <span class="nav-text">自动打包服务的构建过程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#app转换为-ipa"><span class="nav-number">2.1.</span> <span class="nav-text">.app转换为.ipa</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#xcode-XCBuildConfiguration配置文件自动设置"><span class="nav-number">2.2.</span> <span class="nav-text">xcode XCBuildConfiguration配置文件自动设置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#gradle无法调用"><span class="nav-number">2.3.</span> <span class="nav-text">gradle无法调用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#苹果的开发者证书不能读取"><span class="nav-number">2.4.</span> <span class="nav-text">苹果的开发者证书不能读取</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#git-pull命令需要用户名和密码"><span class="nav-number">2.5.</span> <span class="nav-text">git pull命令需要用户名和密码</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#django中使用ajax的post方法"><span class="nav-number">3.</span> <span class="nav-text">django中使用ajax的post方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装pymongo"><span class="nav-number">4.</span> <span class="nav-text">安装pymongo</span></a></li></ol></div>
             
           </div>
         </section>
