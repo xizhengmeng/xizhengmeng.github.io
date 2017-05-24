@@ -4,12 +4,6 @@
   
     
     <entry>
-      <title><![CDATA[个人日记]]></title>
-      <url>/2017/05/24/%E4%B8%AA%E4%BA%BA%E6%97%A5%E8%AE%B0/</url>
-      <content type="html"><![CDATA[<h2 id="第一个"><a href="#第一个" class="headerlink" title="第一个"></a>第一个</h2>]]></content>
-    </entry>
-    
-    <entry>
       <title><![CDATA[基于Django的平台构建笔记(2)]]></title>
       <url>/2017/05/18/%E5%9F%BA%E4%BA%8EDjango%E7%9A%84%E5%B9%B3%E5%8F%B0%E6%9E%84%E5%BB%BA%E7%AC%94%E8%AE%B0(2)/</url>
       <content type="html"><![CDATA[<h3 id="python中Json字符串的创建与javascript中json字符串的转换"><a href="#python中Json字符串的创建与javascript中json字符串的转换" class="headerlink" title="python中Json字符串的创建与javascript中json字符串的转换"></a>python中Json字符串的创建与javascript中json字符串的转换</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">import json</div><div class="line"></div><div class="line">def getindex(indexname):</div><div class="line"></div><div class="line">    datas = []</div><div class="line"></div><div class="line">    for item in namelist:</div><div class="line">    </div><div class="line">        pes.append(dic) </div><div class="line">        pes = json.dumps(pes)</div><div class="line">        datas.append(pes)</div><div class="line"></div><div class="line">    datas = json.dumps(datas)</div><div class="line">    return datas</div></pre></td></tr></table></figure>
