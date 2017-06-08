@@ -400,53 +400,12 @@
 
       
         
-          
-            <h3 id="python中Json字符串的创建与javascript中json字符串的转换"><a href="#python中Json字符串的创建与javascript中json字符串的转换" class="headerlink" title="python中Json字符串的创建与javascript中json字符串的转换"></a>python中Json字符串的创建与javascript中json字符串的转换</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">import json</div><div class="line"></div><div class="line">def getindex(indexname):</div><div class="line"></div><div class="line">    datas = []</div><div class="line"></div><div class="line">    for item in namelist:</div><div class="line">    </div><div class="line">        pes.append(dic) </div><div class="line">        pes = json.dumps(pes)</div><div class="line">        datas.append(pes)</div><div class="line"></div><div class="line">    datas = json.dumps(datas)</div><div class="line">    return datas</div></pre></td></tr></table></figure>
-<p>仔细看上边这段python我们能得出来一个结论，我们可以使用json这个功能，将一个python中的列表，转换为一段字符串，然后返回出去，这个字符串就是一段json字符串，我们可以将这段json字符串反过来转换成一个数组</p>
-<p>下面我们来瞅瞅，如何将一个json字符串转换为一个json数组</p>
-<blockquote>
-<p>首先说明基本功能：</p>
-</blockquote>
-<p>dumps是将dict转化成str格式，loads是将str转化成dict格式。</p>
-<p>dump和load也是类似的功能，只是与文件操作结合起来了。</p>
-<p>看代码实例：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">In [1]: import json</div><div class="line"></div><div class="line">In [2]: a = &#123;&apos;name&apos;: &apos;wang&apos;, &apos;age&apos;: 29&#125;</div><div class="line"></div><div class="line">In [3]: b = json.dumps(a)</div><div class="line"></div><div class="line">In [4]: print b, type(b)</div><div class="line">&#123;&quot;age&quot;: 29, &quot;name&quot;: &quot;wang&quot;&#125; &lt;type &apos;str&apos;&gt;</div><div class="line"></div><div class="line">In [11]: json.loads(b)</div><div class="line">Out[11]: &#123;u&apos;age&apos;: 29, u&apos;name&apos;: u&apos;wang&apos;&#125;</div><div class="line"></div><div class="line">In [12]: print type(json.loads(b))</div><div class="line">&lt;type &apos;dict&apos;&gt;</div></pre></td></tr></table></figure>
-<p>然后再看dump和dumps的区别，见代码：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">In [1]: import json</div><div class="line"></div><div class="line">In [2]: a = &#123;&apos;name&apos;: &apos;wang&apos;, &apos;age&apos;: 29&#125;</div><div class="line"></div><div class="line">In [3]: b = json.dumps(a)</div><div class="line"></div><div class="line">In [4]: print b, type(b)</div><div class="line">&#123;&quot;age&quot;: 29, &quot;name&quot;: &quot;wang&quot;&#125; &lt;type &apos;str&apos;&gt;</div><div class="line"></div><div class="line">In [5]: c = json.dump(a)</div><div class="line">---------------------------------------------------------------------------</div><div class="line">TypeError                                 Traceback (most recent call last)</div><div class="line">&lt;ipython-input-5-92dc0d929363&gt; in &lt;module&gt;()</div><div class="line">----&gt; 1 c = json.dump(a)</div><div class="line"></div><div class="line">TypeError: dump() takes at least 2 arguments (1 given)</div></pre></td></tr></table></figure>
-<p>这里提示我们少一个参数，我们看一下帮助文件（iPyhton中可以直接使用help(json.dumps)来查看帮助文件）：</p>
-<p>dumps(obj, skipkeys=False, ensure_ascii=True, check_circular=True, allow_nan=True, cls=None, indent=None, separators=None, encoding=’utf-8’, default=None, sort_keys=False, **kw)<br>Serialize <code>obj</code> to a JSON formatted <code>str</code>.</p>
-<p>dump(obj, fp, skipkeys=False, ensure_ascii=True, check_circular=True, allow_nan=True, cls=None, indent=None, separators=None, encoding=’utf-8’, default=None, sort_keys=False, **kw)<br>Serialize <code>obj</code> as a JSON formatted stream to <code>fp</code> (a<br><code>.write()</code>-supporting file-like object).</p>
-<p>简单说就是dump需要一个类似于文件指针的参数（并不是真的指针，可称之为类文件对象），可以与文件操作结合，也就是说可以将dict转成str然后存入文件中；而dumps直接给的是str，也就是将字典转成str。</p>
-<p>例子见代码（注意文件操作的一些小细节）：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line">In [1]: import json</div><div class="line"></div><div class="line">In [2]: a = &#123;&apos;name&apos;: &apos;wang&apos;&#125;</div><div class="line"></div><div class="line">In [3]: fp = file(&apos;test.txt&apos;, &apos;w&apos;)</div><div class="line"></div><div class="line">In [4]: type(fp)</div><div class="line">Out[4]: file</div><div class="line"></div><div class="line">In [5]: json.dump(a, fp)</div><div class="line"></div><div class="line">In [6]: cat test.txt</div><div class="line"></div><div class="line">In [7]: fp.close()</div><div class="line"></div><div class="line">In [8]: cat test.txt</div><div class="line">&#123;&quot;name&quot;: &quot;wang&quot;&#125;</div><div class="line">In [9]: json.load(fp)</div><div class="line">---------------------------------------------------------------------------</div><div class="line">ValueError                                Traceback (most recent call last)</div><div class="line">&lt;ipython-input-9-0064dabedb17&gt; in &lt;module&gt;()</div><div class="line">----&gt; 1 json.load(fp)</div><div class="line"></div><div class="line">/usr/local/Cellar/python/2.7.11/Frameworks/Python.framework/Versions/2.7/lib/python2.7/json/__init__.pyc in load(fp, encoding, cls, object_hook, parse_float, parse_int, parse_constant, object_pairs_hook, **kw)</div><div class="line">285</div><div class="line">286     &quot;&quot;&quot;</div><div class="line">--&gt; 287     return loads(fp.read(),</div><div class="line">288         encoding=encoding, cls=cls, object_hook=object_hook,</div><div class="line">289         parse_float=parse_float, parse_int=parse_int,</div><div class="line"></div><div class="line">ValueError: I/O operation on closed file</div><div class="line"></div><div class="line">In [10]: fp = file(&apos;test.txt&apos;, &apos;r&apos;)</div><div class="line"></div><div class="line">In [11]: json.load(fp)</div><div class="line">Out[11]: &#123;u&apos;name&apos;: u&apos;wang&apos;&#125;</div><div class="line">注：实际中dump用的较少。</div></pre></td></tr></table></figure>
-<h3 id="javascript中如何将一段json字符串转换为json对象"><a href="#javascript中如何将一段json字符串转换为json对象" class="headerlink" title="javascript中如何将一段json字符串转换为json对象"></a>javascript中如何将一段json字符串转换为json对象</h3><p>var obj = JSON.parse(data);</p>
-<h3 id="web中上传文件，带进度条的做法"><a href="#web中上传文件，带进度条的做法" class="headerlink" title="web中上传文件，带进度条的做法"></a>web中上传文件，带进度条的做法</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">&lt;div id=&quot;upload&quot;&gt;</div><div class="line"></div><div class="line">     &lt;form&gt;</div><div class="line">        &#123;% csrf_token %&#125;</div><div class="line">        &lt;input type=&quot;file&quot; id=&apos;file&apos; class=&apos;file&apos; style=&quot;margin-top: 5px;margin-left: 10px&quot; name=&quot;file&quot;&gt;&lt;br&gt;</div><div class="line">        &lt;div id=&apos;1&apos; style=&quot;margin-top: 40px;margin-left: 10px;height:10px;width:200px;border-color: rgba(110,3,120,1);border:1px solid gray;float:left;margin-right:10px;&quot;&gt;</div><div class="line">            &lt;div id=&apos;2&apos; style=&quot;height:100%;width:0px;background:rgba(220,220,220,1);&quot;&gt;&lt;/div&gt;</div><div class="line">        &lt;/div&gt;</div><div class="line">        &lt;a style=&quot;position: absolute;top: 72px;;margin-right:25px&quot; id=&apos;3&apos;&gt;0%&lt;/a&gt;</div><div class="line"></div><div class="line">        &lt;button type=&quot;button&quot; style=&quot;margin-top: 32px;margin-left: 50px;&quot; onclick=&quot;upload();&quot;&gt;上传&lt;/button&gt;</div><div class="line"></div><div class="line">    &lt;/form&gt;</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure>
-<p>第二是要定义一个file,下边是js的代码，我们来实现上传功能</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">function upload() &#123;</div><div class="line"></div><div class="line">            var apktextinput = document.getElementById(&apos;apkname&apos;)</div><div class="line">            var apkname = apktextinput.value</div><div class="line"></div><div class="line">            if (apkname.length == 0) &#123;</div><div class="line">                alert(&apos;请输入证书名称&apos;)</div><div class="line">                return</div><div class="line">            &#125;</div><div class="line"></div><div class="line">			var xhr = new XMLHttpRequest();</div><div class="line">			var file = document.getElementById(&apos;file&apos;).files[0];   //取得文件数据，而.file对象只是文件信息</div><div class="line">			var form = new FormData();   //FormData是HTML5为实现序列化表单而提供的类，更多细节可自行查询</div><div class="line">            form.append(&apos;file&apos;,file);   //这里为序列化表单对象form添加一个元素，即file</div><div class="line">			xhr.upload.addEventListener(&apos;progress&apos;,on_progress,false);     //xhr对象含有一个upload对象，它有一个progress事件，在文件上传过程中会被不断触发，我们为这个事件对应一个处理函数，每当事件触发就会调用这个函数，于是便可利用这个函数来修改当前进度，更多细节可自行查询</div><div class="line">			xhr.open(&apos;POST&apos;,&apos;http://10.13.8.12:89/uploadAPK/&apos;,true);  //请将url改成上传url</div><div class="line">            xhr.setRequestHeader(&apos;X-CSRFTOKEN&apos;,&apos;&#123;&#123; request.COOKIES.csrftoken &#125;&#125;&apos;);   //此处为Django要求，可无视，或者换成相应后台所要求的CSRF防护，不是django用户请去掉</div><div class="line">			xhr.send(form);   //发送表单</div><div class="line">		&#125;</div></pre></td></tr></table></figure>
-<p>重点是<code>xhr.upload.addEventListener(&#39;progress&#39;,on_progress,false);</code>这个方法会保证上传过程中不断的回调我们来实现on_progress</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line">function on_progress(evt) &#123;       //看这个函数之前先看upload函数。这个函数可以接收一个evt(event)对象(细节自行查询progress)，他有3个属性lengthComputable，loaded，total，第一个属性是个bool类型的，代表是否支持，第二个代表当前上传的大小，第三个为总的大小，由此便可以计算出实时上传的百分比</div><div class="line">		if(evt.lengthComputable) &#123;</div><div class="line">			var ele = document.getElementById(&apos;2&apos;);</div><div class="line">			var percent = Math.round((evt.loaded) * 100 / evt.total);</div><div class="line">               if (percent == 100 &amp;&amp; strongapk == 1) &#123;</div><div class="line">                   strongapk = 0</div><div class="line">                   var textcontent = document.getElementById(&quot;wating&quot;)</div><div class="line">                   textcontent.style.display = &apos;block&apos;</div><div class="line"></div><div class="line">                   var apktextinput = document.getElementById(&apos;apkname&apos;)</div><div class="line">                   var apkname = apktextinput.value</div><div class="line"></div><div class="line">                    $.ajax(&#123;</div><div class="line">                       url: &quot;/startstrongapk/&quot;,    //后台webservice里的方法名称</div><div class="line">                       data:&#123;&quot;apkname&quot;:apkname&#125;,</div><div class="line">                       type: &quot;post&quot;,</div><div class="line">                       traditional: true,</div><div class="line">                       success: function (data) &#123;</div><div class="line">                           downloadurl = data</div><div class="line">                           alert(data)</div><div class="line">                           $(&quot;#wating&quot;).css(&apos;display&apos;,&apos;none&apos;);</div><div class="line">                           if (confirm(&quot;你确定要下载文件吗？&quot;)) &#123;</div><div class="line">                               self.location=(&apos;downloadsdk?url=&apos; + data)</div><div class="line">                           &#125;</div><div class="line">                       &#125;,</div><div class="line">                       error: function (msg) &#123;</div><div class="line">                           alert(msg)</div><div class="line">                           $(&quot;#wating&quot;).css(&apos;display&apos;,&apos;none&apos;);</div><div class="line">                       &#125;</div><div class="line">                  &#125;);</div><div class="line"></div><div class="line">               &#125;</div><div class="line">			ele.style.width = percent + &apos;%&apos;;</div><div class="line">			document.getElementById(&apos;3&apos;).innerHTML = percent + &apos;%&apos;;</div><div class="line">		&#125;</div><div class="line">	&#125;</div></pre></td></tr></table></figure>
-<p>这里我们在percent达到100之后，调用ajax做一些事情</p>
-<h3 id="django中接口调用的方式总结"><a href="#django中接口调用的方式总结" class="headerlink" title="django中接口调用的方式总结"></a>django中接口调用的方式总结</h3><p>网络方法调用大致有这么几种</p>
-<h4 id="点击按钮跳转新页面"><a href="#点击按钮跳转新页面" class="headerlink" title="点击按钮跳转新页面"></a>点击按钮跳转新页面</h4><p>这种直接用<a>标签，然后用href就好</a></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;a class=&quot;button&quot; id=&quot;ios&quot; style=&quot;position: absolute;top: 50px;&quot; href=&quot;jinkensios&quot; onmouseover=&quot;showDetailText(this)&quot; onmouseout=&quot;clearTest()&quot;&gt;● 打包(iOS)&lt;/a&gt;</div></pre></td></tr></table></figure>
-<h4 id="点击按钮刷新局部数据"><a href="#点击按钮刷新局部数据" class="headerlink" title="点击按钮刷新局部数据"></a>点击按钮刷新局部数据</h4><h5 id="这种最好是预先埋伏好ajax，然后用id绑定，点击之后直接调用"><a href="#这种最好是预先埋伏好ajax，然后用id绑定，点击之后直接调用" class="headerlink" title="这种最好是预先埋伏好ajax，然后用id绑定，点击之后直接调用"></a>这种最好是预先埋伏好ajax，然后用id绑定，点击之后直接调用</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">$(document).ready(function()&#123;</div><div class="line">      $(&quot;#btn&quot;).click(function()&#123;</div><div class="line">        string = $(&quot;#textarea1&quot;).val()</div><div class="line">        $.get(&quot;/ajaxcreateui/&quot;, &#123;&apos;text&apos;: string&#125;,function(ret)&#123;</div><div class="line">            $(&apos;#textarea2&apos;).html(ret)</div><div class="line">        &#125;)</div><div class="line">      &#125;);</div><div class="line">    &#125;);</div></pre></td></tr></table></figure>
-<ul>
-<li><code>$(document).ready(function(){}</code>预先埋伏的写法要写在这句代码里边</li>
-<li><code>$(&quot;#btn&quot;).click(function(){}</code>这个是预先埋伏</li>
-<li><code>$.get(&quot;/ajaxcreateui/&quot;, {&#39;text&#39;: string},function(ret){}</code>ajax的get调用</li>
-</ul>
-<h5 id="直接使用XMLHttpRequest"><a href="#直接使用XMLHttpRequest" class="headerlink" title="直接使用XMLHttpRequest"></a>直接使用XMLHttpRequest</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div></pre></td><td class="code"><pre><div class="line">var progresshttp;</div><div class="line">function getprogress() &#123;</div><div class="line"></div><div class="line">    progresshttp=null;</div><div class="line">    if (window.XMLHttpRequest)</div><div class="line">      &#123;// code for all new browsers</div><div class="line">      progresshttp=new XMLHttpRequest();</div><div class="line">      &#125;</div><div class="line">    else if (window.ActiveXObject)</div><div class="line">      &#123;// code for IE5 and IE6</div><div class="line">      progresshttp=new ActiveXObject(&quot;Microsoft.XMLHTTP&quot;);</div><div class="line">      &#125;</div><div class="line"></div><div class="line">    if (progresshttp!=null)</div><div class="line">      &#123;</div><div class="line">          progresshttp.onreadystatechange=progressstate_Change;</div><div class="line">          progresshttp.open(&quot;POST&quot;,&apos;getpackprogress&apos;,false);</div><div class="line">          var formData = new FormData();</div><div class="line">          formData.append(&apos;branchname&apos;, branchname);</div><div class="line">          progresshttp.send(formData);</div><div class="line">      &#125;</div><div class="line">    else</div><div class="line">      &#123;</div><div class="line">      alert(&quot;Your browser does not support XMLHTTP.&quot;);</div><div class="line">      &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">function progressstate_Change()</div><div class="line">&#123;</div><div class="line">if (progresshttp.readyState==4)</div><div class="line">  &#123;// 4 = &quot;loaded&quot;</div><div class="line">  if (progresshttp.status==200)</div><div class="line">    &#123;// 200 = OK</div><div class="line"></div><div class="line">      num = this.responseText</div><div class="line"></div><div class="line">      var ele = document.getElementById(&apos;12&apos;);</div><div class="line">      var percent = num * 100;</div><div class="line">      percent = percent.toFixed(2)</div><div class="line">      if (percent &gt;= 100.00) &#123;</div><div class="line">          percent = 100.00</div><div class="line">      &#125;</div><div class="line">      ele.style.width = percent + &apos;%&apos;;</div><div class="line">      document.getElementById(&apos;13&apos;).innerHTML = percent + &apos;%&apos;;</div><div class="line">      if (percent &gt;= 100) &#123;</div><div class="line">          window.clearInterval(waitinterval)</div><div class="line">          ele.style.width = 100 + &apos;%&apos;;</div><div class="line">          var text = document.getElementById(&apos;building&apos;)</div><div class="line">          text.innerHTML = &quot;&quot;</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  else</div><div class="line">    &#123;</div><div class="line">    alert(&quot;Problem retrieving XML data&quot;);</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>添加回调的方式</p>
-<blockquote>
-<ul>
-<li><code>xhr.upload.addEventListener(&#39;progress&#39;,on_progress,false);</code>进度条</li>
-<li><code>progresshttp.onreadystatechange=progressstate_Change</code>事件回调</li>
-</ul>
-</blockquote>
-<h4 id="某个事件调用结束刷新局部数据"><a href="#某个事件调用结束刷新局部数据" class="headerlink" title="某个事件调用结束刷新局部数据"></a>某个事件调用结束刷新局部数据</h4><p>直接使用ajax或者XMLHttpRequest就好</p>
-<h3 id="python中调用命令行随时输出的做法"><a href="#python中调用命令行随时输出的做法" class="headerlink" title="python中调用命令行随时输出的做法"></a>python中调用命令行随时输出的做法</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">p = subprocess.Popen(&quot;gradle assembleDebug&quot;,shell=True,stdout=subprocess.PIPE)</div><div class="line"></div><div class="line">indexcount = 0</div><div class="line"></div><div class="line">returncode = p.poll()</div><div class="line"></div><div class="line">while returncode is None:</div><div class="line">      text = p.stdout.readline().strip()</div><div class="line">      f = open(&apos;/Users/jdjr/Desktop/buildlog.txt&apos;,&apos;a&apos;)#追加打开方式</div><div class="line">      f.write(text)</div><div class="line">      f.close()</div><div class="line">        </div><div class="line">      returncode = p.poll()</div></pre></td></tr></table></figure>
-
-          
+          <h3 id="python中Json字符串的创建与javascript中json字符串的转换"><a href="#python中Json字符串的创建与javascript中json字符串的转换" class="headerlink" title="python中Json字符串的创建与javascript中json字符串的转换"></a>python中Json字符串的创建与javascript中json字符串的转换</h3>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2017/05/18/2017/基于Django的平台构建笔记(2)/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -537,42 +496,12 @@
 
       
         
-          
-            <h3 id="创建一个mongo数据库"><a href="#创建一个mongo数据库" class="headerlink" title="创建一个mongo数据库"></a>创建一个mongo数据库</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">from pymongo import MongoClient</div><div class="line">import json,time</div><div class="line"></div><div class="line">connection = MongoClient(&quot;localhost&quot;,27017)</div><div class="line">mydb = connection.mydb # new a database</div><div class="line">myser = mydb.allindex # new a table</div></pre></td></tr></table></figure>
-<h3 id="查"><a href="#查" class="headerlink" title="查"></a>查</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">dicn = &#123;&#125;</div><div class="line">dicn[&apos;indexname&apos;] = item</div><div class="line">dicn[&apos;date&apos;] = dateString</div><div class="line">dbs = myser.find(dicn)</div><div class="line"></div><div class="line">for item in dbs:</div><div class="line"></div><div class="line">  dic = &#123;&#125;</div><div class="line">  datestring = item[&apos;date&apos;]</div><div class="line">  datestring = datestring.encode(&apos;utf-8&apos;)</div><div class="line">  dic[&apos;date&apos;] = datestring</div><div class="line">  dic[&apos;earyeild&apos;] = item[&apos;earyeild&apos;]</div><div class="line">  dic[&apos;indexname&apos;] = item[&apos;indexname&apos;]</div></pre></td></tr></table></figure>
-<blockquote>
-</blockquote>
-<p>MongoDB提供了一组比较操作符：$lt/$lte/$gt/$gte/$ne，依次等价于&lt;/&lt;=/&gt;/&gt;=/!=。</p>
-<ul>
-<li><p>下面的示例返回符合条件age &gt;= 18 &amp;&amp; age &lt;= 40的文档。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&gt; db.test.find(&#123;&quot;age&quot;:&#123;&quot;$gte&quot;:18, &quot;$lte&quot;:40&#125;&#125;)</div><div class="line">&#123; &quot;_id&quot; : ObjectId(&quot;4fd58ecbb9ac507e96276f1a&quot;), &quot;name&quot; : &quot;stephen&quot;, &quot;age&quot; : 35,&quot;genda&quot; : &quot;male&quot;, &quot;email&quot; : &quot;stephen@hotmail.com&quot; &#125;</div></pre></td></tr></table></figure>
-</li>
-<li><p>下面的示例返回条件符合name != “stephen1”</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&gt; db.test.find(&#123;&quot;name&quot;:&#123;&quot;$ne&quot;:&quot;stephen1&quot;&#125;&#125;)</div><div class="line">&#123; &quot;_id&quot; : ObjectId(&quot;4fd58ecbb9ac507e96276f1a&quot;), &quot;name&quot; : &quot;stephen&quot;, &quot;age&quot; : 35,&quot;genda&quot; : &quot;male&quot;, &quot;email&quot; : &quot;stephen@hotmail.com&quot; &#125;</div></pre></td></tr></table></figure>
-</li>
-<li><p>$in等同于SQL中的in，下面的示例等同于SQL中的in (“stephen”,”stephen1”)</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&gt; db.test.find(&#123;&quot;name&quot;:&#123;&quot;$in&quot;:[&quot;stephen&quot;,&quot;stephen1&quot;]&#125;&#125;)</div><div class="line">&#123; &quot;_id&quot; : ObjectId(&quot;4fd58ecbb9ac507e96276f1a&quot;), &quot;name&quot; : &quot;stephen&quot;, &quot;age&quot; : 35,&quot;genda&quot; : &quot;male&quot;, &quot;email&quot; : &quot;stephen@hotmail.com&quot; &#125;</div></pre></td></tr></table></figure>
-</li>
-<li><p>和SQL不同的是，MongoDB的in list中的数据可以是不同类型。这种情况可用于不同类型的别名场景。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&gt; db.test.find(&#123;&quot;name&quot;:&#123;&quot;$in&quot;:[&quot;stephen&quot;,123]&#125;&#125;)</div><div class="line">&#123; &quot;_id&quot; : ObjectId(&quot;4fd58ecbb9ac507e96276f1a&quot;), &quot;name&quot; : &quot;stephen&quot;, &quot;age&quot; : 35,&quot;genda&quot; : &quot;male&quot;, &quot;email&quot; : &quot;stephen@hotmail.com&quot; &#125;</div></pre></td></tr></table></figure>
-</li>
-<li><p>$nin等同于SQL中的not in，同时也是$in的取反。如：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&gt; db.test.find(&#123;&quot;name&quot;:&#123;&quot;$nin&quot;:[&quot;stephen2&quot;,&quot;stephen1&quot;]&#125;&#125;)</div><div class="line">&#123; &quot;_id&quot; : ObjectId(&quot;4fd58ecbb9ac507e96276f1a&quot;), &quot;name&quot; : &quot;stephen&quot;, &quot;age&quot; : 35,&quot;genda&quot; : &quot;male&quot;, &quot;email&quot; : &quot;stephen@hotmail.com&quot; &#125;</div></pre></td></tr></table></figure>
-</li>
-<li><p>$or等同于SQL中的or，$or所针对的条件被放到一个数组中，每个数组元素表示or的一个条件。<br>下面的示例等同于name = “stephen1” or age = 35</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&gt; db.test.find(&#123;&quot;$or&quot;: [&#123;&quot;name&quot;:&quot;stephen1&quot;&#125;, &#123;&quot;age&quot;:35&#125;]&#125;)</div><div class="line">&#123; &quot;_id&quot; : ObjectId(&quot;4fd58ecbb9ac507e96276f1a&quot;), &quot;name&quot; : &quot;stephen&quot;, &quot;age&quot; : 35,&quot;genda&quot; : &quot;male&quot;, &quot;email&quot; : &quot;stephen@hotmail.com&quot; &#125;</div></pre></td></tr></table></figure>
-</li>
-<li><p>下面的示例演示了如何混合使用$or和$in。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&gt; db.test.find(&#123;&quot;$or&quot;: [&#123;&quot;name&quot;:&#123;&quot;$in&quot;:[&quot;stephen&quot;,&quot;stephen1&quot;]&#125;&#125;, &#123;&quot;age&quot;:36&#125;]&#125;)</div><div class="line">&#123; &quot;_id&quot; : ObjectId(&quot;4fd58ecbb9ac507e96276f1a&quot;), &quot;name&quot; : &quot;stephen&quot;, &quot;age&quot; : 35,&quot;genda&quot; : &quot;male&quot;, &quot;email&quot; : &quot;stephen@hotmail.com&quot; &#125;</div></pre></td></tr></table></figure>
-</li>
-<li><p>$not表示取反，等同于SQL中的not。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&gt; db.test.find(&#123;&quot;name&quot;: &#123;&quot;$not&quot;: &#123;&quot;$in&quot;:[&quot;stephen2&quot;,&quot;stephen1&quot;]&#125;&#125;&#125;)</div><div class="line">&#123; &quot;_id&quot; : ObjectId(&quot;4fd58ecbb9ac507e96276f1a&quot;), &quot;name&quot; : &quot;stephen&quot;, &quot;age&quot; : 35,&quot;genda&quot; : &quot;male&quot;, &quot;email&quot; : &quot;stephen@hotmail.com&quot; &#125;</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<h3 id="增"><a href="#增" class="headerlink" title="增"></a>增</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">myser.save(&#123;&apos;指数名称&apos;:item,&apos;市盈率&apos;:pe,&apos;盈利收益率&apos;:roe,&apos;日期&apos;:date,&apos;市净率&apos;:pb,&apos;股息率&apos;:rate&#125;)</div></pre></td></tr></table></figure>
-<h3 id="时间的用法"><a href="#时间的用法" class="headerlink" title="时间的用法"></a>时间的用法</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">current = time.localtime(time.time())</div><div class="line">year = current.tm_year</div><div class="line">month = current.tm_mon</div><div class="line">day = current.tm_mday</div><div class="line"></div><div class="line">yearStr = &apos;%i&apos; % year</div><div class="line">yearList = list(yearStr)</div><div class="line">yearStr1 = yearList[-1]</div><div class="line">yearStr2 = yearList[-2]</div><div class="line">yearStr = yearStr2 + yearStr1</div><div class="line"></div><div class="line">monthStr = months[month - 1]</div><div class="line"></div><div class="line">targetStr = &apos;idx_%i%s%s&apos; % (day,monthStr,yearStr)</div></pre></td></tr></table></figure>
-
-          
+          <h3 id="创建一个mongo数据库"><a href="#创建一个mongo数据库" class="headerlink" title="创建一个mongo数据库"></a>创建一个mongo数据库</h3>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2017/05/17/2017/mongodb使用小结/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -663,12 +592,12 @@
 
       
         
-          
-            <h3 id="1-出现（-linker-command-failed-with-exit-code-1）"><a href="#1-出现（-linker-command-failed-with-exit-code-1）" class="headerlink" title="1:出现（ linker command failed with exit code 1）"></a>1:出现（ linker command failed with exit code 1）</h3><p>如果具体的错误是这个与第三方.a库重复，那么要更改的是，类名和全局变量的名字</p>
-<h3 id="2-SEGV-ACCERR错误"><a href="#2-SEGV-ACCERR错误" class="headerlink" title="2.SEGV_ACCERR错误"></a>2.SEGV_ACCERR错误</h3><p>说明对象被过度释放，查看是否有在=nil之后又使用了该对象，比如说这段代码<br>case MessageComposeResultSent:<br>        {<br>            //信息传送成功<br>//            [JRMsgShow showMsg:@”发送成功”];<br>            if (self.closeBlock) {<br>                self.closeBlock();<br>            }<br>            if (self.messageSuccessBlock) {<br>                self.messageSuccessBlock();<br>            }<br>            [[UIApplication sharedApplication].keyWindow.rootViewController dismissViewControllerAnimated:YES completion:nil];<br>        }</p>
-<p>很明显前边我们使用了closeblock，这个block之行之后，很快self会死掉，而这个之后我们又使用了self.messageSuccessBlock这样再次使用self，必然导致崩溃，不过这是在iOS8上面，在iOS9和10上就没有这个问题，说明苹果做了系统级的优化</p>
-<h3 id="3-参数传递尽量要用model，哪怕是回调，因为可能后边会增加需求，那么参数传递将会变得很恶心"><a href="#3-参数传递尽量要用model，哪怕是回调，因为可能后边会增加需求，那么参数传递将会变得很恶心" class="headerlink" title="3.参数传递尽量要用model，哪怕是回调，因为可能后边会增加需求，那么参数传递将会变得很恶心"></a>3.参数传递尽量要用model，哪怕是回调，因为可能后边会增加需求，那么参数传递将会变得很恶心</h3>
-          
+          <h3 id="1-出现（-linker-command-failed-with-exit-code-1）"><a href="#1-出现（-linker-command-failed-with-exit-code-1）" class="headerlink" title="1:出现（ linker command failed with exit code 1）"></a>1:出现（ linker command failed with exit code 1）</h3><p>如果具体的错误是这个与第三方.a库重复，那么要更改的是，类名和全局变量的名字<br>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2017/02/26/2017/iOS工程小知识/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -947,69 +876,13 @@
 
       
         
-          
-            <p>这里主要实现的是利用爬虫来实现对关注指数基金的估值数据的抓取，然后进行估值分析，配合云服务器并且每天进行推送。</p>
-<p>爬虫的基本步骤很简单，将该网页的js和html全部下载下来，然后从其中寻找有用的信息，进而将有用的信息进行结构化的存储，其中将网页爬取下来使用的scrapy，而寻找信息我们使用的是xpath，存储我们使用mongo</p>
-<h3 id="使用scrapy框架"><a href="#使用scrapy框架" class="headerlink" title="使用scrapy框架"></a>使用scrapy框架</h3><ul>
-<li><p>安装<br><code>sudo pip install scrapy</code>或者直接下载源码，自己编译*下载0.24版本的scrapy<a href="http://scrapy.org/download/" target="_blank" rel="external">http://scrapy.org/download/</a><br>然后cd 进入解压后的文件，然后执行sudo python setup.py install安装scrapy</p>
-<blockquote>
-<p>如果在使用命令行过程中发现sudo之后仍然无法获取权限，删除文件时会提示Operation not permitted，那就关机重启，然后按住comman+R，启动之后启动命令行，输入，csrutil disable关闭rootless就可以了</p>
-</blockquote>
-</li>
-<li><p>scrapy startproject tutorial创建爬虫工程</p>
-</li>
-</ul>
-<ul>
-<li>scrapy.cfg: 项目的配置文件</li>
-<li>tutorial/: 该项目的python模块。之后您将在此加入代码。</li>
-<li>tutorial/items.py: 项目中的item文件.</li>
-<li>tutorial/pipelines.py: 项目中的pipelines文件.</li>
-<li>tutorial/settings.py: 项目的设置文件.</li>
-<li>tutorial/spiders/: 放置spider代码的目录.</li>
-</ul>
-<blockquote>
-<p>文件作用说明</p>
-</blockquote>
-<ul>
-<li>items.py：定义后期处理的数据，是一个容器，像一个字典</li>
-<li>settings.py：配置scrapy，从而修改user-agent,设置爬取时间，设置代理，设置中间件</li>
-<li>pipelines.py:用于存放执行后去数据处理的功能，从而把爬取与处理分开<br>item成功获取数据之后，它会送到pipeline，让pipeline对数据进行处理</li>
-</ul>
-<p>运行工程：<br>scrapy目前只能使用命令行来运行<code>scrapy crawl demo</code>这里要注意的是后边的这个demo这个名字不是随便来的，spider这个文件命名要是demo_spider才可以</p>
-<h3 id="xpath的使用"><a href="#xpath的使用" class="headerlink" title="xpath的使用"></a>xpath的使用</h3><p>用到的工具：</p>
-<ul>
-<li>火狐浏览器</li>
-<li>FirePath插件</li>
-<li>Firebug插件</li>
-<li>XPath Checker插件</li>
-</ul>
-<p>1.右键选择－Inspect in FirePath<br>2.复制xpath<br>3.在该页面上右键－&gt;View XPath<br>4.把xpath的路径复制进入该页面，查看是否能够找到自己想要的元素</p>
-<h3 id="mongodb的安装以及使用"><a href="#mongodb的安装以及使用" class="headerlink" title="mongodb的安装以及使用"></a>mongodb的安装以及使用</h3><ul>
-<li><p>一行代码安装mongodbbrew install mongoDB前提是已经安装了brew工具，一次失败就执行第二次<br>*<br>如果上边的方法还是不行，那就只能手动下载了</p>
-<ul>
-<li><a href="https://fastdl.mongodb.org/osx/mongodb-osx-x86_64-3.2.3.tgz" target="_blank" rel="external">https://fastdl.mongodb.org/osx/mongodb-osx-x86_64-3.2.3.tgz</a></li>
-<li>命令行解压该包tar xzvf mongodb-osx-x86_64-3.2.3.tgz</li>
-<li>将解压后的文件放到一个可以长期放置的地方，然后进入该文件夹</li>
-<li>pwd记录当前文件路径，copy一下，一会儿有用</li>
-<li>vim ~/.zshrc进入配置目录<br><em><br>#mongod config<br>MONGODB_HOME=/Users/shenghuihan/Desktop/mongodb-osx-x86_64-3.2.3<br>PATH=$PATH:$MONGODB_HOME/bin添加bin目录文件到系统搜索目录下
-</em><br>source ~/.zshrc使设置生效</li>
-</ul>
-</li>
-<li>查看mongo是否生效mongo，如果显示版本号说明生效，但是没有启动下面我们来启动服务</li>
-<li>先在同级目录下创建数据文件和日志文件mkdir data和mkdir log</li>
-<li>启动mongodb服务mongod –dbpath data –logpath log/mongod.log –logappend –fork</li>
-<li>再次mongo如果显示connecting to test说明启动成功，输入exit;退出mongo</li>
-<li>将启动命令写入一个启动脚本中echo “mongod –dbpath data –logpath log/mongod.log –logappend –fork” &gt;&gt; start.sh</li>
-<li>可视化工具安装<a href="https://mongohub.s3.amazonaws.com/MongoHub.zip直接去这里下载" target="_blank" rel="external">https://mongohub.s3.amazonaws.com/MongoHub.zip直接去这里下载</a></li>
-<li>安装python操作mongodb的驱动sudo pip install pymongo前提是要安装pip啊，这是一个专门用来安装python各种库的软件</li>
-<li>默认端口27017</li>
-<li>查看ip的方式，db.getMongo()</li>
-</ul>
-<h4 id="使用mongodb命令行"><a href="#使用mongodb命令行" class="headerlink" title="使用mongodb命令行"></a>使用mongodb命令行</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">bogon:mongo shenghuihan$ mongo</div><div class="line">MongoDB shell version: 3.2.3</div><div class="line">connecting to: test</div><div class="line">Server has startup warnings: </div><div class="line">2016-09-08T17:51:01.057+0800 I CONTROL  [initandlisten] </div><div class="line">2016-09-08T17:51:01.057+0800 I CONTROL  [initandlisten] ** WARNING: soft rlimits too low. Number of files is 256, should be at least 1000</div><div class="line">&gt; use mydb//创建一个新的库</div><div class="line">switched to db mydb</div><div class="line">&gt; show collections</div><div class="line">&gt; show dbs</div></pre></td></tr></table></figure>
-<h4 id="使用以及查看数据"><a href="#使用以及查看数据" class="headerlink" title="使用以及查看数据"></a>使用以及查看数据</h4><p>我们可以使用mongohub查看数据，当然还可以使用我们最喜欢的python<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">import pymongo</div><div class="line"></div><div class="line">connection = pymongo.MongoClient()</div><div class="line">tdb = connection.jikexueyuan</div><div class="line">post_info = tdb.ceshi</div><div class="line"></div><div class="line">jike = &#123;&apos;name&apos;:u&apos;哈哈哈&apos;&#125;#插入数据</div><div class="line">goog = &#123;&apos;name&apos;:u&apos;校长&apos;&#125;</div><div class="line"></div><div class="line"># post_info.insert(jike)</div><div class="line"># post_info.insert(goog)</div><div class="line">post_info.remove(&#123;&apos;name&apos;:u&apos;校长&apos;&#125;)</div><div class="line"></div><div class="line">print u&apos;操作完成&apos;</div></pre></td></tr></table></figure></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">from pymongo import MongoClient</div><div class="line"></div><div class="line">mc = MongoClient(&quot;localhost&quot;,27017)</div><div class="line"></div><div class="line">db = mc.users</div><div class="line"></div><div class="line">c = db.users.find()</div><div class="line"></div><div class="line">db.users.save(&#123;&quot;age&quot;:8&#125;)</div><div class="line"></div><div class="line">for objc in c:</div><div class="line">    print(objc)</div><div class="line"></div><div class="line">mc.close()</div></pre></td></tr></table></figure>
-
-          
+          <p>这里主要实现的是利用爬虫来实现对关注指数基金的估值数据的抓取，然后进行估值分析，配合云服务器并且每天进行推送。</p>
+<p>爬虫的基本步骤很简单，将该网页的js和html全部下载下来，然后从其中寻找有用的信息，进而将有用的信息进行结构化的存储，其中将网页爬取下来使用的scrapy，而寻找信息我们使用的是xpath，存储我们使用mongo<br>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2017/02/10/2017/爬虫系列/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -1340,30 +1213,15 @@
 
       
         
-          
-            <ul>
+          <ul>
 <li>安装andorid studio</li>
 <li>copy一份sdk过来</li>
-<li>设置andorid studio的sdk路径</li>
-<li><p>安装sdkman</p>
-<ul>
-<li><p>在控制台或者item2中输入</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">curl -s https://get.sdkman.io | bash</div><div class="line">source &quot;$HOME/.sdkman/bin/sdkman-init.sh&quot;</div></pre></td></tr></table></figure>
-<p>检验sdkman是否安装成功</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sdk version</div></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>安装andorid studio中认可的gradle版本</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sdk install gradle 2.8</div></pre></td></tr></table></figure>
-</li>
-<li><p>升级jdk到andorid studio认可的版本比如说1.7</p>
-</li>
-<li>到工程根目录，执行gradle build就可以了’gradle assembleDebug’</li>
-<li>打包出来的文件在outputs中</li>
-</ul>
-
-          
+<li>设置andorid studio的sdk路径
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/12/16/2017/Andorid自动打包gradle安装笔记/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>

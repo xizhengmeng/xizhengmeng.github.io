@@ -84,19 +84,16 @@
 
 
 
-<meta name="description" content="创建一个mongo数据库123456from pymongo import MongoClientimport json,timeconnection = MongoClient(&amp;quot;localhost&amp;quot;,27017)mydb = connection.mydb # new a databasemyser = mydb.allindex # new a table
-查123456">
+<meta name="description" content="创建一个mongo数据库">
 <meta property="og:type" content="article">
 <meta property="og:title" content="mongodb使用小结">
 <meta property="og:url" content="/2017/05/17/2017/mongodb使用小结/index.html">
 <meta property="og:site_name" content="Hanson的博客">
-<meta property="og:description" content="创建一个mongo数据库123456from pymongo import MongoClientimport json,timeconnection = MongoClient(&amp;quot;localhost&amp;quot;,27017)mydb = connection.mydb # new a databasemyser = mydb.allindex # new a table
-查123456">
-<meta property="og:updated_time" content="2017-06-01T02:34:14.000Z">
+<meta property="og:description" content="创建一个mongo数据库">
+<meta property="og:updated_time" content="2017-06-08T01:46:41.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="mongodb使用小结">
-<meta name="twitter:description" content="创建一个mongo数据库123456from pymongo import MongoClientimport json,timeconnection = MongoClient(&amp;quot;localhost&amp;quot;,27017)mydb = connection.mydb # new a databasemyser = mydb.allindex # new a table
-查123456">
+<meta name="twitter:description" content="创建一个mongo数据库">
 
 
 
@@ -303,7 +300,8 @@
       
 
       
-        <h3 id="创建一个mongo数据库"><a href="#创建一个mongo数据库" class="headerlink" title="创建一个mongo数据库"></a>创建一个mongo数据库</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">from pymongo import MongoClient</div><div class="line">import json,time</div><div class="line"></div><div class="line">connection = MongoClient(&quot;localhost&quot;,27017)</div><div class="line">mydb = connection.mydb # new a database</div><div class="line">myser = mydb.allindex # new a table</div></pre></td></tr></table></figure>
+        <h3 id="创建一个mongo数据库"><a href="#创建一个mongo数据库" class="headerlink" title="创建一个mongo数据库"></a>创建一个mongo数据库</h3><a id="more"></a>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">from pymongo import MongoClient</div><div class="line">import json,time</div><div class="line"></div><div class="line">connection = MongoClient(&quot;localhost&quot;,27017)</div><div class="line">mydb = connection.mydb # new a database</div><div class="line">myser = mydb.allindex # new a table</div></pre></td></tr></table></figure>
 <h3 id="查"><a href="#查" class="headerlink" title="查"></a>查</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">dicn = &#123;&#125;</div><div class="line">dicn[&apos;indexname&apos;] = item</div><div class="line">dicn[&apos;date&apos;] = dateString</div><div class="line">dbs = myser.find(dicn)</div><div class="line"></div><div class="line">for item in dbs:</div><div class="line"></div><div class="line">  dic = &#123;&#125;</div><div class="line">  datestring = item[&apos;date&apos;]</div><div class="line">  datestring = datestring.encode(&apos;utf-8&apos;)</div><div class="line">  dic[&apos;date&apos;] = datestring</div><div class="line">  dic[&apos;earyeild&apos;] = item[&apos;earyeild&apos;]</div><div class="line">  dic[&apos;indexname&apos;] = item[&apos;indexname&apos;]</div></pre></td></tr></table></figure>
 <blockquote>
 </blockquote>

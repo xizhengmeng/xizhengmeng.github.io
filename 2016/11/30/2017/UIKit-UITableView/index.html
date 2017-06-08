@@ -84,16 +84,16 @@
 
 
 
-<meta name="description" content="更改cell点击的高亮色在具体的Cell中重写函数：1234567891011- (void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated&amp;#123;//重写高亮函数if (highlighted) &amp;#123;self.textLabel.backgroundColor = [UIColor yellowColor];self.">
+<meta name="description" content="更改cell点击的高亮色在具体的Cell中重写函数：">
 <meta property="og:type" content="article">
 <meta property="og:title" content="UIKit-UITableView">
 <meta property="og:url" content="/2016/11/30/2017/UIKit-UITableView/index.html">
 <meta property="og:site_name" content="Hanson的博客">
-<meta property="og:description" content="更改cell点击的高亮色在具体的Cell中重写函数：1234567891011- (void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated&amp;#123;//重写高亮函数if (highlighted) &amp;#123;self.textLabel.backgroundColor = [UIColor yellowColor];self.">
-<meta property="og:updated_time" content="2017-02-26T15:02:36.000Z">
+<meta property="og:description" content="更改cell点击的高亮色在具体的Cell中重写函数：">
+<meta property="og:updated_time" content="2017-06-08T01:47:11.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="UIKit-UITableView">
-<meta name="twitter:description" content="更改cell点击的高亮色在具体的Cell中重写函数：1234567891011- (void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated&amp;#123;//重写高亮函数if (highlighted) &amp;#123;self.textLabel.backgroundColor = [UIColor yellowColor];self.">
+<meta name="twitter:description" content="更改cell点击的高亮色在具体的Cell中重写函数：">
 
 
 
@@ -300,7 +300,7 @@
       
 
       
-        <h3 id="更改cell点击的高亮色"><a href="#更改cell点击的高亮色" class="headerlink" title="更改cell点击的高亮色"></a>更改cell点击的高亮色</h3><p>在具体的Cell中重写函数：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">- (void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated&#123;//重写高亮函数</div><div class="line">if (highlighted) &#123;</div><div class="line">self.textLabel.backgroundColor = [UIColor yellowColor];</div><div class="line">self.textLabel.textColor = [UIColor redColor];</div><div class="line">self.textLabel.text = [NSString stringWithFormat:@&quot;这是第%ld行  点中我啦哈哈哈&quot;,(long)self.tag];</div><div class="line">&#125;else&#123;</div><div class="line">self.textLabel.backgroundColor = [UIColor clearColor];</div><div class="line">self.textLabel.textColor = [UIColor blackColor];</div><div class="line">self.textLabel.text = [NSString stringWithFormat:@&quot;这是第%ld行  哈哈哈&quot;,(long)self.tag];</div><div class="line">&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+        <h3 id="更改cell点击的高亮色"><a href="#更改cell点击的高亮色" class="headerlink" title="更改cell点击的高亮色"></a>更改cell点击的高亮色</h3><p>在具体的Cell中重写函数：<br><a id="more"></a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">- (void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated&#123;//重写高亮函数</div><div class="line">if (highlighted) &#123;</div><div class="line">self.textLabel.backgroundColor = [UIColor yellowColor];</div><div class="line">self.textLabel.textColor = [UIColor redColor];</div><div class="line">self.textLabel.text = [NSString stringWithFormat:@&quot;这是第%ld行  点中我啦哈哈哈&quot;,(long)self.tag];</div><div class="line">&#125;else&#123;</div><div class="line">self.textLabel.backgroundColor = [UIColor clearColor];</div><div class="line">self.textLabel.textColor = [UIColor blackColor];</div><div class="line">self.textLabel.text = [NSString stringWithFormat:@&quot;这是第%ld行  哈哈哈&quot;,(long)self.tag];</div><div class="line">&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <h3 id="如何来写分割线"><a href="#如何来写分割线" class="headerlink" title="如何来写分割线"></a>如何来写分割线</h3><p>你在第一次cell创建的时候去布局，会发现取到的self.height永远是44，是因为后边系统才会根据你设置的高度来确定这个高度，也就是说它会再次赋值，调用layoutsubviews会再次，所以你的布局方法应该写到这个方法里边，才能够保证你的布局和取到的size是正确的，否则一切都是白费<br>最佳实践是把布局的方法写到reloadmodel方法里边去，分割线的位置要写到layoutsubviews中去，这样拿到self.height的高度才是准确的，其他的控件是从上到下布局的，所以无所谓，但是从下到上布局的控件就要放倒这个方法中去</p>
 <h3 id="cell的预加载"><a href="#cell的预加载" class="headerlink" title="cell的预加载"></a>cell的预加载</h3><p>一旦调用cellfor，紧接着就会调用willdispaly，这个时候这个cell已经出现在了visiblecells里边了，其实这个时候这个cell已经应该出现在屏幕上了，所以预加载的说法在tableview上是不存在的</p>
 

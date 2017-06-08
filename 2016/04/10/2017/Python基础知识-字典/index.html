@@ -84,19 +84,16 @@
 
 
 
-<meta name="description" content="字典这种数据结构，我们又称之为映射(mapping)，在java中也是这么称呼的，但是在python中我们称之为字典，与OC中的叫法一致。
-创建字典1234567891011121314&amp;gt;&amp;gt;&amp;gt; dicts = &amp;#123;&amp;apos;name&amp;apos;:&amp;apos;han&amp;apos;,&amp;apos;tele&amp;apos;:&amp;apos;136&amp;apos;&amp;#125;//直接创建&amp;gt">
+<meta name="description" content="字典这种数据结构，我们又称之为映射(mapping)，在java中也是这么称呼的，但是在python中我们称之为字典，与OC中的叫法一致。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Python基础知识-字典">
 <meta property="og:url" content="/2016/04/10/2017/Python基础知识-字典/index.html">
 <meta property="og:site_name" content="Hanson的博客">
-<meta property="og:description" content="字典这种数据结构，我们又称之为映射(mapping)，在java中也是这么称呼的，但是在python中我们称之为字典，与OC中的叫法一致。
-创建字典1234567891011121314&amp;gt;&amp;gt;&amp;gt; dicts = &amp;#123;&amp;apos;name&amp;apos;:&amp;apos;han&amp;apos;,&amp;apos;tele&amp;apos;:&amp;apos;136&amp;apos;&amp;#125;//直接创建&amp;gt">
-<meta property="og:updated_time" content="2017-01-11T02:44:36.000Z">
+<meta property="og:description" content="字典这种数据结构，我们又称之为映射(mapping)，在java中也是这么称呼的，但是在python中我们称之为字典，与OC中的叫法一致。">
+<meta property="og:updated_time" content="2017-06-08T01:47:00.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python基础知识-字典">
-<meta name="twitter:description" content="字典这种数据结构，我们又称之为映射(mapping)，在java中也是这么称呼的，但是在python中我们称之为字典，与OC中的叫法一致。
-创建字典1234567891011121314&amp;gt;&amp;gt;&amp;gt; dicts = &amp;#123;&amp;apos;name&amp;apos;:&amp;apos;han&amp;apos;,&amp;apos;tele&amp;apos;:&amp;apos;136&amp;apos;&amp;#125;//直接创建&amp;gt">
+<meta name="twitter:description" content="字典这种数据结构，我们又称之为映射(mapping)，在java中也是这么称呼的，但是在python中我们称之为字典，与OC中的叫法一致。">
 
 
 
@@ -322,7 +319,7 @@
       
 
       
-        <p>字典这种数据结构，我们又称之为映射(mapping)，在java中也是这么称呼的，但是在python中我们称之为字典，与OC中的叫法一致。</p>
+        <p>字典这种数据结构，我们又称之为映射(mapping)，在java中也是这么称呼的，但是在python中我们称之为字典，与OC中的叫法一致。<br><a id="more"></a></p>
 <h2 id="创建字典"><a href="#创建字典" class="headerlink" title="创建字典"></a>创建字典</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; dicts = &#123;&apos;name&apos;:&apos;han&apos;,&apos;tele&apos;:&apos;136&apos;&#125;//直接创建</div><div class="line"></div><div class="line">&gt;&gt;&gt; xiaohan = (&apos;xiaohan&apos;,42)//利用dict函数来创建</div><div class="line">&gt;&gt;&gt; xiaoming = (&apos;xiaoming&apos;,45)</div><div class="line">&gt;&gt;&gt; items = [xiaohan,xiaoming]</div><div class="line">&gt;&gt;&gt; d = dict(items)</div><div class="line">&gt;&gt;&gt; d</div><div class="line">&#123;&apos;xiaohan&apos;: 42, &apos;xiaoming&apos;: 45&#125;</div><div class="line">&gt;&gt;&gt; </div><div class="line"></div><div class="line">&gt;&gt;&gt; d = dict(name=&apos;han&apos;,age=43)//或者dict函数还可以这样来用</div><div class="line">&gt;&gt;&gt; d</div><div class="line">&#123;&apos;age&apos;: 43, &apos;name&apos;: &apos;han&apos;&#125;</div><div class="line">&gt;&gt;&gt;</div></pre></td></tr></table></figure>
 <h2 id="基本操作"><a href="#基本操作" class="headerlink" title="基本操作"></a>基本操作</h2><ul>
 <li>len(d)返回d中键值对的数量</li>
