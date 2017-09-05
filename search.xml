@@ -4,6 +4,128 @@
   
     
     <entry>
+      <title><![CDATA[clang插件开发]]></title>
+      <url>/2017/09/05/clang%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91/</url>
+      <content type="html"><![CDATA[<h2 id="资源准备-amp-amp-编译源文件"><a href="#资源准备-amp-amp-编译源文件" class="headerlink" title="资源准备&amp;&amp;编译源文件"></a>资源准备&amp;&amp;编译源文件</h2><p>我们需要llvm和clang的源文件，而且这些文件都存在于github上，我们如果直接从github下载会很慢，所以第一步是制作国内源。</p>
+<ul>
+<li>制作国内源<code>http://jingyan.baidu.com/article/f79b7cb367e72e9145023e40.html</code></li>
+</ul>
+<p>还有就是不要把这些源文件放到一些需要权限执行的文件里，这样在编译过程中你会发现各种问题。</p>
+<ul>
+<li>下载源码的时候注意点就是要对照你的xcode的版本:<code>https://trac.macports.org/wiki/XcodeVersionInfo</code></li>
+<li>然后找到对应的clang版本<code>https://opensource.apple.com/source/clang/clang-800.0.42.1/src/configure.auto.html</code></li>
+</ul>
+<p>经过对比我们发现我们需要的是39版本</p>
+<p>比如现在我们在一个叫做GitHub的文件夹下遍建立了一个叫做llvm的文件<br>按照顺序执行以后代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">cd GitHub</div><div class="line">sudo mkdir llvm</div><div class="line">sudo chown `whoami` llvm</div><div class="line">cd llvm</div><div class="line">export LLVM_HOME=`pwd`</div><div class="line"></div><div class="line">git clone -b release_39 https://git.coding.net/hanshenghui/llvm.git llvm</div><div class="line">git clone -b release_39 https://git.coding.net/hanshenghui/clangnew.git llvm/tools/clang</div><div class="line">git clone -b release_39 https://git.coding.net/hanshenghui/clang-tools-extra.git llvm/tools/clang/tools/extra</div><div class="line">git clone -b release_39 https://git.coding.net/hanshenghui/compiler-rt.git llvm/projects/compiler-rt</div><div class="line"></div><div class="line">mkdir llvm_build</div><div class="line">cd llvm_build</div><div class="line">cmake -G Xcode ../llvm -DCMAKE_BUILD_TYPE:STRING=MinSizeRel</div></pre></td></tr></table></figure>
+<p>最后一句<code>cmake -G Xcode</code>是关键，用这种方式cmake的话，我们就可以用Xcode来编译后边的工程<br>执行完毕之后你会发现，在llvm_build这个文件夹下边你会发现有一个LLVM.xcodeproj的文件，有了这个我们可以像iOS开发样去编译任何一个库了</p>
+<h2 id="编写插件代码"><a href="#编写插件代码" class="headerlink" title="编写插件代码"></a>编写插件代码</h2><ul>
+<li>进入文件<code>/llvm/tools/clang/examples</code>在里面新建一个目录如MyPlugin</li>
+<li><p>然后修改example目录的CMakeLists.txt文件，添加一项：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">add_subdirectory(MyPlugin)</div></pre></td></tr></table></figure>
+</li>
+<li><p>然后进入创建的MyPlugin目录，生成三个文件，分别是：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">CodingStyleUtil.hpp</div><div class="line">MyPlugin.cpp</div><div class="line">CMakeLists.txt</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>CMakeLists.txt中的内容：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">add_llvm_loadable_module(MyPlugin MyPlugin.cpp PLUGIN_TOOL clang)</div><div class="line"></div><div class="line">if(LLVM_ENABLE_PLUGINS AND (WIN32 OR CYGWIN))</div><div class="line">  target_link_libraries(MyPlugin $&#123;cmake_2_8_12_PRIVATE&#125;</div><div class="line">    clangAST</div><div class="line">    clangBasic</div><div class="line">    clangFrontend</div><div class="line">    LLVMSupport</div><div class="line">    )</div><div class="line">endif()</div></pre></td></tr></table></figure></p>
+<p>CodingStyleUtil.hpp<br>主要是一些处理字符串的函数</p>
+<p>MyPlugin.cpp<br>这个文件是关键所在，当我们编译插件的时候，主要就是这里的代码在起作用，先来个简化版的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">#include &quot;clang/Frontend/FrontendPluginRegistry.h&quot;</div><div class="line">#include &quot;clang/AST/AST.h&quot;</div><div class="line">#include &quot;clang/AST/ASTConsumer.h&quot;</div><div class="line">#include &quot;clang/Frontend/CompilerInstance.h&quot;</div><div class="line">#include &quot;clang/AST/RecursiveASTVisitor.h&quot;</div><div class="line">#include &quot;CodingStyleUtil.hpp&quot;</div><div class="line">#include &lt;fstream&gt;</div><div class="line"></div><div class="line">using namespace clang;</div><div class="line">using namespace std;</div><div class="line">using namespace llvm;</div><div class="line"></div><div class="line">string gSrcRootPath;</div><div class="line">static string kClassInterfPrefix = &quot;JR&quot;;</div><div class="line">static int kMethodParamMaxLen = 15;</div><div class="line">//static int kMethodParamMaxParamsSingleLine = 3;</div><div class="line">static int kMethodBodyMaxLines = 500;</div><div class="line"></div><div class="line">namespace MyPlugin</div><div class="line"> &#123;</div><div class="line"></div><div class="line">class MyPluginVisitor : public RecursiveASTVisitor&lt;MyPluginVisitor&gt;//这里我们要声明一个class，这个class是继承自RecursiveASTVisitor的，可以随便取名字，尖括号里边就是这个visitor的名字</div><div class="line">    &#123;</div><div class="line">    private:</div><div class="line">        CompilerInstance &amp;Instance;</div><div class="line">        ASTContext *Context;</div><div class="line">        string objcClsImpl;</div><div class="line">        bool objcIsInstanceMethod;</div><div class="line">        string objcSelector;</div><div class="line">        string objcMethodSrcCode;</div><div class="line">        </div><div class="line">    public:</div><div class="line">        </div><div class="line">        void setASTContext (ASTContext &amp;context)//这里定义了一个能方法，用来便捷的对context进行赋值操作</div><div class="line">        &#123;</div><div class="line">            this -&gt; Context = &amp;context;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        MyPluginVisitor (CompilerInstance &amp;Instance)</div><div class="line">        :Instance(Instance)</div><div class="line">        &#123;</div><div class="line">            </div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        bool VisitDecl(Decl *decl) &#123;//所有的声明分析都需要重载这个方法</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">    &#125;;</div><div class="line"></div><div class="line">    class MyPluginConsumer : public ASTConsumer</div><div class="line">    &#123;</div><div class="line">        CompilerInstance &amp;Instance;</div><div class="line">        std::set&lt;std::string&gt; ParsedTemplates;</div><div class="line">    public:</div><div class="line">        MyPluginConsumer(CompilerInstance &amp;Instance,</div><div class="line">                         std::set&lt;std::string&gt; ParsedTemplates)</div><div class="line">        : Instance(Instance), ParsedTemplates(ParsedTemplates), visitor(Instance) &#123;&#125;</div><div class="line">        </div><div class="line">        bool HandleTopLevelDecl(DeclGroupRef DG) override</div><div class="line">        &#123;</div><div class="line">            return true;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        void HandleTranslationUnit(ASTContext&amp; context) override</div><div class="line">        &#123;</div><div class="line">            visitor.setASTContext(context);</div><div class="line">            visitor.TraverseDecl(context.getTranslationUnitDecl());</div><div class="line">        &#125;</div><div class="line">    private:</div><div class="line">        MyPluginVisitor visitor;</div><div class="line">    &#125;;</div><div class="line">    //这里是所有处理逻辑的入口，在这里调用了consumer</div><div class="line">    class MyPluginASTAction : public PluginASTAction</div><div class="line">    &#123;</div><div class="line">        std::set&lt;std::string&gt; ParsedTemplates;</div><div class="line">    protected:</div><div class="line">        std::unique_ptr&lt;ASTConsumer&gt; CreateASTConsumer(CompilerInstance &amp;CI,</div><div class="line">                                                       llvm::StringRef) override</div><div class="line">        &#123;</div><div class="line">            return llvm::make_unique&lt;MyPluginConsumer&gt;(CI, ParsedTemplates);</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        bool ParseArgs(const CompilerInstance &amp;CI,</div><div class="line">                       const std::vector&lt;std::string&gt; &amp;args) override &#123;</div><div class="line">            return true;</div><div class="line">        &#125;</div><div class="line">    &#125;;</div></pre></td></tr></table></figure>
+<p>现在先回到源码根目录，使用同样的cmake语句来更新Xcode项目，更新完成后原来的项目会多出一个叫MyPlugin的插件项目，然后对这个插件项目进行编译。编译成功后会在Debug/lib目录中多出一个名字叫做MyPlugin.dylib文件</p>
+<p>只有这个plugin文件是不够的，我们还需要一个对应的clang和clang++，那么这个文件是哪里来的呢，答案就是我们自己编译的，这个插件和clang版本必须是对应的，否则在运行工程的时候就会说symbol不存在等错误</p>
+<h2 id="安装调试插件"><a href="#安装调试插件" class="headerlink" title="安装调试插件"></a>安装调试插件</h2><p>打开要使用插件的Xcode项目，在build settings一栏中对Other C Flags一项进行编辑，调整为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">-Xclang -load -Xclang /Users/han/GitHub/llvm/llvm_build/Debug/lib/MyPlugin.dylib -Xclang -add-plugin -Xclang MyPlugin</div></pre></td></tr></table></figure></p>
+<blockquote>
+<p>注：最后一项-Xclang MyPlugin中的MyPlugin为插件名字，一定要是自己设置的插件名称，否则无法调用插件</p>
+</blockquote>
+<p>这个时候运行你会发现报错，error:unable to load plugin</p>
+<p>为了解决这个问题需要调整Xcode中使用的Clang编译器，将默认的编译器改为我们自己编译出来的编译器。具体的方法是在build settings中再添加两项自定义项：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">CC = /Users/han/GitHub/llvm/llvm_build/Debug/bin/clang</div><div class="line">CXX = &quot;/Users/han/GitHub/llvm/llvm_build/Debug/bin/clang+</div></pre></td></tr></table></figure></p>
+<h2 id="clang插件作用范围"><a href="#clang插件作用范围" class="headerlink" title="clang插件作用范围"></a>clang插件作用范围</h2>]]></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[算法题汇总]]></title>
+      <url>/2017/07/18/%E7%AE%97%E6%B3%95%E9%A2%98%E6%B1%87%E6%80%BB/</url>
+      <content type="html"><![CDATA[<p>Given an array of 2n integers, your task is to group these integers into n pairs of integer, say (a1, b1), (a2, b2), …, (an, bn) which makes sum of min(ai, bi) for all i from 1 to n as large as possible.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Example 1:</div><div class="line">Input: [1,4,3,2]</div><div class="line"></div><div class="line">Output: 4</div><div class="line">Explanation: n is 2, and the maximum sum of pairs is 4 = min(1, 2) + min(3, 4).</div></pre></td></tr></table></figure>
+<p>这了做法是先排序，然后每两个一组，取小的，取大小本来就是python的功能，min和max函数<br>其实python也提供了sorted排序函数，而且相当的高效，我自己试了一下排序算法，并没有python做的好<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">class Solution(object):</div><div class="line">    </div><div class="line">    def arrayPairSum(self, nums):</div><div class="line">        &quot;&quot;&quot;</div><div class="line">        :type nums: List[int]</div><div class="line">        :rtype: int</div><div class="line">        &quot;&quot;&quot;</div><div class="line">        itemcurrent = sorted(nums)</div><div class="line">        </div><div class="line">        n = len(itemcurrent) / 2</div><div class="line"></div><div class="line">        total = 0</div><div class="line"></div><div class="line">        for i in range(n):</div><div class="line">            a = itemcurrent[2 * i]</div><div class="line">            b = itemcurrent[2 * i + 1]</div><div class="line">            c = min(a,b)</div><div class="line">            total = total + c</div><div class="line"></div><div class="line">        return total</div></pre></td></tr></table></figure></p>
+]]></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[数据结构算法-概论]]></title>
+      <url>/2017/07/17/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%AE%97%E6%B3%95-%E6%A6%82%E8%AE%BA/</url>
+      <content type="html"><![CDATA[<h3 id="绪论"><a href="#绪论" class="headerlink" title="绪论"></a>绪论</h3><ul>
+<li>算法不一定是程序，算法需要有穷性</li>
+<li>算法组重要的是效率，速度尽可能快，存储空间尽可能少</li>
+<li>DSA</li>
+</ul>
+<h3 id="方法论"><a href="#方法论" class="headerlink" title="方法论"></a>方法论</h3><ul>
+<li>如果问题实例有很多，那么很明显我们无法一一解决，那么我们的思路就是对问题进行分类，然后去解决这一类问题</li>
+<li>如果你想改进和优化一个东西，你首先需要能够准确的测量它，你需要一把尺子</li>
+<li>复杂的问题只有简化之后我们才能抓住主要的矛盾，而简化的方法就是忽略那些不重要的东西</li>
+<li>去粗存精</li>
+<li>迭代乃人工，递归乃神通</li>
+<li>凡治众如治寡，分而治之</li>
+<li>复杂问题分解为两个，一个是规模减小的问题，另一个是平凡问题</li>
+</ul>
+<h3 id="算法分析"><a href="#算法分析" class="headerlink" title="算法分析"></a>算法分析</h3><p>时间成本和空间成本，我们更关注时间成本</p>
+<h2 id="渐进分析"><a href="#渐进分析" class="headerlink" title="渐进分析"></a>渐进分析</h2><h3 id="大O记号"><a href="#大O记号" class="headerlink" title="大O记号"></a>大O记号</h3><p>n足够大的时候成立就好</p>
+<ul>
+<li>常数项可忽略</li>
+<li>低次项可忽略</li>
+</ul>
+<p><img src="../images/Ojihao.png" alt="大O"></p>
+<h4 id="具体的刻度"><a href="#具体的刻度" class="headerlink" title="具体的刻度"></a>具体的刻度</h4><ul>
+<li>O(1)，再大的常数都是这个复杂度2023x239238</li>
+<li>O(logn)</li>
+<li>O(n^c)多项式复杂度</li>
+</ul>
+<h3 id="复杂度分析主要方法"><a href="#复杂度分析主要方法" class="headerlink" title="复杂度分析主要方法"></a>复杂度分析主要方法</h3><ul>
+<li>迭代：级数求和</li>
+<li>递归：递归跟踪和递归方程</li>
+<li>猜测+验证</li>
+</ul>
+<h4 id="级数-迭代"><a href="#级数-迭代" class="headerlink" title="级数(迭代)"></a>级数(迭代)</h4><p><img src="../images/jishu.png" alt=""><br><img src="../images/jishu1.png" alt=""><br><img src="../images/jishu2.png" alt=""><br><img src="../images/jishu3.png" alt=""></p>
+<p>估算：</p>
+<ul>
+<li>一天是10^5s</li>
+<li>一世纪是3 x 10^9</li>
+<li>普通的pc一秒是10^9次运算</li>
+<li>最厉害的机器是10^15次运算</li>
+</ul>
+<h4 id="递归-更高级的做法，但是效率不应最好"><a href="#递归-更高级的做法，但是效率不应最好" class="headerlink" title="递归(更高级的做法，但是效率不应最好)"></a>递归(更高级的做法，但是效率不应最好)</h4><p><img src="../images/fenerzhizhi.png" alt=""></p>
+]]></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[自然语言处理概念基础]]></title>
+      <url>/2017/06/27/%E8%87%AA%E7%84%B6%E8%AF%AD%E8%A8%80%E5%A4%84%E7%90%86%E6%A6%82%E5%BF%B5%E5%9F%BA%E7%A1%80/</url>
+      <content type="html"><![CDATA[<p>markAllAsReadSuccess<br>分词，词频，词性</p>
+<p><a href="https://m.jr.jd.com/bzx/fillpolicy.html?iteamid=10000103&amp;source=jrm&amp;sid=" target="_blank" rel="external">https://m.jr.jd.com/bzx/fillpolicy.html?iteamid=10000103&amp;source=jrm&amp;sid=</a></p>
+<p><a href="http://m.jr.jd.com/bzx/fillpolicy.html?iteamid=10000901&amp;source=jrm" target="_blank" rel="external">http://m.jr.jd.com/bzx/fillpolicy.html?iteamid=10000901&amp;source=jrm</a></p>
+]]></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[深度学习概论]]></title>
+      <url>/2017/06/16/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%A6%82%E8%AE%BA/</url>
+      <content type="html"><![CDATA[<h3 id="深度学习与神经网络"><a href="#深度学习与神经网络" class="headerlink" title="深度学习与神经网络"></a>深度学习与神经网络</h3><p>首先人工智能范畴大于机器学习，深度学习是机器学习的一个分支，深度学习的深度指的就是多层的神经网络，所以多层神经网络=深度学习</p>
+]]></content>
+    </entry>
+    
+    <entry>
+      <title><![CDATA[itchat使用总结]]></title>
+      <url>/2017/06/14/itchat%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/</url>
+      <content type="html"><![CDATA[<h3 id="登录"><a href="#登录" class="headerlink" title="登录"></a>登录</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">itchat.auto_login()</div></pre></td></tr></table></figure>
+<h3 id="查找好友"><a href="#查找好友" class="headerlink" title="查找好友"></a>查找好友</h3><blockquote>
+<p>获取任何一项等于name键值的用户<br>itchat.search_friends(name=’littlecodersh’)<br>这里的name是RemarkName’, ‘NickName’, ‘Alias</p>
+</blockquote>
+<h3 id="发送中文"><a href="#发送中文" class="headerlink" title="发送中文"></a>发送中文</h3><p>要进行一个转换<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">f = open(path,&apos;r&apos;)</div><div class="line">text = f.read()</div><div class="line">text = text.decode(&apos;utf-8&apos;)</div></pre></td></tr></table></figure></p>
+]]></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[利用hexo搭建团队博客系统]]></title>
       <url>/2017/06/12/%E5%88%A9%E7%94%A8hexo%E6%90%AD%E5%BB%BA%E5%9B%A2%E9%98%9F%E5%8D%9A%E5%AE%A2%E7%B3%BB%E7%BB%9F/</url>
       <content type="html"><![CDATA[<h3 id="hexo搭建个人博客的原理"><a href="#hexo搭建个人博客的原理" class="headerlink" title="hexo搭建个人博客的原理"></a>hexo搭建个人博客的原理</h3><ul>
