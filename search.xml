@@ -4,6 +4,26 @@
   
     
     <entry>
+      <title><![CDATA[Mac中的二进制文件]]></title>
+      <url>/2017/10/09/Mach-O%E6%96%87%E4%BB%B6%E8%A7%A3%E6%9E%90/</url>
+      <content type="html"><![CDATA[<p>在Unix系统中，任何文件都可以通过chmod+x命令来标记为可执行文件，但是这并不能保证这个文件是能够被执行的，这个标志只是告诉系统这个文件可以读入内容，然后寻找一个头签名，据此可以确定精确的可执行文件格式，这个文件签名通常称为”magic”。<br>例如:</p>
+<ul>
+<li>#!脚本</li>
+<li>0xcafebabe/0xbebafeca包含多种架构支持的二进制，又被称为通用二进制或者胖二进制</li>
+<li>0xfeedface(32位)，0xfeedfacf(64位)Mach-O格式或者叫OSX原生二进制格式</li>
+</ul>
+<h3 id="胖二进制"><a href="#胖二进制" class="headerlink" title="胖二进制"></a>胖二进制</h3><h3 id="Mach-O"><a href="#Mach-O" class="headerlink" title="Mach-O"></a>Mach-O</h3>]]></content>
+      
+        
+        <tags>
+            
+            <tag> iOS进阶 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[otool作用以及使用]]></title>
       <url>/2017/09/28/otool%E4%BD%9C%E7%94%A8%E4%BB%A5%E5%8F%8A%E4%BD%BF%E7%94%A8/</url>
       <content type="html"><![CDATA[<p>我们使用这个工具来分析编译文件，但是这个真的仅仅是一个工具吗<br><a id="more"></a></p>
