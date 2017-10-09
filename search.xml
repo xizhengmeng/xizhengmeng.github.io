@@ -6,7 +6,16 @@
     <entry>
       <title><![CDATA[otool作用以及使用]]></title>
       <url>/2017/09/28/otool%E4%BD%9C%E7%94%A8%E4%BB%A5%E5%8F%8A%E4%BD%BF%E7%94%A8/</url>
-      <content type="html"></content>
+      <content type="html"><![CDATA[<p>我们使用这个工具来分析编译文件<br><a id="more"></a></p>
+]]></content>
+      
+        
+        <tags>
+            
+            <tag> 工具 </tag>
+            
+        </tags>
+        
     </entry>
     
     <entry>
@@ -41,6 +50,14 @@
 <li><code>find /tmp ! -user panda</code>　#在/tmp目录中查找所有不属于panda用户的文件</li>
 </ul>
 ]]></content>
+      
+        
+        <tags>
+            
+            <tag> 命令行 </tag>
+            
+        </tags>
+        
     </entry>
     
     <entry>
@@ -86,6 +103,14 @@
 <p>string和数值转换<br>to_string(val)    把val转换成string<br>stoi(s,p,b)    把字符串s从p开始转换成b进制的int<br>stol(s,p,b)    long<br>stoul(s,p,b)    unsigned long<br>stoll(s,p,b)    long long<br>stoull(s,p,b)    unsigned long long<br>stof(s,p)    float<br>stod(s,p)    double<br>stold(s,p)    long double<br>//注意，下段代码在MinGw中会报错！即使使用c++11编译也一样，无法识别to_string！</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">#include &lt;bits/stdc++.h&gt;</div><div class="line">using namespace std;</div><div class="line"></div><div class="line">int main()</div><div class="line">&#123;</div><div class="line">    ios::sync_with_stdio(false);</div><div class="line">    string s1;</div><div class="line">    s1=to_string(100);</div><div class="line">    cout&lt;&lt;s1&lt;&lt;endl;</div><div class="line">    int a=stoi(s1,0,10)+1;</div><div class="line">    cout&lt;&lt;a&lt;&lt;endl;</div><div class="line"></div><div class="line">    return 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 ]]></content>
+      
+        
+        <tags>
+            
+            <tag> c++ </tag>
+            
+        </tags>
+        
     </entry>
     
     <entry>
@@ -127,6 +152,14 @@
 <p>这个时候运行你会发现报错，error:unable to load plugin</p>
 <p>为了解决这个问题需要调整Xcode中使用的Clang编译器，将默认的编译器改为我们自己编译出来的编译器。具体的方法是在build settings中再添加两项自定义项：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">CC = /Users/han/GitHub/llvm/llvm_build/Debug/bin/clang</div><div class="line">CXX = &quot;/Users/han/GitHub/llvm/llvm_build/Debug/bin/clang+</div></pre></td></tr></table></figure></p>
 <h2 id="clang插件作用范围"><a href="#clang插件作用范围" class="headerlink" title="clang插件作用范围"></a>clang插件作用范围</h2>]]></content>
+      
+        
+        <tags>
+            
+            <tag> clang插件 </tag>
+            
+        </tags>
+        
     </entry>
     
     <entry>
@@ -136,6 +169,8 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Example 1:</div><div class="line">Input: [1,4,3,2]</div><div class="line"></div><div class="line">Output: 4</div><div class="line">Explanation: n is 2, and the maximum sum of pairs is 4 = min(1, 2) + min(3, 4).</div></pre></td></tr></table></figure>
 <p>这了做法是先排序，然后每两个一组，取小的，取大小本来就是python的功能，min和max函数<br>其实python也提供了sorted排序函数，而且相当的高效，我自己试了一下排序算法，并没有python做的好<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">class Solution(object):</div><div class="line">    </div><div class="line">    def arrayPairSum(self, nums):</div><div class="line">        &quot;&quot;&quot;</div><div class="line">        :type nums: List[int]</div><div class="line">        :rtype: int</div><div class="line">        &quot;&quot;&quot;</div><div class="line">        itemcurrent = sorted(nums)</div><div class="line">        </div><div class="line">        n = len(itemcurrent) / 2</div><div class="line"></div><div class="line">        total = 0</div><div class="line"></div><div class="line">        for i in range(n):</div><div class="line">            a = itemcurrent[2 * i]</div><div class="line">            b = itemcurrent[2 * i + 1]</div><div class="line">            c = min(a,b)</div><div class="line">            total = total + c</div><div class="line"></div><div class="line">        return total</div></pre></td></tr></table></figure></p>
 ]]></content>
+      
+        
     </entry>
     
     <entry>
@@ -182,6 +217,14 @@
 </ul>
 <h4 id="递归-更高级的做法，但是效率不应最好"><a href="#递归-更高级的做法，但是效率不应最好" class="headerlink" title="递归(更高级的做法，但是效率不应最好)"></a>递归(更高级的做法，但是效率不应最好)</h4><p><img src="../images/fenerzhizhi.png" alt=""></p>
 ]]></content>
+      
+        
+        <tags>
+            
+            <tag> 数据结构算法 </tag>
+            
+        </tags>
+        
     </entry>
     
     <entry>
@@ -191,6 +234,8 @@
 <p><a href="https://m.jr.jd.com/bzx/fillpolicy.html?iteamid=10000103&amp;source=jrm&amp;sid=" target="_blank" rel="external">https://m.jr.jd.com/bzx/fillpolicy.html?iteamid=10000103&amp;source=jrm&amp;sid=</a></p>
 <p><a href="http://m.jr.jd.com/bzx/fillpolicy.html?iteamid=10000901&amp;source=jrm" target="_blank" rel="external">http://m.jr.jd.com/bzx/fillpolicy.html?iteamid=10000901&amp;source=jrm</a></p>
 ]]></content>
+      
+        
     </entry>
     
     <entry>
@@ -198,6 +243,14 @@
       <url>/2017/06/16/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E6%A6%82%E8%AE%BA/</url>
       <content type="html"><![CDATA[<h3 id="深度学习与神经网络"><a href="#深度学习与神经网络" class="headerlink" title="深度学习与神经网络"></a>深度学习与神经网络</h3><p>首先人工智能范畴大于机器学习，深度学习是机器学习的一个分支，深度学习的深度指的就是多层的神经网络，所以多层神经网络=深度学习</p>
 ]]></content>
+      
+        
+        <tags>
+            
+            <tag> 深度学习 </tag>
+            
+        </tags>
+        
     </entry>
     
     <entry>
@@ -209,6 +262,14 @@
 </blockquote>
 <h3 id="发送中文"><a href="#发送中文" class="headerlink" title="发送中文"></a>发送中文</h3><p>要进行一个转换<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">f = open(path,&apos;r&apos;)</div><div class="line">text = f.read()</div><div class="line">text = text.decode(&apos;utf-8&apos;)</div></pre></td></tr></table></figure></p>
 ]]></content>
+      
+        
+        <tags>
+            
+            <tag> python </tag>
+            
+        </tags>
+        
     </entry>
     
     <entry>
@@ -227,6 +288,16 @@
 <li>团队开发的文件冲突问题</li>
 </ul>
 <h3 id="问题的解决方案"><a href="#问题的解决方案" class="headerlink" title="问题的解决方案"></a>问题的解决方案</h3>]]></content>
+      
+        
+        <tags>
+            
+            <tag> python </tag>
+            
+            <tag> hexo </tag>
+            
+        </tags>
+        
     </entry>
     
     <entry>
@@ -242,6 +313,14 @@
 </ul>
 </blockquote>
 ]]></content>
+      
+        
+        <tags>
+            
+            <tag> Python </tag>
+            
+        </tags>
+        
     </entry>
     
     <entry>
@@ -250,6 +329,14 @@
       <content type="html"><![CDATA[<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>首先进入win7-pe环境，然后进行分区，这里的关键在于c盘要大于10G</p>
 <h3 id="设置共享文件夹"><a href="#设置共享文件夹" class="headerlink" title="设置共享文件夹"></a>设置共享文件夹</h3><p>要实现mac与windows的文件共享，信息互通，需要有一个都可以访问的文件夹，这里的关键是，要首先安装virtualbox的device下的insert Guest Additions CD image</p>
 ]]></content>
+      
+        
+        <tags>
+            
+            <tag> mac </tag>
+            
+        </tags>
+        
     </entry>
     
     <entry>
@@ -301,6 +388,18 @@
 <h4 id="某个事件调用结束刷新局部数据"><a href="#某个事件调用结束刷新局部数据" class="headerlink" title="某个事件调用结束刷新局部数据"></a>某个事件调用结束刷新局部数据</h4><p>直接使用ajax或者XMLHttpRequest就好</p>
 <h3 id="python中调用命令行随时输出的做法"><a href="#python中调用命令行随时输出的做法" class="headerlink" title="python中调用命令行随时输出的做法"></a>python中调用命令行随时输出的做法</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">p = subprocess.Popen(&quot;gradle assembleDebug&quot;,shell=True,stdout=subprocess.PIPE)</div><div class="line"></div><div class="line">indexcount = 0</div><div class="line"></div><div class="line">returncode = p.poll()</div><div class="line"></div><div class="line">while returncode is None:</div><div class="line">      text = p.stdout.readline().strip()</div><div class="line">      f = open(&apos;/Users/jdjr/Desktop/buildlog.txt&apos;,&apos;a&apos;)#追加打开方式</div><div class="line">      f.write(text)</div><div class="line">      f.close()</div><div class="line">        </div><div class="line">      returncode = p.poll()</div></pre></td></tr></table></figure>
 ]]></content>
+      
+        
+        <tags>
+            
+            <tag> Python </tag>
+            
+            <tag> Django </tag>
+            
+            <tag> JS </tag>
+            
+        </tags>
+        
     </entry>
     
     <entry>
@@ -341,6 +440,14 @@
 <h3 id="增"><a href="#增" class="headerlink" title="增"></a>增</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">myser.save(&#123;&apos;指数名称&apos;:item,&apos;市盈率&apos;:pe,&apos;盈利收益率&apos;:roe,&apos;日期&apos;:date,&apos;市净率&apos;:pb,&apos;股息率&apos;:rate&#125;)</div></pre></td></tr></table></figure>
 <h3 id="时间的用法"><a href="#时间的用法" class="headerlink" title="时间的用法"></a>时间的用法</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">current = time.localtime(time.time())</div><div class="line">year = current.tm_year</div><div class="line">month = current.tm_mon</div><div class="line">day = current.tm_mday</div><div class="line"></div><div class="line">yearStr = &apos;%i&apos; % year</div><div class="line">yearList = list(yearStr)</div><div class="line">yearStr1 = yearList[-1]</div><div class="line">yearStr2 = yearList[-2]</div><div class="line">yearStr = yearStr2 + yearStr1</div><div class="line"></div><div class="line">monthStr = months[month - 1]</div><div class="line"></div><div class="line">targetStr = &apos;idx_%i%s%s&apos; % (day,monthStr,yearStr)</div></pre></td></tr></table></figure>
 ]]></content>
+      
+        
+        <tags>
+            
+            <tag> mongo </tag>
+            
+        </tags>
+        
     </entry>
     
     <entry>
@@ -350,6 +457,8 @@
 <h3 id="2-SEGV-ACCERR错误"><a href="#2-SEGV-ACCERR错误" class="headerlink" title="2.SEGV_ACCERR错误"></a>2.SEGV_ACCERR错误</h3><p>说明对象被过度释放，查看是否有在=nil之后又使用了该对象，比如说这段代码<br>case MessageComposeResultSent:<br>        {<br>            //信息传送成功<br>//            [JRMsgShow showMsg:@”发送成功”];<br>            if (self.closeBlock) {<br>                self.closeBlock();<br>            }<br>            if (self.messageSuccessBlock) {<br>                self.messageSuccessBlock();<br>            }<br>            [[UIApplication sharedApplication].keyWindow.rootViewController dismissViewControllerAnimated:YES completion:nil];<br>        }</p>
 <p>很明显前边我们使用了closeblock，这个block之行之后，很快self会死掉，而这个之后我们又使用了self.messageSuccessBlock这样再次使用self，必然导致崩溃，不过这是在iOS8上面，在iOS9和10上就没有这个问题，说明苹果做了系统级的优化</p>
 <h3 id="3-参数传递尽量要用model，哪怕是回调，因为可能后边会增加需求，那么参数传递将会变得很恶心"><a href="#3-参数传递尽量要用model，哪怕是回调，因为可能后边会增加需求，那么参数传递将会变得很恶心" class="headerlink" title="3.参数传递尽量要用model，哪怕是回调，因为可能后边会增加需求，那么参数传递将会变得很恶心"></a>3.参数传递尽量要用model，哪怕是回调，因为可能后边会增加需求，那么参数传递将会变得很恶心</h3>]]></content>
+      
+        
     </entry>
     
     <entry>
@@ -357,6 +466,14 @@
       <url>/2017/02/16/2017/%E5%AE%9A%E6%97%B6%E6%A3%80%E6%9F%A5%E7%BD%91%E9%A1%B5%E6%9B%B4%E6%96%B0%E5%B9%B6%E5%8F%91%E9%80%81%E5%BE%AE%E4%BF%A1%E6%B6%88%E6%81%AF/</url>
       <content type="html"><![CDATA[<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div></pre></td><td class="code"><pre><div class="line"># -*- coding: utf-8 -*-</div><div class="line">import urllib2,time,urllib</div><div class="line"></div><div class="line">    while True:</div><div class="line">    current = time.localtime(time.time())</div><div class="line"></div><div class="line">    year = current.tm_year</div><div class="line">    month = current.tm_mon</div><div class="line">    day = current.tm_mday</div><div class="line"></div><div class="line">    hour = current.tm_hour</div><div class="line">    minite = current.tm_min</div><div class="line">    sec = current.tm_sec</div><div class="line">    if sec == 0:</div><div class="line"></div><div class="line">    downLoadStr = &apos;http://www.bjjs.gov.cn/bjjs/fwgl/zzxspzf/index.shtml&apos;</div><div class="line">    print downLoadStr</div><div class="line">    try:</div><div class="line">        i_headers = &#123;&quot;User-Agent&quot;: &quot;Mozilla/5.0 (Windows; U; Windows NT 5.1; zh-CN; rv:1.9.1) Gecko/20090624 Firefox/3.5&quot;,\</div><div class="line">        &quot;Referer&quot;: &apos;http://www.baidu.com&apos;&#125;</div><div class="line">        req = urllib2.Request(downLoadStr, headers=i_headers)</div><div class="line">        f = urllib2.urlopen(req)</div><div class="line">        data = f.read()</div><div class="line"></div><div class="line">        date = &apos;&apos;</div><div class="line">        if month &lt; 10 and day &lt; 10:</div><div class="line">            date = &apos;%i-0%i-0%i&apos; % (year, month, day)</div><div class="line">        elif month &gt; 10 and day &lt; 10:</div><div class="line">            date = &apos;%i-%i-0%i&apos; % (year, month, day)</div><div class="line">        elif month &lt; 10 and day &gt; 10:    </div><div class="line">            date = &apos;%i-0%i-%i&apos; % (year, month, day)</div><div class="line">        else:</div><div class="line">            date = &apos;%i-%i-%i&apos; % (year, month, day)   </div><div class="line"></div><div class="line">        string = &apos;the web has update http://www.bjjs.gov.cn/bjjs/fwgl/zzxspzf/index.shtml&apos;</div><div class="line">        print date</div><div class="line">        if date in data:</div><div class="line">            f = open(&apos;update.txt&apos;,&apos;w&apos;)</div><div class="line">            f.write(date + string)</div><div class="line">            f.close()</div><div class="line">            print &apos;yes&apos;</div><div class="line">        else:</div><div class="line">            print &apos;no&apos;    </div><div class="line"></div><div class="line">    except Exception,ex:</div><div class="line">        print ex</div><div class="line"></div><div class="line"></div><div class="line">#import itchat</div><div class="line">#</div><div class="line">#itchat.auto_login()</div><div class="line">#</div><div class="line">#itchat.send(&apos;Hello, filehelper&apos;, toUserName=&apos;filehelper&apos;)</div><div class="line"></div><div class="line">#while True:</div><div class="line">#     f = open(&apos;update.txt&apos;,&apos;r&apos;)</div><div class="line">#     text = f.read()</div><div class="line">#     f.close()</div><div class="line">#     if len(text) != 0:</div><div class="line">#        f = open(&apos;update.txt&apos;,&apos;w&apos;)</div><div class="line">#        f.write(&apos;&apos;)</div><div class="line">#        f.close()</div><div class="line">#        itchat.send(&apos;the web has update http://www.bjjs.gov.cn/bjjs/fwgl/zzxspzf/index.shtml&apos;, toUserName=&apos;Liu647ziqi&apos;)</div></pre></td></tr></table></figure>
 ]]></content>
+      
+        
+        <tags>
+            
+            <tag> python </tag>
+            
+        </tags>
+        
     </entry>
     
     <entry>
@@ -364,6 +481,14 @@
       <url>/2017/02/16/2017/%E6%8C%87%E6%95%B0%E8%87%AA%E5%8A%A8%E8%8E%B7%E5%8F%96/</url>
       <content type="html"><![CDATA[<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div><div class="line">151</div><div class="line">152</div><div class="line">153</div><div class="line">154</div><div class="line">155</div><div class="line">156</div><div class="line">157</div><div class="line">158</div><div class="line">159</div><div class="line">160</div><div class="line">161</div><div class="line">162</div><div class="line">163</div><div class="line">164</div><div class="line">165</div><div class="line">166</div><div class="line">167</div><div class="line">168</div><div class="line">169</div><div class="line">170</div><div class="line">171</div><div class="line">172</div><div class="line">173</div><div class="line">174</div><div class="line">175</div><div class="line">176</div><div class="line">177</div><div class="line">178</div><div class="line">179</div><div class="line">180</div><div class="line">181</div><div class="line">182</div><div class="line">183</div><div class="line">184</div><div class="line">185</div><div class="line">186</div><div class="line">187</div><div class="line">188</div><div class="line">189</div><div class="line">190</div><div class="line">191</div><div class="line">192</div><div class="line">193</div><div class="line">194</div><div class="line">195</div><div class="line">196</div><div class="line">197</div><div class="line">198</div><div class="line">199</div><div class="line">200</div><div class="line">201</div><div class="line">202</div><div class="line">203</div><div class="line">204</div><div class="line">205</div><div class="line">206</div><div class="line">207</div><div class="line">208</div><div class="line">209</div><div class="line">210</div><div class="line">211</div><div class="line">212</div><div class="line">213</div><div class="line">214</div><div class="line">215</div></pre></td><td class="code"><pre><div class="line"># -*- coding: utf-8 -*-</div><div class="line">import urllib2,time,urllib</div><div class="line">import ast,os,sys,string</div><div class="line">from pymongo import MongoClient</div><div class="line"></div><div class="line">months = [&apos;Jan&apos;,&apos;Feb&apos;,&apos;Mar&apos;,&apos;Apr&apos;,&apos;May&apos;,&apos;Jun&apos;,&apos;Jul&apos;,&apos;Aug&apos;,&apos;Sep&apos;,&apos;Oct&apos;,&apos;Nov&apos;,&apos;Dec&apos;]</div><div class="line">dicts = &#123;&apos;zsgz00&apos;:&apos;no&apos;,&apos;zsgz10&apos;:&apos;上证指数&apos;,&apos;zsgz20&apos;:&apos;上证180&apos;,&apos;zsgz30&apos;:&apos;上证50&apos;,&apos;zsgz40&apos;:&apos;沪深300&apos;,&apos;zsgz50&apos;:&apos;深证成指&apos;,&apos;zsgz60&apos;:&apos;深证100R&apos;,&apos;zsgz70&apos;:&apos;中小板指&apos;,&apos;zsgz80&apos;:&apos;上证380&apos;,&apos;zsgz90&apos;:&apos;红利指数&apos;,&apos;zsgz100&apos;:&apos;中证红利&apos;,&apos;zsgz110&apos;:&apos;中证500&apos;&#125;</div><div class="line"></div><div class="line">connection = MongoClient(&quot;localhost&quot;,27017)</div><div class="line">mydb = connection.mydb # new a database</div><div class="line">myser = mydb.hengsengindex # new a table</div><div class="line"></div><div class="line">def getindexs():</div><div class="line"></div><div class="line">    downLoadStr = &apos;http://www.csindex.com.cn/sseportal/ps/zhs/hqjt/csi/show_zsgz.js&apos;</div><div class="line">    print downLoadStr</div><div class="line">    try:</div><div class="line">        i_headers = &#123;&quot;User-Agent&quot;: &quot;Mozilla/5.0 (Windows; U; Windows NT 5.1; zh-CN; rv:1.9.1) Gecko/20090624 Firefox/3.5&quot;,\</div><div class="line">        &quot;Referer&quot;: &apos;http://www.baidu.com&apos;&#125;</div><div class="line">        req = urllib2.Request(downLoadStr, headers=i_headers)  </div><div class="line">        f = urllib2.urlopen(req)</div><div class="line">        data = f.read()</div><div class="line">        str = data.decode(&apos;gbk&apos;)</div><div class="line">        data = str.encode(&apos;utf-8&apos;)</div><div class="line">        print data</div><div class="line">        listString = data.split(&apos;\n&apos;)</div><div class="line"></div><div class="line">        date = &apos;&apos;</div><div class="line">        index = 0</div><div class="line">        for item in listString:</div><div class="line">        if &apos;zsgz00&apos; in item:</div><div class="line">            date = item[12:-2]</div><div class="line">            datelist = list(date)</div><div class="line">            for s in datelist:</div><div class="line">            if s == &apos;-&apos;:</div><div class="line">            datelist.remove(s)</div><div class="line">            date = &apos;&apos;.join(datelist)</div><div class="line">            print date</div><div class="line">        if &apos;0=&apos; in item:</div><div class="line">            pe = listString[index + 1]</div><div class="line">            pb = listString[index + 3]</div><div class="line">            rate = listString[index + 4]</div><div class="line">            indexitem = item.index(&apos;=&apos;)</div><div class="line">            indexpe = pe.index(&apos;=&apos;)</div><div class="line">            indexpb = pb.index(&apos;=&apos;)</div><div class="line">            indexrate = rate.index(&apos;=&apos;)</div><div class="line">            pe = pe[indexpe+2:-2]</div><div class="line">            pb = pb[indexpe+2:-2]</div><div class="line">            rate = rate[indexpe+2:-2]</div><div class="line">            item = item[indexitem+2:-2]</div><div class="line">            print item</div><div class="line"></div><div class="line">            pe = filter(lambda ch: ch in &apos;.0123456789&apos;, pe)</div><div class="line">            pb = filter(lambda ch: ch in &apos;.0123456789&apos;, pb)</div><div class="line">            rate = filter(lambda ch: ch in &apos;.0123456789&apos;, rate)</div><div class="line"></div><div class="line">            if len(pe) and len(pb) and len(rate):</div><div class="line">                roaf = float(pe)</div><div class="line">                roe = 1/roaf * 100</div><div class="line">                dbs = myser.find(&#123;&apos;指数名称&apos;:item,&apos;日期&apos;:date&#125;)</div><div class="line">                count = 0</div><div class="line">                for item in dbs:</div><div class="line">                count = count + 1</div><div class="line">                if count == 0:</div><div class="line">                    myser.save(&#123;&apos;指数名称&apos;:item,&apos;市盈率&apos;:pe,&apos;盈利收益率&apos;:roe,&apos;日期&apos;:date,&apos;市净率&apos;:pb,&apos;股息率&apos;:rate&#125;)</div><div class="line"></div><div class="line">            index = index + 1</div><div class="line"></div><div class="line">    except Exception,ex:</div><div class="line">    print ex</div><div class="line"></div><div class="line"></div><div class="line">def gethenghseng(day,month,year):</div><div class="line"></div><div class="line">yearStr = &apos;%i&apos; % year</div><div class="line">yearList = list(yearStr)</div><div class="line">yearStr1 = yearList[-1]</div><div class="line">yearStr2 = yearList[-2]</div><div class="line">yearStr = yearStr2 + yearStr1</div><div class="line"></div><div class="line">monthStr = months[month - 1]</div><div class="line"></div><div class="line">targetStr = &apos;idx_%i%s%s&apos; % (day,monthStr,yearStr)</div><div class="line"></div><div class="line">fileName = &apos;/Users/han/Desktop/index/hengsheng/%i%s%s.txt&apos; % (day,monthStr,yearStr)</div><div class="line"></div><div class="line">downLoadStr = &apos;http://sc.hangseng.com/gb/www.hsi.com.hk/HSI-Net/static/revamp/contents/en/indexes/report/hsi/&apos; + targetStr + &apos;.csv&apos;</div><div class="line">print downLoadStr</div><div class="line">try:</div><div class="line">i_headers = &#123;&quot;User-Agent&quot;: &quot;Mozilla/5.0 (Windows; U; Windows NT 5.1; zh-CN; rv:1.9.1) Gecko/20090624 Firefox/3.5&quot;,\</div><div class="line">&quot;Referer&quot;: &apos;http://www.baidu.com&apos;&#125;</div><div class="line">req = urllib2.Request(downLoadStr, headers=i_headers)</div><div class="line">f = urllib2.urlopen(req)</div><div class="line">data = f.read()</div><div class="line">f = open(fileName,&apos;wb&apos;)</div><div class="line">f.write(data)</div><div class="line">f.close()</div><div class="line"></div><div class="line">f1 = open(fileName,&apos;rb&apos;)</div><div class="line">dataList = f1.readlines()</div><div class="line">item  = dataList[2]</div><div class="line">list2 = item.split(&apos;	&apos;)</div><div class="line">date = list2[0]</div><div class="line">index = list2[5]</div><div class="line">roa = list2[9]</div><div class="line">date = filter(lambda ch: ch in &apos;0123456789&apos;, date)</div><div class="line">index = filter(lambda ch: ch in &apos;.0123456789&apos;, index)</div><div class="line">string = filter(lambda ch: ch in &apos;.0123456789&apos;, roa)</div><div class="line">roaf = float(string)</div><div class="line">roe = 1/roaf * 100</div><div class="line">print date</div><div class="line">print index</div><div class="line">dbs = myser.find(&#123;&apos;指数名称&apos;:&apos;恒生指数&apos;,&apos;日期&apos;:date&#125;)</div><div class="line">count = 0</div><div class="line">for item in dbs:</div><div class="line">count = count + 1</div><div class="line">if count == 0:</div><div class="line">myser.save(&#123;&apos;指数名称&apos;:&apos;恒生指数&apos;,&apos;市盈率&apos;:roaf,&apos;盈利收益率&apos;:roe,&apos;日期&apos;:date,&apos;指数&apos;:index&#125;) # add a record</div><div class="line"></div><div class="line">saveStr = &apos;%s  %f&apos; % (date, roe)</div><div class="line"></div><div class="line">f = open(&apos;hengseng.txt&apos;,&apos;r&apos;)</div><div class="line">data = f.read()</div><div class="line">f.close()</div><div class="line"></div><div class="line">dataStr = data + &apos;\n&apos; + saveStr</div><div class="line">f = open(&apos;hengseng.txt&apos;,&apos;w&apos;)</div><div class="line">f.write(dataStr)</div><div class="line">f.close()</div><div class="line">except Exception,ex:</div><div class="line">print ex</div><div class="line"></div><div class="line"></div><div class="line">def gethenghsengchina(day,month,year):</div><div class="line"></div><div class="line">yearStr = &apos;%i&apos; % year</div><div class="line">yearList = list(yearStr)</div><div class="line">yearStr1 = yearList[-1]</div><div class="line">yearStr2 = yearList[-2]</div><div class="line">yearStr = yearStr2 + yearStr1</div><div class="line"></div><div class="line">monthStr = months[month - 1]</div><div class="line"></div><div class="line">targetStr = &apos;idx_%i%s%s&apos; % (day,monthStr,yearStr)</div><div class="line"></div><div class="line">fileName = &apos;/Users/han/Desktop/index/hengsheng/china%i%s%s.txt&apos; % (day,monthStr,yearStr)</div><div class="line"></div><div class="line">downLoadStr = &apos;http://sc.hangseng.com/gb/www.hsi.com.hk/HSI-Net/static/revamp/contents/en/indexes/report/hscei/&apos; + targetStr + &apos;.csv&apos;</div><div class="line">print downLoadStr</div><div class="line">try:</div><div class="line">i_headers = &#123;&quot;User-Agent&quot;: &quot;Mozilla/5.0 (Windows; U; Windows NT 5.1; zh-CN; rv:1.9.1) Gecko/20090624 Firefox/3.5&quot;,\</div><div class="line">&quot;Referer&quot;: &apos;http://www.baidu.com&apos;&#125;</div><div class="line">req = urllib2.Request(downLoadStr, headers=i_headers)</div><div class="line">f = urllib2.urlopen(req)</div><div class="line">data = f.read()</div><div class="line">f = open(fileName,&apos;wb&apos;)</div><div class="line">f.write(data)</div><div class="line">f.close()</div><div class="line"></div><div class="line">f1 = open(fileName,&apos;rb&apos;)</div><div class="line">dataList = f1.readlines()</div><div class="line">item  = dataList[2]</div><div class="line">list2 = item.split(&apos;	&apos;)</div><div class="line">date = list2[0]</div><div class="line">index = list2[5]</div><div class="line">roa = list2[9]</div><div class="line">date = filter(lambda ch: ch in &apos;0123456789&apos;, date)</div><div class="line">index = filter(lambda ch: ch in &apos;.0123456789&apos;, index)</div><div class="line">string = filter(lambda ch: ch in &apos;.0123456789&apos;, roa)</div><div class="line">roaf = float(string)</div><div class="line">roe = 1/roaf * 100</div><div class="line"></div><div class="line">print index</div><div class="line">dbs = myser.find(&#123;&apos;指数名称&apos;:&apos;恒生指H&apos;,&apos;日期&apos;:date&#125;)</div><div class="line">count = 0</div><div class="line">for item in dbs:</div><div class="line">count = count + 1</div><div class="line">if count == 0:</div><div class="line">myser.save(&#123;&apos;指数名称&apos;:&apos;恒生指数H&apos;, &apos;市盈率&apos;:roaf,&apos;盈利收益率&apos;:roe,&apos;日期&apos;:date,&apos;指数&apos;:index&#125;)</div><div class="line"></div><div class="line">saveStr = &apos;%s  %f&apos; % (date, roe)</div><div class="line"></div><div class="line">f = open(&apos;hengsengchina.txt&apos;,&apos;r&apos;)</div><div class="line">data = f.read()</div><div class="line">f.close()</div><div class="line"></div><div class="line">dataStr = data + &apos;\n&apos; + saveStr</div><div class="line">f = open(&apos;hengsengchina.txt&apos;,&apos;w&apos;)</div><div class="line">f.write(dataStr)</div><div class="line">f.close()</div><div class="line">except Exception,ex:</div><div class="line">print ex</div><div class="line"></div><div class="line"></div><div class="line">getindexs()</div><div class="line"></div><div class="line">current = time.localtime(time.time())</div><div class="line">year = current.tm_year</div><div class="line">month = current.tm_mon</div><div class="line">day = current.tm_mday</div><div class="line"></div><div class="line">index = 0</div><div class="line">if month == 12:</div><div class="line">index = 1</div><div class="line"></div><div class="line">index = month - 1</div><div class="line"></div><div class="line">day = day - 1</div><div class="line"></div><div class="line"># gethenghseng(day,month,year)</div><div class="line"></div><div class="line">for month in xrange(1,3):</div><div class="line">for day in xrange(1,31):</div><div class="line">gethenghsengchina(day,month,year)</div><div class="line">gethenghseng(day,month,year)</div></pre></td></tr></table></figure>
 ]]></content>
+      
+        
+        <tags>
+            
+            <tag> python </tag>
+            
+        </tags>
+        
     </entry>
     
     <entry>
@@ -430,6 +555,16 @@
 <h4 id="使用以及查看数据"><a href="#使用以及查看数据" class="headerlink" title="使用以及查看数据"></a>使用以及查看数据</h4><p>我们可以使用mongohub查看数据，当然还可以使用我们最喜欢的python<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">import pymongo</div><div class="line"></div><div class="line">connection = pymongo.MongoClient()</div><div class="line">tdb = connection.jikexueyuan</div><div class="line">post_info = tdb.ceshi</div><div class="line"></div><div class="line">jike = &#123;&apos;name&apos;:u&apos;哈哈哈&apos;&#125;#插入数据</div><div class="line">goog = &#123;&apos;name&apos;:u&apos;校长&apos;&#125;</div><div class="line"></div><div class="line"># post_info.insert(jike)</div><div class="line"># post_info.insert(goog)</div><div class="line">post_info.remove(&#123;&apos;name&apos;:u&apos;校长&apos;&#125;)</div><div class="line"></div><div class="line">print u&apos;操作完成&apos;</div></pre></td></tr></table></figure></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">from pymongo import MongoClient</div><div class="line"></div><div class="line">mc = MongoClient(&quot;localhost&quot;,27017)</div><div class="line"></div><div class="line">db = mc.users</div><div class="line"></div><div class="line">c = db.users.find()</div><div class="line"></div><div class="line">db.users.save(&#123;&quot;age&quot;:8&#125;)</div><div class="line"></div><div class="line">for objc in c:</div><div class="line">    print(objc)</div><div class="line"></div><div class="line">mc.close()</div></pre></td></tr></table></figure>
 ]]></content>
+      
+        
+        <tags>
+            
+            <tag> python </tag>
+            
+            <tag> 爬虫 </tag>
+            
+        </tags>
+        
     </entry>
     
     <entry>
@@ -484,6 +619,14 @@
 <h3 id="lunix-安装git"><a href="#lunix-安装git" class="headerlink" title="lunix 安装git"></a>lunix 安装git</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line">1.2 CentOS6.6下</div><div class="line"></div><div class="line">在CentOS5的时代，由于yum源中没有git，所以需要预先安装一系列的依赖包。但在CentOS6的yum源中已经有git的版本了，可以直接使用yum源进行安装。</div><div class="line"></div><div class="line">$ sudo yum install git</div><div class="line">但是yum源中安装的git版本是1.7.1，太老了，Github等需要的Git版本最低都不能低于1.7.2 。所以我们一般不用上面的方法。而是下载git源码，编译安装。</div><div class="line"></div><div class="line">编译安装的步骤是【4】：</div><div class="line"></div><div class="line">（1）首先先更新系统</div><div class="line"></div><div class="line">sudo yum update</div><div class="line">（2）安装依赖的包</div><div class="line"></div><div class="line">sudo yum install curl-devel expat-devel gettext-devel openssl-devel zlib-devel gcc perl-ExtUtils-MakeMaker</div><div class="line">（3）下载git源码并解压缩</div><div class="line"></div><div class="line">$ wget https://github.com/git/git/archive/v2.3.0.zip</div><div class="line">$ unzip v2.3.0.zip</div><div class="line">$ cd git-2.3.0</div><div class="line">（4）编译安装</div><div class="line"></div><div class="line">将其安装在“/usr/local/git”目录下。</div><div class="line"></div><div class="line">make prefix=/usr/local/git all</div><div class="line">sudo make prefix=/usr/local/git install</div><div class="line">（5）此时你如果使用git --version 查看git版本的话，发现git仍然是1.7.1版本。这是因为它默认使用了&quot;/usr/bin&quot;下的git。</div><div class="line"></div><div class="line">你可以用下面的命令查看git所在的路径：</div><div class="line"></div><div class="line">$ whereis git</div><div class="line">git: /usr/bin/git /usr/local/git /usr/share/man/man1/git.1.gz</div><div class="line">（6）我们要把编译安装的git路径放到环境变量里，让它替换&quot;/usr/bin&quot;下的git。为此我们可以修改“/etc/profile”文件（或者/etc/bashrc文件）。</div><div class="line"></div><div class="line">sudo vim /etc/profile</div><div class="line">然后在文件的最后一行，添加下面的内容，然后保存退出。</div><div class="line"></div><div class="line">export PATH=/usr/local/git/bin:$PATH</div><div class="line">（7）使用source命令应用修改。</div><div class="line"></div><div class="line">source /etc/profile</div><div class="line"></div><div class="line">（8）然后再次使用git --version 查看git版本，发现输出2.3.0，表明安装成功。</div></pre></td></tr></table></figure>
 <h3 id="django错误"><a href="#django错误" class="headerlink" title="django错误"></a>django错误</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">DisallowedHost at /</div><div class="line"></div><div class="line">Invalid HTTP_HOST header: &apos;10.211.55.6:8000&apos;. You may need to add u&apos;10.211.55.6&apos; to ALLOWED_HOSTS.</div><div class="line">Request Method:	GET</div><div class="line">Request URL:	http://10.211.55.6:8000/</div><div class="line">Django Version:	1.10.4</div><div class="line">Exception Type:	DisallowedHost</div><div class="line">Exception Value:	</div><div class="line">Invalid HTTP_HOST header: &apos;10.211.55.6:8000&apos;. You may need to add u&apos;10.211.55.6&apos; to ALLOWED_HOSTS.</div><div class="line">Exception Location:	/usr/lib/python2.7/site-packages/django/http/request.py in get_host, line 113</div><div class="line">Python Executable:	/usr/bin/python</div><div class="line">Python Version:</div><div class="line"></div><div class="line">1，以上时我访问请求的时候出现的，原因在于Django框架中的创建的一个项目的时候，</div><div class="line"></div><div class="line">2，跑下这个命令：Python manage.py runserver 10.211.55.5:8000</div><div class="line"></div><div class="line">3，然后在我本机的浏览器中写入上述IP和端口请求过去：http://10.211.55.6:8000</div><div class="line"></div><div class="line">4，于是就出现了最上面的那个问题；</div><div class="line"></div><div class="line">5，于是就去django-admin.py startproject project-name创建的项目中去修改 setting.py 文件：</div><div class="line"></div><div class="line">ALLOWED_HOSTS = [&apos;*&apos;]  ＃在这里请求的host添加了＊</div><div class="line"></div><div class="line"></div><div class="line">6，于是就成功的访问到了Django的项目了；</div></pre></td></tr></table></figure>
 ]]></content>
+      
+        
+        <tags>
+            
+            <tag> Lunix </tag>
+            
+        </tags>
+        
     </entry>
     
     <entry>
@@ -496,6 +639,8 @@
 <li>swift做一个完整项目</li>
 </ul>
 ]]></content>
+      
+        
     </entry>
     
     <entry>
@@ -523,6 +668,14 @@
 <li>打包出来的文件在outputs中</li>
 </ul>
 ]]></content>
+      
+        
+        <tags>
+            
+            <tag> 自动化 </tag>
+            
+        </tags>
+        
     </entry>
     
     <entry>
@@ -603,12 +756,16 @@
 <p>这个时候你再执行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">which python</div></pre></td></tr></table></figure></p>
 <p>发现已经变成了<code>/usr/bin/python</code><br>现在看来，系统加载某个功能的逻辑，就是直接在这些个加载列表中找这些个功能，如果逐个加载了一遍发现没有这个功能，那么就会报错，如果第一路径下有这个功能，第二路径下也有这个功能，那么就会用第一路径下的，所以我们更改第一路径是有意义的</p>
 ]]></content>
+      
+        
     </entry>
     
     <entry>
       <title><![CDATA[移动开发流程]]></title>
       <url>/2016/12/01/2017/%E7%A7%BB%E5%8A%A8%E5%BC%80%E5%8F%91%E6%B5%81%E7%A8%8B/</url>
       <content type="html"></content>
+      
+        
     </entry>
     
     <entry>
@@ -618,6 +775,14 @@
 <h3 id="如何来写分割线"><a href="#如何来写分割线" class="headerlink" title="如何来写分割线"></a>如何来写分割线</h3><p>你在第一次cell创建的时候去布局，会发现取到的self.height永远是44，是因为后边系统才会根据你设置的高度来确定这个高度，也就是说它会再次赋值，调用layoutsubviews会再次，所以你的布局方法应该写到这个方法里边，才能够保证你的布局和取到的size是正确的，否则一切都是白费<br>最佳实践是把布局的方法写到reloadmodel方法里边去，分割线的位置要写到layoutsubviews中去，这样拿到self.height的高度才是准确的，其他的控件是从上到下布局的，所以无所谓，但是从下到上布局的控件就要放倒这个方法中去</p>
 <h3 id="cell的预加载"><a href="#cell的预加载" class="headerlink" title="cell的预加载"></a>cell的预加载</h3><p>一旦调用cellfor，紧接着就会调用willdispaly，这个时候这个cell已经出现在了visiblecells里边了，其实这个时候这个cell已经应该出现在屏幕上了，所以预加载的说法在tableview上是不存在的</p>
 ]]></content>
+      
+        
+        <tags>
+            
+            <tag> iOS </tag>
+            
+        </tags>
+        
     </entry>
     
     <entry>
@@ -765,6 +930,14 @@
 </blockquote>
 <h3 id="获取汉字的拼音"><a href="#获取汉字的拼音" class="headerlink" title="获取汉字的拼音"></a>获取汉字的拼音</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">+ (NSString *)transform:(NSString *)chinese</div><div class="line">&#123;</div><div class="line">//将NSString装换成NSMutableString</div><div class="line">NSMutableString *pinyin = [chinese mutableCopy];</div><div class="line">//将汉字转换为拼音(带音标)</div><div class="line">CFStringTransform((__bridge CFMutableStringRef)pinyin, NULL, kCFStringTransformMandarinLatin, NO);</div><div class="line">NSLog(@&quot;%@&quot;, pinyin);</div><div class="line">//去掉拼音的音标</div><div class="line">CFStringTransform((__bridge CFMutableStringRef)pinyin, NULL, kCFStringTransformStripCombiningMarks, NO);</div><div class="line">NSLog(@&quot;%@&quot;, pinyin);</div><div class="line">//返回最近结果</div><div class="line">return pinyin;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 ]]></content>
+      
+        
+        <tags>
+            
+            <tag> iOS </tag>
+            
+        </tags>
+        
     </entry>
     
     <entry>
@@ -772,6 +945,14 @@
       <url>/2016/11/15/2014/UIKit%E7%B3%BB%E5%88%97-UICollectionView/</url>
       <content type="html"><![CDATA[<h3 id="iOS中的新变化"><a href="#iOS中的新变化" class="headerlink" title="iOS中的新变化"></a>iOS中的新变化</h3><p>在iOS10中，重用的加载机制发生了变化，会提前加在一个cell，这就意味着，cellforrow会被提前一个调用，这个可以通过属性直接关闭，这里要注意</p>
 ]]></content>
+      
+        
+        <tags>
+            
+            <tag> iOS </tag>
+            
+        </tags>
+        
     </entry>
     
     <entry>
@@ -785,6 +966,14 @@
 <h3 id="禁止锁屏"><a href="#禁止锁屏" class="headerlink" title="禁止锁屏"></a>禁止锁屏</h3><p>默认情况下，当设备一段时间没有触控动作时，iOS会锁住屏幕。但有一些应用是不需要锁屏的，比如视频播放器。</p>
 <p>[UIApplication sharedApplication].idleTimerDisabled = YES;<br>或<br>[[UIApplication sharedApplication] setIdleTimerDisabled:YES];</p>
 ]]></content>
+      
+        
+        <tags>
+            
+            <tag> IOS </tag>
+            
+        </tags>
+        
     </entry>
     
     <entry>
@@ -859,6 +1048,20 @@
 <li><code>apachectl confittest</code>修改配之后测试一下看看哪里有错误，只出现一个OK才是没有问题</li>
 </ul>
 ]]></content>
+      
+        <categories>
+            
+            <category> Python </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Python </tag>
+            
+        </tags>
+        
     </entry>
     
     <entry>
@@ -1003,6 +1206,20 @@
 <p>知道了这些后再来看看flv中的脚本，一般开头是0x02，表示String类型，后面的2bytes为字符串长度，一般是0x000a（“onMetaData”的长度），再后面就是字符串“onMetaData”。好像flv格式的文件都有onMetaData标记，在运行ActionScript的时候会用到它。后面跟的是0x08，表示ECMA Array类型，这个和Map比较相似，一个键跟着一个值。键都是String类型的，所以开头的0x02被省略了，直接跟着的是字符串的长度，然后是字符串，再是值的类型，也就是上面介绍的那些了。</p>
 <h2 id="3-总结"><a href="#3-总结" class="headerlink" title="3.总结"></a>3.总结</h2><p>flv的格式还是比较简单的，header部分很简洁，body部分都是由一个个tag，tag的话也就三种，脚本tag一般只有一个的，我想这也是flv能成为在线视频格式的原因吧。只要了解了格式，我们就可以写个程序来解析flv文件了，这也是我下一步要做的。<br>最后附上flv官方手册：video_file_format_spec_v10</p>
 ]]></content>
+      
+        <categories>
+            
+            <category> 基础 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> 流媒体 </tag>
+            
+        </tags>
+        
     </entry>
     
     <entry>
@@ -1157,6 +1374,20 @@
 <p>比如修改sdwebimage中的方法，如果设置imageview为滚动列表模式，则加入该方法，当列表停止滚动模式的时候才加载图片</p>
 <h3 id="一些第三方的使用"><a href="#一些第三方的使用" class="headerlink" title="一些第三方的使用"></a>一些第三方的使用</h3><p> 当然有时候也会用到一些第三方，比如在使用UICollectionView和UITableView的时候，Facebook有一个框架叫AsyncDisplayKit，这个库就可以很好地提升滚动时流畅性以及图片异步下载功能（不支持sb和autoLayout，需要手动进行约束设置），AsyncDisplayKit用相关node类，替换了UIView和它的子类,而且是线程安全的。它可以异步解码图片，调整图片大小以及对图片和文本进行渲染，把这些操作都放到子线程，滑动的时候就流畅许多。我认为这个库最方便的就是实现图片异步解码。UIImage显示之前必须要先解码完成，而且解码还是同步的。尤其是在UICollectionView/UITableView 中使用 prototype cell显示大图，UIImage的同步解码在滚动的时候会有明显的卡顿。另外一个很吸引人的点是AsyncDisplayKit可以把view层次结构转成layer。因为复杂的view层次结构开销很大，如果不需要view特有的功能（例如点击事件），就可以使用AsyncDisplayKit 的layer backing特性从而获得一些额外的提升。当然这个库还处于开发阶段，还有一些地方地方有待完善，比如不支持缓存，我要使用这个库的时候一般是结合Alamofire和AlamofireImage实现图片的缓存</p>
 ]]></content>
+      
+        <categories>
+            
+            <category> iOS </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> iOS进阶 </tag>
+            
+        </tags>
+        
     </entry>
     
     <entry>
@@ -1214,6 +1445,20 @@
 <p>思路便是：利用wait函数，不断地检测是否完成异步操作，然后同时开启一个类死循环，不过这函数的互相调用要用performafter为了给事件和timer调用留出机会和时间。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div></pre></td><td class="code"><pre><div class="line">@interface ViewController ()</div><div class="line">&#123;</div><div class="line">    dispatch_group_t group;</div><div class="line">&#125;</div><div class="line">@property (nonatomic, strong) RedView *redView;</div><div class="line">@property (nonatomic, assign) NSInteger result;</div><div class="line">@property (nonatomic, strong) UIButton *btn;</div><div class="line">@property (nonatomic, strong) NSTimer *timer;</div><div class="line">@end</div><div class="line"></div><div class="line">@implementation ViewController</div><div class="line"></div><div class="line">- (UIButton *)btn &#123;</div><div class="line">    if (!_btn) &#123;</div><div class="line">        _btn = [UIButton buttonWithType:UIButtonTypeCustom];</div><div class="line">        [_btn setTitle:@&quot;点击我啊&quot; forState:UIControlStateNormal];</div><div class="line">        [_btn sizeToFit];</div><div class="line">        _btn.frame = CGRectMake(100, 100, _btn.bounds.size.width, _btn.bounds.size.height);</div><div class="line">        [_btn setTitleColor:[UIColor redColor] forState:UIControlStateNormal];</div><div class="line">        [_btn addTarget:self action:@selector(change) forControlEvents:UIControlEventTouchUpInside];</div><div class="line">    &#125;</div><div class="line">    return _btn;</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (void)viewDidLoad &#123;</div><div class="line">    [super viewDidLoad];</div><div class="line">    </div><div class="line">    [self.view addSubview:self.btn];</div><div class="line">    </div><div class="line">    self.timer = [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(chang1) userInfo:nil repeats:YES];</div><div class="line">    </div><div class="line">    group = dispatch_group_create();</div><div class="line">    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,0);</div><div class="line">    dispatch_group_async(group, queue, ^&#123;</div><div class="line">        for (int i = 0; i &lt; 10000; i++) &#123;</div><div class="line">            NSLog(@&quot;%d&quot;, i);</div><div class="line">        &#125;</div><div class="line">    &#125;);</div><div class="line">    </div><div class="line">    [self wait];</div><div class="line">    </div><div class="line">&#125;</div><div class="line"></div><div class="line">- (void)wait &#123;</div><div class="line">    </div><div class="line">    self.result = dispatch_group_wait(group, 10 * NSEC_PER_SEC);</div><div class="line">    if (self.result == 0) &#123;</div><div class="line">        NSLog(@&quot;结束&quot;);</div><div class="line">    &#125;else &#123;</div><div class="line">        NSLog(@&quot;rsout--%ld&quot;, self.result);</div><div class="line">        [self performSelector:@selector(wait1) withObject:nil afterDelay:0];</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">&#125;</div><div class="line"></div><div class="line">- (void)wait1 &#123;</div><div class="line">    </div><div class="line">    self.result = dispatch_group_wait(group, 10 * NSEC_PER_SEC);</div><div class="line">    if (self.result == 0) &#123;</div><div class="line">        NSLog(@&quot;结束&quot;);</div><div class="line">    &#125;else &#123;</div><div class="line">        NSLog(@&quot;rsout--%ld&quot;, self.result);</div><div class="line">        [self performSelector:@selector(wait) withObject:nil afterDelay:0];</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">&#125;</div><div class="line"></div><div class="line">- (void)next &#123;</div><div class="line">    NSLog(@&quot;1234567&quot;);</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (void)change &#123;</div><div class="line">    self.view.backgroundColor = [UIColor redColor];</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (void)chang1 &#123;</div><div class="line">    NSLog(@&quot;哇哈哈哈哈&quot;);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 </blockquote>
 ]]></content>
+      
+        <categories>
+            
+            <category> iOS </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> iOS进阶 </tag>
+            
+        </tags>
+        
     </entry>
     
     <entry>
@@ -1283,6 +1528,8 @@
 <p>至此，我们已经了解了block 的实现，以及获取外部变量的原理。但是，我们还不能在 block 内修改 intValue 变量。如果你有心试下，在 block 内部修改 intValue 的值，会报编译错误</p>
 <p>Variable is not assignable(missing __block type specifier)</p>
 ]]></content>
+      
+        
     </entry>
     
     <entry>
@@ -1310,6 +1557,20 @@
 <h3 id="局部变量"><a href="#局部变量" class="headerlink" title="局部变量"></a>局部变量</h3><p>当我们在局部变量的外边加上一个const的时候，这个变量的生命周期发生了改变，并且内存上移动到了静态变量区，但是作用域并没有变化，所以还是不能穿透block像全局变量一样被赋值，当然我们发现，这个时候我们是可以改变局部变量的值得，其实这个时候系统的做法是，将该局部变量的指针传入进去，因为加上了const首先起码生命周期一致了，能够保证不会被释放了，将指针传入进去，这个时候我们可以通过指针来访问该静态变量的内存地址进行一些修改的操作</p>
 <h3 id="block"><a href="#block" class="headerlink" title="__block"></a>__block</h3><p>当然对于修改局部变量除了提升其生命周期还有一种办法就是加上__block关键字，该关键字的作用是生成了另外一个结构体，然后赋值给block，这样一方面保证了生命周期一致，又因为最后的执行函数以block为参数，所以访问该变量问题不大，也解决了作用域的问题</p>
 ]]></content>
+      
+        <categories>
+            
+            <category> iOS </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> iOS进阶 </tag>
+            
+        </tags>
+        
     </entry>
     
     <entry>
@@ -1373,6 +1634,20 @@
 <p>void (^blk_on_heap)(void) = Block_copy(blk_on_stack);<br>Block_release(blk_on_heap);<br>```<br>Block_copy 的作用相当于之前看到过的 _Block_copy 函数，而且 Objective-C runtime 库在运行时拷贝 block 用的就是这个函数。同理，释放 block 时，runtime 调用了 Block_release 函数。</p>
 <p>最后这里有一篇总结 block 的文章的很不错，推荐大家看看：<a href="http://tanqisen.github.io/blog/2013/04/19/gcd-block-cycle-retain/" target="_blank" rel="external">http://tanqisen.github.io/blog/2013/04/19/gcd-block-cycle-retain/</a></p>
 ]]></content>
+      
+        <categories>
+            
+            <category> iOS </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> iOS进阶 </tag>
+            
+        </tags>
+        
     </entry>
     
     <entry>
@@ -1459,6 +1734,14 @@
 <p>上面的代码中 ^{++val;} 和 ++val; 都会被转换成 ++(val.__forwarding-&gt;val);，堆上的 val 被加了两次，最后打印堆上的 val 为 2。</p>
 <p><img src="http://i4.piimg.com/567571/ae21fcf6a92ab9ee.png" alt=""></p>
 ]]></content>
+      
+        
+        <tags>
+            
+            <tag> iOS进阶 </tag>
+            
+        </tags>
+        
     </entry>
     
     <entry>
@@ -1526,6 +1809,20 @@
 <li>os.chdir(“path”)   换路径</li>
 </ul>
 ]]></content>
+      
+        <categories>
+            
+            <category> Python </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Python </tag>
+            
+        </tags>
+        
     </entry>
     
     <entry>
@@ -1546,6 +1843,20 @@
 <h2 id="字典方法"><a href="#字典方法" class="headerlink" title="字典方法"></a>字典方法</h2><h3 id="clear"><a href="#clear" class="headerlink" title="clear"></a>clear</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
 <p>### </p>
 ]]></content>
+      
+        <categories>
+            
+            <category> Python </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Python </tag>
+            
+        </tags>
+        
     </entry>
     
     <entry>
@@ -1603,6 +1914,20 @@
 <h4 id="7-字符串比较"><a href="#7-字符串比较" class="headerlink" title="7.字符串比较"></a>7.字符串比较</h4><p>cmp方法比较两个对象，并根据结果返回一个整数。cmp(x,y)如果X&lt; Y,返回值是负数 如果X&gt;Y 返回的值为正数。<br>sStr1 = ‘strch’<br>sStr2 = ‘strchr’<br>print cmp(sStr1,sStr2)##-1</p>
 <h3 id="列表，元组，字符串的转换list与tuple"><a href="#列表，元组，字符串的转换list与tuple" class="headerlink" title="列表，元组，字符串的转换list与tuple"></a>列表，元组，字符串的转换list与tuple</h3><p>意义在于元组可以作为一个参数整体使用，而列表不可以<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; name = &apos;hanshenghui&apos;</div><div class="line">&gt;&gt;&gt; tuple(name)</div><div class="line">(&apos;h&apos;, &apos;a&apos;, &apos;n&apos;, &apos;s&apos;, &apos;h&apos;, &apos;e&apos;, &apos;n&apos;, &apos;g&apos;, &apos;h&apos;, &apos;u&apos;, &apos;i&apos;)</div><div class="line">&gt;&gt;&gt; list(name)</div><div class="line">[&apos;h&apos;, &apos;a&apos;, &apos;n&apos;, &apos;s&apos;, &apos;h&apos;, &apos;e&apos;, &apos;n&apos;, &apos;g&apos;, &apos;h&apos;, &apos;u&apos;, &apos;i&apos;]</div><div class="line">&gt;&gt;&gt; tuple(list(name))</div><div class="line">(&apos;h&apos;, &apos;a&apos;, &apos;n&apos;, &apos;s&apos;, &apos;h&apos;, &apos;e&apos;, &apos;n&apos;, &apos;g&apos;, &apos;h&apos;, &apos;u&apos;, &apos;i&apos;)</div></pre></td></tr></table></figure></p>
 ]]></content>
+      
+        <categories>
+            
+            <category> Python </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Python </tag>
+            
+        </tags>
+        
     </entry>
     
     <entry>
@@ -1669,6 +1994,20 @@
 <p>当然会有delegation模式不适合的例外情况出现，而且notification可能更加有效。例如：应用中所有的controller需要知道一个事件。然而这些类型的场景很少出现。另外一个例子是当你建立了一个架构而且需要通知该事件给正在运行中应用。</p>
 <p>根据经验，如果是属性层的事件，不管是在不需要编程的对象还是在紧紧绑定一个view对象的model对象，我只使用观察。对于其他的事件，我都会使用delegate模式。如果因为某种原因我不能使用delegate，首先我将估计我的app架构是否出现了严重的错误。如果没有错误，然后才使用notification。</p>
 ]]></content>
+      
+        <categories>
+            
+            <category> iOS </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> iOS基础知识 </tag>
+            
+        </tags>
+        
     </entry>
     
     <entry>
@@ -1842,6 +2181,20 @@
 <li>RxSwift</li>
 </ul>
 ]]></content>
+      
+        <categories>
+            
+            <category> iOS </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> iOS进阶 </tag>
+            
+        </tags>
+        
     </entry>
     
     <entry>
@@ -1914,6 +2267,20 @@
 <h4 id="整体是支持竖屏，但是某个界面可以横屏"><a href="#整体是支持竖屏，但是某个界面可以横屏" class="headerlink" title="整体是支持竖屏，但是某个界面可以横屏"></a>整体是支持竖屏，但是某个界面可以横屏</h4><p>这种需求，只能通过加判断代码来做到</p>
 <h4 id="控制通过webView加载的视频全屏时的横竖屏"><a href="#控制通过webView加载的视频全屏时的横竖屏" class="headerlink" title="控制通过webView加载的视频全屏时的横竖屏"></a>控制通过webView加载的视频全屏时的横竖屏</h4><p>webView的视频在全屏的时候，会新创建一个window，所以你在Appdelegate或者当前根控制器下的控制代码统统不会生效，并且以UIViewController为根控制器，所以我们要把控制代码加到UIViewController的分类中，又因为其它的控制器全部继承自这个控制器，所以我们要在这个里边加判断<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">#import &quot;UIViewController+Extension.h&quot;</div><div class="line"></div><div class="line">@implementation UIViewController (Extension)</div><div class="line"></div><div class="line">#pragma mark - 下面的两个方法主要用于控制webView播放视屏的时候，该是否是否应该横屏</div><div class="line">/**</div><div class="line"> * 如果当前keywindow的rootController类型为UIViewController，就返回YES，否则返回NO</div><div class="line"> *</div><div class="line"> *  @return 返回是否</div><div class="line"> */</div><div class="line">- (BOOL)shouldAutorotate &#123;</div><div class="line">    //拿到当前主窗口的根控制器类型名称</div><div class="line">    NSString *className = NSStringFromClass([[UIApplication sharedApplication].keyWindow.rootViewController class]);</div><div class="line">    //如果是UIViewController就返回YES，让这个控制器view可以跟随屏幕旋转</div><div class="line">    if ([className isEqualToString:@&quot;UIViewController&quot;]) &#123;</div><div class="line">        return YES;</div><div class="line">    &#125; else &#123;</div><div class="line">        return NO;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (UIInterfaceOrientationMask)supportedInterfaceOrientations &#123;</div><div class="line">    </div><div class="line">    return UIInterfaceOrientationMaskAll;</div><div class="line">&#125;</div><div class="line">@end</div></pre></td></tr></table></figure></p>
 ]]></content>
+      
+        <categories>
+            
+            <category> iOS </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> iOS基础知识 </tag>
+            
+        </tags>
+        
     </entry>
     
     <entry>
@@ -2012,6 +2379,20 @@
 </ol>
 <p>通过对LinkMap文件的分析，可以得知每个模块可执行文件占用大小。再对比两个版本，就知道业务模块的增量大小。参考如下：</p>
 ]]></content>
+      
+        <categories>
+            
+            <category> iOS </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> iOS进阶 </tag>
+            
+        </tags>
+        
     </entry>
     
     <entry>
@@ -2147,6 +2528,14 @@
 <li>MD5两次加密</li>
 </ul>
 ]]></content>
+      
+        <categories>
+            
+            <category> iOS </category>
+            
+        </categories>
+        
+        
     </entry>
     
     <entry>
@@ -2219,6 +2608,20 @@
 <p>后记</p>
 <p>正如侯捷先生所讲-“源码面前，了无秘密”，Apple的Cocoa Touch框架虽然并不开源，但是Objective-C的runtime和Core Foundation却是完全开放源码的(在<a href="http://www.opensource.apple.com/tarballs/可以下载到全部的开源代码)。" target="_blank" rel="external">http://www.opensource.apple.com/tarballs/可以下载到全部的开源代码)。</a><br>本系列runtime源码学习将会持续更新，意犹未尽的同学可以自行到上述网站下载源码学习。行笔简陋，如有错误，望指正。</p>
 ]]></content>
+      
+        <categories>
+            
+            <category> iOS </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> iOS进阶 </tag>
+            
+        </tags>
+        
     </entry>
     
     <entry>
@@ -2350,6 +2753,20 @@
 <p>参考：<br><a href="http://southpeak.github.io/blog/2014/10/25/objective-c-runtime-yun-xing-shi-zhi-lei-yu-dui-xiang/" target="_blank" rel="external">南峰子-runtime</a></p>
 <p><a href="http://www.jianshu.com/p/927c8384855a" target="_blank" rel="external">iOS-runtime理解-简书</a></p>
 ]]></content>
+      
+        <categories>
+            
+            <category> iOS </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> iOS进阶 </tag>
+            
+        </tags>
+        
     </entry>
     
     <entry>
@@ -2508,6 +2925,20 @@
 <p>验证方法是，打断点，lldb上边的调用栈</p>
 <h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>如果我们想要打断一个方法的执行，一个办法就是用<code>[self performSelector:@selector(perform4) withObject:nil afterDelay:0.005];</code>来连接方法的执行，这里延迟时间设置为0有时是无效的，我们可以给一个很小的时间，</p>
 ]]></content>
+      
+        <categories>
+            
+            <category> iOS </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> iOS进阶 </tag>
+            
+        </tags>
+        
     </entry>
     
     <entry>
@@ -2529,6 +2960,20 @@
 <p>可以看出，直播服务普遍采用了RTMP作为流媒体协议，FLV作为封装格式，H.264作为视频编码格式，AAC作为音频编码格式。采用RTMP作为直播协议的好处在于其被Flash播放器支持。而Flash播放器如今已经安装在全球99%的电脑上，并且与浏览器结合的很好。因此这种流媒体直播平台可以实现“无插件直播”，极大的简化了客户端的操作。封装格式，视频编码，音频编码方面，无一例外的使用了FLV + H.264 + AAC的组合。FLV是RTMP使用的封装格式，H.264是当今实际应用中编码效率最高的视频编码标准，AAC则是当今实际应用中编码效率最高的音频编码标准。视频播放器方面，都使用了Flash播放器。</p>
 <h3 id="点播平台参数对比"><a href="#点播平台参数对比" class="headerlink" title="点播平台参数对比"></a>点播平台参数对比</h3><p>主流网络视音频平台点播服务的参数对比如表所示：<br>现有互联网视音频平台参数对比<br><img src="http://7xrn7f.com1.z0.glb.clouddn.com/16-7-17/6813536.jpg" alt=""><br>可以看出，点播服务普遍采用了HTTP作为流媒体协议，H.264作为视频编码格式，AAC作为音频编码格式。采用HTTP作为点播协议有以下两点优势：一方面，HTTP是基于TCP协议的应用层协议，媒体传输过程中不会出现丢包等现象，从而保证了视频的质量；另一方面，HTTP被绝大部分的Web服务器支持，因而流媒体服务机构不必投资购买额外的流媒体服务器，从而节约了开支。点播服务采用的封装格式有多种：MP4，FLV，F4V等，它们之间的区别不是很大。视频编码标准和音频编码标准是H.264和AAC。这两种标准分别是当今实际应用中编码效率最高的视频标准和音频标准。视频播放器方面，无一例外的都使用了Flash播放器。</p>
 ]]></content>
+      
+        <categories>
+            
+            <category> 基础 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> 流媒体 </tag>
+            
+        </tags>
+        
     </entry>
     
     <entry>
@@ -2768,6 +3213,20 @@
 <p>它通常作为制作高质量音乐的中间体<br>　　十.RM<br>　　Real Networks公司所制定的音频视频压缩规范称为Real Media，用户可以使用RealPlayer或RealOne Player对符合RealMedia技术规范的网络音频/视频资源进行实况转播并且RealMedia可以根据不同的网络传输速率制定出不同的压缩比率，从而实现在低速率的网络上进行影像数据实时传送和播放。这种格式的另一个特点是用户使用RealPlayer或RealOne Player播放器可以在不下载音频/视频内容的条件下实现在线播放。另外，RM作为目前主流网络视频格式，它还可以通过其Real Server服务器将其它格式的视频转换成RM视频并由Real Server服务器负责对外发布和播放。RM和ASF格式可以说各有千秋，通常RM视频更柔和一些，而ASF视频则相对清晰一些。<br>  RM格式一开始就定位在视频流应用方面，也可以说是视频流技术的始创者。它可以在用56 K Modem拨号上网的条件下实现不间断的视频播放，当然，其图像质量和MPEG2，DIVX等相比有一定差距，毕竟要实现在网上传输不间断的视频是需要很大带宽的。</p>
 <p>RM已经是昨日黄花，没有任何新意，低Bitrate比不过WMA，高Bitrate比不过MP3，虽然新的RM导入了ATRAC3算法，但颓势已定，很难东山再起了。</p>
 ]]></content>
+      
+        <categories>
+            
+            <category> 基础 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> 流媒体 </tag>
+            
+        </tags>
+        
     </entry>
     
     <entry>
@@ -2930,6 +3389,20 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">UserInfoModelConstants.h</div><div class="line"></div><div class="line">extern NSString *const USER_AGE_KEY ;</div><div class="line">extern NSString *const USER_TELPHONE_KEY ;</div><div class="line">extern NSString *const USER_ADDRESS_KEY ;</div><div class="line">extern NSString *const USER_BRIEF_KEY ;</div><div class="line"></div><div class="line">UserInfoModelConstants.m</div><div class="line"></div><div class="line">NSString *const BKUSER_AGE_KEY = @&quot;XXXXX.userAge&quot;;</div><div class="line">NSString *const BKUSER_TELPHONE_KEY = @&quot;XXXXX.telphoneNO&quot;;</div><div class="line">NSString *const BKUSER_ADDRESS_KEY = @&quot;XXXXX.address&quot;;</div><div class="line">NSString *const BKUSER_BRIEF_KEY = @&quot;XXXXX.brief&quot;;</div></pre></td></tr></table></figure>
 <p>在需要使用共享常量的文件中引入UserInfoModelConstants.h即可。</p>
 ]]></content>
+      
+        <categories>
+            
+            <category> iOS </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> iOS基础知识 </tag>
+            
+        </tags>
+        
     </entry>
     
     <entry>
@@ -2967,6 +3440,20 @@
 </blockquote>
 <p>//todo<br>autorelease关键字起作用在arc下，需要这个对象是一个autorelease对象，默认情况下，UIView不是这样的对象，其他的是这样的对象，所以<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">@autorelease &#123;</div><div class="line">  UIView *view = [UIView alloc] init];//内存会一直增加，不会释放的，以为UIView不会被释放，如果这个换成UIImage或者其他的，那就没有问题</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 ]]></content>
+      
+        <categories>
+            
+            <category> iOS </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> iOS基础知识 </tag>
+            
+        </tags>
+        
     </entry>
     
     <entry>
@@ -3039,6 +3526,20 @@
 <h4 id="整体是支持竖屏，但是某个界面可以横屏"><a href="#整体是支持竖屏，但是某个界面可以横屏" class="headerlink" title="整体是支持竖屏，但是某个界面可以横屏"></a>整体是支持竖屏，但是某个界面可以横屏</h4><p>这种需求，只能通过加判断代码来做到</p>
 <h4 id="控制通过webView加载的视频全屏时的横竖屏"><a href="#控制通过webView加载的视频全屏时的横竖屏" class="headerlink" title="控制通过webView加载的视频全屏时的横竖屏"></a>控制通过webView加载的视频全屏时的横竖屏</h4><p>webView的视频在全屏的时候，会新创建一个window，所以你在Appdelegate或者当前根控制器下的控制代码统统不会生效，并且以UIViewController为根控制器，所以我们要把控制代码加到UIViewController的分类中，又因为其它的控制器全部继承自这个控制器，所以我们要在这个里边加判断<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">#import &quot;UIViewController+Extension.h&quot;</div><div class="line"></div><div class="line">@implementation UIViewController (Extension)</div><div class="line"></div><div class="line">#pragma mark - 下面的两个方法主要用于控制webView播放视屏的时候，该是否是否应该横屏</div><div class="line">/**</div><div class="line"> * 如果当前keywindow的rootController类型为UIViewController，就返回YES，否则返回NO</div><div class="line"> *</div><div class="line"> *  @return 返回是否</div><div class="line"> */</div><div class="line">- (BOOL)shouldAutorotate &#123;</div><div class="line">    //拿到当前主窗口的根控制器类型名称</div><div class="line">    NSString *className = NSStringFromClass([[UIApplication sharedApplication].keyWindow.rootViewController class]);</div><div class="line">    //如果是UIViewController就返回YES，让这个控制器view可以跟随屏幕旋转</div><div class="line">    if ([className isEqualToString:@&quot;UIViewController&quot;]) &#123;</div><div class="line">        return YES;</div><div class="line">    &#125; else &#123;</div><div class="line">        return NO;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (UIInterfaceOrientationMask)supportedInterfaceOrientations &#123;</div><div class="line">    </div><div class="line">    return UIInterfaceOrientationMaskAll;</div><div class="line">&#125;</div><div class="line">@end</div></pre></td></tr></table></figure></p>
 ]]></content>
+      
+        <categories>
+            
+            <category> iOS </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> iOS基础知识 </tag>
+            
+        </tags>
+        
     </entry>
     
     <entry>
@@ -3151,6 +3652,20 @@
 <li>冲突解决</li>
 </ul>
 ]]></content>
+      
+        <categories>
+            
+            <category> 基础 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> 工具 </tag>
+            
+        </tags>
+        
     </entry>
     
     <entry>
@@ -3239,6 +3754,20 @@
 <li>hexo官网<a href="https://hexo.io/zh-cn/" target="_blank" rel="external">https://hexo.io/zh-cn/</a></li>
 </ul>
 ]]></content>
+      
+        <categories>
+            
+            <category> 基础 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> 工具 </tag>
+            
+        </tags>
+        
     </entry>
     
     <entry>
@@ -3276,6 +3805,20 @@
 <p>小结</p>
 <p>虽然 nil, Nil, NULL 的值相同，理解它们之间的书面意义才重要，让代码更加明确，增加可读性。</p>
 ]]></content>
+      
+        <categories>
+            
+            <category> iOS </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> iOS基础知识 </tag>
+            
+        </tags>
+        
     </entry>
     
     <entry>
@@ -3289,6 +3832,20 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">+(id)scheduledTimerWithTimeInterval:(NSTimeInterval)inTimeInterval block:(void (^)())inBlock repeats:(BOOL)inRepeats</div><div class="line">&#123;</div><div class="line">    void (^block)() = [inBlock copy];</div><div class="line">    id ret = [self scheduledTimerWithTimeInterval:inTimeInterval target:self selector:@selector(jdExecuteSimpleBlock:) userInfo:block repeats:inRepeats];</div><div class="line">    [block release];</div><div class="line">    return ret;</div><div class="line">&#125;</div><div class="line"></div><div class="line">+(id)timerWithTimeInterval:(NSTimeInterval)inTimeInterval block:(void (^)())inBlock repeats:(BOOL)inRepeats</div><div class="line">&#123;</div><div class="line">    void (^block)() = [inBlock copy];</div><div class="line">    id ret = [self timerWithTimeInterval:inTimeInterval target:self selector:@selector(jdExecuteSimpleBlock:) userInfo:block repeats:inRepeats];</div><div class="line">    [block release];</div><div class="line">    return ret;</div><div class="line">&#125;</div><div class="line"></div><div class="line">+(void)jdExecuteSimpleBlock:(NSTimer *)inTimer;</div><div class="line">&#123;</div><div class="line">    if([inTimer userInfo])</div><div class="line">    &#123;</div><div class="line">        void (^block)() = (void (^)())[inTimer userInfo];</div><div class="line">        block();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>这也是Block实现的tiemr不会被释放的原因。</p>
 ]]></content>
+      
+        <categories>
+            
+            <category> iOS </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> iOS基础知识 </tag>
+            
+        </tags>
+        
     </entry>
     
     <entry>
@@ -3347,6 +3904,20 @@
 <h4 id="5．ASF和WMV格式"><a href="#5．ASF和WMV格式" class="headerlink" title="5．ASF和WMV格式"></a>5．ASF和WMV格式</h4><p>ASF（Advanced Streaming Format，高级流格式）和WMV是由Microsoft公司推出的一种在Internet上实时传播多媒体数据的技术标准，提供了本地或网络回放、可扩充的媒体类型、部件下载以及可扩展性等功能。ASF的应用平台是Net Show服务器和Net Show播放器。</p>
 <p>WMV也是Microsoft公司推出的一种流媒体格式，它是以ASF为基础，升级扩展后得到的。在同等视频质量下，WMV格式的体积非常小，因此很适合在网上播放和传输。WMV文件一般同时包含视频和音频部分，视频部分使用Windows Media Video编码，而音频部分使用Windows Media Audio编码。音频文件可以独立存在，其扩展名是WMA。</p>
 ]]></content>
+      
+        <categories>
+            
+            <category> 基础 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> 流媒体 </tag>
+            
+        </tags>
+        
     </entry>
     
     <entry>
@@ -3355,6 +3926,14 @@
       <content type="html"><![CDATA[<h2 id="日期选择器"><a href="#日期选择器" class="headerlink" title="日期选择器"></a>日期选择器</h2><a id="more"></a>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div><div class="line">151</div><div class="line">152</div><div class="line">153</div><div class="line">154</div><div class="line">155</div><div class="line">156</div><div class="line">157</div><div class="line">158</div><div class="line">159</div><div class="line">160</div><div class="line">161</div><div class="line">162</div><div class="line">163</div><div class="line">164</div><div class="line">165</div><div class="line">166</div><div class="line">167</div><div class="line">168</div><div class="line">169</div><div class="line">170</div><div class="line">171</div><div class="line">172</div><div class="line">173</div><div class="line">174</div><div class="line">175</div><div class="line">176</div><div class="line">177</div><div class="line">178</div><div class="line">179</div><div class="line">180</div><div class="line">181</div><div class="line">182</div><div class="line">183</div><div class="line">184</div><div class="line">185</div><div class="line">186</div><div class="line">187</div><div class="line">188</div><div class="line">189</div><div class="line">190</div><div class="line">191</div><div class="line">192</div><div class="line">193</div><div class="line">194</div><div class="line">195</div><div class="line">196</div><div class="line">197</div><div class="line">198</div><div class="line">199</div><div class="line">200</div><div class="line">201</div><div class="line">202</div><div class="line">203</div><div class="line">204</div><div class="line">205</div><div class="line">206</div><div class="line">207</div><div class="line">208</div><div class="line">209</div><div class="line">210</div><div class="line">211</div><div class="line">212</div><div class="line">213</div><div class="line">214</div><div class="line">215</div><div class="line">216</div><div class="line">217</div><div class="line">218</div><div class="line">219</div><div class="line">220</div><div class="line">221</div><div class="line">222</div><div class="line">223</div><div class="line">224</div><div class="line">225</div><div class="line">226</div><div class="line">227</div><div class="line">228</div><div class="line">229</div><div class="line">230</div><div class="line">231</div><div class="line">232</div><div class="line">233</div><div class="line">234</div><div class="line">235</div><div class="line">236</div><div class="line">237</div><div class="line">238</div><div class="line">239</div><div class="line">240</div><div class="line">241</div><div class="line">242</div><div class="line">243</div><div class="line">244</div><div class="line">245</div></pre></td><td class="code"><pre><div class="line">//</div><div class="line">//  ViewController.m</div><div class="line">//  ceshi</div><div class="line">//</div><div class="line">//  Created by Hanson on 16/11/15.</div><div class="line">//  Copyright © 2016年 wxg. All rights reserved.</div><div class="line">//</div><div class="line"></div><div class="line">#import &quot;ViewController.h&quot;</div><div class="line"></div><div class="line">@interface ViewController ()&lt;UIPickerViewDataSource,UIPickerViewDelegate&gt;</div><div class="line">@property (nonatomic, strong) NSMutableArray *yearArr;</div><div class="line">@property (nonatomic, strong) NSMutableArray *monthArr;</div><div class="line">@property (nonatomic, strong) NSMutableArray *dayArr;</div><div class="line"></div><div class="line">@property (nonatomic, strong) UIPickerView *pickerView;</div><div class="line"></div><div class="line">@property (nonatomic, strong) UIButton *confirmBtn;</div><div class="line"></div><div class="line">@property (nonatomic, assign) NSInteger month;</div><div class="line">@property (nonatomic, assign) NSInteger day;</div><div class="line"></div><div class="line">@property (nonatomic, strong) NSMutableArray *singleMonth;</div><div class="line">@property (nonatomic, strong) NSMutableArray *doubleMonth;</div><div class="line">@end</div><div class="line"></div><div class="line">@implementation ViewController</div><div class="line"></div><div class="line">- (void)viewDidLoad &#123;</div><div class="line">[super viewDidLoad];</div><div class="line"></div><div class="line">UIPickerView *pickerView = [[UIPickerView alloc] initWithFrame:CGRectMake(0, 100, 320, 216)];</div><div class="line">self.pickerView = pickerView;</div><div class="line">// 显示选中框</div><div class="line">pickerView.showsSelectionIndicator=YES;</div><div class="line">pickerView.dataSource = self;</div><div class="line">pickerView.delegate = self;</div><div class="line">[self.view addSubview:pickerView];</div><div class="line"></div><div class="line">[self.view addSubview:self.confirmBtn];</div><div class="line">&#125;</div><div class="line"></div><div class="line">#pragma Mark -- UIPickerViewDataSource</div><div class="line">// pickerView 列数</div><div class="line">- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView &#123;</div><div class="line">return 3;</div><div class="line">&#125;</div><div class="line"></div><div class="line">// pickerView 每列个数</div><div class="line">- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component &#123;</div><div class="line">switch (component) &#123;</div><div class="line">case 0:</div><div class="line">&#123;</div><div class="line">return self.yearArr.count;</div><div class="line">&#125;</div><div class="line">break;</div><div class="line">case 1:</div><div class="line">&#123;</div><div class="line">return self.monthArr.count;</div><div class="line">&#125;</div><div class="line">break;</div><div class="line">case 2:</div><div class="line">&#123;</div><div class="line">return self.dayArr.count;</div><div class="line">&#125;</div><div class="line">break;</div><div class="line">default:</div><div class="line">&#123;</div><div class="line">return 0;</div><div class="line">&#125;</div><div class="line">break;</div><div class="line">&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">// 每列宽度</div><div class="line">- (CGFloat)pickerView:(UIPickerView *)pickerView widthForComponent:(NSInteger)component &#123;</div><div class="line"></div><div class="line">    return 110;</div><div class="line">&#125;</div><div class="line">// 返回选中的行</div><div class="line">- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component</div><div class="line">&#123;</div><div class="line">    if (component == 1) &#123;</div><div class="line">    self.month = row;</div><div class="line">    NSString *month = [self.monthArr objectAtIndex:row];</div><div class="line">    NSString *day = [self.dayArr objectAtIndex:self.day];</div><div class="line">    [self handleUnselecteDay:day andMonth:month];</div><div class="line">    &#125; else if(component == 2)&#123;</div><div class="line">    self.day = row;</div><div class="line">    NSString *day = [self.dayArr objectAtIndex:row];</div><div class="line">    NSString *month = [self.monthArr objectAtIndex:self.month];</div><div class="line">    [self handleUnselecteDay:day andMonth:month];</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (void)handleUnselecteDay:(NSString *)day andMonth:(NSString *)month &#123;</div><div class="line"></div><div class="line">    if ([self.doubleMonth containsObject:month]) &#123;</div><div class="line">    if ([day isEqualToString:@&quot;31日&quot;]) &#123;</div><div class="line">    [self.pickerView selectRow:30 inComponent:2 animated:YES];</div><div class="line">    &#125;</div><div class="line">    &#125;else if ([month isEqualToString:@&quot;2月&quot;]) &#123;</div><div class="line">    if ([day isEqualToString:@&quot;31日&quot;] || [day isEqualToString:@&quot;30日&quot;]) &#123;</div><div class="line">    [self.pickerView selectRow:29 inComponent:2 animated:YES];</div><div class="line">    &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view &#123;</div><div class="line"></div><div class="line">    UILabel *titleLabel;</div><div class="line">    if (view) &#123;</div><div class="line">    titleLabel = (UILabel *)view;</div><div class="line">    &#125;else &#123;</div><div class="line">    titleLabel = [[UILabel alloc] init];</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    NSString *title;</div><div class="line">    switch (component) &#123;</div><div class="line">    case 0:</div><div class="line">    &#123;</div><div class="line">    title = [self.yearArr objectAtIndex:row];</div><div class="line">    &#125;</div><div class="line">    break;</div><div class="line">    case 1:</div><div class="line">    &#123;</div><div class="line">    title = [self.monthArr objectAtIndex:row];</div><div class="line">    &#125;</div><div class="line">    break;</div><div class="line">    case 2:</div><div class="line">    &#123;</div><div class="line">    title = [self.dayArr objectAtIndex:row];</div><div class="line">    &#125;</div><div class="line">    break;</div><div class="line"></div><div class="line">    default:</div><div class="line">    break;</div><div class="line">&#125;</div><div class="line"></div><div class="line">titleLabel.text = title;</div><div class="line">[titleLabel sizeToFit];</div><div class="line"></div><div class="line">titleLabel.textColor = [UIColor blueColor];</div><div class="line"></div><div class="line">return titleLabel;</div><div class="line">&#125;</div><div class="line"></div><div class="line">//返回当前行的内容,此处是将数组中数值添加到滚动的那个显示栏上</div><div class="line">-(NSString*)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component</div><div class="line">&#123;</div><div class="line">    switch (component) &#123;</div><div class="line">    case 0:</div><div class="line">    &#123;</div><div class="line">        return [self.yearArr objectAtIndex:row];</div><div class="line">    &#125;</div><div class="line">    break;</div><div class="line">    case 1:</div><div class="line">    &#123;</div><div class="line">        return [self.monthArr objectAtIndex:row];</div><div class="line">    &#125;</div><div class="line">    break;</div><div class="line">    case 2:</div><div class="line">    &#123;</div><div class="line">        return [self.dayArr objectAtIndex:row];</div><div class="line">    &#125;</div><div class="line">    break;</div><div class="line"></div><div class="line">    default:</div><div class="line">    &#123;</div><div class="line">        return nil;</div><div class="line">    &#125;</div><div class="line">    break;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (void)confirmClick &#123;</div><div class="line">    NSInteger row0 = [self.pickerView selectedRowInComponent:0];</div><div class="line">    NSInteger row1 = [self.pickerView selectedRowInComponent:1];</div><div class="line">    NSInteger row2 = [self.pickerView selectedRowInComponent:2];</div><div class="line"></div><div class="line">    NSString *year = self.yearArr[row0];</div><div class="line">    NSString *month = self.monthArr[row1];</div><div class="line">    NSString *day = self.dayArr[row2];</div><div class="line"></div><div class="line">    NSLog(@&quot;%@%@%@&quot;, year, month, day);</div><div class="line">&#125;</div><div class="line"></div><div class="line">#pragma setter and getter</div><div class="line">- (NSMutableArray *)yearArr &#123;</div><div class="line">    if (!_yearArr) &#123;</div><div class="line">        _yearArr = [NSMutableArray array];</div><div class="line">        for (int i = 1990; i &lt; 2017; i++) &#123;</div><div class="line">            [_yearArr addObject:[NSString stringWithFormat:@&quot;%d年&quot;, i]];</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">return _yearArr;</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (NSMutableArray *)monthArr &#123;</div><div class="line">    if (!_monthArr) &#123;</div><div class="line">        _monthArr = [NSMutableArray array];</div><div class="line">        for (int i  = 1; i &lt; 13; i++) &#123;</div><div class="line">        [_monthArr addObject:[NSString stringWithFormat:@&quot;%d月&quot;, i]];</div><div class="line">    &#125;</div><div class="line">    &#125;</div><div class="line">    return _monthArr;</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (NSMutableArray *)dayArr &#123;</div><div class="line">    if (!_dayArr) &#123;</div><div class="line">        _dayArr = [NSMutableArray array];</div><div class="line">        for (int i = 0; i &lt; 32; i++) &#123;</div><div class="line">        [_dayArr addObject:[NSString stringWithFormat:@&quot;%d日&quot;, i]];</div><div class="line">    &#125;</div><div class="line">    &#125;</div><div class="line">    return _dayArr;</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (UIButton *)confirmBtn &#123;</div><div class="line">if (!_confirmBtn) &#123;</div><div class="line">    _confirmBtn = [UIButton buttonWithType:UIButtonTypeCustom];</div><div class="line">        [_confirmBtn setTitle:@&quot;确定&quot; forState:UIControlStateNormal];</div><div class="line">        [_confirmBtn sizeToFit];</div><div class="line">        [_confirmBtn setTitleColor:[UIColor redColor] forState:UIControlStateNormal];</div><div class="line">        [_confirmBtn addTarget:self action:@selector(confirmClick) forControlEvents:UIControlEventTouchUpInside];</div><div class="line">    &#125;</div><div class="line">    return _confirmBtn;</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (NSMutableArray *)singleMonth &#123;//31天</div><div class="line">if (!_singleMonth) &#123;</div><div class="line">        _singleMonth = [NSMutableArray array];</div><div class="line">        [_singleMonth addObjectsFromArray:@[@&quot;1月&quot;,@&quot;3月&quot;,@&quot;5月&quot;,@&quot;7月&quot;,@&quot;8月&quot;,@&quot;10月&quot;,@&quot;12月&quot;]];</div><div class="line">   &#125;</div><div class="line">   return _singleMonth;</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (NSMutableArray *)doubleMonth &#123;</div><div class="line">if (!_doubleMonth) &#123;</div><div class="line">    _doubleMonth = [NSMutableArray array];</div><div class="line">    [_doubleMonth addObjectsFromArray:@[@&quot;4月&quot;,@&quot;6月&quot;,@&quot;9月&quot;,@&quot;11月&quot;]];</div><div class="line">  &#125;</div><div class="line">  return _doubleMonth;</div><div class="line">&#125;</div><div class="line">@end</div></pre></td></tr></table></figure>
 ]]></content>
+      
+        
+        <tags>
+            
+            <tag> IOS </tag>
+            
+        </tags>
+        
     </entry>
     
     <entry>
@@ -3394,6 +3973,20 @@
 </li>
 </ul>
 ]]></content>
+      
+        <categories>
+            
+            <category> iOS </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> iOS基础知识 </tag>
+            
+        </tags>
+        
     </entry>
     
     <entry>
@@ -3411,6 +4004,20 @@
 </blockquote>
 <h3 id="8-扩大按钮点击范围"><a href="#8-扩大按钮点击范围" class="headerlink" title="8.扩大按钮点击范围"></a>8.扩大按钮点击范围</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div></pre></td><td class="code"><pre><div class="line">import &lt;UIKit/UIKit.h&gt;</div><div class="line"></div><div class="line">@interface UIButton (EnlargeTouchArea)</div><div class="line"></div><div class="line">- (void)setEnlargeEdgeWithTop:(CGFloat) top right:(CGFloat) right bottom:(CGFloat) bottom left:(CGFloat) left;</div><div class="line"></div><div class="line">@end</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line">#import &quot;UIButton+EnlargeTouchArea.h&quot;</div><div class="line">#import &lt;objc/runtime.h&gt;</div><div class="line">@implementation UIButton (EnlargeTouchArea)</div><div class="line"></div><div class="line"></div><div class="line">static char topNameKey;</div><div class="line">static char rightNameKey;</div><div class="line">static char bottomNameKey;</div><div class="line">static char leftNameKey;</div><div class="line"></div><div class="line">- (void) setEnlargeEdgeWithTop:(CGFloat) top right:(CGFloat) right bottom:(CGFloat) bottom left:(CGFloat) left</div><div class="line">&#123;</div><div class="line">    objc_setAssociatedObject(self, &amp;topNameKey, [NSNumber numberWithFloat:top], OBJC_ASSOCIATION_COPY_NONATOMIC);</div><div class="line">    objc_setAssociatedObject(self, &amp;rightNameKey, [NSNumber numberWithFloat:right], OBJC_ASSOCIATION_COPY_NONATOMIC);</div><div class="line">    objc_setAssociatedObject(self, &amp;bottomNameKey, [NSNumber numberWithFloat:bottom], OBJC_ASSOCIATION_COPY_NONATOMIC);</div><div class="line">    objc_setAssociatedObject(self, &amp;leftNameKey, [NSNumber numberWithFloat:left], OBJC_ASSOCIATION_COPY_NONATOMIC);</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (CGRect) enlargedRect</div><div class="line">&#123;</div><div class="line">    NSNumber* topEdge = objc_getAssociatedObject(self, &amp;topNameKey);</div><div class="line">    NSNumber* rightEdge = objc_getAssociatedObject(self, &amp;rightNameKey);</div><div class="line">    NSNumber* bottomEdge = objc_getAssociatedObject(self, &amp;bottomNameKey);</div><div class="line">    NSNumber* leftEdge = objc_getAssociatedObject(self, &amp;leftNameKey);</div><div class="line">    if (topEdge &amp;&amp; rightEdge &amp;&amp; bottomEdge &amp;&amp; leftEdge)</div><div class="line">    &#123;</div><div class="line">        return CGRectMake(self.bounds.origin.x - leftEdge.floatValue,</div><div class="line">                          self.bounds.origin.y - topEdge.floatValue,</div><div class="line">                          self.bounds.size.width + leftEdge.floatValue + rightEdge.floatValue,</div><div class="line">                          self.bounds.size.height + topEdge.floatValue + bottomEdge.floatValue);</div><div class="line">    &#125;</div><div class="line">    else</div><div class="line">    &#123;</div><div class="line">        return self.bounds;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (UIView*) hitTest:(CGPoint) point withEvent:(UIEvent*) event</div><div class="line">&#123;</div><div class="line">    CGRect rect = [self enlargedRect];</div><div class="line">    if (CGRectEqualToRect(rect, self.bounds))</div><div class="line">    &#123;</div><div class="line">        return [super hitTest:point withEvent:event];</div><div class="line">    &#125;</div><div class="line">    return CGRectContainsPoint(rect, point) ? self : nil;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 ]]></content>
+      
+        <categories>
+            
+            <category> iOS </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> iOS基础知识 </tag>
+            
+        </tags>
+        
     </entry>
     
     <entry>
@@ -3443,6 +4050,20 @@
 </ul>
 <h4 id="手动触发KVO"><a href="#手动触发KVO" class="headerlink" title="手动触发KVO"></a>手动触发KVO</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">- (void)viewDidLoad</div><div class="line">&#123;</div><div class="line">    [super viewDidLoad];</div><div class="line"></div><div class="line">    // “手动触发self.now的KVO”，必写。</div><div class="line">    [self willChangeValueForKey:@&quot;now&quot;];</div><div class="line"></div><div class="line">    // “手动触发self.now的KVO”，必写。</div><div class="line">    [self didChangeValueForKey:@&quot;now&quot;];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 ]]></content>
+      
+        <categories>
+            
+            <category> iOS </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> iOS基础知识 </tag>
+            
+        </tags>
+        
     </entry>
     
     <entry>
@@ -3453,6 +4074,14 @@
 <p>上边的代码基本上做到了，设置好文字的宽度和高度，然后给一段文字可以自动的折行，自动的点点点，这样还有一个问题就是，如果文字只有一行，那么高度可能会有不准，所以在末尾可以进行一下修正<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">self.desLabel.textAlignment = NSTextAlignmentCenter;</div><div class="line"></div><div class="line">[self.desLabel sizeToFit];</div><div class="line"></div><div class="line">if (self.desLabel.height_jr &gt; 30) &#123;</div><div class="line">    self.desLabel.height_jr = 30;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>sizeToFit方法基本上是会不改变文字的宽度，然后会让折行消失，然后再到下边设置一下这个高度，高度也是比较容易找到的，只要打印一下想要的行数就可以得到。</p>
 ]]></content>
+      
+        
+        <tags>
+            
+            <tag> iOS </tag>
+            
+        </tags>
+        
     </entry>
     
     <entry>
@@ -3461,12 +4090,22 @@
       <content type="html"><![CDATA[<h3 id="UIImage占用内存大小"><a href="#UIImage占用内存大小" class="headerlink" title="UIImage占用内存大小"></a>UIImage占用内存大小</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">UIImage *image = [UIImage imageNamed:@&quot;aa&quot;];</div><div class="line">NSUInteger size  = CGImageGetHeight(image.CGImage) * CGImageGetBytesPerRow(image.CGImage);</div></pre></td></tr></table></figure>
 <h3 id="获取图片某一点的颜色"><a href="#获取图片某一点的颜色" class="headerlink" title="获取图片某一点的颜色"></a>获取图片某一点的颜色</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">- (UIColor*) getPixelColorAtLocation:(CGPoint)point inImage:(UIImage *)image</div><div class="line">&#123;</div><div class="line">UIColor* color = nil;</div><div class="line">CGImageRef inImage = image.CGImage;</div><div class="line">CGContextRef cgctx = [self createARGBBitmapContextFromImage:inImage];</div><div class="line">if (cgctx == NULL) &#123;</div><div class="line">return nil; /* error */</div><div class="line">&#125;</div><div class="line">size_t w = CGImageGetWidth(inImage);</div><div class="line">size_t h = CGImageGetHeight(inImage);</div><div class="line">CGRect rect = &#123;&#123;0,0&#125;,&#123;w,h&#125;&#125;;</div><div class="line">CGContextDrawImage(cgctx, rect, inImage);</div><div class="line">unsigned char* data = CGBitmapContextGetData (cgctx);</div><div class="line">if (data != NULL) &#123;</div><div class="line">int offset = 4*((w*round(point.y))+round(point.x));</div><div class="line">int alpha =  data[offset];</div><div class="line">int red = data[offset+1];</div><div class="line">int green = data[offset+2];</div><div class="line">int blue = data[offset+3];</div><div class="line">color = [UIColor colorWithRed:(red/255.0f) green:(green/255.0f) blue:</div><div class="line">(blue/255.0f) alpha:(alpha/255.0f)];</div><div class="line">&#125;</div><div class="line">CGContextRelease(cgctx);</div><div class="line">if (data) &#123;</div><div class="line">free(data);</div><div class="line">&#125;</div><div class="line">return color;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 ]]></content>
+      
+        
+        <tags>
+            
+            <tag> iOS </tag>
+            
+        </tags>
+        
     </entry>
     
     <entry>
       <title><![CDATA[事件与响应者链]]></title>
       <url>/2014/07/21/2014/%E4%BA%8B%E4%BB%B6%E4%B8%8E%E5%93%8D%E5%BA%94%E8%80%85%E9%93%BE/</url>
       <content type="html"></content>
+      
+        
     </entry>
     
     <entry>
@@ -3479,6 +4118,20 @@
 <p>术语TCP/IP代表传输控制协议/网际协议，指的是一系列协议。“IP”代表网际协议，TCP和UDP使用该协议从一个网络传送数据包到另一个网络。把IP想像成一种高速公路，它允许其它协议在上面行驶并找到到其它电脑的出口。TCP和UDP是高速公路上的“卡车”，它们携带的货物就是像HTTP，文件传输协议FTP这样的协议等。</p>
 <p><img src="http://7xrn7f.com1.z0.glb.clouddn.com/16-7-18/10977221.jpg" alt=""></p>
 ]]></content>
+      
+        <categories>
+            
+            <category> 基础 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> 计算机基础 </tag>
+            
+        </tags>
+        
     </entry>
     
   
