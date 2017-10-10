@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="xcode,git," />
 
 
 
@@ -84,16 +84,18 @@
 
 
 
-<meta name="description" content="iOS开发者，python/js爱好者，现在就职业京东金融">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Hanson的博客">
-<meta property="og:url" content="/tags/命令行/index.html">
+<meta name="description" content="现在有这么一个需求，如何做到如果不安装我们的开发环境，就无法查看iOS工程。首先我们如果对所有的代码进行加密这肯定是一个浩大的工程，所以我们选择是对project加密， 123456789101112131415161718192021222324252627282930313233343536373839404142434445/usr/bin/env python#coding:utf-8fr">
+<meta name="keywords" content="xcode,git">
+<meta property="og:type" content="article">
+<meta property="og:title" content="xcode工程加密思路">
+<meta property="og:url" content="/2017/10/10/xcode工程加密思路/index.html">
 <meta property="og:site_name" content="Hanson的博客">
-<meta property="og:description" content="iOS开发者，python/js爱好者，现在就职业京东金融">
+<meta property="og:description" content="现在有这么一个需求，如何做到如果不安装我们的开发环境，就无法查看iOS工程。首先我们如果对所有的代码进行加密这肯定是一个浩大的工程，所以我们选择是对project加密， 123456789101112131415161718192021222324252627282930313233343536373839404142434445/usr/bin/env python#coding:utf-8fr">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-10-10T11:56:04.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hanson的博客">
-<meta name="twitter:description" content="iOS开发者，python/js爱好者，现在就职业京东金融">
+<meta name="twitter:title" content="xcode工程加密思路">
+<meta name="twitter:description" content="现在有这么一个需求，如何做到如果不安装我们的开发环境，就无法查看iOS工程。首先我们如果对所有的代码进行加密这肯定是一个浩大的工程，所以我们选择是对project加密， 123456789101112131415161718192021222324252627282930313233343536373839404142434445/usr/bin/env python#coding:utf-8fr">
 
 
 
@@ -114,10 +116,10 @@
 
 
 
-  <link rel="canonical" href="/tags/命令行/"/>
+  <link rel="canonical" href="/2017/10/10/xcode工程加密思路/"/>
 
 
-  <title> 标签: 命令行 | Hanson的博客 </title>
+  <title> xcode工程加密思路 | Hanson的博客 </title>
 </head>
 
 <body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
@@ -138,7 +140,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left  ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
@@ -239,46 +241,134 @@
           <div id="content" class="content">
             
 
-  <div id="posts" class="posts-collapse">
-    <div class="collection-title">
-      <h2 >
-        命令行
-        <small>标签</small>
-      </h2>
-    </div>
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
 
     
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                xcode工程加密思路
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-10-10T19:45:46+08:00" content="2017-10-10">
+              2017-10-10
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+              &nbsp; | &nbsp;
+              <span class="page-pv"><i class="fa fa-file-o"></i>
+              <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+              </span>
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
       
 
-  <article class="post post-type-normal" itemscope itemtype="//schema.org/Article">
-    <header class="post-header">
+      
+        <p>现在有这么一个需求，如何做到如果不安装我们的开发环境，就无法查看iOS工程。<br>首先我们如果对所有的代码进行加密这肯定是一个浩大的工程，所以我们选择是对project加密，</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div></pre></td><td class="code"><pre><div class="line">/usr/bin/env python</div><div class="line">#coding:utf-8</div><div class="line"></div><div class="line">from Crypto.Cipher import AES  </div><div class="line">from binascii import b2a_hex,a2b_hex  </div><div class="line">  </div><div class="line">class prpcrypt():   #定义一个类  </div><div class="line">    def __init__(self,key):  </div><div class="line">        self.key=key  </div><div class="line">        self.mode=AES.MODE_CBC  </div><div class="line">    def encrypt(self,text):  </div><div class="line">        cryptor=AES.new(self.key,self.mode,self.key)  </div><div class="line">        x = len(text) % 16  </div><div class="line">        if x != 0:  </div><div class="line">            text = text + &apos;0&apos; * (16 - x)     #不满16，32，64位补0  </div><div class="line">        self.ciphertext=cryptor.encrypt(text)  </div><div class="line">        return b2a_hex(self.ciphertext)  </div><div class="line">    def decrypt(self,text):  </div><div class="line">        cryptor=AES.new(self.key,self.mode,self.key)  </div><div class="line">        plain_text=cryptor.decrypt(a2b_hex(text))  </div><div class="line">        return plain_text.rstrip(&apos;\0&apos;)  </div><div class="line">  </div><div class="line">pc=prpcrypt(&apos;tecentbluewhaleA&apos;) #自己设定的密钥</div><div class="line"></div><div class="line">f = open(&apos;project.pbxproj&apos;,&apos;r&apos;)</div><div class="line">text = f.read()</div><div class="line">liens = text.split(&apos;\n&apos;)</div><div class="line"></div><div class="line">if len(liens) &gt; 10:</div><div class="line">    item = liens[10]</div><div class="line">    print item</div><div class="line">    # item = pc.decrypt(item)</div><div class="line">    item = pc.encrypt(item)</div><div class="line">    item = item.replace(&apos;000000000000000&apos;,&apos;&apos;)</div><div class="line">    print item</div><div class="line">    liens[10] = item</div><div class="line"></div><div class="line">for i in range(0,len(liens) - 1):</div><div class="line">    liens[i] = liens[i] + &apos;\n&apos;</div><div class="line"></div><div class="line">strings = &apos;&apos;.join(liens)</div><div class="line"></div><div class="line">f = open(&apos;project.pbxproj&apos;,&apos;w&apos;)</div><div class="line">f.writelines(strings)</div><div class="line">f.close()</div></pre></td></tr></table></figure>
+<p>这里我们使用到了pycrypto库，安装的时候需要先卸载<br><code>sudo pip uninstall crypto</code><br><code>sudo pip uninstall pycrypto</code></p>
+<p>然后<br><code>sudo pip install pycrypto</code>这样就安装好了需要的库</p>
+<p>关于我们加密那哪些东西，其实主要是project文件里边的解析文件，将一些关键是被符号进行加密，其实如果查看git操作记录是可以发现该如何还原的，这个时候就需要靠多行替换来增大替换的工作量来人为设置门槛</p>
+<p>另外需要配合改装的git，在commit的时候进行加密然后commit，在pull的时候也是解密然后commit一下，这样我们就做到了，在远端库里边是不能被直接有序查看的代码，在本地需要配合我们的git才能被顺畅的使用</p>
 
-      <h1 class="post-title">
+      
+    </div>
+
+    <div>
+      
         
-            <a class="post-title-link" href="/2017/09/22/find命令/" itemprop="url">
-              
-                <span itemprop="name">find与grep命令</span>
-              
-            </a>
+
+      
+    </div>
+
+    <div>
+      
         
-      </h1>
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-09-22T09:37:29+08:00"
-              content="2017-09-22" >
-          09-22
-        </time>
-      </div>
+      
+    </div>
 
-    </header>
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/xcode/" rel="tag">#xcode</a>
+          
+            <a href="/tags/git/" rel="tag">#git</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/10/10/xcode多版本自动化打包记录/" rel="next" title="xcode多版本自动化打包设置">
+                <i class="fa fa-chevron-left"></i> xcode多版本自动化打包设置
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </article>
 
 
-    
-  </div>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -286,6 +376,10 @@
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -305,8 +399,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.gif"
@@ -356,6 +459,17 @@
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+        </section>
       
 
     </div>
@@ -475,6 +589,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
 
   
 
