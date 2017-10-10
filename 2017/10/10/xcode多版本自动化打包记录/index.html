@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="IOS," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -84,18 +84,17 @@
 
 
 
-<meta name="description" content="1.dealloc方法是不能被覆盖的的，我们在子类中写的dealloc会被调用，同时父类的dealloc也会被调用，无需在子类中写上[super dealloc]  获取实际的启动图1234567891011121314151617- (NSString *)getLaunchImageName&amp;#123;CGSize viewSize = self.window.bounds.size;//">
-<meta name="keywords" content="IOS">
+<meta name="description" content="如果你升级了xcode但是这个时候你又想降级回去，你发现appstore已经不要指望了，我们需要下载一个你需要版本的xcode。下载各个Xcode版本的地址https://developer.apple.com/download/more然后放置到我们的程序目录下，改个名字比如说叫Xcode2但是现在问题又来了，加入你是个打包服务器，你使用的是xcodebuild来打包的，这个时候两个版本的xco">
 <meta property="og:type" content="article">
-<meta property="og:title" content="iOS知识小集合">
-<meta property="og:url" content="/2016/11/15/2016/iOS知识小集/index.html">
+<meta property="og:title" content="xcode多版本自动化打包记录">
+<meta property="og:url" content="/2017/10/10/xcode多版本自动化打包记录/index.html">
 <meta property="og:site_name" content="Hanson的博客">
-<meta property="og:description" content="1.dealloc方法是不能被覆盖的的，我们在子类中写的dealloc会被调用，同时父类的dealloc也会被调用，无需在子类中写上[super dealloc]  获取实际的启动图1234567891011121314151617- (NSString *)getLaunchImageName&amp;#123;CGSize viewSize = self.window.bounds.size;//">
+<meta property="og:description" content="如果你升级了xcode但是这个时候你又想降级回去，你发现appstore已经不要指望了，我们需要下载一个你需要版本的xcode。下载各个Xcode版本的地址https://developer.apple.com/download/more然后放置到我们的程序目录下，改个名字比如说叫Xcode2但是现在问题又来了，加入你是个打包服务器，你使用的是xcodebuild来打包的，这个时候两个版本的xco">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2016-11-20T07:08:39.000Z">
+<meta property="og:updated_time" content="2017-10-10T06:34:19.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="iOS知识小集合">
-<meta name="twitter:description" content="1.dealloc方法是不能被覆盖的的，我们在子类中写的dealloc会被调用，同时父类的dealloc也会被调用，无需在子类中写上[super dealloc]  获取实际的启动图1234567891011121314151617- (NSString *)getLaunchImageName&amp;#123;CGSize viewSize = self.window.bounds.size;//">
+<meta name="twitter:title" content="xcode多版本自动化打包记录">
+<meta name="twitter:description" content="如果你升级了xcode但是这个时候你又想降级回去，你发现appstore已经不要指望了，我们需要下载一个你需要版本的xcode。下载各个Xcode版本的地址https://developer.apple.com/download/more然后放置到我们的程序目录下，改个名字比如说叫Xcode2但是现在问题又来了，加入你是个打包服务器，你使用的是xcodebuild来打包的，这个时候两个版本的xco">
 
 
 
@@ -116,10 +115,10 @@
 
 
 
-  <link rel="canonical" href="/2016/11/15/2016/iOS知识小集/"/>
+  <link rel="canonical" href="/2017/10/10/xcode多版本自动化打包记录/"/>
 
 
-  <title> iOS知识小集合 | Hanson的博客 </title>
+  <title> xcode多版本自动化打包记录 | Hanson的博客 </title>
 </head>
 
 <body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
@@ -262,7 +261,7 @@
             
             
               
-                iOS知识小集合
+                xcode多版本自动化打包记录
               
             
           </h1>
@@ -274,8 +273,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-11-15T14:34:32+08:00" content="2016-11-15">
-              2016-11-15
+            <time itemprop="dateCreated" datetime="2017-10-10T12:29:12+08:00" content="2017-10-10">
+              2017-10-10
             </time>
           </span>
 
@@ -307,13 +306,13 @@
       
 
       
-        <ul>
-<li>1.dealloc方法是不能被覆盖的的，我们在子类中写的dealloc会被调用，同时父类的dealloc也会被调用，无需在子类中写上[super dealloc]</li>
+        <p>如果你升级了xcode但是这个时候你又想降级回去，你发现appstore已经不要指望了，我们需要下载一个你需要版本的xcode。<br>下载各个Xcode版本的地址<code>https://developer.apple.com/download/more</code><br>然后放置到我们的程序目录下，改个名字比如说叫Xcode2<br>但是现在问题又来了，加入你是个打包服务器，你使用的是xcodebuild来打包的，这个时候两个版本的xcode同时存在，它如何选择sdk进行打包呢？</p>
+<ul>
+<li>首先查看sdk版本     <code>xcodebuild -showsdks</code></li>
+<li>然后切换默认的xcode <code>sudo xcode-select -switch /Applications/Xcode2.app</code></li>
+<li>然后在执行<code>xcodebuild -showsdks</code></li>
 </ul>
-<h3 id="获取实际的启动图"><a href="#获取实际的启动图" class="headerlink" title="获取实际的启动图"></a>获取实际的启动图</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">- (NSString *)getLaunchImageName</div><div class="line">&#123;</div><div class="line">CGSize viewSize = self.window.bounds.size;</div><div class="line">// 竖屏</div><div class="line">NSString *viewOrientation = @&quot;Portrait&quot;;</div><div class="line">NSString *launchImageName = nil;</div><div class="line">NSArray* imagesDict = [[[NSBundle mainBundle] infoDictionary] valueForKey:@&quot;UILaunchImages&quot;];</div><div class="line">for (NSDictionary* dict in imagesDict)</div><div class="line">&#123;</div><div class="line">CGSize imageSize = CGSizeFromString(dict[@&quot;UILaunchImageSize&quot;]);</div><div class="line">if (CGSizeEqualToSize(imageSize, viewSize) &amp;&amp; [viewOrientation isEqualToString:dict[@&quot;UILaunchImageOrientation&quot;]])</div><div class="line">&#123;</div><div class="line">launchImageName = dict[@&quot;UILaunchImageName&quot;];</div><div class="line">&#125;</div><div class="line">&#125;</div><div class="line">return launchImageName;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="手动更改状态栏颜色"><a href="#手动更改状态栏颜色" class="headerlink" title="手动更改状态栏颜色"></a>手动更改状态栏颜色</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">- (void)setStatusBarBackgroundColor:(UIColor *)color</div><div class="line">&#123;</div><div class="line">UIView *statusBar = [[[UIApplication sharedApplication] valueForKey:@&quot;statusBarWindow&quot;] valueForKey:@&quot;statusBar&quot;];</div><div class="line">if ([statusBar respondsToSelector:@selector(setBackgroundColor:)])</div><div class="line">&#123;</div><div class="line">statusBar.backgroundColor = color;</div><div class="line">&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="禁止锁屏"><a href="#禁止锁屏" class="headerlink" title="禁止锁屏"></a>禁止锁屏</h3><p>默认情况下，当设备一段时间没有触控动作时，iOS会锁住屏幕。但有一些应用是不需要锁屏的，比如视频播放器。</p>
-<p>[UIApplication sharedApplication].idleTimerDisabled = YES;<br>或<br>[[UIApplication sharedApplication] setIdleTimerDisabled:YES];</p>
+<p>你会发现sdk已经变了，这个时候你使用xcodebuild来打包可以选择你需要的这个版本的sdk了</p>
 
       
     </div>
@@ -334,28 +333,18 @@
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/IOS/" rel="tag">#IOS</a>
-          
-        </div>
-      
 
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/11/09/2016/Django部署-apache-mod-wsgi/" rel="next" title="Django部署+apache+mod_wsgi">
-                <i class="fa fa-chevron-left"></i> Django部署+apache+mod_wsgi
+              <a href="/2017/10/09/Mach-O文件解析/" rel="next" title="Mac中的二进制文件">
+                <i class="fa fa-chevron-left"></i> Mac中的二进制文件
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/11/15/2014/UIKit系列-UICollectionView/" rel="prev" title="UIKit系列-UICollectionView">
-                UIKit系列-UICollectionView <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -469,7 +458,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#获取实际的启动图"><span class="nav-number">1.</span> <span class="nav-text">获取实际的启动图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#手动更改状态栏颜色"><span class="nav-number">2.</span> <span class="nav-text">手动更改状态栏颜色</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#禁止锁屏"><span class="nav-number">3.</span> <span class="nav-text">禁止锁屏</span></a></li></ol></div>
+              <p class="post-toc-empty">此文章未包含目录</p>
             
           </div>
         </section>

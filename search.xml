@@ -4,6 +4,21 @@
   
     
     <entry>
+      <title><![CDATA[xcode多版本自动化打包记录]]></title>
+      <url>/2017/10/10/xcode%E5%A4%9A%E7%89%88%E6%9C%AC%E8%87%AA%E5%8A%A8%E5%8C%96%E6%89%93%E5%8C%85%E8%AE%B0%E5%BD%95/</url>
+      <content type="html"><![CDATA[<p>如果你升级了xcode但是这个时候你又想降级回去，你发现appstore已经不要指望了，我们需要下载一个你需要版本的xcode。<br>下载各个Xcode版本的地址<code>https://developer.apple.com/download/more</code><br>然后放置到我们的程序目录下，改个名字比如说叫Xcode2<br>但是现在问题又来了，加入你是个打包服务器，你使用的是xcodebuild来打包的，这个时候两个版本的xcode同时存在，它如何选择sdk进行打包呢？</p>
+<ul>
+<li>首先查看sdk版本     <code>xcodebuild -showsdks</code></li>
+<li>然后切换默认的xcode <code>sudo xcode-select -switch /Applications/Xcode2.app</code></li>
+<li>然后在执行<code>xcodebuild -showsdks</code></li>
+</ul>
+<p>你会发现sdk已经变了，这个时候你使用xcodebuild来打包可以选择你需要的这个版本的sdk了</p>
+]]></content>
+      
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[Mac中的二进制文件]]></title>
       <url>/2017/10/09/Mach-O%E6%96%87%E4%BB%B6%E8%A7%A3%E6%9E%90/</url>
       <content type="html"><![CDATA[<p>在Unix系统中，任何文件都可以通过chmod+x命令来标记为可执行文件，但是这并不能保证这个文件是能够被执行的，这个标志只是告诉系统这个文件可以读入内容，然后寻找一个头签名，据此可以确定精确的可执行文件格式，这个文件签名通常称为”magic”。<br>例如:</p>
