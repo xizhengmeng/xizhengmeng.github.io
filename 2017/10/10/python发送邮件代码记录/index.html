@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="iOS," />
+  <meta name="keywords" content="python," />
 
 
 
@@ -84,18 +84,18 @@
 
 
 
-<meta name="description" content="iOS中的新变化在iOS10中，重用的加载机制发生了变化，会提前加在一个cell，这就意味着，cellforrow会被提前一个调用，这个可以通过属性直接关闭，这里要注意">
-<meta name="keywords" content="iOS">
+<meta name="description" content="1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950#!/usr/bin/env python#coding:utf-8from email import encodersfrom email.header import Headerfrom email.mime.te">
+<meta name="keywords" content="python">
 <meta property="og:type" content="article">
-<meta property="og:title" content="UIKit系列-UICollectionView">
-<meta property="og:url" content="/2016/11/15/2014/UIKit系列-UICollectionView/index.html">
+<meta property="og:title" content="python发送邮件代码记录">
+<meta property="og:url" content="/2017/10/10/python发送邮件代码记录/index.html">
 <meta property="og:site_name" content="Hanson的博客">
-<meta property="og:description" content="iOS中的新变化在iOS10中，重用的加载机制发生了变化，会提前加在一个cell，这就意味着，cellforrow会被提前一个调用，这个可以通过属性直接关闭，这里要注意">
+<meta property="og:description" content="1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950#!/usr/bin/env python#coding:utf-8from email import encodersfrom email.header import Headerfrom email.mime.te">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2016-11-16T02:39:09.000Z">
+<meta property="og:updated_time" content="2017-10-10T12:39:17.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="UIKit系列-UICollectionView">
-<meta name="twitter:description" content="iOS中的新变化在iOS10中，重用的加载机制发生了变化，会提前加在一个cell，这就意味着，cellforrow会被提前一个调用，这个可以通过属性直接关闭，这里要注意">
+<meta name="twitter:title" content="python发送邮件代码记录">
+<meta name="twitter:description" content="1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950#!/usr/bin/env python#coding:utf-8from email import encodersfrom email.header import Headerfrom email.mime.te">
 
 
 
@@ -116,10 +116,10 @@
 
 
 
-  <link rel="canonical" href="/2016/11/15/2014/UIKit系列-UICollectionView/"/>
+  <link rel="canonical" href="/2017/10/10/python发送邮件代码记录/"/>
 
 
-  <title> UIKit系列-UICollectionView | Hanson的博客 </title>
+  <title> python发送邮件代码记录 | Hanson的博客 </title>
 </head>
 
 <body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
@@ -262,7 +262,7 @@
             
             
               
-                UIKit系列-UICollectionView
+                python发送邮件代码记录
               
             
           </h1>
@@ -274,8 +274,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-11-15T14:36:57+08:00" content="2016-11-15">
-              2016-11-15
+            <time itemprop="dateCreated" datetime="2017-10-10T20:38:05+08:00" content="2017-10-10">
+              2017-10-10
             </time>
           </span>
 
@@ -307,8 +307,7 @@
       
 
       
-        <h3 id="iOS中的新变化"><a href="#iOS中的新变化" class="headerlink" title="iOS中的新变化"></a>iOS中的新变化</h3><p>在iOS10中，重用的加载机制发生了变化，会提前加在一个cell，这就意味着，cellforrow会被提前一个调用，这个可以通过属性直接关闭，这里要注意</p>
-
+        <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div></pre></td><td class="code"><pre><div class="line">#!/usr/bin/env python</div><div class="line">#coding:utf-8</div><div class="line"></div><div class="line">from email import encoders</div><div class="line">from email.header import Header</div><div class="line">from email.mime.text import MIMEText</div><div class="line">from email.mime.multipart import MIMEMultipart</div><div class="line">from email.mime.application import MIMEApplication</div><div class="line">from email.utils import parseaddr, formataddr</div><div class="line">import smtplib,os</div><div class="line"></div><div class="line">def _format_addr(s):</div><div class="line">    name, addr = parseaddr(s)</div><div class="line">    return formataddr(( \</div><div class="line">        Header(name, &apos;utf-8&apos;).encode(), \</div><div class="line">        addr.encode(&apos;utf-8&apos;) if isinstance(addr, unicode) else addr))</div><div class="line"></div><div class="line">def sendMail():</div><div class="line">    username = &apos;hanshenghui&apos;</div><div class="line">    password = &apos;11111111111&apos;</div><div class="line"></div><div class="line">    from_addr = &apos;hanshenghui@jd.com&apos;</div><div class="line">    to_addr = &apos;hanshenghui@jd.com&apos;</div><div class="line">    # to_addrList = [&apos;hanshenghui@jd.com&apos;,&apos;gaixutian@jd.com&apos;,&apos;wangzhenyang1@jd.com&apos;]</div><div class="line">    to_addrList = [&apos;hanshenghui@jd.com&apos;,&apos;wangxiugang@jd.com&apos;,&apos;dingchao1@jd.com&apos;]</div><div class="line">    smtp_server = &apos;smtp.jd.local&apos;</div><div class="line"></div><div class="line">    msg = MIMEMultipart()</div><div class="line">    part = MIMEText(&quot;这是一封测试邮件\n\n现在主要有以下几个待确定点:\n1.我们可以通过对数据进行提取，做一些分析和简介作为邮件的正文，或者是一些其他什么内容\n2.现在邮箱我添加了名字为JDJRMobile，实际上是我自己的邮箱，用哪个邮箱来发送比较合适\n3.检测哪个分支\n4.检测频率\n\n&quot;)</div><div class="line">    msg.attach(part)</div><div class="line">    </div><div class="line">    basePath = os.environ[&apos;HOME&apos;]</div><div class="line">    reportPath = basePath + &apos;/Documents/Build/JDJRAPPAndroid/infer-out/report.csv&apos;</div><div class="line">    if os.path.exists(reportPath):    </div><div class="line">       part1 = MIMEApplication(open(reportPath,&apos;rb&apos;).read())</div><div class="line">       part1.add_header(&apos;Content-Disposition&apos;, &apos;attachment&apos;, filename=&quot;report.csv&quot;)</div><div class="line">       msg.attach(part1)</div><div class="line"></div><div class="line">    # part2 = MIMEApplication(open(&apos;cesh.png&apos;,&apos;rb&apos;).read())</div><div class="line">    # part2.add_header(&apos;Content-Disposition&apos;, &apos;attachment&apos;, filename=&quot;cesh.png&quot;)</div><div class="line">    # msg.attach(part2)</div><div class="line"></div><div class="line">    msg[&apos;From&apos;] = _format_addr(u&apos;JDJRMobile &lt;%s&gt;&apos; % from_addr)</div><div class="line">    msg[&apos;To&apos;] = _format_addr(&apos;JDJR&apos;)</div><div class="line">    msg[&apos;Subject&apos;] = Header(u&apos;JDJR安卓源码检测报告&apos;, &apos;utf-8&apos;).encode()</div><div class="line"></div><div class="line">    server = smtplib.SMTP(smtp_server,25)</div><div class="line">    server.set_debuglevel(1)</div><div class="line">    server.sendmail(from_addr, to_addrList, msg.as_string())</div><div class="line">    server.quit()</div></pre></td></tr></table></figure>
       
     </div>
 
@@ -330,7 +329,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/iOS/" rel="tag">#iOS</a>
+            <a href="/tags/python/" rel="tag">#python</a>
           
         </div>
       
@@ -339,16 +338,16 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/11/15/2016/iOS知识小集/" rel="next" title="iOS知识小集合">
-                <i class="fa fa-chevron-left"></i> iOS知识小集合
+              <a href="/2017/10/10/xcode工程加密思路/" rel="next" title="xcode工程加密思路">
+                <i class="fa fa-chevron-left"></i> xcode工程加密思路
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/11/15/2014/Foundation系列-NSString/" rel="prev" title="NSString && NSData">
-                NSString && NSData <i class="fa fa-chevron-right"></i>
+              <a href="/2017/10/11/python学习环境搭建-jupyter-notebook/" rel="prev" title="python学习环境搭建-jupyter notebook">
+                python学习环境搭建-jupyter notebook <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -463,7 +462,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#iOS中的新变化"><span class="nav-number">1.</span> <span class="nav-text">iOS中的新变化</span></a></li></ol></div>
+              <p class="post-toc-empty">此文章未包含目录</p>
             
           </div>
         </section>

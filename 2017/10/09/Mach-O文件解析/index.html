@@ -92,7 +92,7 @@
 <meta property="og:site_name" content="Hanson的博客">
 <meta property="og:description" content="在Unix系统中，任何文件都可以通过chmod+x命令来标记为可执行文件，但是这并不能保证这个文件是能够被执行的，这个标志只是告诉系统这个文件可以读入内容，然后寻找一个头签名，据此可以确定精确的可执行文件格式，这个文件签名通常称为”magic”。例如:  #!脚本 0xcafebabe/0xbebafeca包含多种架构支持的二进制，又被称为通用二进制或者胖二进制 0xfeedface(32位)，0">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-10-10T06:27:53.000Z">
+<meta property="og:updated_time" content="2017-10-10T12:56:53.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Mac中的二进制文件">
 <meta name="twitter:description" content="在Unix系统中，任何文件都可以通过chmod+x命令来标记为可执行文件，但是这并不能保证这个文件是能够被执行的，这个标志只是告诉系统这个文件可以读入内容，然后寻找一个头签名，据此可以确定精确的可执行文件格式，这个文件签名通常称为”magic”。例如:  #!脚本 0xcafebabe/0xbebafeca包含多种架构支持的二进制，又被称为通用二进制或者胖二进制 0xfeedface(32位)，0">
@@ -313,7 +313,20 @@
 <li>0xcafebabe/0xbebafeca包含多种架构支持的二进制，又被称为通用二进制或者胖二进制</li>
 <li>0xfeedface(32位)，0xfeedfacf(64位)Mach-O格式或者叫OSX原生二进制格式</li>
 </ul>
-<h3 id="胖二进制"><a href="#胖二进制" class="headerlink" title="胖二进制"></a>胖二进制</h3><h3 id="Mach-O"><a href="#Mach-O" class="headerlink" title="Mach-O"></a>Mach-O</h3>
+<h3 id="胖二进制"><a href="#胖二进制" class="headerlink" title="胖二进制"></a>胖二进制</h3><p>通用二进制只不过是其支持的各种架构的二进制文件的打包文件，这种格式的文件包含一个文件头，然后文件头后面依次拷贝了每一种支持架构的二进制文件。</p>
+<ul>
+<li>通用二进制文件的处理工具叫做<code>lipo</code>脂肪的意思，对应胖二进制的意思</li>
+<li>这个工具可以提取，删除和替换通用二进制文件中制定架构的二进制代码，因此可以通过这个工具对二进制文件进行瘦身</li>
+</ul>
+<h3 id="Mach-O"><a href="#Mach-O" class="headerlink" title="Mach-O"></a>Mach-O</h3><p>首先看mach_header<br><code>otool -hV JDMobile</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Mach header</div><div class="line"></div><div class="line">magic cputype cpusubtype  caps    filetype ncmds sizeofcmds      flags</div><div class="line"></div><div class="line">MH_MAGIC_64   ARM64        ALL  0x00     EXECUTE    68       7464   NOUNDEFS DYLDLINK TWOLEVEL WEAK_DEFINES BINDS_TO_WEAK PIE</div></pre></td></tr></table></figure></p>
+<ul>
+<li>magic魔数代表32或者64位</li>
+<li>cputype和subcuptype代表cup类型</li>
+<li>filetype代表文件类型(可执行文件，库文件，核心转储文件，内核扩展)</li>
+<li>ncmds和sizeofcmds用于加载的家在命令的条数和大小</li>
+<li>flags代表动态连接器(dyld)的标志</li>
+</ul>
+
       
     </div>
 
@@ -422,7 +435,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">67</span>
+              <span class="site-state-item-count">69</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
