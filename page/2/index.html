@@ -263,102 +263,6 @@
             
               
                 
-                <a class="post-title-link" href="/2017/07/18/算法题汇总/" itemprop="url">
-                  算法题汇总
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-07-18T09:43:22+08:00" content="2017-07-18">
-              2017-07-18
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Given an array of 2n integers, your task is to group these integers into n pairs of integer, say (a1, b1), (a2, b2), …, (an, bn) which makes sum of min(ai, bi) for all i from 1 to n as large as possible.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Example 1:</div><div class="line">Input: [1,4,3,2]</div><div class="line"></div><div class="line">Output: 4</div><div class="line">Explanation: n is 2, and the maximum sum of pairs is 4 = min(1, 2) + min(3, 4).</div></pre></td></tr></table></figure>
-<p>这了做法是先排序，然后每两个一组，取小的，取大小本来就是python的功能，min和max函数<br>其实python也提供了sorted排序函数，而且相当的高效，我自己试了一下排序算法，并没有python做的好<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">class Solution(object):</div><div class="line">    </div><div class="line">    def arrayPairSum(self, nums):</div><div class="line">        &quot;&quot;&quot;</div><div class="line">        :type nums: List[int]</div><div class="line">        :rtype: int</div><div class="line">        &quot;&quot;&quot;</div><div class="line">        itemcurrent = sorted(nums)</div><div class="line">        </div><div class="line">        n = len(itemcurrent) / 2</div><div class="line"></div><div class="line">        total = 0</div><div class="line"></div><div class="line">        for i in range(n):</div><div class="line">            a = itemcurrent[2 * i]</div><div class="line">            b = itemcurrent[2 * i + 1]</div><div class="line">            c = min(a,b)</div><div class="line">            total = total + c</div><div class="line"></div><div class="line">        return total</div></pre></td></tr></table></figure></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
                 <a class="post-title-link" href="/2017/07/17/数据结构算法-概论/" itemprop="url">
                   数据结构算法-概论
                 </a>
@@ -1216,6 +1120,102 @@
           <h3 id="创建一个mongo数据库"><a href="#创建一个mongo数据库" class="headerlink" title="创建一个mongo数据库"></a>创建一个mongo数据库</h3>
           <div class="post-more-link text-center">
             <a class="btn" href="/2017/05/17/2017/mongodb使用小结/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/02/26/2017/iOS工程小知识/" itemprop="url">
+                  iOS工程小知识
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-02-26T23:02:06+08:00" content="2017-02-26">
+              2017-02-26
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h3 id="1-出现（-linker-command-failed-with-exit-code-1）"><a href="#1-出现（-linker-command-failed-with-exit-code-1）" class="headerlink" title="1:出现（ linker command failed with exit code 1）"></a>1:出现（ linker command failed with exit code 1）</h3><p>如果具体的错误是这个与第三方.a库重复，那么要更改的是，类名和全局变量的名字<br>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2017/02/26/2017/iOS工程小知识/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
