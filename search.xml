@@ -4,6 +4,27 @@
   
     
     <entry>
+      <title><![CDATA[hexo多端同步错误解决方案]]></title>
+      <url>/2017/10/11/hexo%E5%A4%9A%E7%AB%AF%E5%90%8C%E6%AD%A5%E9%94%99%E8%AF%AF%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</url>
+      <content type="html"><![CDATA[<p><code>hexo d</code>这个命令是相当于直接<code>git push</code>，如果只有一台机器那么是没有问题，但是如果是两台机器，那么还少一步<code>git pull</code>，所以如果是两台机器同时维护一个库的时候需要</p>
+<ul>
+<li>进入到<code>.deploy_git</code>这个目录下</li>
+<li>然后执行<code>git pull origin master --allow-unrelated-histories</code></li>
+<li>然后再push</li>
+<li>执行<code>hexo d</code>就好了</li>
+</ul>
+]]></content>
+      
+        
+        <tags>
+            
+            <tag> hexo </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[python学习环境搭建-jupyter notebook]]></title>
       <url>/2017/10/11/python%E5%AD%A6%E4%B9%A0%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA-jupyter-notebook/</url>
       <content type="html"><![CDATA[<h3 id="先说一下好处："><a href="#先说一下好处：" class="headerlink" title="先说一下好处："></a>先说一下好处：</h3><p>我们学习python可以在命令行输入python直接进入python环境进行练习，但是问题是多行运行比较繁琐，这里我们推荐使用jupyter来运行代码</p>
@@ -434,9 +455,9 @@
         
         <tags>
             
-            <tag> python </tag>
-            
             <tag> hexo </tag>
+            
+            <tag> python </tag>
             
         </tags>
         
