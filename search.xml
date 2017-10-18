@@ -3,6 +3,36 @@
   
     
     <entry>
+      <title><![CDATA[ipa自动创建上传功能构建]]></title>
+      <url>/2017/10/16/ipa%E8%87%AA%E5%8A%A8%E5%88%9B%E5%BB%BA%E4%B8%8A%E4%BC%A0%E5%8A%9F%E8%83%BD%E6%9E%84%E5%BB%BA/</url>
+      <content type="html"><![CDATA[<p>我们其实是对Application Loader功能进行脚本化<br><a id="more"></a></p>
+<ul>
+<li><p>做一个软链首先<code>ln -s /Applications/Xcode.app/Contents/Applications/Application\ Loader.app/Contents/Frameworks/ITunesSoftwareService.framework/Versions/A/Support/altool /usr/local/bin/altool</code></p>
+</li>
+<li><p>增加关联项目<code>ln -s /Applications/Xcode.app/Contents/Applications/Application\ Loader.app/Contents/itms /usr/local/itms</code></p>
+</li>
+<li><p>打包脚本<code>xcodebuild -workspace JDFinance.xcworkspace -scheme JDMobile -configuration Beta build CODE_SIGN_IDENTITY = &#39;&#39; PROVISIONING_PROFILE = &#39;&#39;</code></p>
+</li>
+<li><p><code>altool -v -f JDMobile.ipa -u xxxxxxxx@126.com -p xxxxxx -t ios</code>检验是否可以进行上传</p>
+</li>
+<li><p><code>altool --upload-app -f JDMobile.ipa -u xxxxxxxx@126.com -p xxxxxxxx -t ios</code>上传</p>
+</li>
+</ul>
+<p><code>ERROR ITMS-90535: &quot;Unexpected CFBundleExecutable Key. The bundle at &#39;Payload/JDMobile.app/CBPResource.bundle&#39; does not contain a bundle executable. If this bundle intentionally does not contain an executable, consider removing the CFBundleExecutable key</code>出现这个错误的时候删除这个key就好</p>
+<p><code>ERROR ITMS-90207: &quot;Invalid Bundle. The bundle at &#39;JDMobile.app&#39; does not contain a bundle executable.&quot;</code>出现这个错误的时候看看里边是不是存在一个可执行文件，当然如果你编译一个bundle是完全可能的，这个时候你就要先手动编译，然后删除可执行文件，然后在手动加入进去就好了</p>
+<p>签名失败，codesign那么看一看你的证书是不是在钥匙串里边，要做的就是把它弄到系统里边</p>
+]]></content>
+      
+        
+        <tags>
+            
+            <tag> 自动化 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[ceshi]]></title>
       <url>/2017/10/12/ceshi/</url>
       <content type="html"><![CDATA[<h2 id="ceshiceshi"><a href="#ceshiceshi" class="headerlink" title="ceshiceshi"></a>ceshiceshi</h2>]]></content>

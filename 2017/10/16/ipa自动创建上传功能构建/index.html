@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="自动化," />
 
 
 
@@ -84,16 +84,18 @@
 
 
 
-<meta name="description" content="iOS开发者，python/js爱好者，现在就职业京东金融">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Hanson的博客">
-<meta property="og:url" content="/archives/2015/06/index.html">
+<meta name="description" content="我们其实是对Application Loader功能进行脚本化">
+<meta name="keywords" content="自动化">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ipa自动创建上传功能构建">
+<meta property="og:url" content="/2017/10/16/ipa自动创建上传功能构建/index.html">
 <meta property="og:site_name" content="Hanson的博客">
-<meta property="og:description" content="iOS开发者，python/js爱好者，现在就职业京东金融">
+<meta property="og:description" content="我们其实是对Application Loader功能进行脚本化">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-10-18T01:32:45.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hanson的博客">
-<meta name="twitter:description" content="iOS开发者，python/js爱好者，现在就职业京东金融">
+<meta name="twitter:title" content="ipa自动创建上传功能构建">
+<meta name="twitter:description" content="我们其实是对Application Loader功能进行脚本化">
 
 
 
@@ -114,10 +116,10 @@
 
 
 
-  <link rel="canonical" href="/archives/2015/06/"/>
+  <link rel="canonical" href="/2017/10/16/ipa自动创建上传功能构建/"/>
 
 
-  <title> 归档 | Hanson的博客 </title>
+  <title> ipa自动创建上传功能构建 | Hanson的博客 </title>
 </head>
 
 <body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
@@ -138,7 +140,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left  page-archive  ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
@@ -239,65 +241,142 @@
           <div id="content" class="content">
             
 
-  <section id="posts" class="posts-collapse">
-    <span class="archive-move-on"></span>
-
-    <span class="archive-page-counter">
-      
-      
-       
-        
-      好! 目前共计 72 篇日志。 继续努力。
-    </span>
-
+  <div id="posts" class="posts-expand">
     
 
-      
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                ipa自动创建上传功能构建
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-10-16T16:57:26+08:00" content="2017-10-16">
+              2017-10-16
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+              &nbsp; | &nbsp;
+              <span class="page-pv"><i class="fa fa-file-o"></i>
+              <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+              </span>
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
       
       
 
       
+        <p>我们其实是对Application Loader功能进行脚本化<br><a id="more"></a></p>
+<ul>
+<li><p>做一个软链首先<code>ln -s /Applications/Xcode.app/Contents/Applications/Application\ Loader.app/Contents/Frameworks/ITunesSoftwareService.framework/Versions/A/Support/altool /usr/local/bin/altool</code></p>
+</li>
+<li><p>增加关联项目<code>ln -s /Applications/Xcode.app/Contents/Applications/Application\ Loader.app/Contents/itms /usr/local/itms</code></p>
+</li>
+<li><p>打包脚本<code>xcodebuild -workspace JDFinance.xcworkspace -scheme JDMobile -configuration Beta build CODE_SIGN_IDENTITY = &#39;&#39; PROVISIONING_PROFILE = &#39;&#39;</code></p>
+</li>
+<li><p><code>altool -v -f JDMobile.ipa -u xxxxxxxx@126.com -p xxxxxx -t ios</code>检验是否可以进行上传</p>
+</li>
+<li><p><code>altool --upload-app -f JDMobile.ipa -u xxxxxxxx@126.com -p xxxxxxxx -t ios</code>上传</p>
+</li>
+</ul>
+<p><code>ERROR ITMS-90535: &quot;Unexpected CFBundleExecutable Key. The bundle at &#39;Payload/JDMobile.app/CBPResource.bundle&#39; does not contain a bundle executable. If this bundle intentionally does not contain an executable, consider removing the CFBundleExecutable key</code>出现这个错误的时候删除这个key就好</p>
+<p><code>ERROR ITMS-90207: &quot;Invalid Bundle. The bundle at &#39;JDMobile.app&#39; does not contain a bundle executable.&quot;</code>出现这个错误的时候看看里边是不是存在一个可执行文件，当然如果你编译一个bundle是完全可能的，这个时候你就要先手动编译，然后删除可执行文件，然后在手动加入进去就好了</p>
+<p>签名失败，codesign那么看一看你的证书是不是在钥匙串里边，要做的就是把它弄到系统里边</p>
+
+      
+    </div>
+
+    <div>
+      
         
-        <div class="collection-title">
-          <h2 class="archive-year motion-element" id="archive-year-2015">2015</h2>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/自动化/" rel="tag">#自动化</a>
+          
         </div>
       
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/10/12/ceshi/" rel="next" title="ceshi">
+                <i class="fa fa-chevron-left"></i> ceshi
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
       
 
       
-
-  <article class="post post-type-normal" itemscope itemtype="//schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2015/06/10/2015/OC中的各种变量/" itemprop="url">
-              
-                <span itemprop="name">OC中的各种变量</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2015-06-10T18:00:10+08:00"
-              content="2015-06-10" >
-          06-10
-        </time>
-      </div>
-
-    </header>
+      
+    </footer>
   </article>
 
 
 
-    
-
-  </section>
-
-  
-
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -305,6 +384,10 @@
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -324,8 +407,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.gif"
@@ -375,6 +467,17 @@
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+        </section>
       
 
     </div>
@@ -494,11 +597,9 @@
 
 
   
-  
-    <script type="text/javascript" id="motion.page.archive">
-      $('.archive-year').velocity('transition.slideLeftIn');
-    </script>
-  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
 
 
   
