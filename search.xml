@@ -33,14 +33,6 @@
     </entry>
     
     <entry>
-      <title><![CDATA[ceshi]]></title>
-      <url>/2017/10/12/ceshi/</url>
-      <content type="html"><![CDATA[<h2 id="ceshiceshi"><a href="#ceshiceshi" class="headerlink" title="ceshiceshi"></a>ceshiceshi</h2>]]></content>
-      
-        
-    </entry>
-    
-    <entry>
       <title><![CDATA[hexo多端同步错误解决方案]]></title>
       <url>/2017/10/11/hexo%E5%A4%9A%E7%AB%AF%E5%90%8C%E6%AD%A5%E9%94%99%E8%AF%AF%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</url>
       <content type="html"><![CDATA[<p><code>hexo d</code>这个命令是相当于直接<code>git push</code>，如果只有一台机器那么是没有问题，但是如果是两台机器，那么还少一步<code>git pull</code>，所以如果是两台机器同时维护一个库的时候需要</p>
