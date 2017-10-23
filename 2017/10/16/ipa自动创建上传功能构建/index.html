@@ -92,7 +92,7 @@
 <meta property="og:site_name" content="Hanson的博客">
 <meta property="og:description" content="我们其实是对Application Loader功能进行脚本化">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-10-18T01:32:45.000Z">
+<meta property="og:updated_time" content="2017-10-18T06:42:45.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ipa自动创建上传功能构建">
 <meta name="twitter:description" content="我们其实是对Application Loader功能进行脚本化">
@@ -313,7 +313,9 @@
 </li>
 <li><p>增加关联项目<code>ln -s /Applications/Xcode.app/Contents/Applications/Application\ Loader.app/Contents/itms /usr/local/itms</code></p>
 </li>
-<li><p>打包脚本<code>xcodebuild -workspace JDFinance.xcworkspace -scheme JDMobile -configuration Beta build CODE_SIGN_IDENTITY = &#39;&#39; PROVISIONING_PROFILE = &#39;&#39;</code></p>
+<li><p>打包脚本<code>xcodebuild -workspace JDFinance.xcworkspace -scheme JDMobile -configuration Beta build</code></p>
+</li>
+<li><p>打包脚本<code>xcodebuild archive -workspace JDFinance.xcworkspace -scheme JDMobile -configuration Beta -archivePath JDMobile.xcarchive</code></p>
 </li>
 <li><p><code>altool -v -f JDMobile.ipa -u xxxxxxxx@126.com -p xxxxxx -t ios</code>检验是否可以进行上传</p>
 </li>
@@ -361,6 +363,10 @@
           </div>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/10/20/ios编译过程/" rel="prev" title="ios编译过程">
+                ios编译过程 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -428,7 +434,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">71</span>
+              <span class="site-state-item-count">74</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -445,7 +451,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">24</span>
+                <span class="site-state-item-count">25</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
