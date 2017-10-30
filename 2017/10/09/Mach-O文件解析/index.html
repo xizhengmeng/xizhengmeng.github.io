@@ -92,7 +92,7 @@
 <meta property="og:site_name" content="Hanson的博客">
 <meta property="og:description" content="在Unix系统中，任何文件都可以通过chmod+x命令来标记为可执行文件，但是这并不能保证这个文件是能够被执行的，这个标志只是告诉系统这个文件可以读入内容，然后寻找一个头签名，据此可以确定精确的可执行文件格式，这个文件签名通常称为”magic”。例如:  #!脚本 0xcafebabe/0xbebafeca包含多种架构支持的二进制，又被称为通用二进制或者胖二进制 0xfeedface(32位)，0">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-10-23T02:40:59.000Z">
+<meta property="og:updated_time" content="2017-10-24T07:12:32.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Mac中的二进制文件">
 <meta name="twitter:description" content="在Unix系统中，任何文件都可以通过chmod+x命令来标记为可执行文件，但是这并不能保证这个文件是能够被执行的，这个标志只是告诉系统这个文件可以读入内容，然后寻找一个头签名，据此可以确定精确的可执行文件格式，这个文件签名通常称为”magic”。例如:  #!脚本 0xcafebabe/0xbebafeca包含多种架构支持的二进制，又被称为通用二进制或者胖二进制 0xfeedface(32位)，0">
@@ -341,6 +341,7 @@
 <li>modified: 10/18/2017 12:59:11</li>
 </ul>
 </blockquote>
+<h3 id="nm的使用"><a href="#nm的使用" class="headerlink" title="nm的使用"></a>nm的使用</h3><p>nm [option(s)] [file(s)]<br>有用的options:<br>-A 在每个符号信息的前面打印所在对象文件名称；<br>-C 输出demangle过了的符号名称；<br>-D 打印动态符号；<br>-l 使用对象文件中的调试信息打印出所在源文件及行号；<br>-n 按照地址/符号值来排序；<br>-u 打印出那些未定义的符号；<br>常见的符号类型:<br>A 该符号的值在今后的链接中将不再改变；<br>B 该符号放在BSS段中，通常是那些未初始化的全局变量；<br>D 该符号放在普通的数据段中，通常是那些已经初始化的全局变量；<br>T 该符号放在代码段中，通常是那些全局非静态函数；<br>U 该符号未定义过，需要自其他对象文件中链接进来；<br>W 未明确指定的弱链接符号；同链接的其他对象文件中有它的定义就用上，否则就用一个系统特别指定的默认值。<br>注意几点：<br>-C 总是适用于c++编译出来的对象文件。还记得c++中有重载么？为了区分重载函数，c++编译器会将函数返回值/参数等信息附加到函数名称中去形成一个mangle过的符号，那用这个选项列出符号的时候，做一个逆操作，输出那些原始的、我们可理解的符号名称。<br>使用 -l 时，必须保证你的对象文件中带有符号调式信息，这一般要求你在编译的时候指定一个 -g 选项，见 Linux:Gcc。<br>使用nm前，最好先用Linux:File查看对象文件所属处理器架构，然后再用相应交叉版本的nm工具。</p>
 
       
     </div>
@@ -450,7 +451,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">76</span>
+              <span class="site-state-item-count">78</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -496,7 +497,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#胖二进制"><span class="nav-number">1.</span> <span class="nav-text">胖二进制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Mach-O"><span class="nav-number">2.</span> <span class="nav-text">Mach-O</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分析方法"><span class="nav-number">3.</span> <span class="nav-text">分析方法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#otool"><span class="nav-number">3.1.</span> <span class="nav-text">otool</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#瘦身实战"><span class="nav-number">4.</span> <span class="nav-text">瘦身实战</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#查看所有编译进去的方法"><span class="nav-number">4.1.</span> <span class="nav-text">查看所有编译进去的方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查看所有被使用的方法"><span class="nav-number">4.2.</span> <span class="nav-text">查看所有被使用的方法</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#胖二进制"><span class="nav-number">1.</span> <span class="nav-text">胖二进制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Mach-O"><span class="nav-number">2.</span> <span class="nav-text">Mach-O</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分析方法"><span class="nav-number">3.</span> <span class="nav-text">分析方法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#otool"><span class="nav-number">3.1.</span> <span class="nav-text">otool</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#瘦身实战"><span class="nav-number">4.</span> <span class="nav-text">瘦身实战</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#查看所有编译进去的方法"><span class="nav-number">4.1.</span> <span class="nav-text">查看所有编译进去的方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查看所有被使用的方法"><span class="nav-number">4.2.</span> <span class="nav-text">查看所有被使用的方法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#nm的使用"><span class="nav-number">5.</span> <span class="nav-text">nm的使用</span></a></li></ol></div>
             
           </div>
         </section>
