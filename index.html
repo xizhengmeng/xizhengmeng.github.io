@@ -263,6 +263,235 @@
             
               
                 
+                <a class="post-title-link" href="/2017/11/02/Lunix-Centos7-scrapy实战/" itemprop="url">
+                  Lunix-Centos7 scrapy实战
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-11-02T09:09:26+08:00" content="2017-11-02">
+              2017-11-02
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="安装scrapy"><a href="#安装scrapy" class="headerlink" title="安装scrapy"></a>安装scrapy</h3><ul>
+<li>centos7上软件管理工具为yum而不是apt-get</li>
+<li>安装scrapy<code>sudo pip install scrapy</code>，这个时候可能报错，<code>fatal error: Python.h: No such file or directory</code>，这是因为缺少python-dev这个库，我们需要安装<code>sudo yum install python-dev</code>但是在centos7上会说找不到，是因为在该版本上不是python-dev而是<code>python-devel</code></li>
+</ul>
+<p>或者是使用另外一种方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">root@localhost ~]# yum -y update</div><div class="line">安装gcc及扩展包</div><div class="line">[root@localhost ~]# yum install gcc libffi-devel python-devel openssl-devel</div><div class="line">安装开发工具包</div><div class="line">[root@localhost ~]# yum groupinstall -y development</div><div class="line">安装libxslt-devel支持lxml</div><div class="line">[root@localhost ~]# yum install libxslt-devel</div><div class="line">安装pip</div><div class="line">[root@localhost ~]# yum -y install python-pip</div><div class="line">安装Scrapy</div><div class="line">[root@localhost ~]# pip install scrapy</div></pre></td></tr></table></figure>
+<h3 id="配置mongo"><a href="#配置mongo" class="headerlink" title="配置mongo"></a>配置mongo</h3><h4 id="安装环境及配置yum"><a href="#安装环境及配置yum" class="headerlink" title="安装环境及配置yum"></a>安装环境及配置yum</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"># more /etc/redhat-release </div><div class="line">CentOS Linux release 7.2.1511 (Core)</div><div class="line"></div><div class="line"># vi /etc/yum.repos.d/mongodb-org-3.2.repo </div><div class="line">[mongodb-org-3.2]</div><div class="line">name=MongoDB Repository</div><div class="line">baseurl=https://repo.mongodb.org/yum/redhat/$releasever/mongodb-org/3.2/x86_64/</div><div class="line">gpgcheck=1</div><div class="line">enabled=1</div><div class="line">gpgkey=https://www.mongodb.org/static/pgp/server-3.2.asc</div></pre></td></tr></table></figure>
+<h4 id="安装MongoDB"><a href="#安装MongoDB" class="headerlink" title="安装MongoDB"></a>安装MongoDB</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yum -y install mongodb-org</div></pre></td></tr></table></figure>
+<h4 id="创建data文件和log文件并且启动"><a href="#创建data文件和log文件并且启动" class="headerlink" title="创建data文件和log文件并且启动"></a>创建data文件和log文件并且启动</h4><ul>
+<li>先在同级目录下创建数据文件和日志文件mkdir data和mkdir log</li>
+<li>启动mongodb服务mongod –dbpath data –logpath log/mongod.log –logappend –fork</li>
+<li>再次mongo如果显示connecting to test说明启动成功，输入exit;退出mongo</li>
+</ul>
+<h3 id="Lunix长时间运行命令行方法"><a href="#Lunix长时间运行命令行方法" class="headerlink" title="Lunix长时间运行命令行方法"></a>Lunix长时间运行命令行方法</h3><p>使用screen</p>
+<p>常用命令</p>
+<blockquote>
+<ul>
+<li><code>screen -ls</code>查看当前的screen</li>
+<li><code>screen -S screenname</code>创建一个新的screen并且给命名，这个名字可以后期用以恢复screen</li>
+<li><code>control+a----&gt;d</code>退出当前screen并且挂起</li>
+<li><code>screen -r number/name</code>进入某个screen</li>
+</ul>
+</blockquote>
+<h3 id="定时运行任务"><a href="#定时运行任务" class="headerlink" title="定时运行任务"></a>定时运行任务</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">while True:  </div><div class="line">    print time.strftime(&apos;%Y-%m-%d %X&apos;,time.localtime())  </div><div class="line">    yourTask() # 此处为要执行的任务  </div><div class="line">    time.sleep(n)</div></pre></td></tr></table></figure>
+<h3 id="输出到log"><a href="#输出到log" class="headerlink" title="输出到log"></a>输出到log</h3><p>直接用print来输出，正常在terminal运行就可以看到打印输出但是如果用下面这种方式来输出就会直接输出到log中<br><code>python test.py &gt;&gt; test.log</code>这样就print到logle</p>
+<h3 id="Scrapy详解"><a href="#Scrapy详解" class="headerlink" title="Scrapy详解"></a>Scrapy详解</h3><p>主要是三个文件</p>
+<ul>
+<li>items.py</li>
+<li>pipelines.py</li>
+<li>xxx_spider.py(这个文件是自己创建的，在spiders这个文件夹下边)</li>
+</ul>
+<p>下边分别说明文件以及其整体关系</p>
+<h4 id="xxx-spider-py"><a href="#xxx-spider-py" class="headerlink" title="xxx_spider.py"></a>xxx_spider.py</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div></pre></td><td class="code"><pre><div class="line">import scrapy</div><div class="line">import json</div><div class="line">from tutorial.items import JdjrItem#这里倒入的是一个相当于ios中的model一样的东西，是定义于items.py这个文件</div><div class="line"></div><div class="line">class DmozSpider(scrapy.Spider):</div><div class="line">    name = &quot;spider&quot;#这个名字相当重要，它是爬虫的唯一标示，你运行命令行的时候，它识别的也是这个名字，跟你外边文件叫啥没关系，跟你这个类叫啥也没有关系</div><div class="line">    allowed_domains = [&quot;itunes.apple.com&quot;]</div><div class="line">    start_urls = []</div><div class="line">    start = 0</div><div class="line">    for i in range(0,2):</div><div class="line">        end = start + 100</div><div class="line">        endString = &apos;%d&apos; % end</div><div class="line">        startString = &apos;%d&apos; % start</div><div class="line">        start = end + 1</div><div class="line">#       url1 = &quot;https://itunes.apple.com/WebObjects/MZStore.woa/wa/userReviewsRow?id=895682747&amp;displayable-kind=11&amp;startIndex=%s&amp;endIndex=%s&amp;sort=1&amp;appVersion=all&quot; % (startString,endString)</div><div class="line">        url2 = &quot;https://itunes.apple.com/WebObjects/MZStore.woa/wa/userReviewsRow?id=895682747&amp;displayable-kind=11&amp;startIndex=%s&amp;endIndex=%s&amp;sort=1&amp;appVersion=current&quot; % (startString,endString)</div><div class="line">#       start_urls.append(url1)</div><div class="line">        start_urls.append(url2)</div><div class="line"></div><div class="line">#     start_urls = [</div><div class="line">#         # &quot;https://itunes.apple.com/WebObjects/MZStore.woa/wa/userReviewsRow?id=895682747&amp;displayable-kind=11&amp;startIndex=0&amp;endIndex=50&amp;sort=1&amp;appVersion=cureent&quot;</div><div class="line"># # ,</div><div class="line">#             &quot;https://itunes.apple.com/WebObjects/MZStore.woa/wa/userReviewsRow?id=895682747&amp;displayable-kind=11&amp;startIndex=0&amp;endIndex=50&amp;sort=1&amp;appVersion=all&quot;</div><div class="line"># ]</div><div class="line">    def parse(self, response):</div><div class="line">        sites = json.loads(response.body_as_unicode())#前边的url请求成功之后就是调用这个parse方法，这里的response的处理相当关键，但总结来看主要分为两种，一种是json，一种是html，这里举例的是json的处理方式</div><div class="line">        siteitems = sites[&apos;userReviewList&apos;]</div><div class="line">        for item in siteitems:</div><div class="line">            JrItem = JdjrItem()</div><div class="line">            JrItem[&apos;userReviewId&apos;] = item[&apos;userReviewId&apos;].encode(&quot;utf-8&quot;)</div><div class="line">            JrItem[&apos;body&apos;] = item[&apos;body&apos;].encode(&quot;utf-8&quot;)</div><div class="line">            dateString = item[&apos;date&apos;].encode(&quot;utf-8&quot;)</div><div class="line">            dateStringList = dateString.split(&apos;T&apos;)</div><div class="line">            date = dateStringList[0]</div><div class="line">            time = dateStringList[1]</div><div class="line">            JrItem[&apos;date&apos;] = date</div><div class="line">            JrItem[&apos;time&apos;] = time</div><div class="line">            JrItem[&apos;name&apos;] = item[&apos;name&apos;].encode(&quot;utf-8&quot;)</div><div class="line">            JrItem[&apos;rating&apos;] = item[&apos;rating&apos;]</div><div class="line">            JrItem[&apos;title&apos;] = item[&apos;title&apos;].encode(&quot;utf-8&quot;)</div><div class="line">            yield JrItem#我们把数据做一个解析，然后把数据装入我们的JrItem这个Model里边，进行返回，进行下一步的处理</div></pre></td></tr></table></figure>
+<h4 id="pipelines-py"><a href="#pipelines-py" class="headerlink" title="pipelines.py"></a>pipelines.py</h4><p>这里是接收上一步<code>yield JrItem</code>的内容，然后进行进一步的处理，具体来讲就是我们初始化了mongo，然后把数据存入mongo</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">import pymongo</div><div class="line">from scrapy.conf import settings</div><div class="line"></div><div class="line">class TutorialPipeline(object):</div><div class="line"></div><div class="line">    def __init__(self):#在这里很重要的一步是我们初始化了mongo，然后把数据存入mongo</div><div class="line">        # 链接数据库</div><div class="line">        self.client = pymongo.MongoClient(host=settings[&apos;MONGO_HOST&apos;], port=settings[&apos;MONGO_PORT&apos;])</div><div class="line">        # 数据库登录需要帐号密码的话</div><div class="line">        # self.client.admin.authenticate(settings[&apos;MINGO_USER&apos;], settings[&apos;MONGO_PSW&apos;])</div><div class="line">        self.db = self.client[settings[&apos;MONGO_DB&apos;]]  # 获得数据库的句柄</div><div class="line">        self.coll = self.db[settings[&apos;MONGO_COLL&apos;]]  # 获得collection的句柄</div><div class="line"></div><div class="line">    def process_item(self, item, spider):</div><div class="line">        dbs = self.coll.find(&#123;&apos;userReviewId&apos;:item[&apos;userReviewId&apos;]&#125;)</div><div class="line">        count = 0</div><div class="line">        for itemnew in dbs:#进行了一个去重</div><div class="line">            count = count + 1</div><div class="line">        if count == 0: </div><div class="line">           postItem = dict(item)  # 把item转化成字典形式</div><div class="line">           self.coll.insert(postItem)  # 向数据库插入一条记录</div><div class="line">        return item</div></pre></td></tr></table></figure>
+<h4 id="item-py"><a href="#item-py" class="headerlink" title="item.py"></a>item.py</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">import scrapy</div><div class="line"></div><div class="line">class JdjrItem(scrapy.Item):</div><div class="line">    # define the fields for your item here like:</div><div class="line">    userReviewId = scrapy.Field()</div><div class="line">    body = scrapy.Field()</div><div class="line">    date = scrapy.Field()</div><div class="line">    name = scrapy.Field()</div><div class="line">    rating = scrapy.Field()</div><div class="line">    title = scrapy.Field()</div><div class="line">    time = scrapy.Field()</div></pre></td></tr></table></figure>
+<h3 id="其他命令"><a href="#其他命令" class="headerlink" title="其他命令"></a>其他命令</h3><h4 id="查看-新建-删除用户"><a href="#查看-新建-删除用户" class="headerlink" title="查看/新建/删除用户"></a>查看/新建/删除用户</h4><ul>
+<li>cat /etc/passwd 可以查看所有用户的列表</li>
+<li>cat /etc/group 查看用户组</li>
+<li>userdel peter 删除用户</li>
+<li>useradd phpq 增加用户</li>
+<li>passwd xxx  该用户密码</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/10/31/python输出表格/" itemprop="url">
+                  python输出表格
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-10-31T14:40:29+08:00" content="2017-10-31">
+              2017-10-31
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">from prettytable import PrettyTable  </div><div class="line">x = PrettyTable([&quot;City name&quot;, &quot;Area&quot;, &quot;Population&quot;, &quot;Annual Rainfall&quot;])  </div><div class="line">x.align[&quot;City name&quot;] = &quot;l&quot;# Left align city names</div><div class="line">x.padding_width = 1# One space between column edges and contents (default)</div><div class="line">x.add_row([&quot;Adelaide&quot;,1295, 1158259, 600.5])  </div><div class="line">x.add_row([&quot;Brisbane&quot;,5905, 1857594, 1146.4])  </div><div class="line">x.add_row([&quot;Darwin&quot;, 112, 120900, 1714.7])  </div><div class="line">x.add_row([&quot;Hobart&quot;, 1357, 205556, 619.5])  </div><div class="line">x.add_row([&quot;Sydney&quot;, 2058, 4336374, 1214.8])  </div><div class="line">x.add_row([&quot;Melbourne&quot;, 1566, 3806092, 646.9])  </div><div class="line">x.add_row([&quot;Perth&quot;, 5386, 1554769, 869.4])  </div><div class="line">print x</div></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2017/10/30/appstroe评论爬取/" itemprop="url">
                   appstroe评论爬取
                 </a>
@@ -1097,208 +1326,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/10/11/hexo多端同步错误解决方案/" itemprop="url">
-                  hexo多端同步错误解决方案
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-10-11T22:00:15+08:00" content="2017-10-11">
-              2017-10-11
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><code>hexo d</code>这个命令是相当于直接<code>git push</code>，如果只有一台机器那么是没有问题，但是如果是两台机器，那么还少一步<code>git pull</code>，所以如果是两台机器同时维护一个库的时候需要</p>
-<ul>
-<li>进入到<code>.deploy_git</code>这个目录下</li>
-<li>然后执行<code>git pull origin master --allow-unrelated-histories</code></li>
-<li>然后再push</li>
-<li>执行<code>hexo d</code>就好了</li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/10/11/2016/转-block进阶1-block实现/" itemprop="url">
-                  未命名
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-10-11T18:13:43+08:00" content="2017-10-11">
-              2017-10-11
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <hr>
-<p>title: (转)block进阶1–block实现<br>date: 2016-06-29 14:15:20<br>tags:</p>
-<ul>
-<li>iOS进阶<br>categories: iOS</li>
-</ul>
-<hr>
-<p>本系列博文总结自《Pro Multithreading and Memory Management for iOS and OS X with ARC》</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2017/10/11/2016/转-block进阶1-block实现/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1344,7 +1371,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">78</span>
+              <span class="site-state-item-count">80</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
