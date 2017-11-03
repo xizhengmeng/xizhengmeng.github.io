@@ -3,6 +3,21 @@
   
     
     <entry>
+      <title><![CDATA[xcode自动创建结构化模版]]></title>
+      <url>/2017/11/03/xcode%E8%87%AA%E5%8A%A8%E5%88%9B%E5%BB%BA%E7%BB%93%E6%9E%84%E5%8C%96%E6%A8%A1%E7%89%88/</url>
+      <content type="html"><![CDATA[<p>下边这个路径下的文件，是可以被xcode加载，然后形成一个模版的，我们现在具体来看看<br><code>&quot;/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/Library/Xcode/Templates/File Templates/JDJRCustom&quot;</code></p>
+]]></content>
+      
+        
+        <tags>
+            
+            <tag> xcode </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[Lunix-Centos7 scrapy实战]]></title>
       <url>/2017/11/02/Lunix-Centos7-scrapy%E5%AE%9E%E6%88%98/</url>
       <content type="html"><![CDATA[<h3 id="安装scrapy"><a href="#安装scrapy" class="headerlink" title="安装scrapy"></a>安装scrapy</h3><ul>
