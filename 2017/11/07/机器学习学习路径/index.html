@@ -1,0 +1,890 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="机器学习," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
+
+
+
+
+
+
+<meta name="description" content="机器学习解决的问题并非所有的问题都适合用机器学习解决(很多逻辑清晰的问题用规则能很高效和准确地处理)，也没有一个机器学习算法可以通用于所有问题。咱们先来了解了解，机器学习，到底关心和解决什么样的问题。 从功能的角度分类，机器学习在一定量级的数据上，可以解决下列问题：  分类问题   根据数据样本上抽取出的特征，判定其属于有限个类别中的哪一个。比如：   - 垃圾邮件识别(结果类别：1、垃圾邮件 2">
+<meta name="keywords" content="机器学习">
+<meta property="og:type" content="article">
+<meta property="og:title" content="机器学习学习路径">
+<meta property="og:url" content="/2017/11/07/机器学习学习路径/index.html">
+<meta property="og:site_name" content="Hanson的博客">
+<meta property="og:description" content="机器学习解决的问题并非所有的问题都适合用机器学习解决(很多逻辑清晰的问题用规则能很高效和准确地处理)，也没有一个机器学习算法可以通用于所有问题。咱们先来了解了解，机器学习，到底关心和解决什么样的问题。 从功能的角度分类，机器学习在一定量级的数据上，可以解决下列问题：  分类问题   根据数据样本上抽取出的特征，判定其属于有限个类别中的哪一个。比如：   - 垃圾邮件识别(结果类别：1、垃圾邮件 2">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-11-09T01:32:15.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="机器学习学习路径">
+<meta name="twitter:description" content="机器学习解决的问题并非所有的问题都适合用机器学习解决(很多逻辑清晰的问题用规则能很高效和准确地处理)，也没有一个机器学习算法可以通用于所有问题。咱们先来了解了解，机器学习，到底关心和解决什么样的问题。 从功能的角度分类，机器学习在一定量级的数据上，可以解决下列问题：  分类问题   根据数据样本上抽取出的特征，判定其属于有限个类别中的哪一个。比如：   - 垃圾邮件识别(结果类别：1、垃圾邮件 2">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="/2017/11/07/机器学习学习路径/"/>
+
+
+  <title> 机器学习学习路径 | Hanson的博客 </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Hanson的博客</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                机器学习学习路径
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-11-07T18:25:57+08:00" content="2017-11-07">
+              2017-11-07
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+              &nbsp; | &nbsp;
+              <span class="page-pv"><i class="fa fa-file-o"></i>
+              <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+              </span>
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="机器学习解决的问题"><a href="#机器学习解决的问题" class="headerlink" title="机器学习解决的问题"></a>机器学习解决的问题</h3><p>并非所有的问题都适合用机器学习解决(很多逻辑清晰的问题用规则能很高效和准确地处理)，也没有一个机器学习算法可以通用于所有问题。咱们先来了解了解，机器学习，到底关心和解决什么样的问题。</p>
+<p>从功能的角度分类，机器学习在一定量级的数据上，可以解决下列问题：</p>
+<ul>
+<li>分类问题</li>
+</ul>
+<blockquote>
+<p>根据数据样本上抽取出的特征，判定其属于有限个类别中的哪一个。比如： </p>
+</blockquote>
+<pre><code>- 垃圾邮件识别(结果类别：1、垃圾邮件 2、正常邮件)
+- 文本情感褒贬分析(结果类别：1、褒 2、贬)
+- 图像内容识别识别(结果类别：1、喵星人 2、汪星人 3、人类 4、草泥马 5、都不是)。
+</code></pre><ul>
+<li>回归问题</li>
+</ul>
+<blockquote>
+<p>根据数据样本上抽取出的特征，预测一个连续值的结果。比如： </p>
+</blockquote>
+<pre><code>- 星爷《美人鱼》票房
+- 大帝都2个月后的房价
+- 隔壁熊孩子一天来你家几次，宠幸你多少玩具
+</code></pre><ul>
+<li>聚类等问题</li>
+</ul>
+<blockquote>
+<p>根据数据样本上抽取出的特征，让样本抱抱团(相近/相关的样本在一团内)。比如： </p>
+</blockquote>
+<pre><code>- google的新闻分类
+- 用户群体划分
+</code></pre><p>我们再把上述常见问题划到机器学习最典型的2个分类上。</p>
+<blockquote>
+<ul>
+<li>分类与回归问题需要用已知结果的数据做训练，属于“监督学习”</li>
+<li>聚类的问题不需要已知标签，属于“非监督学习”。</li>
+</ul>
+</blockquote>
+<p>如果在IT行业(尤其是互联网)里溜达一圈，你会发现机器学习在以下热点问题中有广泛应用：</p>
+<p>1.计算机视觉</p>
+<p>典型的应用包括：人脸识别、车牌识别、扫描文字识别、图片内容识别、图片搜索等等。</p>
+<p>2.自然语言处理</p>
+<p>典型的应用包括：搜索引擎智能匹配、文本内容理解、文本情绪判断，语音识别、输入法、机器翻译等等。</p>
+<p>3.社会网络分析</p>
+<p>典型的应用包括：用户画像、网络关联分析、欺诈作弊发现、热点发现等等。</p>
+<p>4.推荐</p>
+<p>典型的应用包括：虾米音乐的“歌曲推荐”，某宝的“猜你喜欢”等等。</p>
+<h3 id="基础知识"><a href="#基础知识" class="headerlink" title="基础知识"></a>基础知识</h3><h4 id="阶段1：入门知识"><a href="#阶段1：入门知识" class="headerlink" title="阶段1：入门知识"></a>阶段1：入门知识</h4><ul>
+<li><a href="https://www.shiyanlou.com/courses/1" target="_blank" rel="external">Lunix基础入门</a></li>
+<li><a href="https://www.shiyanlou.com/courses/2" target="_blank" rel="external">Vim入门</a></li>
+</ul>
+<h4 id="阶段2-机器学习理论"><a href="#阶段2-机器学习理论" class="headerlink" title="阶段2: 机器学习理论"></a>阶段2: 机器学习理论</h4><p>这部分主要是要掌握一些典型的机器学习算法，如分类、聚类、推荐、概率图、神经网络。（可以分为初级、中级和高级三个阶段，每个阶段的侧重点不同。）</p>
+<h5 id="初级阶段"><a href="#初级阶段" class="headerlink" title="初级阶段"></a>初级阶段</h5><p>初级阶段推荐可以看《机器学习算法原理与编程实践 》和《机器学习实战》这两本书。</p>
+<p>这两本书更偏向于算法的应用方面，学习起来相对轻松一些。如果一上来直接就啃那些纯算法理论，估计很多人是坚持不下去的。</p>
+<p>再者，一个东西，当你还不知道它是什么，有什么用，以及怎么用时，让你去硬着头皮啃，你一定会感觉很郁闷，并且根本不可能能够深入理解那些理论。</p>
+<p>所以，个人强烈建议不要一上来就贪图那些算法理论的推导，先大胆的去了解各个算法的应用场合并尝试着应用，这对你入门机器学习是一个非常好的选择。</p>
+<h5 id="中级阶段"><a href="#中级阶段" class="headerlink" title="中级阶段"></a>中级阶段</h5><p>中级阶段就要开始啃那些算法背后的理论了，前面应用是知其然，现在要开始知其所以然。</p>
+<p>这个阶段重点推荐看林轩田的《机器学习基石》和《机器学习技法》视频，总共三十二课，每一课都相当精彩，细致学下来需要三个月，我指的是细致的看，每一课都应该写笔记，梳理脉络，强烈建议做笔记。</p>
+<p>踏踏实实看完，面试中让你推个svm讲讲adboost，gbdt原理基本就是手到擒来，再辅以李航的《统计学习方法》和周志华的《机器学习》（俗称“西瓜书”）查漏补缺，基础就算比较扎实了。</p>
+<h5 id="高级阶段"><a href="#高级阶段" class="headerlink" title="高级阶段"></a>高级阶段</h5><p>高级阶段就是要自己开始去灵活运用并组合各个算法了。这个阶段可以在网上找一些比较典型的项目来进行实战演练。</p>
+<p>推荐学习资源：Kaggle、CCF、Datacastle、阿里云天池等。</p>
+<p>kaggle是国外一个专门做数据挖掘比赛的地方，里面很多比赛比较适合新人，而且里面的氛围也比较好，每个比赛都有对应的论坛，时不时有人会发布自己的代码，大家集思广益一起讨论，可以学到很多。</p>
+<p>如果你觉得上面的内容对你有帮助，或者你想要进一步了解和学习数据挖掘和机器学习等知识，欢迎关注我们的微信公众号“DT新纪元”。</p>
+<p>【另外说明一下，我个人平时有广泛阅读和摘录经典的习惯，但有时可能由于时间久远不知道原文出处了，造成自己的文章中部分内容跟某些作者有重合和相似的，请您给我留言，我会及时做出改正，谢谢！目前确认的是此篇文章中的数据分析部分应该是在@秦路 某篇文章的基础上更改的，在此特别表示说明与感谢！】</p>
+<h4 id="阶段3-基础项目"><a href="#阶段3-基础项目" class="headerlink" title="阶段3:基础项目"></a>阶段3:基础项目</h4><ul>
+<li><a href="https://www.shiyanlou.com/courses/746" target="_blank" rel="external">人机对战初体验:Python基于Pygame实现四子棋游戏</a></li>
+<li><a href="https://www.shiyanlou.com/courses/741" target="_blank" rel="external">Python 实现英文新闻摘要自动提取</a></li>
+<li><a href="https://www.shiyanlou.com/courses/814" target="_blank" rel="external">使用 Python 实现深度神经网络</a></li>
+<li><a href="https://www.shiyanlou.com/courses/820" target="_blank" rel="external">使用卷积神经网络进行图片分类</a></li>
+<li><a href="https://www.shiyanlou.com/courses/861" target="_blank" rel="external">基于卷积神经网络实现图片风格的迁移</a></li>
+</ul>
+<h4 id="阶段4-进阶项目"><a href="#阶段4-进阶项目" class="headerlink" title="阶段4: 进阶项目"></a>阶段4: 进阶项目</h4><ul>
+<li><a href="https://www.shiyanlou.com/courses/678" target="_blank" rel="external">Python应用马尔可夫链算法实现随机文本生成</a></li>
+<li><a href="https://www.shiyanlou.com/courses/707" target="_blank" rel="external">神经网络实现人脸识别任务</a></li>
+<li><a href="https://www.shiyanlou.com/courses/696" target="_blank" rel="external">基于无监督学习的自编码器实现</a></li>
+<li><a href="https://www.shiyanlou.com/courses/782" target="_blank" rel="external">NBA常规赛结果预测——利用Python进行比赛数据分析</a></li>
+<li><a href="https://www.shiyanlou.com/courses/780" target="_blank" rel="external">Python 气象数据分析 – 《Python 数据分析实战》</a></li>
+<li><a href="https://www.shiyanlou.com/courses/722" target="_blank" rel="external">Twitter数据情感分析</a></li>
+<li><a href="https://www.shiyanlou.com/courses/714" target="_blank" rel="external">ebay在线拍卖数据分析</a></li>
+<li><a href="https://www.shiyanlou.com/courses/736" target="_blank" rel="external">大数据带你挖掘打车的秘籍</a></li>
+<li><a href="https://www.shiyanlou.com/courses/610" target="_blank" rel="external">使用 Spark 和 D3.js 分析航班大数据</a></li>
+</ul>
+<p>作者：实验楼<br>链接：<a href="http://www.jianshu.com/p/5d221ead56b9" target="_blank" rel="external">http://www.jianshu.com/p/5d221ead56b9</a><br>來源：简书<br>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
+<h3 id="基本工作流程"><a href="#基本工作流程" class="headerlink" title="基本工作流程"></a>基本工作流程</h3><p>以上我们基本具备了机器学习的必要条件，剩下的就是怎么运用它们去做一个完整的机器学习项目。其工作流程如下:</p>
+<ul>
+<li>抽象成数学问题</li>
+</ul>
+<blockquote>
+<p>明确问题是进行机器学习的第一步。机器学习的训练过程通常都是一件非常耗时的事情，胡乱尝试时间成本是非常高的。<br>这里的抽象成数学问题，指的我们明确我们可以获得什么样的数据，目标是一个分类还是回归或者是聚类的问题，如果都不是的话，如果划归为其中的某类问题。</p>
+</blockquote>
+<ul>
+<li>获取数据</li>
+</ul>
+<blockquote>
+<p>数据决定了机器学习结果的上限，而算法只是尽可能逼近这个上限。<br>数据要有代表性，否则必然会过拟合。<br>而且对于分类问题，数据偏斜不能过于严重，不同类别的数据数量不要有数个数量级的差距。<br>而且还要对数据的量级有一个评估，多少个样本，多少个特征，可以估算出其对内存的消耗程度，判断训练过程中内存是否能够放得下。如果放不下就得考虑改进算法或者使用一些降维的技巧了。如果数据量实在太大，那就要考虑分布式了。</p>
+</blockquote>
+<ul>
+<li>特征预处理与特征选择</li>
+</ul>
+<blockquote>
+<p>良好的数据要能够提取出良好的特征才能真正发挥效力。<br>特征预处理、数据清洗是很关键的步骤，往往能够使得算法的效果和性能得到显著提高。归一化、离散化、因子化、缺失值处理、去除共线性等，数据挖掘过程中很多时间就花在它们上面。这些工作简单可复制，收益稳定可预期，是机器学习的基础必备步骤。<br>筛选出显著特征、摒弃非显著特征，需要机器学习工程师反复理解业务。这对很多结果有决定性的影响。特征选择好了，非常简单的算法也能得出良好、稳定的结果。这需要运用特征有效性分析的相关技术，如相关系数、卡方检验、平均互信息、条件熵、后验概率、逻辑回归权重等方法。</p>
+</blockquote>
+<ul>
+<li>训练模型与调优</li>
+</ul>
+<blockquote>
+<p>直到这一步才用到我们上面说的算法进行训练。现在很多算法都能够封装成黑盒供人使用。但是真正考验水平的是调整这些算法的（超）参数，使得结果变得更加优良。这需要我们对算法的原理有深入的理解。理解越深入，就越能发现问题的症结，提出良好的调优方案。</p>
+</blockquote>
+<ul>
+<li>模型诊断</li>
+</ul>
+<blockquote>
+<p>如何确定模型调优的方向与思路呢？这就需要对模型进行诊断的技术。</p>
+<p>过拟合、欠拟合 判断是模型诊断中至关重要的一步。常见的方法如交叉验证，绘制学习曲线等。过拟合的基本调优思路是增加数据量，降低模型复杂度。欠拟合的基本调优思路是提高特征数量和质量，增加模型复杂度。<br>误差分析 也是机器学习至关重要的步骤。通过观察误差样本，全面分析误差产生误差的原因:是参数的问题还是算法选择的问题，是特征的问题还是数据本身的问题……<br>诊断后的模型需要进行调优，调优后的新模型需要重新进行诊断，这是一个反复迭代不断逼近的过程，需要不断地尝试， 进而达到最优状态。</p>
+</blockquote>
+<ul>
+<li>模型融合</li>
+</ul>
+<blockquote>
+<p>一般来说，模型融合后都能使得效果有一定提升。而且效果很好。<br>工程上，主要提升算法准确度的方法是分别在模型的前端（特征清洗和预处理，不同的采样模式）与后端（模型融合）上下功夫。因为他们比较标准可复制，效果比较稳定。而直接调参的工作不会很多，毕竟大量数据训练起来太慢了，而且效果难以保证。</p>
+</blockquote>
+<ul>
+<li>上线运行</li>
+</ul>
+<blockquote>
+<p>这一部分内容主要跟工程实现的相关性比较大。工程上是结果导向，模型在线上运行的效果直接决定模型的成败。 不单纯包括其准确程度、误差等情况，还包括其运行的速度(时间复杂度)、资源消耗程度（空间复杂度）、稳定性是否可接受。<br>这些工作流程主要是工程实践上总结出的一些经验。并不是每个项目都包含完整的一个流程。这里的部分只是一个指导性的说明，只有大家自己多实践，多积累项目经验，才会有自己更深刻的认识。</p>
+</blockquote>
+<h3 id="关于积累项目经验"><a href="#关于积累项目经验" class="headerlink" title="关于积累项目经验"></a>关于积累项目经验</h3><p>初学机器学习可能有一个误区，就是一上来就陷入到对各种高大上算法的追逐当中。动不动就我能不能用深度学习去解决这个问题啊？我是不是要用boosting算法做一些模型融合啊？我一直持有一个观点，『脱离业务和数据的算法讨论是毫无意义的』。</p>
+<p>实际上按我们的学习经验，从一个数据源开始，即使是用最传统，已经应用多年的机器学习算法，先完整地走完机器学习的整个工作流程，不断尝试各种算法深挖这些数据的价值，在运用过程中把数据、特征和算法搞透，真正积累出项目经验 才是最快、最靠谱的学习路径。</p>
+<p>那如何获取数据和项目呢？一个捷径就是积极参加国内外各种数据挖掘竞赛，数据直接下载下来，按照竞赛的要求去不断优化，积累经验。国外的<a href="https://www.kaggle.com/" target="_blank" rel="external">Kaggle</a>和国内的<a href="http://www.pkbigdata.com/" target="_blank" rel="external">DataCastle</a> 以及<a href="https://tianchi.aliyun.com/" target="_blank" rel="external">阿里天池比赛</a>都是很好的平台，你可以在上面获取真实的数据和数据科学家们一起学习和进行竞赛，尝试使用已经学过的所有知识来完成这个比赛本身也是一件很有乐趣的事情。和其他数据科学家的讨论能开阔视野，对机器学习算法有更深层次的认识。</p>
+<p>有意思的是，有些平台，比如阿里天池比赛，甚至给出了从数据处理到模型训练到模型评估、可视化到模型融合增强的全部组件，你要做的事情只是参与比赛，获取数据，然后使用这些组件去实现自己的idea即可。具体内容可以参见<a href="https://help.aliyun.com/document_detail/shujia/machine-learning/pai-quickstart.html" target="_blank" rel="external">阿里云机器学习文档</a>。</p>
+<h3 id="书籍推荐"><a href="#书籍推荐" class="headerlink" title="书籍推荐"></a>书籍推荐</h3><ul>
+<li>Mitchell 的《机器学习》。Mitchell是机器学习的鼻祖，第一个提出机器学习概念的人。这本书很薄，很简单。内容很陈旧，但是都是机器学习的经典问题。而且，这本书概念清晰正确(很可贵啊，又简单又正确的书，说明作者功力很强)</li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/机器学习/" rel="tag">#机器学习</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/11/06/lunix切换防火墙/" rel="next" title="lunix切换防火墙">
+                <i class="fa fa-chevron-left"></i> lunix切换防火墙
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/11/09/lunix入门/" rel="prev" title="linux入门">
+                linux入门 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+         <div id="uyan_frame"></div>
+    
+  </div>
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Hanson" />
+          <p class="site-author-name" itemprop="name">Hanson</p>
+          <p class="site-description motion-element" itemprop="description">iOS开发者，python/js爱好者，现在就职业京东金融</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">84</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">29</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#机器学习解决的问题"><span class="nav-number">1.</span> <span class="nav-text">机器学习解决的问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基础知识"><span class="nav-number">2.</span> <span class="nav-text">基础知识</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#阶段1：入门知识"><span class="nav-number">2.1.</span> <span class="nav-text">阶段1：入门知识</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#阶段2-机器学习理论"><span class="nav-number">2.2.</span> <span class="nav-text">阶段2: 机器学习理论</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#初级阶段"><span class="nav-number">2.2.1.</span> <span class="nav-text">初级阶段</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#中级阶段"><span class="nav-number">2.2.2.</span> <span class="nav-text">中级阶段</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#高级阶段"><span class="nav-number">2.2.3.</span> <span class="nav-text">高级阶段</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#阶段3-基础项目"><span class="nav-number">2.3.</span> <span class="nav-text">阶段3:基础项目</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#阶段4-进阶项目"><span class="nav-number">2.4.</span> <span class="nav-text">阶段4: 进阶项目</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基本工作流程"><span class="nav-number">3.</span> <span class="nav-text">基本工作流程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关于积累项目经验"><span class="nav-number">4.</span> <span class="nav-text">关于积累项目经验</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#书籍推荐"><span class="nav-number">5.</span> <span class="nav-text">书籍推荐</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Hanson</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+    
+  
+ 
+      <!-- UY BEGIN -->
+      <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2148265"></script>
+      <!-- UY END -->
+  
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = false;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = decodeURIComponent(data.url);
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title >= 0 || index_content >= 0 ){
+                                isMatch = true;
+								if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            } 
+							
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>

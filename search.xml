@@ -3,6 +3,310 @@
   
     
     <entry>
+      <title><![CDATA[linux入门]]></title>
+      <url>/2017/11/09/lunix%E5%85%A5%E9%97%A8/</url>
+      <content type="html"><![CDATA[<p>Ctrl+a 移动到行初<br>Ctrl+e 移动到行末<br>Ctrl+k 删除从光标位置到行末<br>Alts+backspace 向前删除一个单词</p>
+<p><code>ls *.txt</code>显示所有的.txt结尾的文件<br><code>touch love{1..10}.txt</code>创建了十个文件<br><code>touch today{name,hahm,ceshi}.txt</code>创建了三个文件</p>
+<h4 id="用户相关"><a href="#用户相关" class="headerlink" title="用户相关"></a>用户相关</h4><p><code>who -a</code>打印全部<br><code>who -d</code>打印死掉的进程<br><code>who -m</code>或者<code>who am i</code>当前登录用户<br><code>who -q</code>打印当前登录用户数以及用户名<br><code>who -u</code>打印当前登录用户登录信息<br><code>who -r</code>打印运行等级</p>
+<p><code>sudo adduser username</code>添加用户<br><code>su -l username</code>切换用户<br><code>exit</code>退出当前用户回到上一个用户</p>
+<p>用户组<br><code>groups han</code>查看当前用户属于啥组<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">han : han //前边是用户，后边是组</div></pre></td></tr></table></figure></p>
+<p>新建的用户会自动创建一个同名的组，注意这个新建的用户不在root用户组下边，那就意味着当你切换到han这个用户下边的时候，其实你是不能使用sudo的，那怎么将han添加到sudo下呢？<br><code>sudo usermod -G sudo han</code>添加han到用户组下边<br><code>sudo deluser han --remove-home</code>删除用户</p>
+<h4 id="权限"><a href="#权限" class="headerlink" title="权限"></a>权限</h4><p><code>ls -l</code></p>
+<blockquote>
+<p>-rw-r–r–  1 jrmacpro  staff  0 11  9 09:12 love1.txt<br>文件类型和权限 链接数 所有者 所有者用户组 文件大小 最后修改日期 文件名</p>
+</blockquote>
+<p>我们来看看用户权限<br>drwxr-xr-x<br>drwxr拥有者权限<br>第一个-xr用户组权限<br>第二个-x其他用户权限</p>
+<p>r允许读<br>w允许写<br>x允许执行</p>
+<ul>
+<li>文件类型：lunix中一切皆文件</li>
+<li>文件权限：<ul>
+<li><code>cat filename</code>你可以使用这个命令来读</li>
+<li>写表示你可以编辑和修改</li>
+<li>执行权限通常指可以运行二进制程序文本或者脚本文件，一个目录同时具有读和执行权限你才可以打开并且查看内部文件，而一个目录要有写权限才能在其中创建其他文件</li>
+</ul>
+</li>
+</ul>
+<p><code>ls -lh</code>直观查看文件大小</p>
+<h5 id="修改文件所有者"><a href="#修改文件所有者" class="headerlink" title="修改文件所有者"></a>修改文件所有者</h5><blockquote>
+<p><code>sudo chown hanshenghui filename</code></p>
+</blockquote>
+<h5 id="修改文件权限"><a href="#修改文件权限" class="headerlink" title="修改文件权限"></a>修改文件权限</h5><p>利用<code>+</code>和<code>-</code><br><code>chmod go-r filename</code><br>g/o/u分别代表group，others，user，上边那句的意思是说真对这个文件group和other去掉读权限</p>
+<h3 id="文件和目录"><a href="#文件和目录" class="headerlink" title="文件和目录"></a>文件和目录</h3><ul>
+<li><code>tree</code>使用这个命令查看目录结构</li>
+<li><code>ls -a</code>查看隐藏文件</li>
+<li><code>cd ~</code>home</li>
+<li><code>cd ..</code>上一级</li>
+<li><code>pwd</code>当前路径</li>
+<li><code>cd ..</code>上一层目录</li>
+<li><code>cp test /opt/test</code>把test复制到opt下边的test</li>
+<li><code>cp -r test /opt/test</code>把test这个文件夹复制到opt下，递归复制</li>
+<li><code>rm filename</code></li>
+<li><code>rm -f filename</code>忽略权限，强制删除</li>
+<li><code>rm -r direction</code>递归删除</li>
+<li><code>mv file1 file2</code>把file1移动到file2，或者说是重命名</li>
+<li><code>rename file1 file2</code>将file1重命名为file2</li>
+</ul>
+<h4 id="查看文件"><a href="#查看文件" class="headerlink" title="查看文件"></a>查看文件</h4><ul>
+<li><code>cat</code>正序</li>
+<li><code>tac</code>倒序</li>
+<li><code>nl</code>带着编号</li>
+<li><code>more/less</code></li>
+<li><code>head</code>查看头十行</li>
+<li><code>tail</code>查看末尾几行</li>
+<li><code>tail -f</code>可以实现实时查看日志</li>
+<li><code>file</code>查看文件类型</li>
+</ul>
+<h3 id="环境变量和文件查找"><a href="#环境变量和文件查找" class="headerlink" title="环境变量和文件查找"></a>环境变量和文件查找</h3><p><code>~.profile</code>对当前用户生效<br><code>/etc/profile</code>所有用户生效</p>
+<h4 id="环境变量PATH介绍"><a href="#环境变量PATH介绍" class="headerlink" title="环境变量PATH介绍"></a>环境变量PATH介绍</h4><p>当我们在shell中输入一个命令的时候，它怎么知道去哪里寻找该执行哪个命令呢，这些路径就存在PATH中。</p>
+<p><code>echo $PATH</code>来查看<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/usr/local/opt/swig@3.04/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin</div></pre></td></tr></table></figure></p>
+<h5 id="添加自定义的PATH"><a href="#添加自定义的PATH" class="headerlink" title="添加自定义的PATH"></a>添加自定义的PATH</h5><p><code>PATH=$PATH:/home/han/mybin</code>注意这里一定要用绝对路径</p>
+<h3 id="文件压缩"><a href="#文件压缩" class="headerlink" title="文件压缩"></a>文件压缩</h3><h4 id="zip"><a href="#zip" class="headerlink" title="zip"></a>zip</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">zip -r -9 -q -o shiyanlou.zip /home/shiyanlou -x ~/*.zip</div><div class="line">du -h shiyanlou.zip</div><div class="line">file shiyanlou.zip</div></pre></td></tr></table></figure>
+<p><code>-r</code>递归压缩</p>
+<p><code>-9/-1</code>压缩级别-9压缩最厉害，-1最不厉害</p>
+<p><code>-q</code>静默，不输出到命令行</p>
+<p><code>-o</code>输出文件名字</p>
+<p><code>du</code>查看文件大小</p>
+<h4 id="unzip"><a href="#unzip" class="headerlink" title="unzip"></a>unzip</h4><p><code>unzip -q ceshi.zip -d ceshiname</code>解压然后解压后叫啥名字</p>
+<h4 id="tar"><a href="#tar" class="headerlink" title="tar"></a>tar</h4><p>压缩</p>
+<p>tar -cvf jpg.tar *.jpg //将目录里所有jpg文件打包成tar.jpg </p>
+<p>tar -czf jpg.tar.gz *.jpg   //将目录里所有jpg文件打包成jpg.tar后，并且将其用gzip压缩，生成一个gzip压缩过的包，命名为jpg.tar.gz</p>
+<p> tar -cjf jpg.tar.bz2 *.jpg //将目录里所有jpg文件打包成jpg.tar后，并且将其用bzip2压缩，生成一个bzip2压缩过的包，命名为jpg.tar.bz2</p>
+<p>tar -cZf jpg.tar.Z *.jpg   //将目录里所有jpg文件打包成jpg.tar后，并且将其用compress压缩，生成一个umcompress压缩过的包，命名为jpg.tar.Z</p>
+<p>rar a jpg.rar *.jpg //rar格式的压缩，需要先下载rar for linux</p>
+<p>zip jpg.zip *.jpg //zip格式的压缩，需要先下载zip for linux</p>
+<p>解压</p>
+<p>tar -xvf file.tar //解压 tar包</p>
+<p>tar -xzvf file.tar.gz //解压tar.gz</p>
+<p>tar -xjvf file.tar.bz2   //解压 tar.bz2</p>
+<p>tar -xZvf file.tar.Z   //解压tar.Z</p>
+<p>unrar e file.rar //解压rar</p>
+<p>unzip file.zip //解压zip</p>
+<h3 id="磁盘相关"><a href="#磁盘相关" class="headerlink" title="磁盘相关"></a>磁盘相关</h3><p><code>df</code>查看磁盘容量<br><code>du</code> 查看该目录<br><code>du -h</code>更简单的方式来查看</p>
+<h3 id="Linux任务计划crontab"><a href="#Linux任务计划crontab" class="headerlink" title="Linux任务计划crontab"></a>Linux任务计划crontab</h3><p><code>crontab -e</code>然后进入到了一个文件在这个文件中添加任务<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">*/1 * * * * * python /Users/jrmacpro/Desktop/ceshi.py &gt;&gt; /Users/jrmacpro/Desktop/log.txt</div></pre></td></tr></table></figure></p>
+<p>一共有五个*分别代表：分，小时，几号，月份，星期几</p>
+<p>&gt;<br>在以上各个字段中，还可以使用以下特殊字符：<br>&gt;</p>
+<ul>
+<li>星号（*）：代表所有可能的值，例如month字段如果是星号，则表示在满足其它字段的制约条件后每月都执行该命令操作。</li>
+<li>逗号（,）：可以用逗号隔开的值指定一个列表范围，例如，“1,2,5,7,8,9”</li>
+<li>中杠（-）：可以用整数之间的中杠表示一个整数范围，例如“2-6”表示“2,3,4,5,6”</li>
+<li>正斜线（/）：可以用正斜线指定时间的间隔频率，例如“0-23/2”表示每两小时执行一次。同时正斜线可以和星号一起使用，例如*/10，如果用在minute字段，表示每十分钟执行一次。</li>
+</ul>
+<p><code>sudo cron -f &amp;</code>    启动守护进程，我们的设置才能生效</p>
+<h4 id="使用实例："><a href="#使用实例：" class="headerlink" title="使用实例："></a>使用实例：</h4><ul>
+<li>实例1：每1分钟执行一次command<br>命令：</li>
+</ul>
+<ul>
+<li><ul>
+<li><ul>
+<li><ul>
+<li><ul>
+<li>command</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>实例2：每小时的第3和第15分钟执行<br>命令：<br><code>3,15 * * * * command</code></p>
+</li>
+<li><p>实例3：在上午8点到11点的第3和第15分钟执行<br>命令：<br><code>3,15 8-11 * * * command</code></p>
+</li>
+<li><p>实例4：每隔两天的上午8点到11点的第3和第15分钟执行<br>命令：<br><code>3,15 8-11 */2 * * command</code></p>
+</li>
+<li><p>实例5：每个星期一的上午8点到11点的第3和第15分钟执行<br>命令：<br><code>3,15 8-11 * * 1 command</code></p>
+</li>
+<li><p>实例6：每晚的21:30重启smb<br>命令：<br><code>30 21 * * * /etc/init.d/smb restart</code></p>
+</li>
+<li><p>实例7：每月1、10、22日的4 : 45重启smb<br>命令：<br><code>45 4 1,10,22 * * /etc/init.d/smb restart</code></p>
+</li>
+<li><p>实例8：每周六、周日的1 : 10重启smb<br>命令：<br><code>10 1 * * 6,0 /etc/init.d/smb restart</code></p>
+</li>
+<li><p>实例9：每天18 : 00至23 : 00之间每隔30分钟重启smb<br>命令：<br><code>0,30 18-23 * * * /etc/init.d/smb restart</code></p>
+</li>
+<li><p>实例10：每星期六的晚上11 : 00 pm重启smb<br>命令：<br><code>0 23 * * 6 /etc/init.d/smb restart</code></p>
+</li>
+<li><p>实例11：每一小时重启smb<br>命令：<br><code>* */1 * * * /etc/init.d/smb restart</code></p>
+</li>
+<li><p>实例12：晚上11点到早上7点之间，每隔一小时重启smb<br>命令：<br><code>* 23-7/1 * * * /etc/init.d/smb restart</code></p>
+</li>
+<li><p>实例13：每月的4号与每周一到周三的11点重启smb<br>命令：<br><code>0 11 4 * mon-wed /etc/init.d/smb restart</code></p>
+</li>
+<li><p>实例14：一月一号的4点重启smb<br>命令：<br><code>0 4 1 jan * /etc/init.d/smb restart</code></p>
+</li>
+<li><p>实例15：每小时执行/etc/cron.hourly目录内的脚本<br>命令：<br><code>01   *   *   *   *     root run-parts /etc/cron.hourly</code><br>说明：<br>run-parts这个参数了，如果去掉这个参数的话，后面就可以写要运行的某个脚本名，而不是目录名了</p>
+</li>
+<li><p>实例16：以时间命名<br><code>01 * * * * touch $(date +%Y-%m-%d)</code></p>
+</li>
+</ul>
+<h3 id="命令执行顺序和管道"><a href="#命令执行顺序和管道" class="headerlink" title="命令执行顺序和管道"></a>命令执行顺序和管道</h3><p>多命令一起输入选择性执行<br><code>which git &amp;&amp; echo &#39;YES&#39; || echo &#39;NO&#39;</code><br>这段话的意思是如果git存在就输出YES，否则输出NO<br><code>echo $?</code>查看程序执行结果</p>
+<h4 id="管道"><a href="#管道" class="headerlink" title="管道"></a>管道</h4><p>将前一个命令的输出作为后一个命令的输入，以<code>|</code>作为表示符。<br><code>ls -la /etc | less</code><br>这个时候前一个命令输出了好多，无所谓我可以用less来一行一行的看</p>
+<h4 id="grep"><a href="#grep" class="headerlink" title="grep"></a>grep</h4><p>在文本中查找匹配关键字</p>
+<h4 id="wc计数工具"><a href="#wc计数工具" class="headerlink" title="wc计数工具"></a>wc计数工具</h4><p><code>wc -l filename</code>文件行数<br><code>wc -w filename</code>单词数<br><code>wc -c filename</code>字节数<br><code>wc -m filename</code>字符数<br><code>wc -L filename</code>最长行字节数</p>
+<h4 id="sort"><a href="#sort" class="headerlink" title="sort"></a>sort</h4><p><code>cat /etc/passwd | sort -r</code>反序</p>
+<h4 id="cut"><a href="#cut" class="headerlink" title="cut"></a>cut</h4><p><code>cut -f 1-3 text.txt</code><br><code>cut -f -3 text.txt</code><br><code>cut -f 3- text.txt</code></p>
+<h3 id="文本处理"><a href="#文本处理" class="headerlink" title="文本处理"></a>文本处理</h3><p><code>join file1 file2</code>将行相同的合并在一起<br><code>paste file1 file2</code>直接合并</p>
+<h3 id="重定向"><a href="#重定向" class="headerlink" title="重定向"></a>重定向</h3><p><code>echo &#39;hi&#39; &gt;&gt; text.txt</code><br><code>echo &#39;hi&#39; | tee text.txt</code>多向重定向</p>
+]]></content>
+      
+        
+        <tags>
+            
+            <tag> linux </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[机器学习学习路径]]></title>
+      <url>/2017/11/07/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%AD%A6%E4%B9%A0%E8%B7%AF%E5%BE%84/</url>
+      <content type="html"><![CDATA[<h3 id="机器学习解决的问题"><a href="#机器学习解决的问题" class="headerlink" title="机器学习解决的问题"></a>机器学习解决的问题</h3><p>并非所有的问题都适合用机器学习解决(很多逻辑清晰的问题用规则能很高效和准确地处理)，也没有一个机器学习算法可以通用于所有问题。咱们先来了解了解，机器学习，到底关心和解决什么样的问题。</p>
+<p>从功能的角度分类，机器学习在一定量级的数据上，可以解决下列问题：</p>
+<ul>
+<li>分类问题</li>
+</ul>
+<blockquote>
+<p>根据数据样本上抽取出的特征，判定其属于有限个类别中的哪一个。比如： </p>
+</blockquote>
+<pre><code>- 垃圾邮件识别(结果类别：1、垃圾邮件 2、正常邮件)
+- 文本情感褒贬分析(结果类别：1、褒 2、贬)
+- 图像内容识别识别(结果类别：1、喵星人 2、汪星人 3、人类 4、草泥马 5、都不是)。
+</code></pre><ul>
+<li>回归问题</li>
+</ul>
+<blockquote>
+<p>根据数据样本上抽取出的特征，预测一个连续值的结果。比如： </p>
+</blockquote>
+<pre><code>- 星爷《美人鱼》票房
+- 大帝都2个月后的房价
+- 隔壁熊孩子一天来你家几次，宠幸你多少玩具
+</code></pre><ul>
+<li>聚类等问题</li>
+</ul>
+<blockquote>
+<p>根据数据样本上抽取出的特征，让样本抱抱团(相近/相关的样本在一团内)。比如： </p>
+</blockquote>
+<pre><code>- google的新闻分类
+- 用户群体划分
+</code></pre><p>我们再把上述常见问题划到机器学习最典型的2个分类上。</p>
+<blockquote>
+<ul>
+<li>分类与回归问题需要用已知结果的数据做训练，属于“监督学习”</li>
+<li>聚类的问题不需要已知标签，属于“非监督学习”。</li>
+</ul>
+</blockquote>
+<p>如果在IT行业(尤其是互联网)里溜达一圈，你会发现机器学习在以下热点问题中有广泛应用：</p>
+<p>1.计算机视觉</p>
+<p>典型的应用包括：人脸识别、车牌识别、扫描文字识别、图片内容识别、图片搜索等等。</p>
+<p>2.自然语言处理</p>
+<p>典型的应用包括：搜索引擎智能匹配、文本内容理解、文本情绪判断，语音识别、输入法、机器翻译等等。</p>
+<p>3.社会网络分析</p>
+<p>典型的应用包括：用户画像、网络关联分析、欺诈作弊发现、热点发现等等。</p>
+<p>4.推荐</p>
+<p>典型的应用包括：虾米音乐的“歌曲推荐”，某宝的“猜你喜欢”等等。</p>
+<h3 id="基础知识"><a href="#基础知识" class="headerlink" title="基础知识"></a>基础知识</h3><h4 id="阶段1：入门知识"><a href="#阶段1：入门知识" class="headerlink" title="阶段1：入门知识"></a>阶段1：入门知识</h4><ul>
+<li><a href="https://www.shiyanlou.com/courses/1" target="_blank" rel="external">Lunix基础入门</a></li>
+<li><a href="https://www.shiyanlou.com/courses/2" target="_blank" rel="external">Vim入门</a></li>
+</ul>
+<h4 id="阶段2-机器学习理论"><a href="#阶段2-机器学习理论" class="headerlink" title="阶段2: 机器学习理论"></a>阶段2: 机器学习理论</h4><p>这部分主要是要掌握一些典型的机器学习算法，如分类、聚类、推荐、概率图、神经网络。（可以分为初级、中级和高级三个阶段，每个阶段的侧重点不同。）</p>
+<h5 id="初级阶段"><a href="#初级阶段" class="headerlink" title="初级阶段"></a>初级阶段</h5><p>初级阶段推荐可以看《机器学习算法原理与编程实践 》和《机器学习实战》这两本书。</p>
+<p>这两本书更偏向于算法的应用方面，学习起来相对轻松一些。如果一上来直接就啃那些纯算法理论，估计很多人是坚持不下去的。</p>
+<p>再者，一个东西，当你还不知道它是什么，有什么用，以及怎么用时，让你去硬着头皮啃，你一定会感觉很郁闷，并且根本不可能能够深入理解那些理论。</p>
+<p>所以，个人强烈建议不要一上来就贪图那些算法理论的推导，先大胆的去了解各个算法的应用场合并尝试着应用，这对你入门机器学习是一个非常好的选择。</p>
+<h5 id="中级阶段"><a href="#中级阶段" class="headerlink" title="中级阶段"></a>中级阶段</h5><p>中级阶段就要开始啃那些算法背后的理论了，前面应用是知其然，现在要开始知其所以然。</p>
+<p>这个阶段重点推荐看林轩田的《机器学习基石》和《机器学习技法》视频，总共三十二课，每一课都相当精彩，细致学下来需要三个月，我指的是细致的看，每一课都应该写笔记，梳理脉络，强烈建议做笔记。</p>
+<p>踏踏实实看完，面试中让你推个svm讲讲adboost，gbdt原理基本就是手到擒来，再辅以李航的《统计学习方法》和周志华的《机器学习》（俗称“西瓜书”）查漏补缺，基础就算比较扎实了。</p>
+<h5 id="高级阶段"><a href="#高级阶段" class="headerlink" title="高级阶段"></a>高级阶段</h5><p>高级阶段就是要自己开始去灵活运用并组合各个算法了。这个阶段可以在网上找一些比较典型的项目来进行实战演练。</p>
+<p>推荐学习资源：Kaggle、CCF、Datacastle、阿里云天池等。</p>
+<p>kaggle是国外一个专门做数据挖掘比赛的地方，里面很多比赛比较适合新人，而且里面的氛围也比较好，每个比赛都有对应的论坛，时不时有人会发布自己的代码，大家集思广益一起讨论，可以学到很多。</p>
+<p>如果你觉得上面的内容对你有帮助，或者你想要进一步了解和学习数据挖掘和机器学习等知识，欢迎关注我们的微信公众号“DT新纪元”。</p>
+<p>【另外说明一下，我个人平时有广泛阅读和摘录经典的习惯，但有时可能由于时间久远不知道原文出处了，造成自己的文章中部分内容跟某些作者有重合和相似的，请您给我留言，我会及时做出改正，谢谢！目前确认的是此篇文章中的数据分析部分应该是在@秦路 某篇文章的基础上更改的，在此特别表示说明与感谢！】</p>
+<h4 id="阶段3-基础项目"><a href="#阶段3-基础项目" class="headerlink" title="阶段3:基础项目"></a>阶段3:基础项目</h4><ul>
+<li><a href="https://www.shiyanlou.com/courses/746" target="_blank" rel="external">人机对战初体验:Python基于Pygame实现四子棋游戏</a></li>
+<li><a href="https://www.shiyanlou.com/courses/741" target="_blank" rel="external">Python 实现英文新闻摘要自动提取</a></li>
+<li><a href="https://www.shiyanlou.com/courses/814" target="_blank" rel="external">使用 Python 实现深度神经网络</a></li>
+<li><a href="https://www.shiyanlou.com/courses/820" target="_blank" rel="external">使用卷积神经网络进行图片分类</a></li>
+<li><a href="https://www.shiyanlou.com/courses/861" target="_blank" rel="external">基于卷积神经网络实现图片风格的迁移</a></li>
+</ul>
+<h4 id="阶段4-进阶项目"><a href="#阶段4-进阶项目" class="headerlink" title="阶段4: 进阶项目"></a>阶段4: 进阶项目</h4><ul>
+<li><a href="https://www.shiyanlou.com/courses/678" target="_blank" rel="external">Python应用马尔可夫链算法实现随机文本生成</a></li>
+<li><a href="https://www.shiyanlou.com/courses/707" target="_blank" rel="external">神经网络实现人脸识别任务</a></li>
+<li><a href="https://www.shiyanlou.com/courses/696" target="_blank" rel="external">基于无监督学习的自编码器实现</a></li>
+<li><a href="https://www.shiyanlou.com/courses/782" target="_blank" rel="external">NBA常规赛结果预测——利用Python进行比赛数据分析</a></li>
+<li><a href="https://www.shiyanlou.com/courses/780" target="_blank" rel="external">Python 气象数据分析 – 《Python 数据分析实战》</a></li>
+<li><a href="https://www.shiyanlou.com/courses/722" target="_blank" rel="external">Twitter数据情感分析</a></li>
+<li><a href="https://www.shiyanlou.com/courses/714" target="_blank" rel="external">ebay在线拍卖数据分析</a></li>
+<li><a href="https://www.shiyanlou.com/courses/736" target="_blank" rel="external">大数据带你挖掘打车的秘籍</a></li>
+<li><a href="https://www.shiyanlou.com/courses/610" target="_blank" rel="external">使用 Spark 和 D3.js 分析航班大数据</a></li>
+</ul>
+<p>作者：实验楼<br>链接：<a href="http://www.jianshu.com/p/5d221ead56b9" target="_blank" rel="external">http://www.jianshu.com/p/5d221ead56b9</a><br>來源：简书<br>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
+<h3 id="基本工作流程"><a href="#基本工作流程" class="headerlink" title="基本工作流程"></a>基本工作流程</h3><p>以上我们基本具备了机器学习的必要条件，剩下的就是怎么运用它们去做一个完整的机器学习项目。其工作流程如下:</p>
+<ul>
+<li>抽象成数学问题</li>
+</ul>
+<blockquote>
+<p>明确问题是进行机器学习的第一步。机器学习的训练过程通常都是一件非常耗时的事情，胡乱尝试时间成本是非常高的。<br>这里的抽象成数学问题，指的我们明确我们可以获得什么样的数据，目标是一个分类还是回归或者是聚类的问题，如果都不是的话，如果划归为其中的某类问题。</p>
+</blockquote>
+<ul>
+<li>获取数据</li>
+</ul>
+<blockquote>
+<p>数据决定了机器学习结果的上限，而算法只是尽可能逼近这个上限。<br>数据要有代表性，否则必然会过拟合。<br>而且对于分类问题，数据偏斜不能过于严重，不同类别的数据数量不要有数个数量级的差距。<br>而且还要对数据的量级有一个评估，多少个样本，多少个特征，可以估算出其对内存的消耗程度，判断训练过程中内存是否能够放得下。如果放不下就得考虑改进算法或者使用一些降维的技巧了。如果数据量实在太大，那就要考虑分布式了。</p>
+</blockquote>
+<ul>
+<li>特征预处理与特征选择</li>
+</ul>
+<blockquote>
+<p>良好的数据要能够提取出良好的特征才能真正发挥效力。<br>特征预处理、数据清洗是很关键的步骤，往往能够使得算法的效果和性能得到显著提高。归一化、离散化、因子化、缺失值处理、去除共线性等，数据挖掘过程中很多时间就花在它们上面。这些工作简单可复制，收益稳定可预期，是机器学习的基础必备步骤。<br>筛选出显著特征、摒弃非显著特征，需要机器学习工程师反复理解业务。这对很多结果有决定性的影响。特征选择好了，非常简单的算法也能得出良好、稳定的结果。这需要运用特征有效性分析的相关技术，如相关系数、卡方检验、平均互信息、条件熵、后验概率、逻辑回归权重等方法。</p>
+</blockquote>
+<ul>
+<li>训练模型与调优</li>
+</ul>
+<blockquote>
+<p>直到这一步才用到我们上面说的算法进行训练。现在很多算法都能够封装成黑盒供人使用。但是真正考验水平的是调整这些算法的（超）参数，使得结果变得更加优良。这需要我们对算法的原理有深入的理解。理解越深入，就越能发现问题的症结，提出良好的调优方案。</p>
+</blockquote>
+<ul>
+<li>模型诊断</li>
+</ul>
+<blockquote>
+<p>如何确定模型调优的方向与思路呢？这就需要对模型进行诊断的技术。</p>
+<p>过拟合、欠拟合 判断是模型诊断中至关重要的一步。常见的方法如交叉验证，绘制学习曲线等。过拟合的基本调优思路是增加数据量，降低模型复杂度。欠拟合的基本调优思路是提高特征数量和质量，增加模型复杂度。<br>误差分析 也是机器学习至关重要的步骤。通过观察误差样本，全面分析误差产生误差的原因:是参数的问题还是算法选择的问题，是特征的问题还是数据本身的问题……<br>诊断后的模型需要进行调优，调优后的新模型需要重新进行诊断，这是一个反复迭代不断逼近的过程，需要不断地尝试， 进而达到最优状态。</p>
+</blockquote>
+<ul>
+<li>模型融合</li>
+</ul>
+<blockquote>
+<p>一般来说，模型融合后都能使得效果有一定提升。而且效果很好。<br>工程上，主要提升算法准确度的方法是分别在模型的前端（特征清洗和预处理，不同的采样模式）与后端（模型融合）上下功夫。因为他们比较标准可复制，效果比较稳定。而直接调参的工作不会很多，毕竟大量数据训练起来太慢了，而且效果难以保证。</p>
+</blockquote>
+<ul>
+<li>上线运行</li>
+</ul>
+<blockquote>
+<p>这一部分内容主要跟工程实现的相关性比较大。工程上是结果导向，模型在线上运行的效果直接决定模型的成败。 不单纯包括其准确程度、误差等情况，还包括其运行的速度(时间复杂度)、资源消耗程度（空间复杂度）、稳定性是否可接受。<br>这些工作流程主要是工程实践上总结出的一些经验。并不是每个项目都包含完整的一个流程。这里的部分只是一个指导性的说明，只有大家自己多实践，多积累项目经验，才会有自己更深刻的认识。</p>
+</blockquote>
+<h3 id="关于积累项目经验"><a href="#关于积累项目经验" class="headerlink" title="关于积累项目经验"></a>关于积累项目经验</h3><p>初学机器学习可能有一个误区，就是一上来就陷入到对各种高大上算法的追逐当中。动不动就我能不能用深度学习去解决这个问题啊？我是不是要用boosting算法做一些模型融合啊？我一直持有一个观点，『脱离业务和数据的算法讨论是毫无意义的』。</p>
+<p>实际上按我们的学习经验，从一个数据源开始，即使是用最传统，已经应用多年的机器学习算法，先完整地走完机器学习的整个工作流程，不断尝试各种算法深挖这些数据的价值，在运用过程中把数据、特征和算法搞透，真正积累出项目经验 才是最快、最靠谱的学习路径。</p>
+<p>那如何获取数据和项目呢？一个捷径就是积极参加国内外各种数据挖掘竞赛，数据直接下载下来，按照竞赛的要求去不断优化，积累经验。国外的<a href="https://www.kaggle.com/" target="_blank" rel="external">Kaggle</a>和国内的<a href="http://www.pkbigdata.com/" target="_blank" rel="external">DataCastle</a> 以及<a href="https://tianchi.aliyun.com/" target="_blank" rel="external">阿里天池比赛</a>都是很好的平台，你可以在上面获取真实的数据和数据科学家们一起学习和进行竞赛，尝试使用已经学过的所有知识来完成这个比赛本身也是一件很有乐趣的事情。和其他数据科学家的讨论能开阔视野，对机器学习算法有更深层次的认识。</p>
+<p>有意思的是，有些平台，比如阿里天池比赛，甚至给出了从数据处理到模型训练到模型评估、可视化到模型融合增强的全部组件，你要做的事情只是参与比赛，获取数据，然后使用这些组件去实现自己的idea即可。具体内容可以参见<a href="https://help.aliyun.com/document_detail/shujia/machine-learning/pai-quickstart.html" target="_blank" rel="external">阿里云机器学习文档</a>。</p>
+<h3 id="书籍推荐"><a href="#书籍推荐" class="headerlink" title="书籍推荐"></a>书籍推荐</h3><ul>
+<li>Mitchell 的《机器学习》。Mitchell是机器学习的鼻祖，第一个提出机器学习概念的人。这本书很薄，很简单。内容很陈旧，但是都是机器学习的经典问题。而且，这本书概念清晰正确(很可贵啊，又简单又正确的书，说明作者功力很强)</li>
+</ul>
+]]></content>
+      
+        
+        <tags>
+            
+            <tag> 机器学习 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[lunix切换防火墙]]></title>
       <url>/2017/11/06/lunix%E5%88%87%E6%8D%A2%E9%98%B2%E7%81%AB%E5%A2%99/</url>
       <content type="html"><![CDATA[<p>当然你可以还原传统的管理方式。</p>
