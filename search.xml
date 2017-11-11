@@ -3,6 +3,21 @@
   
     
     <entry>
+      <title><![CDATA[Mac-Vim使用教程]]></title>
+      <url>/2017/11/11/Mac-Vim%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/</url>
+      <content type="html"><![CDATA[<p>n+ 移n行行首<br>n- 移n行行首<br>n$ 移n行(1表示本行)行尾<br>0 所行行首<br>$ 所行行尾<br>^ 所行首字母<br>h,j,k,l 左移移移右移<br>H 前屏幕首行行首<br>M 屏幕显示文件间行行首<br>L 前屏幕底行行首</p>
+]]></content>
+      
+        
+        <tags>
+            
+            <tag> 工具 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[linux入门]]></title>
       <url>/2017/11/09/lunix%E5%85%A5%E9%97%A8/</url>
       <content type="html"><![CDATA[<p>Ctrl+a 移动到行初<br>Ctrl+e 移动到行末<br>Ctrl+k 删除从光标位置到行末<br>Alts+backspace 向前删除一个单词<br><a id="more"></a><br><code>ls *.txt</code>显示所有的.txt结尾的文件<br><code>touch love{1..10}.txt</code>创建了十个文件<br><code>touch today{name,hahm,ceshi}.txt</code>创建了三个文件</p>
