@@ -84,18 +84,18 @@
 
 
 
-<meta name="description" content="Ctrl+a 移动到行初Ctrl+e 移动到行末Ctrl+k 删除从光标位置到行末Alts+backspace 向前删除一个单词 ls *.txt显示所有的.txt结尾的文件touch love{1..10}.txt创建了十个文件touch today{name,hahm,ceshi}.txt创建了三个文件 用户相关who -a打印全部who -d打印死掉的进程who -m或者who am i当前">
+<meta name="description" content="Ctrl+a 移动到行初Ctrl+e 移动到行末Ctrl+k 删除从光标位置到行末Alts+backspace 向前删除一个单词">
 <meta name="keywords" content="linux">
 <meta property="og:type" content="article">
 <meta property="og:title" content="linux入门">
 <meta property="og:url" content="/2017/11/09/lunix入门/index.html">
 <meta property="og:site_name" content="Hanson的博客">
-<meta property="og:description" content="Ctrl+a 移动到行初Ctrl+e 移动到行末Ctrl+k 删除从光标位置到行末Alts+backspace 向前删除一个单词 ls *.txt显示所有的.txt结尾的文件touch love{1..10}.txt创建了十个文件touch today{name,hahm,ceshi}.txt创建了三个文件 用户相关who -a打印全部who -d打印死掉的进程who -m或者who am i当前">
+<meta property="og:description" content="Ctrl+a 移动到行初Ctrl+e 移动到行末Ctrl+k 删除从光标位置到行末Alts+backspace 向前删除一个单词">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-11-10T09:22:21.000Z">
+<meta property="og:updated_time" content="2017-11-11T07:23:21.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="linux入门">
-<meta name="twitter:description" content="Ctrl+a 移动到行初Ctrl+e 移动到行末Ctrl+k 删除从光标位置到行末Alts+backspace 向前删除一个单词 ls *.txt显示所有的.txt结尾的文件touch love{1..10}.txt创建了十个文件touch today{name,hahm,ceshi}.txt创建了三个文件 用户相关who -a打印全部who -d打印死掉的进程who -m或者who am i当前">
+<meta name="twitter:description" content="Ctrl+a 移动到行初Ctrl+e 移动到行末Ctrl+k 删除从光标位置到行末Alts+backspace 向前删除一个单词">
 
 
 
@@ -307,12 +307,12 @@
       
 
       
-        <p>Ctrl+a 移动到行初<br>Ctrl+e 移动到行末<br>Ctrl+k 删除从光标位置到行末<br>Alts+backspace 向前删除一个单词</p>
-<p><code>ls *.txt</code>显示所有的.txt结尾的文件<br><code>touch love{1..10}.txt</code>创建了十个文件<br><code>touch today{name,hahm,ceshi}.txt</code>创建了三个文件</p>
+        <p>Ctrl+a 移动到行初<br>Ctrl+e 移动到行末<br>Ctrl+k 删除从光标位置到行末<br>Alts+backspace 向前删除一个单词<br><a id="more"></a><br><code>ls *.txt</code>显示所有的.txt结尾的文件<br><code>touch love{1..10}.txt</code>创建了十个文件<br><code>touch today{name,hahm,ceshi}.txt</code>创建了三个文件</p>
 <h4 id="用户相关"><a href="#用户相关" class="headerlink" title="用户相关"></a>用户相关</h4><p><code>who -a</code>打印全部<br><code>who -d</code>打印死掉的进程<br><code>who -m</code>或者<code>who am i</code>当前登录用户<br><code>who -q</code>打印当前登录用户数以及用户名<br><code>who -u</code>打印当前登录用户登录信息<br><code>who -r</code>打印运行等级</p>
 <p><code>sudo adduser username</code>添加用户<br><code>su -l username</code>切换用户<br><code>exit</code>退出当前用户回到上一个用户</p>
 <p>用户组<br><code>groups han</code>查看当前用户属于啥组<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">han : han //前边是用户，后边是组</div></pre></td></tr></table></figure></p>
-<p>新建的用户会自动创建一个同名的组，注意这个新建的用户不在root用户组下边，那就意味着当你切换到han这个用户下边的时候，其实你是不能使用sudo的，那怎么将han添加到sudo下呢？<br><code>sudo usermod -G sudo han</code>添加han到用户组下边<br><code>sudo deluser han --remove-home</code>删除用户</p>
+<p><code>chgrp -R</code></p>
+<p>新建的用户会自动创建一个同名的组，注意这个新建的用户不在root用户组下边，那就意味着当你切换到han这个用户下边的时候，其实你是不能使用sudo的，那怎么将han添加到sudo下呢？<br><code>sudo usermod -G root han</code>添加han到用户组下边<br><code>sudo deluser han --remove-home</code>删除用户</p>
 <h4 id="权限"><a href="#权限" class="headerlink" title="权限"></a>权限</h4><p><code>ls -l</code></p>
 <blockquote>
 <p>-rw-r–r–  1 jrmacpro  staff  0 11  9 09:12 love1.txt<br>文件类型和权限 链接数 所有者 所有者用户组 文件大小 最后修改日期 文件名</p>
