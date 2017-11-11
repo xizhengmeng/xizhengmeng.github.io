@@ -84,18 +84,18 @@
 
 
 
-<meta name="description" content="n+ 移n行行首n- 移n行行首n$ 移n行(1表示本行)行尾0 所行行首$ 所行行尾^ 所行首字母h,j,k,l 左移移移右移H 前屏幕首行行首M 屏幕显示文件间行行首L 前屏幕底行行首">
+<meta name="description" content="各种光标移动w     跳到下一个字首，按标点或单词分割W     跳到下一个字首，长跳，如end-of-line被认为是一个字e     跳到下一个字尾E     跳到下一个字尾，长跳b     跳到上一个字B     跳到上一个字，长跳0     跳至行首，不管有无缩进，就是跳到第0个字符 n+ 移n行行首n- 移n行行首n$ 移n行(1表示本行)行尾0 所行行首$ 所行行尾^ 所行首字母h,">
 <meta name="keywords" content="工具">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Mac-Vim使用教程">
 <meta property="og:url" content="/2017/11/11/Mac-Vim使用教程/index.html">
 <meta property="og:site_name" content="Hanson的博客">
-<meta property="og:description" content="n+ 移n行行首n- 移n行行首n$ 移n行(1表示本行)行尾0 所行行首$ 所行行尾^ 所行首字母h,j,k,l 左移移移右移H 前屏幕首行行首M 屏幕显示文件间行行首L 前屏幕底行行首">
+<meta property="og:description" content="各种光标移动w     跳到下一个字首，按标点或单词分割W     跳到下一个字首，长跳，如end-of-line被认为是一个字e     跳到下一个字尾E     跳到下一个字尾，长跳b     跳到上一个字B     跳到上一个字，长跳0     跳至行首，不管有无缩进，就是跳到第0个字符 n+ 移n行行首n- 移n行行首n$ 移n行(1表示本行)行尾0 所行行首$ 所行行尾^ 所行首字母h,">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-11-11T08:19:17.000Z">
+<meta property="og:updated_time" content="2017-11-11T08:24:14.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Mac-Vim使用教程">
-<meta name="twitter:description" content="n+ 移n行行首n- 移n行行首n$ 移n行(1表示本行)行尾0 所行行首$ 所行行尾^ 所行首字母h,j,k,l 左移移移右移H 前屏幕首行行首M 屏幕显示文件间行行首L 前屏幕底行行首">
+<meta name="twitter:description" content="各种光标移动w     跳到下一个字首，按标点或单词分割W     跳到下一个字首，长跳，如end-of-line被认为是一个字e     跳到下一个字尾E     跳到下一个字尾，长跳b     跳到上一个字B     跳到上一个字，长跳0     跳至行首，不管有无缩进，就是跳到第0个字符 n+ 移n行行首n- 移n行行首n$ 移n行(1表示本行)行尾0 所行行首$ 所行行尾^ 所行首字母h,">
 
 
 
@@ -307,7 +307,9 @@
       
 
       
-        <p>n+ 移n行行首<br>n- 移n行行首<br>n$ 移n行(1表示本行)行尾<br>0 所行行首<br>$ 所行行尾<br>^ 所行首字母<br>h,j,k,l 左移移移右移<br>H 前屏幕首行行首<br>M 屏幕显示文件间行行首<br>L 前屏幕底行行首</p>
+        <h4 id="各种光标移动"><a href="#各种光标移动" class="headerlink" title="各种光标移动"></a>各种光标移动</h4><p>w     跳到下一个字首，按标点或单词分割<br>W     跳到下一个字首，长跳，如end-of-line被认为是一个字<br>e     跳到下一个字尾<br>E     跳到下一个字尾，长跳<br>b     跳到上一个字<br>B     跳到上一个字，长跳<br>0     跳至行首，不管有无缩进，就是跳到第0个字符</p>
+<p>n+ 移n行行首<br>n- 移n行行首<br>n$ 移n行(1表示本行)行尾<br>0 所行行首<br>$ 所行行尾<br>^ 所行首字母<br>h,j,k,l 左移移移右移<br>H 前屏幕首行行首<br>M 屏幕显示文件间行行首<br>L 前屏幕底行行首</p>
+<h4 id="复制粘贴"><a href="#复制粘贴" class="headerlink" title="复制粘贴"></a>复制粘贴</h4><p>dd     删除光标所在行<br>dw     删除一个字(word)<br>x     删除当前字符<br>X     删除前一个字符<br>D     删除到行末<br>yy     复制一行，此命令前可跟数字，标识复制多行，如6yy，表示从当前行开始复制6行<br>yw     复制一个字<br>y$     复制到行末<br>p     粘贴粘贴板的内容到当前行的下面<br>P     粘贴粘贴板的内容到当前行的上面<br>]p     有缩进的粘贴，vim会自动调节代码的缩进<br>“a     将内容放入/存入a寄存器，可以支持多粘贴板<br>附：比如常用的一个寄存器就是系统寄存器，名称为+，所以从系统粘贴板粘贴到vim中的命令为”+p,注意此处的+不表示操作符，二十一个寄存器。<br>移动光标<br>在vim中移动光标跟其他的编辑器中有很大的区别，不过一旦学会了，就会飞速的在文本中移动了。</p>
 
       
     </div>
@@ -460,7 +462,7 @@
               
             
             
-              <p class="post-toc-empty">此文章未包含目录</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#各种光标移动"><span class="nav-number">1.</span> <span class="nav-text">各种光标移动</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#复制粘贴"><span class="nav-number">2.</span> <span class="nav-text">复制粘贴</span></a></li></ol></div>
             
           </div>
         </section>
