@@ -259,7 +259,6 @@
 <li><a href="https://www.shiyanlou.com/courses/736" target="_blank" rel="external">大数据带你挖掘打车的秘籍</a></li>
 <li><a href="https://www.shiyanlou.com/courses/610" target="_blank" rel="external">使用 Spark 和 D3.js 分析航班大数据</a></li>
 </ul>
-<p>作者：实验楼<br>链接：<a href="http://www.jianshu.com/p/5d221ead56b9" target="_blank" rel="external">http://www.jianshu.com/p/5d221ead56b9</a><br>來源：简书<br>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
 <h3 id="基本工作流程"><a href="#基本工作流程" class="headerlink" title="基本工作流程"></a>基本工作流程</h3><p>以上我们基本具备了机器学习的必要条件，剩下的就是怎么运用它们去做一个完整的机器学习项目。其工作流程如下:</p>
 <ul>
 <li>抽象成数学问题</li>
