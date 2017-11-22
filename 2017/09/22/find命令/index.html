@@ -92,7 +92,7 @@
 <meta property="og:site_name" content="Hanson的博客">
 <meta property="og:description" content="区别 find命令是根据文件的属性进行查找，如文件名，文件大小，所有者，所属组，是否为空，访问时间，修改时间等。  grep是根据文件的内容进行查找，会对文件的每一行按照给定的模式(patter)进行匹配查找。  find基本格式：find  path expression 按照文件名查找 find / -name httpd.conf #在根目录下查找文件httpd.conf，表示在整个硬盘查找">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-10-11T10:13:43.000Z">
+<meta property="og:updated_time" content="2017-11-14T01:41:33.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="find与grep命令">
 <meta name="twitter:description" content="区别 find命令是根据文件的属性进行查找，如文件名，文件大小，所有者，所属组，是否为空，访问时间，修改时间等。  grep是根据文件的内容进行查找，会对文件的每一行按照给定的模式(patter)进行匹配查找。  find基本格式：find  path expression 按照文件名查找 find / -name httpd.conf #在根目录下查找文件httpd.conf，表示在整个硬盘查找">
@@ -335,6 +335,7 @@
 <li><code>find / -user fred -or -user george</code> 　#在/目录下查找用户是fred或者george的文件文件</li>
 <li><code>find /tmp ! -user panda</code>　#在/tmp目录中查找所有不属于panda用户的文件</li>
 </ul>
+<h3 id="grep"><a href="#grep" class="headerlink" title="grep"></a>grep</h3><p><code>grep &#39;^[0-9]&#39; text.txt</code>返回以数字开头的行<br><code>grep &#39;@&#39; text.txt</code>返回包含@的行</p>
 
       
     </div>
@@ -445,7 +446,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">85</span>
+              <span class="site-state-item-count">86</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -491,7 +492,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#区别"><span class="nav-number">1.</span> <span class="nav-text">区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#find"><span class="nav-number">2.</span> <span class="nav-text">find</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#按照文件名查找"><span class="nav-number">2.1.</span> <span class="nav-text">按照文件名查找</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#按照文件特征查找"><span class="nav-number">2.2.</span> <span class="nav-text">按照文件特征查找 　　　　</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用混合查找方式查找文件"><span class="nav-number">2.3.</span> <span class="nav-text">使用混合查找方式查找文件</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#区别"><span class="nav-number">1.</span> <span class="nav-text">区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#find"><span class="nav-number">2.</span> <span class="nav-text">find</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#按照文件名查找"><span class="nav-number">2.1.</span> <span class="nav-text">按照文件名查找</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#按照文件特征查找"><span class="nav-number">2.2.</span> <span class="nav-text">按照文件特征查找 　　　　</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用混合查找方式查找文件"><span class="nav-number">2.3.</span> <span class="nav-text">使用混合查找方式查找文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#grep"><span class="nav-number">2.4.</span> <span class="nav-text">grep</span></a></li></ol></li></ol></div>
             
           </div>
         </section>

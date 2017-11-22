@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="自动化," />
+  <meta name="keywords" content="python," />
 
 
 
@@ -84,18 +84,18 @@
 
 
 
-<meta name="description" content="安装andorid studio copy一份sdk过来 设置andorid studio的sdk路径">
-<meta name="keywords" content="自动化">
+<meta name="description" content="python的set和其他语言类似, 是一个无序不重复元素集, 基本功能包括关系测试和消除重复元素. 集合对象还支持union(联合), intersection(交), difference(差)和sysmmetric difference(对称差集)等数学运算.   sets 支持 x in set, len(set),和 for x in set。作为一个无序的集合，sets不记录元素位置或">
+<meta name="keywords" content="python">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Andorid自动打包gradle安装笔记">
-<meta property="og:url" content="/2016/12/16/2017/Andorid自动打包gradle安装笔记/index.html">
+<meta property="og:title" content="python-set的用法">
+<meta property="og:url" content="/2017/11/22/python-set的用法/index.html">
 <meta property="og:site_name" content="Hanson的博客">
-<meta property="og:description" content="安装andorid studio copy一份sdk过来 设置andorid studio的sdk路径">
+<meta property="og:description" content="python的set和其他语言类似, 是一个无序不重复元素集, 基本功能包括关系测试和消除重复元素. 集合对象还支持union(联合), intersection(交), difference(差)和sysmmetric difference(对称差集)等数学运算.   sets 支持 x in set, len(set),和 for x in set。作为一个无序的集合，sets不记录元素位置或">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-10-11T10:13:43.000Z">
+<meta property="og:updated_time" content="2017-11-22T09:04:48.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Andorid自动打包gradle安装笔记">
-<meta name="twitter:description" content="安装andorid studio copy一份sdk过来 设置andorid studio的sdk路径">
+<meta name="twitter:title" content="python-set的用法">
+<meta name="twitter:description" content="python的set和其他语言类似, 是一个无序不重复元素集, 基本功能包括关系测试和消除重复元素. 集合对象还支持union(联合), intersection(交), difference(差)和sysmmetric difference(对称差集)等数学运算.   sets 支持 x in set, len(set),和 for x in set。作为一个无序的集合，sets不记录元素位置或">
 
 
 
@@ -116,10 +116,10 @@
 
 
 
-  <link rel="canonical" href="/2016/12/16/2017/Andorid自动打包gradle安装笔记/"/>
+  <link rel="canonical" href="/2017/11/22/python-set的用法/"/>
 
 
-  <title> Andorid自动打包gradle安装笔记 | Hanson的博客 </title>
+  <title> python-set的用法 | Hanson的博客 </title>
 </head>
 
 <body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
@@ -262,7 +262,7 @@
             
             
               
-                Andorid自动打包gradle安装笔记
+                python-set的用法
               
             
           </h1>
@@ -274,8 +274,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-12-16T08:41:48+08:00" content="2016-12-16">
-              2016-12-16
+            <time itemprop="dateCreated" datetime="2017-11-22T17:02:51+08:00" content="2017-11-22">
+              2017-11-22
             </time>
           </span>
 
@@ -307,27 +307,80 @@
       
 
       
-        <ul>
-<li>安装andorid studio</li>
-<li>copy一份sdk过来</li>
-<li>设置andorid studio的sdk路径<a id="more"></a></li>
-<li><p>安装sdkman</p>
-<ul>
-<li><p>在控制台或者item2中输入</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">curl -s https://get.sdkman.io | bash</div><div class="line">source &quot;$HOME/.sdkman/bin/sdkman-init.sh&quot;</div></pre></td></tr></table></figure>
-<p>检验sdkman是否安装成功</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sdk version</div></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>安装andorid studio中认可的gradle版本</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sdk install gradle 2.8</div></pre></td></tr></table></figure>
-</li>
-<li><p>升级jdk到andorid studio认可的版本比如说1.7</p>
-</li>
-<li>到工程根目录，执行gradle build就可以了’gradle assembleDebug’</li>
-<li>打包出来的文件在outputs中</li>
-</ul>
+        <p>python的set和其他语言类似, 是一个无序不重复元素集, 基本功能包括关系测试和消除重复元素. 集合对象还支持union(联合), intersection(交), difference(差)和sysmmetric difference(对称差集)等数学运算.  </p>
+<p>sets 支持 x in set, len(set),和 for x in set。作为一个无序的集合，sets不记录元素位置或者插入点。因此，sets不支持 indexing, slicing, 或其它类序列（sequence-like）的操作。  </p>
+<p>下面来点简单的小例子说明把。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">x = set(&apos;spam&apos;)  </div><div class="line">y = set([&apos;h&apos;,&apos;a&apos;,&apos;m&apos;])  </div><div class="line">x, y  </div><div class="line">(set([&apos;a&apos;, &apos;p&apos;, &apos;s&apos;, &apos;m&apos;]), set([&apos;a&apos;, &apos;h&apos;, &apos;m&apos;]))</div></pre></td></tr></table></figure></p>
+<p>再来些小应用。  </p>
+<pre><code>x &amp; y # 交集  
+set([&apos;a&apos;, &apos;m&apos;])  
+
+x | y # 并集  
+set([&apos;a&apos;, &apos;p&apos;, &apos;s&apos;, &apos;h&apos;, &apos;m&apos;])  
+
+x - y # 差集  
+set([&apos;p&apos;, &apos;s&apos;])
+</code></pre><p>记得以前个网友提问怎么去除海量列表里重复元素，用hash来解决也行，只不过感觉在性能上不是很高，用set解决还是很不错的，示例如下：  </p>
+<pre><code>a = [11,22,33,44,11,22]  
+b = set(a)  
+
+set([33, 11, 44, 22])  
+c = [i for i in b]  
+c  
+[33, 11, 44, 22]
+</code></pre><p>很酷把，几行就可以搞定。  </p>
+<p>1.8　集合   </p>
+<p>集合用于包含一组无序的对象。要创建集合，可使用set()函数并像下面这样提供一系列的项：  </p>
+<p>s = set([3,5,9,10])      #创建一个数值集合  </p>
+<p>t = set(“Hello”)         #创建一个唯一字符的集合  </p>
+<p>与列表和元组不同，集合是无序的，也无法通过数字进行索引。此外，集合中的元素不能重复。例如，如果检查前面代码中t集合的值，结果会是：<br>t<br>set([‘H’, ‘e’, ‘l’, ‘o’])  </p>
+<p>注意只出现了一个’l’。  </p>
+<p>集合支持一系列标准操作，包括并集、交集、差集和对称差集，例如：  </p>
+<pre><code>a = t | s          # t 和 s的并集  
+
+b = t &amp; s          # t 和 s的交集  
+
+c = t – s          # 求差集（项在t中，但不在s中）  
+
+d = t ^ s          # 对称差集（项在t或s中，但不会同时出现在二者中）
+</code></pre><p>基本操作：  </p>
+<p>t.add(‘x’)            # 添加一项  </p>
+<p>s.update([10,37,42])  # 在s中添加多项  </p>
+<p>使用remove()可以删除一项：  </p>
+<p>t.remove(‘H’)  </p>
+<p>len(s)<br>set 的长度  </p>
+<p>x in s<br>测试 x 是否是 s 的成员  </p>
+<p>x not in s<br>测试 x 是否不是 s 的成员  </p>
+<p>s.issubset(t)<br>s &lt;= t<br>测试是否 s 中的每一个元素都在 t 中  </p>
+<p>s.issuperset(t)<br>s &gt;= t<br>测试是否 t 中的每一个元素都在 s 中  </p>
+<p>s.union(t)<br>s | t<br>返回一个新的 set 包含 s 和 t 中的每一个元素  </p>
+<p>s.intersection(t)<br>s &amp; t<br>返回一个新的 set 包含 s 和 t 中的公共元素  </p>
+<p>s.difference(t)<br>s - t<br>返回一个新的 set 包含 s 中有但是 t 中没有的元素  </p>
+<p>s.symmetric_difference(t)<br>s ^ t<br>返回一个新的 set 包含 s 和 t 中不重复的元素  </p>
+<p>s.copy()<br>返回 set “s”的一个浅复制  </p>
+<p>请注意：union(), intersection(), difference() 和 symmetric_difference() 的非运算符（non-operator，就是形如 s.union()这样的）版本将会接受任何 iterable 作为参数。相反，它们的运算符版本（operator based counterparts）要求参数必须是 sets。这样可以避免潜在的错误，如：为了更可读而使用 set(‘abc’) &amp; ‘cbs’ 来替代 set(‘abc’).intersection(‘cbs’)。从 2.3.1 版本中做的更改：以前所有参数都必须是 sets。  </p>
+<p>另外，Set 和 ImmutableSet 两者都支持 set 与 set 之间的比较。两个 sets 在也只有在这种情况下是相等的：每一个 set 中的元素都是另一个中的元素（二者互为subset）。一个 set 比另一个 set 小，只有在第一个 set 是第二个 set 的 subset 时（是一个 subset，但是并不相等）。一个 set 比另一个 set 打，只有在第一个 set 是第二个 set 的 superset 时（是一个 superset，但是并不相等）。  </p>
+<p>子 set 和相等比较并不产生完整的排序功能。例如：任意两个 sets 都不相等也不互为子 set，因此以下的运算都会返回 False：a<b, a="=b," 或者a="">b。因此，sets 不提供 <strong>cmp</strong> 方法。  </b,></p>
+<p>因为 sets 只定义了部分排序功能（subset 关系），list.sort() 方法的输出对于 sets 的列表没有定义。  </p>
+<p>运算符<br>   运算结果  </p>
+<p>hash(s)<br>   返回 s 的 hash 值  </p>
+<p>下面这个表列出了对于 Set 可用二对于 ImmutableSet 不可用的运算：  </p>
+<p>运算符（voperator）<br>等价于<br>运算结果  </p>
+<p>s.update(t)<br>s |= t<br>返回增加了 set “t”中元素后的 set “s”  </p>
+<p>s.intersection_update(t)<br>s &amp;= t<br>返回只保留含有 set “t”中元素的 set “s”  </p>
+<p>s.difference_update(t)<br>s -= t<br>返回删除了 set “t”中含有的元素后的 set “s”  </p>
+<p>s.symmetric_difference_update(t)<br>s ^= t<br>返回含有 set “t”或者 set “s”中有而不是两者都有的元素的 set “s”  </p>
+<p>s.add(x)  </p>
+<p>向 set “s”中增加元素 x  </p>
+<p>s.remove(x)  </p>
+<p>从 set “s”中删除元素 x, 如果不存在则引发 KeyError  </p>
+<p>s.discard(x)  </p>
+<p>如果在 set “s”中存在元素 x, 则删除  </p>
+<p>s.pop()  </p>
+<p>删除并且返回 set “s”中的一个不确定的元素, 如果为空则引发 KeyError  </p>
+<p>s.clear()  </p>
+<p>删除 set “s”中的所有元素  </p>
+<p>请注意：非运算符版本的 update(), intersection_update(), difference_update()和symmetric_difference_update()将会接受任意 iterable 作为参数。从 2.3.1 版本做的更改：以前所有参数都必须是 sets。  </p>
+<p>还请注意：这个模块还包含一个 union_update() 方法，它是 update() 方法的一个别名。包含这个方法是为了向后兼容。程序员们应该多使用 update() 方法，因为这个方法也被内置的 set() 和 frozenset() 类型支持。  </p>
 
       
     </div>
@@ -350,7 +403,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/自动化/" rel="tag">#自动化</a>
+            <a href="/tags/python/" rel="tag">#python</a>
           
         </div>
       
@@ -359,17 +412,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/12/15/2017/基于Django的自动化平台构建笔记(1)/" rel="next" title="基于Django的自动化平台构建笔记(1)">
-                <i class="fa fa-chevron-left"></i> 基于Django的自动化平台构建笔记(1)
+              <a href="/2017/11/11/Mac-Vim使用教程/" rel="next" title="Mac-Vim使用教程">
+                <i class="fa fa-chevron-left"></i> Mac-Vim使用教程
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/01/06/2017/2017年死磕几件事/" rel="prev" title="2017年死磕几件事">
-                2017年死磕几件事 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
