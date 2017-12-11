@@ -3,6 +3,20 @@
   
     
     <entry>
+      <title><![CDATA[kMeans文本聚类实战]]></title>
+      <url>/2017/12/04/kMeans%E6%96%87%E6%9C%AC%E8%81%9A%E7%B1%BB%E5%AE%9E%E6%88%98/</url>
+      <content type="html"></content>
+      
+        
+        <tags>
+            
+            <tag> 机器学习 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[python-set的用法]]></title>
       <url>/2017/11/22/python-set%E7%9A%84%E7%94%A8%E6%B3%95/</url>
       <content type="html"><![CDATA[<p>python的set和其他语言类似, 是一个无序不重复元素集, 基本功能包括关系测试和消除重复元素. 集合对象还支持union(联合), intersection(交), difference(差)和sysmmetric difference(对称差集)等数学运算.  </p>
@@ -582,8 +596,8 @@ d = t ^ s          # 对称差集（项在t或s中，但不会同时出现在二
 <li>将任务开始命令植入git</li>
 <li>历史数据展示</li>
 </ul>
-<h3 id="配置文件选项构建"><a href="#配置文件选项构建" class="headerlink" title="配置文件选项构建"></a>配置文件选项构建</h3><p><img src="../images/configImage.png" alt=""><br>重点：<br>所有的工程都要添加一个Analyse这个项，否则你选择这个进行编译，就会报错</p>
-<h3 id="设置文件路径和linkmap选项为YES"><a href="#设置文件路径和linkmap选项为YES" class="headerlink" title="设置文件路径和linkmap选项为YES"></a>设置文件路径和linkmap选项为YES</h3><p><img src="../images/linkmapconfig.png" alt=""></p>
+<h3 id="配置文件选项构建"><a href="#配置文件选项构建" class="headerlink" title="配置文件选项构建"></a>配置文件选项构建</h3><p><img src="./images/configImage.png" alt="Alt text"><br>重点：<br>所有的工程都要添加一个Analyse这个项，否则你选择这个进行编译，就会报错</p>
+<h3 id="设置文件路径和linkmap选项为YES"><a href="#设置文件路径和linkmap选项为YES" class="headerlink" title="设置文件路径和linkmap选项为YES"></a>设置文件路径和linkmap选项为YES</h3><p><img src="./images/linkmapconfig.png" alt="Alt text"></p>
 <blockquote>
 <ul>
 <li>$(TARGET_TEMP_DIR)/$(PRODUCT_NAME)-LinkMap-$(CURRENT_VARIANT)-$(CURRENT_ARCH).txt</li>
