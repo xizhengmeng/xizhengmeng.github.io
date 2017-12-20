@@ -402,12 +402,14 @@
         
           <ul>
 <li>首先需要python环境为2.7以上版本</li>
+<li>需要yum版本为<code>3.4.3</code>及以上，因为这样才能安装httpd为<code>2.4</code>版本及以上</li>
 <li>安装Django<code>sudo pip install --upgrade django==1.11</code></li>
 <li>安装numpy<code>sudo pip install numpy</code></li>
 <li>安装pymong<code>sudo pip install pymongo</code></li>
 <li>lunix 安装apxs扩展<code>yum install httpd-devel</code>安装mod-wsgi需要</li>
 <li>安装mod_wsgi<code>sudo pip install mod_wsgi</code>Django需要</li>
-<li>安装mod_wsgi<code>sudo yum install mod_wsgi</code>这个模块会出现在./usr/lib64/httpd/modules/mod_wsgi.so这里
+<li>安装mod_wsgi<code>sudo yum install mod_wsgi</code>这个模块会出现在./usr/lib64/httpd/modules/mod_wsgi.so这里</li>
+<li>使用rz/sz来上传或者下载文件<code>yum install lrzsz</code>
           <div class="post-more-link text-center">
             <a class="btn" href="/2017/12/15/centos6配置/#more" rel="contents">
               阅读全文 &raquo;
@@ -807,7 +809,8 @@
 
       
         
-          <p>Ctrl+a 移动到行初<br>Ctrl+e 移动到行末<br>Ctrl+k 删除从光标位置到行末<br>Alts+backspace 向前删除一个单词<br>
+          <p>查看linux版本 <code>lsb_release -a</code></p>
+<p>Ctrl+a 移动到行初<br>Ctrl+e 移动到行末<br>Ctrl+k 删除从光标位置到行末<br>Alts+backspace 向前删除一个单词<br>
           <div class="post-more-link text-center">
             <a class="btn" href="/2017/11/09/lunix入门/#more" rel="contents">
               阅读全文 &raquo;
