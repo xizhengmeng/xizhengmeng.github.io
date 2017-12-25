@@ -407,11 +407,7 @@
 
       
         
-          <p>Git在存储数据的时候，存储的都是完整的对象，并不是差异，叫做松散对象Loose Object，有时候你只改变了一点，但是同时会拥有近乎两倍大小的blob对象。</p>
-<p>这样子做岂不是很不节省磁盘？所以Git会在每次push到远程的时候进行garbage collect操作，当然我们也可以自己手动改进行gc，如：<br>git gc<br>Counting objects: 6, done.<br>Delta compression using up to 4 threads.<br>Compressing objects: 100% (3/3), done.<br>Writing objects: 100% (6/6), done.<br>Total 6 (delta 0), reused 0 (delta 0)</p>
-<p>然后查看一下.git/objects下有哪些文件：<br>find .git/objects -type f<br>发现多了一些pack文件：<br>.git/objects/info/packs<br>.git/objects/pack/pack-abcde.idx<br>.git/objects/pack/pack-abcde.pack<br>当然也还有可能还有一些dangling的对象，这些对象是没有被其它引用的对象，git不会对其进行pack。.pack文件存储了所有删除的对象， .idx文件是索引文件，存储相应的偏移信息。</p>
-<p>我们可以使用verify-pack命令显示pack的信息：<br>git verify-pack -v .git/objects/pack/pack-abcde.idx<br>a35a7ea3f7b55be91743c708d150b573116515ec commit 239 160 12<br>fb1c75a143de21f30004dab829b39f99d225d292 commit 187 128 172<br>ca2b7d42454d33b31cfc810592e8bd47f811decd tree   70 76 300<br>fd5d73ef7deb282cbf47826c58448597f24453ba blob   18 28 376<br>56166dc42a6a2f694e088694a2a2c90606e28f2d blob   16 23 404<br>4e1ba2916b4b903d2e5a2209cdcca7129a891c2f tree   36 46 427<br>non delta: 6 objects<br>objects/pack/pack-83c7f603b25c063accec33ee8869a6afb1e9fd0a.pack: ok</p>
-<p>第一列显示对象的指针，即Hash值，第二列展示是什么类型的对象，第三列展示占用了多少字节。</p>
+          <p>Git在存储数据的时候，存储的都是完整的对象，并不是差异，叫做松散对象Loose Object，有时候你只改变了一点，但是同时会拥有近乎两倍大小的blob对象。<br>
           <div class="post-more-link text-center">
             <a class="btn" href="/2017/12/20/git库使用进阶/#more" rel="contents">
               阅读全文 &raquo;
