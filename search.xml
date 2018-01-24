@@ -3,6 +3,100 @@
   
     
     <entry>
+      <title><![CDATA[用户行为路径分析思路]]></title>
+      <url>/2018/01/23/%E7%94%A8%E6%88%B7%E8%A1%8C%E4%B8%BA%E8%B7%AF%E5%BE%84%E5%88%86%E6%9E%90%E6%80%9D%E8%B7%AF/</url>
+      <content type="html"><![CDATA[<ul>
+<li>用户特征分析</li>
+<li>预测模型</li>
+<li>活跃度定义</li>
+<li>用户路径分析</li>
+<li>交叉销售</li>
+<li>用户分层</li>
+</ul>
+<p>Predict Customer Behaviour<br>customer’s classification</p>
+<p>意图识别<br>确定哪些路径可以促进增长，客户忠诚度和满意度，哪些路径会增加用户的抱怨</p>
+<p>发现。 机器学习揭示了客户跨越渠道和时间跨越的最关键途径，并识别客户旅程中的关键障碍和机会，以便将注意力集中在针头上。<br>目标。 使用人口统计特性和上下文属性，可以快速查明特定客户群的转换可能性最高。<br>从事。根据每位客户的个人行为，在正确的时间为合适的客户提供个性化的体验，利用Pointillist平台的智慧以及与技术栈中现有的营销工具的集成。<br>监控。评估营销活动和策略对您的KPI的影响并实时监控变化，以便您的团队能够迅速将洞察力转化为推动结果的行动</p>
+<p>在一段时间内快速了解所有接触点和渠道中的客户行为<br>发现和预测高影响力的客户旅程<br>推动个性化，多渠道的客户体验 </p>
+<p>用户分层，分类的依据</p>
+<p>目的是什么，有没有达到他的目的</p>
+<p>用户在如何使用我们的产品，在我们产品里干什么</p>
+<p>通过使用配备先进的机器学习算法的客户旅程分析平台，您可以快速发现旅程中的重要事件，例如客户从旅程中的A点到B点最常见的路径。此外，它使您能够实时预测客户行为，并决定最合适的参与方式。<br>在上面的图表中，机器学习算法用于对数百万次实际旅程进行分类，以揭示客户在在线查看产品和退出之间所采用的最重要路径。</p>
+<p>客户旅程分析使营销和CX团队不仅能够发现哪些旅程最重要，而且能够通过他们的首选渠道和相关的个性化方式，在最佳时间自动与每个客户进行互动。<br>通过在旅途中的任何事件中嵌入触发器，您可以在特定事件中激活参与（例如电子邮件发送）到目标客户群 - 转换的客户，向前移动的客户，甚至在特定的点旅程。 这些实时参与触发器比以往的基于规则的编码系统更容易管理和更有效。</p>
+<p>高级客户旅程分析平台与常用的营销工具集成在一起，因此您可以使用现有的营销技术堆栈与您的客户进行互动。结果是营销和CX广告系列的性能提高了一个新的水平，通过更好的精度，目标和时间。</p>
+<p>内容报告可帮助您了解网站的哪些部分效果理想、哪些页面最受欢迎，并据此为客户营造更佳的体验。</p>
+<p>具体来说，目标是：</p>
+<p>通过人物角色形象化和映射端到端的客户旅程<br>优化正确的旅程属性可以提高收益30％以上…发现最佳实现目标目标的网络，移动和实体渠道，内容和体验的正确组合<br>使营销人员能够识别个人和团体的旅程瓶颈<br>利用实际行为数据来增强和个性化每个客户的体验</p>
+<p>简单的个性化…然后，我们通过简单的“个性化”客户体验，基于浅数据，如购买历史，性别，单身或结婚，住在哪里等等。<br>动态个性化…现在，我们正在进入一个新的阶段，重点是最佳消息+最佳通道+最佳时机+最佳设备。这主要是由预测分析（例如Next Next Offer），机器学习，兴趣图，位置感知上下文敏感度以及大规模个性化所驱动的。</p>
+<p>更复杂的公司无缝地创建闭环（分析和参与和机器学习）。它们利用客户身份，位置，当前活动，物理状况（天气，交通等），购买历史，移动模式，隐含和明确的意图信号以及社交图形等实时信号。</p>
+<p>几家公司正在将预测分析纳入移动营销平台。通过根据历史数据分析多个实时数据流，算法模型预测未来趋势，用户偏好和行动，让品牌知道客户在做什么之前要做的事情，比如放弃购物车，搅动或分享他们的体验？目标是介入正确的信息或提议来激励或改变他们的行为。</p>
+<p>这种分析洞察力使零售商能够转移店内策略和运营，以匹配购物者的兴趣和行为，从而提高客户的忠诚度</p>
+<p>客户流失通过收入损失降低盈利能力<br>客户流失导致更大的营销和重新购置成本<br>向现有客户销售的可能性远高于新的前景<br>了解客户流失率有助于计算客户的生命周期价值<br>这是衡量公司健康状况和长远前景的一个指标<br>客户流失决定了客户保留是否在改善<br>它有助于确定哪些客户和细分市场最适合您的产品</p>
+<p>一个典型的顾客今天可能会首先通过社交媒体广告找到产品，在公司网站上查看并在实体店购买。但是，您是否有能力将这个客户视为一个人而不是三个不同的购物者？大多数公司仍将每个设备和每个交互作为一个单独的客户，将客户旅程分解成不同的碎片。</p>
+<h3 id="用户路径分析"><a href="#用户路径分析" class="headerlink" title="用户路径分析"></a>用户路径分析</h3><ul>
+<li>用户典型，频繁路径识别</li>
+<li>用户行为特征识别</li>
+</ul>
+<h3 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h3><ul>
+<li>活跃度定义，符合该分值的用户更容易转化为付费用户啊，新的标准更容易反应和衡量产品的运营效果和效率，比如目标是付费用户，那么符合该指标的用户应该越大程度属于付费用户，那么说明该指标的越合理(主成分析+决策归因)</li>
+<li>基于行为路径的用户标签系统(用户分层/分类)可以提供给千人千面+运营 比如流失，付费，活动响应等维度(维度来源增量可以是用户反馈)<ul>
+<li>实时预测客户行为，并决定最合适的参与方式<ul>
+<li>通过在旅途中的任何事件中嵌入触发器，您可以在特定事件中激活参与（例如电子邮件发送）到目标客户群 - 转换的客户，向前移动的客户，甚至在特定的点旅程。 这些实时参与触发器比以往的基于规则的编码系统更容易管理和更有效 </li>
+</ul>
+</li>
+</ul>
+</li>
+<li>实时的Journey Map(用户旅行地图)<ul>
+<li>产品使用模式设计与实际情况对比，提前预想用户可能的操作模式，与实际的对比，如果发现不一致可以深入分析原因调整产品策略和运营策略，为什么这种设计是有效的，而那种是无效的(因素提炼)</li>
+<li>频繁路径和典型路径揭示，揭示客户在在线查看产品和退出之间所采用的最重要路径:客户在做什么之前要做的事情，比如放弃购买或分享他们的体验？目标是介入正确的信息或提议来激励或改变他们的行为，具体比如说，通过聚类技术划分付费和非付费，对比两者路径优化页面布局，通过发现付费用户路径中的异常模式来对付费环境进行优化</li>
+<li>发现冷僻功能点和路径</li>
+</ul>
+</li>
+</ul>
+]]></content>
+      
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[iOS编译过程详解]]></title>
+      <url>/2018/01/22/iOS%E7%BC%96%E8%AF%91%E8%BF%87%E7%A8%8B%E8%AF%A6%E8%A7%A3/</url>
+      <content type="html"><![CDATA[<p>通过Xcode设置工程依赖之后，Xcode会先编译被依赖工程，最后编译有依赖工程。达到控制编译顺序的目的。</p>
+<p>下面是编译过程完整步骤</p>
+<ul>
+<li>编译信息写入辅助文件，创建文件架构 .app 文件</li>
+<li>处理文件打包信息</li>
+<li>执行 CocoaPod 编译前脚本，checkPods Manifest.lock</li>
+<li>编译.m文件，使用 CompileC 和 clang 命令</li>
+<li>链接需要的 Framework</li>
+<li>编译 xib</li>
+<li>拷贝 xib ，资源文件</li>
+<li>编译 ImageAssets</li>
+<li>处理 info.plist</li>
+<li>执行 CocoaPod 脚本</li>
+<li>拷贝标准库</li>
+<li>创建 .app 文件和签名</li>
+</ul>
+<h3 id="基础概念"><a href="#基础概念" class="headerlink" title="基础概念"></a>基础概念</h3><p>在了解xcode构建原则之前，需要熟悉workspace相关的概念，即workspace,project和target。</p>
+<h4 id="target"><a href="#target" class="headerlink" title="target"></a>target</h4><p>target指定了构建的product,包含将workspace或project中的一组文件构建成product的指令。单个target定义一个product,它将输入（源文件和处理这些源文件的指令（包含所设定的构建settings和phases））组织进构建系统中。project和target是一对多的关系。</p>
+<p>target会继承project的build settings，但可以以target为粒度设置build settings,且Xcode中当前一次只会有一个有效target,此有效target在xcode scheme中标识。</p>
+<p>若target A依赖target B的输出来构建，则A依赖B，当它们存在于一个xcode workspace中的时候，Xcode会发现此依赖关系并按顺序构建。这种依赖称为隐性依赖，当然也可以在build settings中声明显性依赖，也可将隐性依赖的两个target显性声明为没有依赖。比如可能在同一个workspace中同时构建一个库并构建一个依赖这个库的应用，则xcode会选择先构建库。但如果应用想链接库的某个特定版本，则可以显性声明这个依赖关系，此时隐性依赖即被覆盖了。</p>
+<h4 id="project"><a href="#project" class="headerlink" title="project"></a>project</h4><p>xcode project是存储构建一个或多个软件产品所需的所有文件，资源和信息的仓库。<br>project包含构建product所需的所有要素并维护它们之间的关系，它包含一个或多个targets(target指定了构建product的方式)。<br>project定义了所有target的默认build settings，各target可以重载。Xcode project文件包含如下信息：源文件的引用：源代码（包括头文件和实现文件），library和framework(xcode内部或者外部),资源文件，interface builder文件文件结构列表中组织源文件的Groupsproject级别的build选项targetsdebug或测试program的可执行环境：从xcode运行或调试时启动哪些可以执行文件，传给可执行文件的命令行参数，程序运行时设置的环境变量总之，project可以单独存在也可以包含在workspace中，同时可以在Scheme中指定哪个Target、build配置、哪个可执行配置在某个时刻是有效的。</p>
+<h4 id="build-settings"><a href="#build-settings" class="headerlink" title="build settings"></a>build settings</h4><p>一个build setting是一个指示产品某个方面构建方式的变量，比如决定xcode传给编译器的参数选项是怎样。其是一个常量或者一个公式供给xcode在构建的时候计算build setting。</p>
+<h4 id="workspace"><a href="#workspace" class="headerlink" title="workspace"></a>workspace</h4><p>workspace 是组织projects和其他协同工作的文档的一份文档。除此之外，它还维护project和target之间的显性及隐性的依赖关系。默认workspace中的所有Xcode projects都在同一个目录下构建，称为workspace build directory，由于所有project的所有文件都在同一个目录下，所以所有文件都对每个project可见。<br>比如两个project使用同一个库，则不用复制到另一个project目录中。workspace中的每个project都有其独立id,同时project可以属于多个workspace，可以单独打开project或者在其他workspace中打开，且都不用重新配置project或者workspace。<br>可以使用workspace默认的build 目录，也可以指定一个。如果project指定了构建目录，这个目录会被project构建时所在的workspace的build目录覆盖。</p>
+<h4 id="xcode-schemexcode"><a href="#xcode-schemexcode" class="headerlink" title="xcode schemexcode"></a>xcode schemexcode</h4><p>scheme定义了一系列构建的targets，构建时的配置，和一系列执行的测试。可以有很多scheme,但同一时刻只能有一个有效的。选择scheme时，意味着你也选择了一个运行目标（product构建的硬件平台)。可以指定scheme是否存储在project中，以便包含此project的所有workspace都可以使用些scheme,当然也可以指定只存储在某个workspace中。</p>
+<p>一般的某个应用单独新建一个 project 就可以了，然后把所有的程序文件都放在里面，这个可以满足大部分普通的需求，但是有时候，项目有可能要使用其他的项目文件，或者引入其他的静态库文件，这个时候 workspace 就派上用场了，workspace 即可以单独管理多个项目，又可以通过配置，让各个项目相互依赖，如果不用 workspace，以前的做法是如果用到其他项目的文件，要手动 copy 文件到当前的项目，在 workspace 里这个步骤不需要了。</p>
+]]></content>
+      
+        
+        <tags>
+            
+            <tag> iOS </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[数据科学numpy]]></title>
       <url>/2018/01/02/%E6%95%B0%E6%8D%AE%E7%A7%91%E5%AD%A6numpy/</url>
       <content type="html"><![CDATA[<ul>
@@ -194,7 +288,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/usr/bin/git filter-branch --force --index-filter &quot;/usr/bin/git rm --cached --ignore-unmatch JDMobile_2.0/Classes/Sections/BrickPlatForm/ViewController/BrickPFItemViewController.m&quot; --prune-empty --tag-name-filter cat -- --all</div></pre></td></tr></table></figure>
 <h3 id="git提交压缩"><a href="#git提交压缩" class="headerlink" title="git提交压缩"></a>git提交压缩</h3><p><code>git gc  --prune=now</code></p>
 <h3 id="删除tag"><a href="#删除tag" class="headerlink" title="删除tag"></a>删除tag</h3><p><code>git tag | xargs git tag -d</code></p>
-]]></content>
+<h3 id="一键瘦身代码"><a href="#一键瘦身代码" class="headerlink" title="一键瘦身代码"></a>一键瘦身代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div></pre></td><td class="code"><pre><div class="line">#!/usr/bin/env python</div><div class="line">#coding:utf-8</div><div class="line">import os,sys,shutil,time</div><div class="line"></div><div class="line">def checksize():</div><div class="line">    systemPath = os.environ[&apos;HOME&apos;]</div><div class="line"></div><div class="line">    if os.path.exists(systemPath + &apos;/.gitthin&apos;):</div><div class="line">        pass</div><div class="line">    else:</div><div class="line">        tagetPath = systemPath + &apos;/.gitthin&apos;  </div><div class="line">        os.system(&apos;mkdir &apos; + tagetPath)</div><div class="line"></div><div class="line">    if os.path.exists(&apos;.git&apos;) == False: </div><div class="line">       print &apos;do not have .git&apos;</div><div class="line">       sys.exit(1)</div><div class="line"></div><div class="line">    fileLogPath = systemPath + &apos;/.gitthin/file_log&apos;</div><div class="line"></div><div class="line">    if os.path.exists(fileLogPath):</div><div class="line">      os.system(&apos;rm -rf fileLogPath&apos;)</div><div class="line"></div><div class="line">    os.system(&apos;git rev-list --objects --all &gt;&gt; &apos; + fileLogPath)</div><div class="line">    # print &apos;createNew &apos; + fileLogPath   </div><div class="line"></div><div class="line">    packLogPath = systemPath + &apos;/.gitthin/pack_log&apos;</div><div class="line"></div><div class="line">    if os.path.exists(packLogPath):</div><div class="line">      print packLogPath + &apos; exits&apos;</div><div class="line">    else: </div><div class="line">        os.system(&apos;git verify-pack -v .git/objects/pack/*.idx &gt;&gt; &apos; + packLogPath)</div><div class="line">        print &apos;createNew &apos; + packLogPath</div><div class="line"></div><div class="line">    outputlist = os.popen(&apos;sort -k 3 -n %s | tail -10&apos; % packLogPath).read().split(&apos;\n&apos;)</div><div class="line"></div><div class="line">    outputlist = list(reversed(outputlist))</div><div class="line"></div><div class="line">    for item in outputlist:</div><div class="line">        if len(item) &gt; 0:</div><div class="line">           items = item.split(&apos; &apos;)</div><div class="line">           hashstring = items[0]</div><div class="line">           filesize = items[4]</div><div class="line"></div><div class="line">           filename = os.popen(&apos;grep %s %s&apos; % (hashstring, fileLogPath)).read()</div><div class="line">           print filename.split(&apos;\n&apos;)[0],&apos;   &apos;,filesize</div><div class="line"></div><div class="line"></div><div class="line">command = &apos;&apos;</div><div class="line">filename = &apos;&apos;</div><div class="line">if (len(sys.argv)) &gt; 1:</div><div class="line">   command = sys.argv[1] </div><div class="line">else:   </div><div class="line">   print &apos;请输入参数&apos;</div><div class="line">   sys.exit(1)</div><div class="line"></div><div class="line">if command == &apos;checksize&apos;:</div><div class="line">   checksize()</div><div class="line"></div><div class="line">elif command == &apos;reset&apos;:</div><div class="line">   systemPath = os.environ[&apos;HOME&apos;]</div><div class="line">   thinpath = systemPath + &apos;/.gitthin&apos;</div><div class="line">   if os.path.exists:</div><div class="line">      os.system(&apos;rm -rf %s&apos; % thinpath)</div><div class="line"></div><div class="line">elif command == &apos;rewrite&apos;:</div><div class="line">   if len(sys.argv) &gt; 2:</div><div class="line">      filename = sys.argv[2]</div><div class="line">      print &apos;\033[1;31m&apos; + &apos;请确认当前为最新分支&apos; + &apos;\033[0m&apos;</div><div class="line">   else:</div><div class="line">      print &apos;请输入文件名&apos;</div><div class="line">      sys.exit(1)</div><div class="line">   </div><div class="line">   systemPath = os.environ[&apos;HOME&apos;]</div><div class="line">   copyfilePath = systemPath + &apos;/.gitthin/&apos; + filename.split(&apos;/&apos;)[-1]</div><div class="line">   copyfilePath = copyfilePath.replace(&apos;\n&apos;,&apos;&apos;)</div><div class="line"></div><div class="line">   if os.path.exists(copyfilePath):</div><div class="line">      os.system(&apos;rm -rf &apos; + copyfilePath)</div><div class="line">   </div><div class="line">   filenamePath = os.popen(&apos;find . -name &apos; + filename.split(&apos;/&apos;)[-1]).read().replace(&apos;\n&apos;,&apos;&apos;)</div><div class="line"></div><div class="line">   copyString = &apos;cp -R %s %s&apos; % (filenamePath,copyfilePath)</div><div class="line"></div><div class="line">   os.system(copyString)   </div><div class="line"></div><div class="line">   os.system(&apos;/usr/bin/git filter-branch --force --index-filter &quot;/usr/bin/git rm --cached --ignore-unmatch %s&quot; --prune-empty --tag-name-filter cat -- --all&apos; %  filename)</div><div class="line"></div><div class="line">   os.system(&apos;cp -R %s %s&apos; % (copyfilePath,filenamePath))</div><div class="line">   </div><div class="line">   text = os.popen(&apos;git diff&apos;).read()</div><div class="line">   print &apos;text&apos; + text</div><div class="line">   if len(text) &gt; 0:</div><div class="line">      os.system(&apos;git add .&apos;)</div><div class="line">      os.system(&apos;git commit -m &quot;git库瘦身，还原文件&quot;&apos;) </div><div class="line"></div><div class="line">elif command == &apos;--h&apos;:</div><div class="line">   print &apos;\033[1;31m&apos; + &apos;thingit checksize&apos; + &apos;\033[0m&apos;</div><div class="line">   print &apos;\033[1;34m&apos; + &apos;检查排名前十的大文件&apos; + &apos;\033[0m&apos;</div><div class="line"></div><div class="line">   print &apos;\033[1;31m&apos; + &apos;thingit rewrite filename&apos; + &apos;\033[0m&apos;</div><div class="line">   print &apos;\033[1;34m&apos; + &apos;删除大文件提交&apos; + &apos;\033[0m&apos;</div><div class="line"></div><div class="line">   print &apos;\033[1;31m&apos; + &apos;thingit reset&apos; + &apos;\033[0m&apos;</div><div class="line">   print &apos;\033[1;34m&apos; + &apos;初始化环境&apos; + &apos;\033[0m&apos;</div></pre></td></tr></table></figure>]]></content>
       
         
         <tags>
