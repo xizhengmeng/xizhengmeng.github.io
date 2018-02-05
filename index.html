@@ -263,6 +263,119 @@
             
               
                 
+                <a class="post-title-link" href="/2018/02/05/python进阶常用/" itemprop="url">
+                  python/mongo常用记录
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2018-02-05T09:49:03+08:00" content="2018-02-05">
+              2018-02-05
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="python常用"><a href="#python常用" class="headerlink" title="python常用"></a>python常用</h3><ul>
+<li>多进程</li>
+<li>排序</li>
+<li>时间模块</li>
+<li>查看帮助文档<code>dir(os)</code></li>
+<li>单元测试</li>
+</ul>
+<h4 id="多进程"><a href="#多进程" class="headerlink" title="多进程"></a>多进程</h4><p>multiprocessing模块就是跨平台版本的多进程模块。<br>multiprocessing模块提供了一个Process类来代表一个进程对象，下面的例子演示了启动一个子进程并等待其结束</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">import os</div><div class="line">from multiprocessing import Process</div><div class="line"></div><div class="line">def runfunction(d):</div><div class="line">    time.sleep(3)</div><div class="line">    print &apos;%s &apos; % (os.getpid()) + &apos;is the subprocess&apos;</div><div class="line">    </div><div class="line">if __name__ == &apos;__main__&apos;:</div><div class="line">    print &apos;Parent is %s&apos; % os.getpid()</div><div class="line">    p = Process(target=runfunction, args=(&apos;1&apos;,))</div><div class="line">    print &apos;Process will start.&apos;</div><div class="line">    p.start()</div><div class="line">    p.join()#这样写其实是同步执行的肯定</div><div class="line">    print &apos;Process end.&apos;</div></pre></td></tr></table></figure>
+<p>多个进程，但是异步执行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"># !/usr/bin/env python  </div><div class="line"># -*- coding:utf-8 -*-  </div><div class="line">#</div><div class="line"># Copyright 2015 mimvp.com</div><div class="line">   </div><div class="line">import multiprocessing</div><div class="line">import time</div><div class="line">import os</div><div class="line">   </div><div class="line">def func(name, processName):</div><div class="line">    print &apos;Process[%s]  hello %s&apos; % (processName, name)</div><div class="line">    print &apos;sub pid: %d, ppid: %d&apos; % (os.getpid(), os.getppid())</div><div class="line">    time.sleep(0.1)</div><div class="line">   </div><div class="line">   </div><div class="line">def main():</div><div class="line">    print &apos;main pid: %d, ppid: %d&apos; % (os.getpid(), os.getppid())</div><div class="line">     </div><div class="line">    processList = []</div><div class="line">    for i in xrange(4):</div><div class="line">        pro = multiprocessing.Process(target=func, args=(i, &apos;Process-&apos; + str(i)))</div><div class="line">        pro.start()</div><div class="line">#         pro.join()      # 不要在此处阻塞子进程，否则子进程都将是线性顺序执行</div><div class="line">        processList.append(pro)</div><div class="line">         </div><div class="line">    for pro in processList:</div><div class="line">        pro.join()      # 在此处阻塞子进程，可实现异步执行效果，直至子进程全部完成后再继续执行父进程</div><div class="line">       </div><div class="line"># 测试</div><div class="line">if __name__ == &apos;__main__&apos;:  </div><div class="line">    main()</div><div class="line">    print(&apos;end.&apos;)</div></pre></td></tr></table></figure>
+<p>同时创建多个进程</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">from multiprocessing import Pool</div><div class="line">import os, time, random</div><div class="line"></div><div class="line">def long_time_task(name):</div><div class="line">    print &apos;Run task %s (%s)...&apos; % (name, os.getpid())</div><div class="line">    start = time.time()</div><div class="line">    time.sleep(2)</div><div class="line">    end = time.time()</div><div class="line">    print &apos;Task %s runs %0.2f seconds.&apos; % (name, (end - start))</div><div class="line"></div><div class="line">if __name__==&apos;__main__&apos;:</div><div class="line">    print &apos;Parent process %s.&apos; % os.getpid()</div><div class="line">    p = Pool(10)</div><div class="line">    for i in range(10):</div><div class="line">        p.apply_async(long_time_task, args=(i,))</div><div class="line">    print &apos;Waiting for all subprocesses done...&apos;</div><div class="line">    p.close()</div><div class="line">    p.join()</div><div class="line">    print &apos;All subprocesses done.&apos;</div></pre></td></tr></table></figure>
+<p>根据多个参数，创建多个进程</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">def sortwithnum():</div><div class="line">    pass</div><div class="line">    </div><div class="line">dataList = [1,2,3,4,5]    </div><div class="line"></div><div class="line">pool = Pool()  #创建拥有5个进程数量的进程池</div><div class="line">rl = pool.map(sortwithnum, dateList) </div><div class="line">pool.close()#关闭进程池，不再接受新的进程</div><div class="line">pool.join()#主进程阻塞等待子进程的退出</div></pre></td></tr></table></figure>
+<p>进程通信</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line">import multiprocessing</div><div class="line">import time</div><div class="line">import os</div><div class="line">   </div><div class="line"> </div><div class="line">lock = multiprocessing.Lock()</div><div class="line"> </div><div class="line">def func(name, processName, queue):</div><div class="line">    p_info = &apos;Process[%s]  hello %s&apos; % (processName, name)</div><div class="line">    queue.put(p_info)</div><div class="line">     </div><div class="line">    print &apos;queue put: &apos;, p_info</div><div class="line">    print &apos;sub pid: %d, ppid: %d&apos; % (os.getpid(), os.getppid())</div><div class="line">    time.sleep(0.5)</div><div class="line">   </div><div class="line">   </div><div class="line">def main():</div><div class="line">    print &apos;main pid: %d, ppid: %d&apos; % (os.getpid(), os.getppid())</div><div class="line">     </div><div class="line">    qu = multiprocessing.Queue()    </div><div class="line">     </div><div class="line">    processList = []</div><div class="line">    for i in xrange(4):</div><div class="line">        pro = multiprocessing.Process(target=func, args=(i, &apos;Process-&apos; + str(i), qu))</div><div class="line">        pro.start()</div><div class="line">        processList.append(pro)</div><div class="line">         </div><div class="line">    for pro in processList:</div><div class="line">        pro.join()  </div><div class="line">       </div><div class="line">    while not qu.empty():</div><div class="line">        p_info = qu.get(block=False)</div><div class="line">        print &apos;queue get: &apos;, p_info</div><div class="line">         </div><div class="line"></div><div class="line">if __name__ == &apos;__main__&apos;:  </div><div class="line">    main()</div><div class="line">    print(&apos;end.&apos;)</div></pre></td></tr></table></figure>
+<h4 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">itemList.sort(key=lambda k : (k.get(&apos;datetime&apos;,0),(&apos;createtime&apos;,0)), reverse=False)</div></pre></td></tr></table></figure>
+<h4 id="时间模块"><a href="#时间模块" class="headerlink" title="时间模块"></a>时间模块</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">now_time = datetime.datetime.now()</div><div class="line">now_time_string = now_time.strftime(&apos;%Y-%m-%d&apos;)</div><div class="line">yes_time = now_time + datetime.timedelta(days=daysl)</div><div class="line">yes_time_nyr = yes_time.strftime(&apos;%Y-%m-%d&apos;)</div></pre></td></tr></table></figure>
+<p>```</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2018/01/23/用户行为路径分析思路/" itemprop="url">
                   用户行为路径分析思路
                 </a>
@@ -822,7 +935,7 @@
               
                 
                 <a class="post-title-link" href="/2017/12/18/pymongo远程数据库使用方法/" itemprop="url">
-                  pymongo远程数据库使用方法
+                  mongo日常命令记录
                 </a>
               
             
@@ -865,7 +978,18 @@
       
         
           
-            <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">import os, time, json ,sys</div><div class="line">from pymongo import MongoClient</div><div class="line">import urllib</div><div class="line"></div><div class="line">username = urllib.quote_plus(&apos;jrappcomment&apos;)</div><div class="line">password = urllib.quote_plus(&apos;jrappcomment&apos;)</div><div class="line"></div><div class="line">client = MongoClient(&apos;mongodb://%s:%s@172.25.60.48:27017/jrappcomment?authSource=jrappcomment&apos; % (username, password))</div><div class="line"></div><div class="line"># client = MongoClient(&quot;mongodb://172.25.60.48:27017&quot;)</div><div class="line"># client.adb.authenticate(username, password, mechanism=&apos;SCRAM-SHA-1&apos;)</div><div class="line"></div><div class="line"># client = MongoClient(&apos;mongodb://jrappcomment:jrappcomment@172.25.60.48:27017/&apos;)</div><div class="line">db = client.jrappcomment</div><div class="line"></div><div class="line">comment = db.Comment</div><div class="line"></div><div class="line">comment.insert(&#123;&apos;name&apos;:&apos;ceshi&apos;&#125;)</div><div class="line"></div><div class="line">dbs = comment.find(&#123;&#125;)</div><div class="line"></div><div class="line">print dbs</div><div class="line">for item in dbs:</div><div class="line">    print &apos;ceshi&apos;</div><div class="line">    print item</div></pre></td></tr></table></figure>
+            <h3 id="mongo常用"><a href="#mongo常用" class="headerlink" title="mongo常用"></a>mongo常用</h3><h4 id="mongo命令行"><a href="#mongo命令行" class="headerlink" title="mongo命令行"></a>mongo命令行</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">mongo jrappcomment:jrappcomment@172.25.60.48:27017/jrappcomment?authSource=jrappcomment //连接远程数据库</div><div class="line"></div><div class="line">mongoexport -h 172.25.60.48 --port 27017 -d jrappcomment -u jrappcomment -p jrappcomment -c jrcommentcategory -o goods2.json //导出</div><div class="line"></div><div class="line">mongoimport -h 172.25.60.48 --port 27017 -d jrappcomment -u jrappcomment -p jrappcomment -c cachecomment --file goods2.json//导入</div></pre></td></tr></table></figure>
+<ul>
+<li>db.stats()</li>
+<li>show dbs</li>
+<li>show tables</li>
+<li>show collections</li>
+<li>db.collection.totalIndexSize()</li>
+<li>db.collection.totalSize()</li>
+<li>db.jrcomment.ensureIndex({id:1}) //mongo建立索引 </li>
+</ul>
+<h4 id="pymongo远程连接数据库"><a href="#pymongo远程连接数据库" class="headerlink" title="pymongo远程连接数据库"></a>pymongo远程连接数据库</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">dbs = comment.find(&#123;&#125;).sort([(&apos;datetime&apos;,1),(&apos;created_time&apos;,1)]).limit(10000)</div><div class="line">print type(list(dbs))</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">import os, time, json ,sys</div><div class="line">from pymongo import MongoClient</div><div class="line">import urllib</div><div class="line"></div><div class="line">username = urllib.quote_plus(&apos;jrappcomment&apos;)</div><div class="line">password = urllib.quote_plus(&apos;jrappcomment&apos;)</div><div class="line"></div><div class="line">client = MongoClient(&apos;mongodb://%s:%s@172.25.60.48:27017/jrappcomment?authSource=jrappcomment&apos; % (username, password))</div><div class="line"></div><div class="line"># client = MongoClient(&quot;mongodb://172.25.60.48:27017&quot;)</div><div class="line"># client.adb.authenticate(username, password, mechanism=&apos;SCRAM-SHA-1&apos;)</div><div class="line"></div><div class="line"># client = MongoClient(&apos;mongodb://jrappcomment:jrappcomment@172.25.60.48:27017/&apos;)</div><div class="line">db = client.jrappcomment</div><div class="line"></div><div class="line">comment = db.Comment</div><div class="line"></div><div class="line">comment.insert(&#123;&apos;name&apos;:&apos;ceshi&apos;&#125;)</div><div class="line"></div><div class="line">dbs = comment.find(&#123;&#125;)</div><div class="line"></div><div class="line">print dbs</div><div class="line">for item in dbs:</div><div class="line">    print &apos;ceshi&apos;</div><div class="line">    print item</div></pre></td></tr></table></figure>
 
           
         
@@ -1189,120 +1313,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/11/11/Mac-Vim使用教程/" itemprop="url">
-                  Mac-Vim使用教程
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-11-11T16:18:59+08:00" content="2017-11-11">
-              2017-11-11
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h4 id="各种光标移动"><a href="#各种光标移动" class="headerlink" title="各种光标移动"></a>各种光标移动</h4><p>w     跳到下一个字首，按标点或单词分割<br>W     跳到下一个字首，长跳，如end-of-line被认为是一个字<br>e     跳到下一个字尾<br>E     跳到下一个字尾，长跳<br>b     跳到上一个字<br>B     跳到上一个字，长跳<br>0     跳至行首，不管有无缩进，就是跳到第0个字符</p>
-<p>n+ 移n行行首<br>n- 移n行行首<br>n$ 移n行(1表示本行)行尾<br>0 所行行首<br>$ 所行行尾<br>^ 所行首字母<br>h,j,k,l 左移移移右移<br>H 前屏幕首行行首<br>M 屏幕显示文件间行行首<br>L 前屏幕底行行首</p>
-<h4 id="各种删除"><a href="#各种删除" class="headerlink" title="各种删除"></a>各种删除</h4><p>dG    删除至文章结尾部<br>d1G   删除至文章开头部<br>2dd   删除两行<br>dd    删除光标所在行<br>dw    删除一个字(word)不适合中文<br>x     删除当前字符<br>10x   删除十个连续字符<br>X     删除前一个字符<br>D     删除到行末</p>
-<h4 id="复制粘贴"><a href="#复制粘贴" class="headerlink" title="复制粘贴"></a>复制粘贴</h4><p>yy     复制一行，此命令前可跟数字，标识复制多行，如6yy，表示从当前行开始复制6行<br>yw     复制一个字<br>y$     复制到行末<br>p     粘贴粘贴板的内容到当前行的下面<br>P     粘贴粘贴板的内容到当前行的上面<br>]p     有缩进的粘贴，vim会自动调节代码的缩进<br>“a     将内容放入/存入a寄存器，可以支持多粘贴板<br>附：比如常用的一个寄存器就是系统寄存器，名称为+，所以从系统粘贴板粘贴到vim中的命令为”+p,注意此处的+不表示操作符，二十一个寄存器。<br>移动光标<br>在vim中移动光标跟其他的编辑器中有很大的区别，不过一旦学会了，就会飞速的在文本中移动了。</p>
-<h4 id="光标快速移动"><a href="#光标快速移动" class="headerlink" title="光标快速移动"></a>光标快速移动</h4><p><code>gg</code>快速移动到头部<br><code>G</code>快速移动到尾部<br><code>10G</code>移动到第十行</p>
-<blockquote>
-<p>显示行号<br>:set number</p>
-<p>永久显示行号:</p>
-<p>$vi ~/.vimrc<br>往文件里面添加内容： set number , 保存退出。</p>
-</blockquote>
-<h4 id="行内光标跳转"><a href="#行内光标跳转" class="headerlink" title="行内光标跳转"></a>行内光标跳转</h4><ul>
-<li><code>w</code>当前单词开头</li>
-<li><code>e</code>当前单词末尾</li>
-<li><code>b</code>前一个单词开头</li>
-<li><code>ge</code>前一个单词末尾</li>
-<li><code>o/^</code>行开始</li>
-<li><code>$</code>行末尾</li>
-<li><code>f&lt;name&gt;</code>向后搜索并且跳转到该字母</li>
-<li><code>F&lt;name&gt;</code>向前搜索并且跳转到该字母</li>
-</ul>
-<h4 id="查找"><a href="#查找" class="headerlink" title="查找"></a>查找</h4><p><code>/name</code>开始进行查找name，然后输入n继续向下查找，输入N继续向上查找</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1347,7 +1357,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">94</span>
+              <span class="site-state-item-count">95</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
