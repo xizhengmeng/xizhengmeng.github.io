@@ -3,6 +3,22 @@
   
     
     <entry>
+      <title><![CDATA[机器学习-sklearn-01入门]]></title>
+      <url>/2018/02/05/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-sklearn-01%E5%85%A5%E9%97%A8/</url>
+      <content type="html"></content>
+      
+        
+        <tags>
+            
+            <tag> python </tag>
+            
+            <tag> sklearn </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[python/mongo常用记录]]></title>
       <url>/2018/02/05/python%E8%BF%9B%E9%98%B6%E5%B8%B8%E7%94%A8/</url>
       <content type="html"><![CDATA[<h3 id="python常用"><a href="#python常用" class="headerlink" title="python常用"></a>python常用</h3><ul>
@@ -731,6 +747,8 @@ d = t ^ s          # 对称差集（项在t或s中，但不会同时出现在二
 <li><p>实例16：以时间命名<br><code>01 * * * * touch $(date +%Y-%m-%d)</code></p>
 </li>
 </ul>
+<h4 id="crontab设置"><a href="#crontab设置" class="headerlink" title="crontab设置"></a>crontab设置</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">1. 确认crontab是否安装：</div><div class="line"></div><div class="line">执行 crontab 命令如果报 command not found，就表明没有安装</div><div class="line"></div><div class="line">2. 安装 crontab</div><div class="line"></div><div class="line">执行 yum install -y vixie-cron</div><div class="line"></div><div class="line">3. 确认是否安装成功:</div><div class="line"></div><div class="line">执行 crontab -l</div><div class="line"></div><div class="line">4. 看是否设置了开机自动启动</div><div class="line"></div><div class="line">chkconfig --list crond</div><div class="line"></div><div class="line">5. 启动crontab</div><div class="line"></div><div class="line">service crond start</div></pre></td></tr></table></figure>
+<p>看日志 /var/log/cron.log这个文件就可以，可以用tail -f /var/log/cron.log观察</p>
 <h3 id="命令执行顺序和管道"><a href="#命令执行顺序和管道" class="headerlink" title="命令执行顺序和管道"></a>命令执行顺序和管道</h3><p>多命令一起输入选择性执行<br><code>which git &amp;&amp; echo &#39;YES&#39; || echo &#39;NO&#39;</code><br>这段话的意思是如果git存在就输出YES，否则输出NO<br><code>echo $?</code>查看程序执行结果</p>
 <h4 id="管道"><a href="#管道" class="headerlink" title="管道"></a>管道</h4><p>将前一个命令的输出作为后一个命令的输入，以<code>|</code>作为表示符。<br><code>ls -la /etc | less</code><br>这个时候前一个命令输出了好多，无所谓我可以用less来一行一行的看</p>
 <h4 id="grep"><a href="#grep" class="headerlink" title="grep"></a>grep</h4><p>在文本中查找匹配关键字</p>
