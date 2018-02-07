@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="git," />
+  <meta name="keywords" content="mongo," />
 
 
 
@@ -84,18 +84,18 @@
 
 
 
-<meta name="description" content="Git在存储数据的时候，存储的都是完整的对象，并不是差异，叫做松散对象Loose Object，有时候你只改变了一点，但是同时会拥有近乎两倍大小的blob对象。">
-<meta name="keywords" content="git">
+<meta name="description" content="mongo常用mongo命令行12345mongo jrappcomment:jrappcomment@xxxxxx:27017/jrappcomment?authSource=jrappcomment //连接远程数据库mongoexport -h xxxxxx --port 27017 -d jrappcomment -u jrappcomment -p jrappcomment -c jrc">
+<meta name="keywords" content="mongo">
 <meta property="og:type" content="article">
-<meta property="og:title" content="git库使用进阶">
-<meta property="og:url" content="/2017/12/20/git库使用进阶/index.html">
+<meta property="og:title" content="mongo日常命令记录">
+<meta property="og:url" content="/2017/12/18/pymongo/index.html">
 <meta property="og:site_name" content="Hanson的博客">
-<meta property="og:description" content="Git在存储数据的时候，存储的都是完整的对象，并不是差异，叫做松散对象Loose Object，有时候你只改变了一点，但是同时会拥有近乎两倍大小的blob对象。">
+<meta property="og:description" content="mongo常用mongo命令行12345mongo jrappcomment:jrappcomment@xxxxxx:27017/jrappcomment?authSource=jrappcomment //连接远程数据库mongoexport -h xxxxxx --port 27017 -d jrappcomment -u jrappcomment -p jrappcomment -c jrc">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-01-24T03:31:53.000Z">
+<meta property="og:updated_time" content="2018-02-07T07:38:21.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="git库使用进阶">
-<meta name="twitter:description" content="Git在存储数据的时候，存储的都是完整的对象，并不是差异，叫做松散对象Loose Object，有时候你只改变了一点，但是同时会拥有近乎两倍大小的blob对象。">
+<meta name="twitter:title" content="mongo日常命令记录">
+<meta name="twitter:description" content="mongo常用mongo命令行12345mongo jrappcomment:jrappcomment@xxxxxx:27017/jrappcomment?authSource=jrappcomment //连接远程数据库mongoexport -h xxxxxx --port 27017 -d jrappcomment -u jrappcomment -p jrappcomment -c jrc">
 
 
 
@@ -116,10 +116,10 @@
 
 
 
-  <link rel="canonical" href="/2017/12/20/git库使用进阶/"/>
+  <link rel="canonical" href="/2017/12/18/pymongo/"/>
 
 
-  <title> git库使用进阶 | Hanson的博客 </title>
+  <title> mongo日常命令记录 | Hanson的博客 </title>
 </head>
 
 <body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
@@ -262,7 +262,7 @@
             
             
               
-                git库使用进阶
+                mongo日常命令记录
               
             
           </h1>
@@ -274,8 +274,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-12-20T17:30:06+08:00" content="2017-12-20">
-              2017-12-20
+            <time itemprop="dateCreated" datetime="2017-12-18T12:40:52+08:00" content="2017-12-18">
+              2017-12-18
             </time>
           </span>
 
@@ -307,15 +307,19 @@
       
 
       
-        <p>Git在存储数据的时候，存储的都是完整的对象，并不是差异，叫做松散对象Loose Object，有时候你只改变了一点，但是同时会拥有近乎两倍大小的blob对象。<br><a id="more"></a><br>这样子做岂不是很不节省磁盘？所以Git会在每次push到远程的时候进行garbage collect操作，当然我们也可以自己手动改进行gc，如：<br>git gc<br>Counting objects: 6, done.<br>Delta compression using up to 4 threads.<br>Compressing objects: 100% (3/3), done.<br>Writing objects: 100% (6/6), done.<br>Total 6 (delta 0), reused 0 (delta 0)</p>
-<p>然后查看一下.git/objects下有哪些文件：<br>find .git/objects -type f<br>发现多了一些pack文件：<br>.git/objects/info/packs<br>.git/objects/pack/pack-abcde.idx<br>.git/objects/pack/pack-abcde.pack<br>当然也还有可能还有一些dangling的对象，这些对象是没有被其它引用的对象，git不会对其进行pack。.pack文件存储了所有删除的对象， .idx文件是索引文件，存储相应的偏移信息。</p>
-<p>我们可以使用verify-pack命令显示pack的信息：<br>git verify-pack -v .git/objects/pack/pack-abcde.idx<br>a35a7ea3f7b55be91743c708d150b573116515ec commit 239 160 12<br>fb1c75a143de21f30004dab829b39f99d225d292 commit 187 128 172<br>ca2b7d42454d33b31cfc810592e8bd47f811decd tree   70 76 300<br>fd5d73ef7deb282cbf47826c58448597f24453ba blob   18 28 376<br>56166dc42a6a2f694e088694a2a2c90606e28f2d blob   16 23 404<br>4e1ba2916b4b903d2e5a2209cdcca7129a891c2f tree   36 46 427<br>non delta: 6 objects<br>objects/pack/pack-83c7f603b25c063accec33ee8869a6afb1e9fd0a.pack: ok</p>
-<p>第一列显示对象的指针，即Hash值，第二列展示是什么类型的对象，第三列展示占用了多少字节。</p>
-<!--more-->
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/usr/bin/git filter-branch --force --index-filter &quot;/usr/bin/git rm --cached --ignore-unmatch JDMobile_2.0/Classes/Sections/BrickPlatForm/ViewController/BrickPFItemViewController.m&quot; --prune-empty --tag-name-filter cat -- --all</div></pre></td></tr></table></figure>
-<h3 id="git提交压缩"><a href="#git提交压缩" class="headerlink" title="git提交压缩"></a>git提交压缩</h3><p><code>git gc  --prune=now</code></p>
-<h3 id="删除tag"><a href="#删除tag" class="headerlink" title="删除tag"></a>删除tag</h3><p><code>git tag | xargs git tag -d</code></p>
-<h3 id="一键瘦身代码"><a href="#一键瘦身代码" class="headerlink" title="一键瘦身代码"></a>一键瘦身代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div></pre></td><td class="code"><pre><div class="line">#!/usr/bin/env python</div><div class="line">#coding:utf-8</div><div class="line">import os,sys,shutil,time</div><div class="line"></div><div class="line">def checksize():</div><div class="line">    systemPath = os.environ[&apos;HOME&apos;]</div><div class="line"></div><div class="line">    if os.path.exists(systemPath + &apos;/.gitthin&apos;):</div><div class="line">        pass</div><div class="line">    else:</div><div class="line">        tagetPath = systemPath + &apos;/.gitthin&apos;  </div><div class="line">        os.system(&apos;mkdir &apos; + tagetPath)</div><div class="line"></div><div class="line">    if os.path.exists(&apos;.git&apos;) == False: </div><div class="line">       print &apos;do not have .git&apos;</div><div class="line">       sys.exit(1)</div><div class="line"></div><div class="line">    fileLogPath = systemPath + &apos;/.gitthin/file_log&apos;</div><div class="line"></div><div class="line">    if os.path.exists(fileLogPath):</div><div class="line">      os.system(&apos;rm -rf fileLogPath&apos;)</div><div class="line"></div><div class="line">    os.system(&apos;git rev-list --objects --all &gt;&gt; &apos; + fileLogPath)</div><div class="line">    # print &apos;createNew &apos; + fileLogPath   </div><div class="line"></div><div class="line">    packLogPath = systemPath + &apos;/.gitthin/pack_log&apos;</div><div class="line"></div><div class="line">    if os.path.exists(packLogPath):</div><div class="line">      print packLogPath + &apos; exits&apos;</div><div class="line">    else: </div><div class="line">        os.system(&apos;git verify-pack -v .git/objects/pack/*.idx &gt;&gt; &apos; + packLogPath)</div><div class="line">        print &apos;createNew &apos; + packLogPath</div><div class="line"></div><div class="line">    outputlist = os.popen(&apos;sort -k 3 -n %s | tail -10&apos; % packLogPath).read().split(&apos;\n&apos;)</div><div class="line"></div><div class="line">    outputlist = list(reversed(outputlist))</div><div class="line"></div><div class="line">    for item in outputlist:</div><div class="line">        if len(item) &gt; 0:</div><div class="line">           items = item.split(&apos; &apos;)</div><div class="line">           hashstring = items[0]</div><div class="line">           filesize = items[4]</div><div class="line"></div><div class="line">           filename = os.popen(&apos;grep %s %s&apos; % (hashstring, fileLogPath)).read()</div><div class="line">           print filename.split(&apos;\n&apos;)[0],&apos;   &apos;,filesize</div><div class="line"></div><div class="line"></div><div class="line">command = &apos;&apos;</div><div class="line">filename = &apos;&apos;</div><div class="line">if (len(sys.argv)) &gt; 1:</div><div class="line">   command = sys.argv[1] </div><div class="line">else:   </div><div class="line">   print &apos;请输入参数&apos;</div><div class="line">   sys.exit(1)</div><div class="line"></div><div class="line">if command == &apos;checksize&apos;:</div><div class="line">   checksize()</div><div class="line"></div><div class="line">elif command == &apos;reset&apos;:</div><div class="line">   systemPath = os.environ[&apos;HOME&apos;]</div><div class="line">   thinpath = systemPath + &apos;/.gitthin&apos;</div><div class="line">   if os.path.exists:</div><div class="line">      os.system(&apos;rm -rf %s&apos; % thinpath)</div><div class="line"></div><div class="line">elif command == &apos;rewrite&apos;:</div><div class="line">   if len(sys.argv) &gt; 2:</div><div class="line">      filename = sys.argv[2]</div><div class="line">      print &apos;\033[1;31m&apos; + &apos;请确认当前为最新分支&apos; + &apos;\033[0m&apos;</div><div class="line">   else:</div><div class="line">      print &apos;请输入文件名&apos;</div><div class="line">      sys.exit(1)</div><div class="line">   </div><div class="line">   systemPath = os.environ[&apos;HOME&apos;]</div><div class="line">   copyfilePath = systemPath + &apos;/.gitthin/&apos; + filename.split(&apos;/&apos;)[-1]</div><div class="line">   copyfilePath = copyfilePath.replace(&apos;\n&apos;,&apos;&apos;)</div><div class="line"></div><div class="line">   if os.path.exists(copyfilePath):</div><div class="line">      os.system(&apos;rm -rf &apos; + copyfilePath)</div><div class="line">   </div><div class="line">   filenamePath = os.popen(&apos;find . -name &apos; + filename.split(&apos;/&apos;)[-1]).read().replace(&apos;\n&apos;,&apos;&apos;)</div><div class="line"></div><div class="line">   copyString = &apos;cp -R %s %s&apos; % (filenamePath,copyfilePath)</div><div class="line"></div><div class="line">   os.system(copyString)   </div><div class="line"></div><div class="line">   os.system(&apos;/usr/bin/git filter-branch --force --index-filter &quot;/usr/bin/git rm --cached --ignore-unmatch %s&quot; --prune-empty --tag-name-filter cat -- --all&apos; %  filename)</div><div class="line"></div><div class="line">   os.system(&apos;cp -R %s %s&apos; % (copyfilePath,filenamePath))</div><div class="line">   </div><div class="line">   text = os.popen(&apos;git diff&apos;).read()</div><div class="line">   print &apos;text&apos; + text</div><div class="line">   if len(text) &gt; 0:</div><div class="line">      os.system(&apos;git add .&apos;)</div><div class="line">      os.system(&apos;git commit -m &quot;git库瘦身，还原文件&quot;&apos;) </div><div class="line"></div><div class="line">elif command == &apos;--h&apos;:</div><div class="line">   print &apos;\033[1;31m&apos; + &apos;thingit checksize&apos; + &apos;\033[0m&apos;</div><div class="line">   print &apos;\033[1;34m&apos; + &apos;检查排名前十的大文件&apos; + &apos;\033[0m&apos;</div><div class="line"></div><div class="line">   print &apos;\033[1;31m&apos; + &apos;thingit rewrite filename&apos; + &apos;\033[0m&apos;</div><div class="line">   print &apos;\033[1;34m&apos; + &apos;删除大文件提交&apos; + &apos;\033[0m&apos;</div><div class="line"></div><div class="line">   print &apos;\033[1;31m&apos; + &apos;thingit reset&apos; + &apos;\033[0m&apos;</div><div class="line">   print &apos;\033[1;34m&apos; + &apos;初始化环境&apos; + &apos;\033[0m&apos;</div></pre></td></tr></table></figure>
+        <h3 id="mongo常用"><a href="#mongo常用" class="headerlink" title="mongo常用"></a>mongo常用</h3><h4 id="mongo命令行"><a href="#mongo命令行" class="headerlink" title="mongo命令行"></a>mongo命令行</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">mongo jrappcomment:jrappcomment@xxxxxx:27017/jrappcomment?authSource=jrappcomment //连接远程数据库</div><div class="line"></div><div class="line">mongoexport -h xxxxxx --port 27017 -d jrappcomment -u jrappcomment -p jrappcomment -c jrcommentcategory -o goods2.json //导出</div><div class="line"></div><div class="line">mongoimport -h xxxxxx --port 27017 -d jrappcomment -u jrappcomment -p jrappcomment -c cachecomment --file goods2.json//导入</div></pre></td></tr></table></figure>
+<ul>
+<li>db.stats()</li>
+<li>show dbs</li>
+<li>show tables</li>
+<li>show collections</li>
+<li>db.collection.totalIndexSize()</li>
+<li>db.collection.totalSize()</li>
+<li>db.jrcomment.ensureIndex({id:1}) //mongo建立索引 </li>
+</ul>
+<h4 id="pymongo远程连接数据库"><a href="#pymongo远程连接数据库" class="headerlink" title="pymongo远程连接数据库"></a>pymongo远程连接数据库</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">dbs = comment.find(&#123;&#125;).sort([(&apos;datetime&apos;,1),(&apos;created_time&apos;,1)]).limit(10000)</div><div class="line">print type(list(dbs))</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">import os, time, json ,sys</div><div class="line">from pymongo import MongoClient</div><div class="line">import urllib</div><div class="line"></div><div class="line">username = urllib.quote_plus(&apos;jrappcomment&apos;)</div><div class="line">password = urllib.quote_plus(&apos;jrappcomment&apos;)</div><div class="line"></div><div class="line">client = MongoClient(&apos;mongodb://%s:%s@xxxxxx:27017/jrappcomment?authSource=jrappcomment&apos; % (username, password))</div><div class="line"></div><div class="line"># client = MongoClient(&quot;mongodb://172.25.60.48:27017&quot;)</div><div class="line"># client.adb.authenticate(username, password, mechanism=&apos;SCRAM-SHA-1&apos;)</div><div class="line"></div><div class="line"># client = MongoClient(&apos;mongodb://jrappcomment:jrappcomment@172.25.60.48:27017/&apos;)</div><div class="line">db = client.jrappcomment</div><div class="line"></div><div class="line">comment = db.Comment</div><div class="line"></div><div class="line">comment.insert(&#123;&apos;name&apos;:&apos;ceshi&apos;&#125;)</div><div class="line"></div><div class="line">dbs = comment.find(&#123;&#125;)</div><div class="line"></div><div class="line">print dbs</div><div class="line">for item in dbs:</div><div class="line">    print &apos;ceshi&apos;</div><div class="line">    print item</div></pre></td></tr></table></figure>
+<h4 id="pymongo常用命令"><a href="#pymongo常用命令" class="headerlink" title="pymongo常用命令"></a>pymongo常用命令</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">comment.update(&#123;&apos;name&apos;:&apos;hanshenghui&apos;&#125;,&#123;&apos;$set&apos;:&#123;&apos;age&apos;:30&#125;&#125;)</div></pre></td></tr></table></figure>
       
     </div>
 
@@ -337,7 +341,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/git/" rel="tag">#git</a>
+            <a href="/tags/mongo/" rel="tag">#mongo</a>
           
         </div>
       
@@ -346,16 +350,16 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/12/18/pymongo/" rel="next" title="mongo日常命令记录">
-                <i class="fa fa-chevron-left"></i> mongo日常命令记录
+              <a href="/2017/12/15/centos6配置/" rel="next" title="centos6配置">
+                <i class="fa fa-chevron-left"></i> centos6配置
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/12/25/linux最常用命令/" rel="prev" title="linux最常用命令">
-                linux最常用命令 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/12/20/git库使用进阶/" rel="prev" title="git库使用进阶">
+                git库使用进阶 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -471,7 +475,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#git提交压缩"><span class="nav-number">1.</span> <span class="nav-text">git提交压缩</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删除tag"><span class="nav-number">2.</span> <span class="nav-text">删除tag</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#一键瘦身代码"><span class="nav-number">3.</span> <span class="nav-text">一键瘦身代码</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#mongo常用"><span class="nav-number">1.</span> <span class="nav-text">mongo常用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#mongo命令行"><span class="nav-number">1.1.</span> <span class="nav-text">mongo命令行</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#pymongo远程连接数据库"><span class="nav-number">1.2.</span> <span class="nav-text">pymongo远程连接数据库</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#pymongo常用命令"><span class="nav-number">1.3.</span> <span class="nav-text">pymongo常用命令</span></a></li></ol></li></ol></div>
             
           </div>
         </section>
