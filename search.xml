@@ -3,6 +3,33 @@
   
     
     <entry>
+      <title><![CDATA[kaggle入门随笔]]></title>
+      <url>/2018/02/26/kaggle%E5%85%A5%E9%97%A8%E9%9A%8F%E7%AC%94/</url>
+      <content type="html"><![CDATA[<ul>
+<li>在哪里编码<ul>
+<li>无所谓，但是kaggle提供了kernal，可以直接使用其硬件资源</li>
+</ul>
+</li>
+<li>在哪里提交，提交的是什么<ul>
+<li>在问题页面的submit，然后提交的是最后你预测的结果，而不是代码</li>
+</ul>
+</li>
+<li></li>
+</ul>
+]]></content>
+      
+        
+        <tags>
+            
+            <tag> 机器学习 </tag>
+            
+            <tag> kaggle </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[xcode证书相关]]></title>
       <url>/2018/02/24/xcode%E8%AF%81%E4%B9%A6%E7%9B%B8%E5%85%B3/</url>
       <content type="html"><![CDATA[<p>1.如果你的profile文件始终找不到证书，但是这个证书明明在你的证书里边，这个时候查看全部证书，可能存在重名的证书<br><a id="more"></a><br>2.证书从网站上下载是不好使的，因为没有私钥，需要证书的创建者去给你导出一个p12，或者拥有p12证书的人给你导出一个p12，记得要带着里边的钥匙<br>3.appid是决定你的app是否唯一的东西，证书是决定的是哪台电脑有签名的能力，profile文件在创建的时候需要绑定id，证书，和设备id，它决定，这个电脑上能够签名哪个app，然后签名出来的app可以给谁安装</p>

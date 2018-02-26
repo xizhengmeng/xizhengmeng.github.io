@@ -263,6 +263,100 @@
             
               
                 
+                <a class="post-title-link" href="/2017/02/16/2017/定时检查网页更新并发送微信消息/" itemprop="url">
+                  定时检查网页更新并发送微信消息
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-02-16T16:11:20+08:00" content="2017-02-16">
+              2017-02-16
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div></pre></td><td class="code"><pre><div class="line"># -*- coding: utf-8 -*-</div><div class="line">import urllib2,time,urllib</div><div class="line"></div><div class="line">    while True:</div><div class="line">    current = time.localtime(time.time())</div><div class="line"></div><div class="line">    year = current.tm_year</div><div class="line">    month = current.tm_mon</div><div class="line">    day = current.tm_mday</div><div class="line"></div><div class="line">    hour = current.tm_hour</div><div class="line">    minite = current.tm_min</div><div class="line">    sec = current.tm_sec</div><div class="line">    if sec == 0:</div><div class="line"></div><div class="line">    downLoadStr = &apos;http://www.bjjs.gov.cn/bjjs/fwgl/zzxspzf/index.shtml&apos;</div><div class="line">    print downLoadStr</div><div class="line">    try:</div><div class="line">        i_headers = &#123;&quot;User-Agent&quot;: &quot;Mozilla/5.0 (Windows; U; Windows NT 5.1; zh-CN; rv:1.9.1) Gecko/20090624 Firefox/3.5&quot;,\</div><div class="line">        &quot;Referer&quot;: &apos;http://www.baidu.com&apos;&#125;</div><div class="line">        req = urllib2.Request(downLoadStr, headers=i_headers)</div><div class="line">        f = urllib2.urlopen(req)</div><div class="line">        data = f.read()</div><div class="line"></div><div class="line">        date = &apos;&apos;</div><div class="line">        if month &lt; 10 and day &lt; 10:</div><div class="line">            date = &apos;%i-0%i-0%i&apos; % (year, month, day)</div><div class="line">        elif month &gt; 10 and day &lt; 10:</div><div class="line">            date = &apos;%i-%i-0%i&apos; % (year, month, day)</div><div class="line">        elif month &lt; 10 and day &gt; 10:    </div><div class="line">            date = &apos;%i-0%i-%i&apos; % (year, month, day)</div><div class="line">        else:</div><div class="line">            date = &apos;%i-%i-%i&apos; % (year, month, day)   </div><div class="line"></div><div class="line">        string = &apos;the web has update http://www.bjjs.gov.cn/bjjs/fwgl/zzxspzf/index.shtml&apos;</div><div class="line">        print date</div><div class="line">        if date in data:</div><div class="line">            f = open(&apos;update.txt&apos;,&apos;w&apos;)</div><div class="line">            f.write(date + string)</div><div class="line">            f.close()</div><div class="line">            print &apos;yes&apos;</div><div class="line">        else:</div><div class="line">            print &apos;no&apos;    </div><div class="line"></div><div class="line">    except Exception,ex:</div><div class="line">        print ex</div><div class="line"></div><div class="line"></div><div class="line">#import itchat</div><div class="line">#</div><div class="line">#itchat.auto_login()</div><div class="line">#</div><div class="line">#itchat.send(&apos;Hello, filehelper&apos;, toUserName=&apos;filehelper&apos;)</div><div class="line"></div><div class="line">#while True:</div><div class="line">#     f = open(&apos;update.txt&apos;,&apos;r&apos;)</div><div class="line">#     text = f.read()</div><div class="line">#     f.close()</div><div class="line">#     if len(text) != 0:</div><div class="line">#        f = open(&apos;update.txt&apos;,&apos;w&apos;)</div><div class="line">#        f.write(&apos;&apos;)</div><div class="line">#        f.close()</div><div class="line">#        itchat.send(&apos;the web has update http://www.bjjs.gov.cn/bjjs/fwgl/zzxspzf/index.shtml&apos;, toUserName=&apos;Liu647ziqi&apos;)</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2017/02/16/2017/指数自动获取/" itemprop="url">
                   指数自动获取
                 </a>
@@ -1114,100 +1208,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/11/15/2014/UIKit系列-UICollectionView/" itemprop="url">
-                  UIKit系列-UICollectionView
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-11-15T14:36:57+08:00" content="2016-11-15">
-              2016-11-15
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="iOS中的新变化"><a href="#iOS中的新变化" class="headerlink" title="iOS中的新变化"></a>iOS中的新变化</h3><p>在iOS10中，重用的加载机制发生了变化，会提前加在一个cell，这就意味着，cellforrow会被提前一个调用，这个可以通过属性直接关闭，这里要注意</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1252,7 +1252,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">97</span>
+              <span class="site-state-item-count">98</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1269,7 +1269,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">31</span>
+                <span class="site-state-item-count">32</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

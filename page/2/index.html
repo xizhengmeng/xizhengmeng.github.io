@@ -263,6 +263,111 @@
             
               
                 
+                <a class="post-title-link" href="/2017/12/15/centos6配置/" itemprop="url">
+                  centos6配置
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-12-15T14:53:04+08:00" content="2017-12-15">
+              2017-12-15
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <ul>
+<li>首先需要python环境为2.7以上版本</li>
+<li>需要yum版本为<code>3.4.3</code>及以上，因为这样才能安装httpd为<code>2.4</code>版本及以上</li>
+<li>安装Django<code>sudo pip install --upgrade django==1.11</code></li>
+<li>安装numpy<code>sudo pip install numpy</code></li>
+<li>安装pymong<code>sudo pip install pymongo</code></li>
+<li>lunix 安装apxs扩展<code>yum install httpd-devel</code>安装mod-wsgi需要</li>
+<li>安装mod_wsgi<code>sudo pip install mod_wsgi</code>Django需要</li>
+<li>安装mod_wsgi<code>sudo yum install mod_wsgi</code>这个模块会出现在./usr/lib64/httpd/modules/mod_wsgi.so这里</li>
+<li>使用rz/sz来上传或者下载文件<code>yum install lrzsz</code>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2017/12/15/centos6配置/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2017/12/04/kMeans文本聚类实战/" itemprop="url">
                   kMeans文本聚类实战
                 </a>
@@ -1180,101 +1285,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/10/30/appstroe评论爬取/" itemprop="url">
-                  appstroe评论爬取
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-10-30T14:50:01+08:00" content="2017-10-30">
-              2017-10-30
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line">#!/usr/bin/env python</div><div class="line"># coding:utf-8</div><div class="line">import requests</div><div class="line"></div><div class="line"># 禁用安全请求警告</div><div class="line">from requests.packages.urllib3.exceptions import InsecureRequestWarning</div><div class="line">requests.packages.urllib3.disable_warnings(InsecureRequestWarning)</div><div class="line"></div><div class="line">url = &apos;https://itunes.apple.com/WebObjects/MZStore.woa/wa/userReviewsRow?id=895682747&amp;displayable-kind=11&amp;startIndex=600&amp;endIndex=800&amp;sort=1&amp;appVersion=all&apos;</div><div class="line"></div><div class="line">headers = &#123;</div><div class="line">&quot;Host&quot;: &quot;itunes.apple.com&quot;,</div><div class="line">&quot;X-Apple-Tz&quot;: &quot;28800&quot;,</div><div class="line">&quot;Connection&quot;: &quot;keep-alive&quot;,</div><div class="line">&quot;Accept&quot;: &quot;*/*&quot;,</div><div class="line">&quot;X-Apple-Store-Front&quot;: &quot;143465-19,32&quot;,</div><div class="line">&quot;Proxy-Connection&quot;: &quot;keep-alive&quot;,</div><div class="line">&quot;If-Modified-Since&quot;: &quot;Mon, 30 Oct 2017 05:09:14 GMT&quot;,</div><div class="line">&quot;Accept-Language&quot;: &quot;zh-Hans;q=1.0, en;q=0.9&quot;,</div><div class="line">&quot;Accept-Encoding&quot;: &quot;gzip, deflate&quot;,</div><div class="line">&quot;X-Apple-I-MD-RINFO&quot;: &quot;17106176&quot;,</div><div class="line">&quot;X-Apple-I-MD-M&quot;: &quot;4yta1gxLU2/1yorU7oVB982KDbxQfTgDNV0Kx6rMh83dcH6GSFvvMX4j2xTK1pydINZyrdPRmrAqnMrx&quot;,</div><div class="line">&quot;User-Agent&quot;: &quot;iTunes/12.5.5 (Macintosh; OS X 10.11.6) AppleWebKit/601.7.7&quot;,</div><div class="line">&quot;X-Apple-I-Client-Time&quot;: &quot;2017-10-30T06:38:41Z&quot;,</div><div class="line">&quot;Referer&quot;: &quot;https://itunes.apple.com/cn/app/%E4%BA%AC%E4%B8%9C%E9%87%91%E8%9E%8D-%E6%96%B0%E4%BA%BA%E9%A2%86666%E5%85%83%E5%A4%A7%E7%A4%BC%E5%8C%85/id895682747?mt=8&quot;,</div><div class="line">&quot;X-Apple-I-MD&quot;: &quot;AAAABQAAABB/8E70ajsA2bpSsQneRzRzAAAAAQ==&quot;,</div><div class="line">&quot;X-Dsid&quot;: &quot;1851386458&quot;,</div><div class="line">&quot;Cookie&quot;: &quot;groupingPillToken=1_iphone; mt-asn-1851386458=5; mt-asn-1952598692=5; mt-tkn-1851386458=AquPBN7pBVJrtDMwCG1MrwviP60xe4f/EE45hsAOovLfR/ovUuHxcsKrlj2pxor0U9F3HIkuroemH+0MuFQnpjqUFC4oYoymULT5CpIKnJ3VpDni/Y/moZel5PjbSHG4GD+Ijl5r7uyk/NbjAbcP2c6m643pr8/RJ8pEGPfTmpVhsZJWGga7Uku1jMcsYZwUcq4thww=; mt-tkn-1952598692=AmPsxyX+Zm3hcSBdOCr1LAg942a/+QI1OZsorJ+0WD2wkyUHZ6Dv3jDaRipaZfgo7xzHgpeVUdtG70RFfh0FA5pOHGZGJ/5b/MiFc4VGex0OtgQ9XasD8i89/gI1Ai21Fi7kJkngVal3DewE6NPKYC8difiYN7R7wY/nH/Z3bcgGM9wio22SK/ZdDyrs38XhS717EKw=; X-Dsid=1851386458; itspod=24; mz_at0-1851386458=AwQAAAEBAAHWuQAAAABZo5zH8UZyjuA18kRtUGbvu8lLlA89jpk=; mz_at0-1952598692=AwQAAAEBAAHWUwAAAABX91VVP4AXK30/tKDBEUr2V9fwfUERl9A=; mz_at_ssl-1851386458=AwUAAAEBAAHWUwAAAABYFwZni0EdGJhw1mXiPHOZnkeCs8m3DaU=; mz_at_ssl-1952598692=AwUAAAEBAAHWUQAAAABXfIMB4QjT3cNSHm+BuLBHSWqkz1Ndd0g=; s_vi=[CS]v1|2B45BA5205011739-600001038013C541[CE]; xp_ab=1#isj11bm+3579+17Eg4xa0; xp_abc=17Eg4xa0; xp_ci=3z34ZpILzCUZz4Vrz9pTzlq8yrxrJ&quot;,</div><div class="line">&quot;iCloud-DSID&quot;: &quot;1851386458&quot;</div><div class="line">&#125;</div><div class="line"></div><div class="line">r = requests.get(url, headers=headers, verify=True)</div><div class="line"># print(r.status_code)</div><div class="line">respose = r.text</div><div class="line">print(type(respose))</div><div class="line">print respose</div></pre></td></tr></table></figure>
-<p>先说一下坑在哪里，那就是最新版本的ituns没有应用搜索这个功能，而appstroe的接口完全抓不到，这里要记住我们要使用10.11.6以前的系统版本，然后使用12.5.5.5以前的itunes版本</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1319,7 +1329,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">97</span>
+              <span class="site-state-item-count">98</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1336,7 +1346,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">31</span>
+                <span class="site-state-item-count">32</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
