@@ -263,6 +263,240 @@
             
               
                 
+                <a class="post-title-link" href="/2015/01/23/2015/iOS中的定时和延时/" itemprop="url">
+                  iOS中的定时和延时
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-01-23T17:04:55+08:00" content="2015-01-23">
+              2015-01-23
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/iOS/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>我们使用延时和定时可以使用以下方法：</p>
+<ul>
+<li>NSTimer</li>
+</ul>
+<h2 id="NSTimer"><a href="#NSTimer" class="headerlink" title="NSTimer"></a>NSTimer</h2><h3 id="循环引用"><a href="#循环引用" class="headerlink" title="循环引用"></a>循环引用</h3><p>我们使用一个nstimer的时候，使用一个类方法来创建一个timer，返回一个timer指针，有时需要把tiemr加到runloop，有时系统自己来帮你做，你会发现，即使我并没有去强引用这个指针，timer只要在runloop中，timer就可以自然的回调，这是因为timer被runloop所引用，我们用控制器去引用这个timer，也只是增加了一个引用而已。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">+(id)scheduledTimerWithTimeInterval:(NSTimeInterval)inTimeInterval block:(void (^)())inBlock repeats:(BOOL)inRepeats</div><div class="line">&#123;</div><div class="line">    void (^block)() = [inBlock copy];</div><div class="line">    id ret = [self scheduledTimerWithTimeInterval:inTimeInterval target:self selector:@selector(jdExecuteSimpleBlock:) userInfo:block repeats:inRepeats];</div><div class="line">    [block release];</div><div class="line">    return ret;</div><div class="line">&#125;</div><div class="line"></div><div class="line">+(id)timerWithTimeInterval:(NSTimeInterval)inTimeInterval block:(void (^)())inBlock repeats:(BOOL)inRepeats</div><div class="line">&#123;</div><div class="line">    void (^block)() = [inBlock copy];</div><div class="line">    id ret = [self timerWithTimeInterval:inTimeInterval target:self selector:@selector(jdExecuteSimpleBlock:) userInfo:block repeats:inRepeats];</div><div class="line">    [block release];</div><div class="line">    return ret;</div><div class="line">&#125;</div><div class="line"></div><div class="line">+(void)jdExecuteSimpleBlock:(NSTimer *)inTimer;</div><div class="line">&#123;</div><div class="line">    if([inTimer userInfo])</div><div class="line">    &#123;</div><div class="line">        void (^block)() = (void (^)())[inTimer userInfo];</div><div class="line">        block();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这也是Block实现的tiemr不会被释放的原因。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2015/01/17/2015/流媒体技术概述/" itemprop="url">
+                  流媒体技术概述
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2015-01-17T14:05:59+08:00" content="2015-01-17">
+              2015-01-17
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/基础/" itemprop="url" rel="index">
+                    <span itemprop="name">基础</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="什么是流媒体技术"><a href="#什么是流媒体技术" class="headerlink" title="什么是流媒体技术"></a>什么是流媒体技术</h2><p>随着现代技术的发展，网络带给人们形式多样的信息，从第一张图片出现在网络上到如今各种形式的网络视频和三维动画，网络让人们的视听觉得到了很大的满足。然而在流媒体技术出现之前，人们必须要先下载这些多媒体内容到本地计算机，在漫长的等待之后（因为受限于带宽，下载通常要花上较长的时间），才可以看到或听到媒体传达的信息。令人欣慰的是，在流媒体技术出现之后，人们便无需再等待媒体完全下载完成了。<br>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2015/01/17/2015/流媒体技术概述/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2014/12/15/2014/UIKit系列-UIPikerView-日期选择器/" itemprop="url">
                   UIKit系列-UIPikerView-日期选择器
                 </a>
@@ -1128,7 +1362,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">98</span>
+              <span class="site-state-item-count">100</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1145,7 +1379,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">32</span>
+                <span class="site-state-item-count">35</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
