@@ -92,7 +92,7 @@
 <meta property="og:site_name" content="Hanson的博客">
 <meta property="og:description" content="数组的创建 有关数组的属性和函数 数组元素的获取–普通索引、切片、布尔索引和花式索引 统计函数与线性代数运算 随机数的生成 矩阵对象">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-01-02T06:15:46.000Z">
+<meta property="og:updated_time" content="2018-03-05T06:12:16.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据科学numpy">
 <meta name="twitter:description" content="数组的创建 有关数组的属性和函数 数组元素的获取–普通索引、切片、布尔索引和花式索引 统计函数与线性代数运算 随机数的生成 矩阵对象">
@@ -398,7 +398,9 @@
 <p>import numpy as np</p>
 <p>a = np.array([[1,4,6,9,10],[3,6,2,8,12]])</p>
 <p>a = a.flatten()#多维变1维度<br>print type(a)<br>print np.argmax(a)</p>
-<p>print a<br>print a.reshape(2,5)#再变回来<br>```</p>
+<p>print a<br>print a.reshape(2,5)#再变回来<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">#### 矩阵行相加</div></pre></td></tr></table></figure></p>
+<p>X.toarray().sum(axis=0) #行<br>X.toarray().sum() #所有元素</p>
+<p>```</p>
 
       
     </div>
