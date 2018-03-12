@@ -263,6 +263,132 @@
             
               
                 
+                <a class="post-title-link" href="/2018/03/12/sklearn文本分类实战/" itemprop="url">
+                  sklearn中文文本分类实战
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2018-03-12T10:52:40+08:00" content="2018-03-12">
+              2018-03-12
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>训练步骤</p>
+<ul>
+<li>数据集合</li>
+<li>文本分词</li>
+<li>去除停用词，低频词</li>
+<li>抽取特征</li>
+<li>计算特征向量权值</li>
+<li>训练分类器</li>
+</ul>
+<p>使用模型步骤</p>
+<ul>
+<li>文本分词</li>
+<li>去除停用词，低频词</li>
+<li>计算特征向量权值</li>
+<li>使用模型进行分类</li>
+</ul>
+<h3 id="去除停用词和低频词"><a href="#去除停用词和低频词" class="headerlink" title="去除停用词和低频词"></a>去除停用词和低频词</h3><p>因为在自然语言中每个词代表一个特征，所以自然语言注定了是一种超高纬特征的机器学习问题，但是在分类问题中很多词是不具备分类能力的，比如，啊，我等等，这些是要去除的停用词，这些词语在不同场景下可以是通用的。另外就是要去除低频词，如果某些词在在整个训练数据集中只出现了一两次，那么这样的特征将会导致表示向量大量的0000存在，是徒增加计算成本而不会对精准分类有什么贡献，所以最好的办法就是直接忽略这些词。</p>
+<p>具体在sklearn中我们用到的是<code>from sklearn.feature_extraction.text import CountVectorizer</code>这个类</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">vectorizer = CountVectorizer(vocabulary=vocabularyDic,stop_words=[&apos;中国&apos;],token_pattern=u&apos;(?u)\w+&apos;,max_features=200)</div></pre></td></tr></table></figure>
+<p>那么是不是使用stop_words这个参数呢，这个要区分，如果是英文文本分类是可以的，但是中文不行，这就是坑啊，所以中文去除停用词只能靠自己。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">def translate(comment):</div><div class="line">    testline = re.sub(u&quot;[\s+\.\!\/_,$%^*(+\&quot;\&apos;]+|[+——！，！。？、~@#￥%……&amp;*（）]+&quot;, &apos;&apos;, comment)</div><div class="line">    testline = testline.replace(chr(32),&apos;&apos;).replace(u&apos;！&apos;, u&apos;&apos;).replace(u&apos;，&apos;, u&apos;&apos;).replace(u&apos;。&apos;, u&apos;&apos;).replace(u&apos;\n&apos;, u&apos;&apos;).replace(u&apos;\t&apos;, u&apos;&apos;).replace(</div><div class="line">        u&apos;?&apos;, u&apos;&apos;).replace(u&apos;【&apos;,&apos;&apos;).replace(u&apos;o&apos;,&apos;&apos;).replace(u&apos;O&apos;,&apos;&apos;).replace(u&apos;丶&apos;,&apos;&apos;).replace(u&apos;‘&apos;,&apos;&apos;).replace(&apos;:&apos;,&apos;&apos;).replace(u&apos;：&apos;,&apos;&apos;).replace(&apos;(&apos;,&apos;&apos;).replace(&apos;)&apos;,&apos;&apos;).replace(&apos;&#123;&apos;,&apos;&apos;).replace(&apos;&#125;&apos;,&apos;&apos;).replace(u&apos;？&apos;, u&apos;&apos;).replace(u&apos;-&apos;,&apos;&apos;).replace(u&apos;一&apos;,&apos;1&apos;).replace(u&apos;二&apos;,&apos;2&apos;).replace(u&apos;三&apos;,&apos;3&apos;).replace(u&apos;四&apos;,&apos;4&apos;).replace(u&apos;五&apos;,&apos;5&apos;).replace(u&apos;六&apos;,&apos;6&apos;).replace(u&apos;七&apos;,&apos;7&apos;).replace(u&apos;八&apos;,&apos;8&apos;).replace(u&apos;九&apos;,&apos;9&apos;).replace(u&apos;零&apos;,&apos;0&apos;)</div><div class="line">    testline = testline.lower()</div><div class="line">    return testline</div><div class="line"></div><div class="line">def changeToWords(sentence):</div><div class="line">    global stopwords</div><div class="line">    out = translate(sentence)</div><div class="line">    jiebalistnew = []</div><div class="line">    jiebalist = jieba.lcut(out)</div><div class="line">    for item in jiebalist:</div><div class="line">        if item not in stopwords:#去除停用词</div><div class="line">            jiebalistnew = jiebalistnew + handlenum(item)</div><div class="line">    </div><div class="line">    if &apos;&apos; in jiebalistnew:</div><div class="line">        jiebalistnew.remove(&apos;&apos;) </div><div class="line">    if &apos; &apos; in jiebalistnew:</div><div class="line">        jiebalistnew.remove(&apos; &apos;)     </div><div class="line">    string = &apos; &apos;.join(jiebalistnew)</div><div class="line">#     return string,jiebalistnew</div><div class="line">    return string</div></pre></td></tr></table></figure>
+<p>仔细看translate主要作用就是去除一些特殊字符，同时对大写数字进行转化，这个一个广告识别的预处理，因为好多广告要留下来号码什么的。</p>
+<h3 id="抽取特征"><a href="#抽取特征" class="headerlink" title="抽取特征"></a>抽取特征</h3><p>抽取特征呢，主要是形成一个词典，然后把每句话对应到词典里的词，存在就是1，不存在就是0，通过这种方式把每句话转换成10100001这种向量。</p>
+<h4 id="我们应该输入什么，输出的又是什么"><a href="#我们应该输入什么，输出的又是什么" class="headerlink" title="我们应该输入什么，输出的又是什么"></a>我们应该输入什么，输出的又是什么</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"> #该类会统计每个词语的tf-idf权值</div><div class="line">transformer = TfidfTransformer()</div><div class="line">vectorizer = CountVectorizer(token_pattern=u&apos;(?u)\w+&apos;)</div><div class="line">#第一个fit_transform是计算tf-idf 第二个fit_transform是将文本转为词频矩阵</div><div class="line">count0 = vectorizer.fit_transform(inputList)</div><div class="line">tfidf = transformer.fit_transform(count0)</div></pre></td></tr></table></figure>
+<p>看一下上边的代码，我们的输入是inputList，那么这个变量明显就是我们的一个个的句子了，这是list类型，每个元素是一个句子，如果是英文文本，这样直接输入就好了，但是中文要进行一个转换，参照英文的样式，用空格分隔开，所以输入是下边这样的<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">inputList = [&apos;我 爱 中国&apos;,&apos;我 是 中国人&apos;]</div></pre></td></tr></table></figure></p>
+<p>输出：</p>
+<p>特征提取，输出的当然是特征了</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">transformer = TfidfTransformer()</div><div class="line">vectorizer = CountVectorizer(token_pattern=u&apos;(?u)\w+&apos;)</div><div class="line">count0 = vectorizer.fit_transform(pos)</div><div class="line">tran = transformer.fit_transform(count0)</div><div class="line"></div><div class="line"></div><div class="line">print vectorizer.vocabulary_ #这个字典里边存储了我们的关键字，以关键词为key，然后后边的value是它在向量字典里边的位置索引</div><div class="line">names = vectorizer.get_feature_names() #这个就是我们的向量词典了</div><div class="line">print count0.toarray() #这个是将为本转换为了向量，比如[0,2,1,2]2呢代表出现了两次</div><div class="line"></div><div class="line"></div><div class="line">for item in names:</div><div class="line">    print item</div><div class="line">sumlist = list(count0.toarray().sum(axis=0))#这里呢是将所有的词以及出现的次数进行了加和，看看每个词一共出现了多少次，后边两行代码都是为了这个事</div><div class="line"></div><div class="line">a1 = np.array([names,sumlist])</div><div class="line">a1 = np.transpose(a1)</div><div class="line">df = DataFrame(a1,columns=[&apos;name&apos;,&apos;count&apos;])</div></pre></td></tr></table></figure>
+<h4 id="token提取规则"><a href="#token提取规则" class="headerlink" title="token提取规则"></a>token提取规则</h4><p>这个说的是<code>token_pattern</code>这个参数，它决定了每个单独的特征是如何提取的，如果你不赋值，这个初始值是<code>&#39;(?u)\\b\\w\\w+\b&#39;</code>意思是，提取字符加空格，所以我们用空格来区分，但是这个有个坑，默认是提取两个以上的字符，这就意味着如果你的一些特征只有一个字符那么这个特征就被自动忽略了，因为我们已经有了停用词去除机制，所以这里尽量做个修改，<code>token_pattern=u&#39;(?u)\w+&#39;</code>这样写就能够提取一个的中文了，网上基本上都在说英文咋整，难道大家做的都是英文的文本分类….中文的表示心累…</p>
+<h4 id="最大特征数"><a href="#最大特征数" class="headerlink" title="最大特征数"></a>最大特征数</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">vectorizer = CountVectorizer(token_pattern=u&apos;(?u)\w+&apos;，max_features=200)</div></pre></td></tr></table></figure>
+<p>这个值可以和去除低频词是异曲同工，如果我们经过分析发现特征词有1000个，然后低频是300，这样直接设置这个值是700就好了，它会自动选取最高频的700个词作为特征</p>
+<h3 id="训练模型以及使用模型"><a href="#训练模型以及使用模型" class="headerlink" title="训练模型以及使用模型"></a>训练模型以及使用模型</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">pos = [u&apos;i&apos;,u&apos;中国/爱你 中国&apos;,u&apos;中国)爱谁 asf i&apos;,u&apos;我+爱你&apos;,u&apos;我+爱你&apos;]</div><div class="line"># pos = [&apos;this is a dog&apos;,&apos;the dog is cute,oh lovely dog&apos;,&apos;my dauter is smiling&apos;]</div><div class="line"># pos = [&apos;i love you&apos;, &apos;i hate you&apos;, &apos;i&apos;]</div><div class="line">#该类会统计每个词语的tf-idf权值</div><div class="line">transformer = TfidfTransformer()</div><div class="line">vectorizer = CountVectorizer(analyzer=&apos;word&apos;,token_pattern=u&apos;(?u)\w+&apos;)</div><div class="line"># u&apos;(?u)\\b\\w\\w+\\b&apos;</div><div class="line"># vectorizer = CountVectorizer()</div><div class="line">#第一个fit_transform是计算tf-idf 第二个fit_transform是将文本转为词频矩阵</div><div class="line">count0 = vectorizer.fit_transform(pos)</div><div class="line">tran = transformer.fit_transform(count0)</div><div class="line"></div><div class="line">x = weight</div><div class="line">y = np.concatenate((np.zeros(len(poscorpus)), np.ones(len(negcorpus))))</div><div class="line">    </div><div class="line">x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.3)</div><div class="line">    </div><div class="line">modelnew = MultinomialNB()</div><div class="line">modelnew.fit(x_train, y_train)</div><div class="line">scorenew = modelnew.score(x_test, y_test)</div><div class="line">print scorenew</div><div class="line">print &apos;donetest&apos;</div><div class="line"></div><div class="line"></div><div class="line">##必须要保存三个东西，一个是训练之后的模型，然后是</div><div class="line">joblib.dump(modelnew, &apos;bayes.pkl&apos;)</div><div class="line">joblib.dump(transformer, &apos;transformer&apos;)  # 保存分类器</div><div class="line">joblib.dump(vectorizer, &apos;vectorizer&apos;)  # 保存分类器</div><div class="line"></div><div class="line">print vectorizer.vocabulary_</div><div class="line">print count0.toarray()</div><div class="line"></div><div class="line">## 这里用于新数据的预测，我们需要训练好的模型，vec，tran这三个东西</div><div class="line">modelnew = joblib.load(&apos;bayes.pkl&apos;)</div><div class="line">transformer1 = joblib.load(&apos;transformer&apos;)</div><div class="line">vectorizer1 = joblib.load(&apos;vectorizer&apos;)</div><div class="line"></div><div class="line">CountVectorizer(vocabulary=vectorizer.vocabulary_,analyzer=&apos;word&apos;,token_pattern=u&apos;(?u)\w+&apos;)</div><div class="line">count1 = vectorizer1.transform([u&apos;中国/爱你 中国&apos;])</div><div class="line">tran1 = transformer1.transform(count1)</div></pre></td></tr></table></figure>
+<p>注意训练用<code>fit_transform</code>，而使用的时候我们用的是<code>transform</code></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2018/03/02/机器学习-文本分类/" itemprop="url">
                   机器学习-文本分类
                 </a>
@@ -1209,109 +1335,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2018/01/02/数据科学numpy/" itemprop="url">
-                  数据科学numpy
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2018-01-02T10:38:30+08:00" content="2018-01-02">
-              2018-01-02
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <ul>
-<li>数组的创建</li>
-<li>有关数组的属性和函数</li>
-<li>数组元素的获取–普通索引、切片、布尔索引和花式索引</li>
-<li>统计函数与线性代数运算</li>
-<li>随机数的生成</li>
-<li>矩阵对象</li>
-</ul>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2018/01/02/数据科学numpy/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1356,7 +1379,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">101</span>
+              <span class="site-state-item-count">102</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1373,7 +1396,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">36</span>
+                <span class="site-state-item-count">38</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
