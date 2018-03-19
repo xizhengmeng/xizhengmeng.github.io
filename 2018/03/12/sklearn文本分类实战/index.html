@@ -84,18 +84,18 @@
 
 
 
-<meta name="description" content="训练步骤  数据集合 文本分词 去除停用词，低频词 抽取特征 计算特征向量权值 训练分类器  使用模型步骤  文本分词 去除停用词，低频词 计算特征向量权值 使用模型进行分类  去除停用词和低频词因为在自然语言中每个词代表一个特征，所以自然语言注定了是一种超高纬特征的机器学习问题，但是在分类问题中很多词是不具备分类能力的，比如，啊，我等等，这些是要去除的停用词，这些词语在不同场景下可以是通用的。另">
+<meta name="description" content="训练步骤  数据集合 文本分词 去除停用词，低频词 抽取特征 计算特征向量权值 训练分类器  使用模型步骤  文本分词 去除停用词，低频词 计算特征向量权值 使用模型进行分类">
 <meta name="keywords" content="python,sklearn,文本分类,自然语言">
 <meta property="og:type" content="article">
 <meta property="og:title" content="sklearn中文文本分类实战">
 <meta property="og:url" content="/2018/03/12/sklearn文本分类实战/index.html">
 <meta property="og:site_name" content="Hanson的博客">
-<meta property="og:description" content="训练步骤  数据集合 文本分词 去除停用词，低频词 抽取特征 计算特征向量权值 训练分类器  使用模型步骤  文本分词 去除停用词，低频词 计算特征向量权值 使用模型进行分类  去除停用词和低频词因为在自然语言中每个词代表一个特征，所以自然语言注定了是一种超高纬特征的机器学习问题，但是在分类问题中很多词是不具备分类能力的，比如，啊，我等等，这些是要去除的停用词，这些词语在不同场景下可以是通用的。另">
+<meta property="og:description" content="训练步骤  数据集合 文本分词 去除停用词，低频词 抽取特征 计算特征向量权值 训练分类器  使用模型步骤  文本分词 去除停用词，低频词 计算特征向量权值 使用模型进行分类">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-03-14T06:51:03.000Z">
+<meta property="og:updated_time" content="2018-03-19T06:35:49.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="sklearn中文文本分类实战">
-<meta name="twitter:description" content="训练步骤  数据集合 文本分词 去除停用词，低频词 抽取特征 计算特征向量权值 训练分类器  使用模型步骤  文本分词 去除停用词，低频词 计算特征向量权值 使用模型进行分类  去除停用词和低频词因为在自然语言中每个词代表一个特征，所以自然语言注定了是一种超高纬特征的机器学习问题，但是在分类问题中很多词是不具备分类能力的，比如，啊，我等等，这些是要去除的停用词，这些词语在不同场景下可以是通用的。另">
+<meta name="twitter:description" content="训练步骤  数据集合 文本分词 去除停用词，低频词 抽取特征 计算特征向量权值 训练分类器  使用模型步骤  文本分词 去除停用词，低频词 计算特征向量权值 使用模型进行分类">
 
 
 
@@ -323,6 +323,7 @@
 <li>计算特征向量权值</li>
 <li>使用模型进行分类</li>
 </ul>
+<a id="more"></a>
 <h3 id="去除停用词和低频词"><a href="#去除停用词和低频词" class="headerlink" title="去除停用词和低频词"></a>去除停用词和低频词</h3><p>因为在自然语言中每个词代表一个特征，所以自然语言注定了是一种超高纬特征的机器学习问题，但是在分类问题中很多词是不具备分类能力的，比如，啊，我等等，这些是要去除的停用词，这些词语在不同场景下可以是通用的。另外就是要去除低频词，如果某些词在在整个训练数据集中只出现了一两次，那么这样的特征将会导致表示向量大量的0000存在，是徒增加计算成本而不会对精准分类有什么贡献，所以最好的办法就是直接忽略这些词。</p>
 <p>具体在sklearn中我们用到的是<code>from sklearn.feature_extraction.text import CountVectorizer</code>这个类</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">vectorizer = CountVectorizer(vocabulary=vocabularyDic,stop_words=[&apos;中国&apos;],token_pattern=u&apos;(?u)\w+&apos;,max_features=200)</div></pre></td></tr></table></figure>
