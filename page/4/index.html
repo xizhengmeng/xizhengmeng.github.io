@@ -263,6 +263,107 @@
             
               
                 
+                <a class="post-title-link" href="/2017/10/20/iOS安全-符号表/" itemprop="url">
+                  iOS安全--符号表
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-10-20T09:24:17+08:00" content="2017-10-20">
+              2017-10-20
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>符号表中有些符号是必须的，但是很多符号都是去掉的。</p>
+<p>先来看一个正常的二进制文件的符号表：</p>
+<p>IOS安全–使用strip从符号表中去掉不需要的符号</p>
+<p>从上面我们可以看到很多暴露的类名、函数名等，这让攻击者很容易看出你的程序中有哪些关键的逻辑。但是我们对该文件strip后，再来看它的符号表：</p>
+<p><code>strip JDMobile</code></p>
+<p>IOS安全–使用strip从符号表中去掉不需要的符号</p>
+<p>这时我们看到程序中定义的函数在符号表中都没有了。</p>
+<p>而且这样在反汇编的代码中也不会存在符号。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2017/10/20/ios编译过程/" itemprop="url">
                   ios编译过程
                 </a>
@@ -1209,102 +1310,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/09/28/otool作用以及使用/" itemprop="url">
-                  otool作用以及使用
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-09-28T09:46:28+08:00" content="2017-09-28">
-              2017-09-28
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>首先来看看那些命令<br>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2017/09/28/otool作用以及使用/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1349,7 +1354,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">102</span>
+              <span class="site-state-item-count">103</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

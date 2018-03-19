@@ -263,6 +263,124 @@
             
               
                 
+                <a class="post-title-link" href="/2018/01/22/iOS编译过程详解/" itemprop="url">
+                  iOS编译过程详解
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2018-01-22T10:59:49+08:00" content="2018-01-22">
+              2018-01-22
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>通过Xcode设置工程依赖之后，Xcode会先编译被依赖工程，最后编译有依赖工程。达到控制编译顺序的目的。</p>
+<p>下面是编译过程完整步骤</p>
+<ul>
+<li>编译信息写入辅助文件，创建文件架构 .app 文件</li>
+<li>处理文件打包信息</li>
+<li>执行 CocoaPod 编译前脚本，checkPods Manifest.lock</li>
+<li>编译.m文件，使用 CompileC 和 clang 命令</li>
+<li>链接需要的 Framework</li>
+<li>编译 xib</li>
+<li>拷贝 xib ，资源文件</li>
+<li>编译 ImageAssets</li>
+<li>处理 info.plist</li>
+<li>执行 CocoaPod 脚本</li>
+<li>拷贝标准库</li>
+<li>创建 .app 文件和签名</li>
+</ul>
+<h3 id="基础概念"><a href="#基础概念" class="headerlink" title="基础概念"></a>基础概念</h3><p>在了解xcode构建原则之前，需要熟悉workspace相关的概念，即workspace,project和target。</p>
+<h4 id="target"><a href="#target" class="headerlink" title="target"></a>target</h4><p>target指定了构建的product,包含将workspace或project中的一组文件构建成product的指令。单个target定义一个product,它将输入（源文件和处理这些源文件的指令（包含所设定的构建settings和phases））组织进构建系统中。project和target是一对多的关系。</p>
+<p>target会继承project的build settings，但可以以target为粒度设置build settings,且Xcode中当前一次只会有一个有效target,此有效target在xcode scheme中标识。</p>
+<p>若target A依赖target B的输出来构建，则A依赖B，当它们存在于一个xcode workspace中的时候，Xcode会发现此依赖关系并按顺序构建。这种依赖称为隐性依赖，当然也可以在build settings中声明显性依赖，也可将隐性依赖的两个target显性声明为没有依赖。比如可能在同一个workspace中同时构建一个库并构建一个依赖这个库的应用，则xcode会选择先构建库。但如果应用想链接库的某个特定版本，则可以显性声明这个依赖关系，此时隐性依赖即被覆盖了。</p>
+<h4 id="project"><a href="#project" class="headerlink" title="project"></a>project</h4><p>xcode project是存储构建一个或多个软件产品所需的所有文件，资源和信息的仓库。<br>project包含构建product所需的所有要素并维护它们之间的关系，它包含一个或多个targets(target指定了构建product的方式)。<br>project定义了所有target的默认build settings，各target可以重载。Xcode project文件包含如下信息：源文件的引用：源代码（包括头文件和实现文件），library和framework(xcode内部或者外部),资源文件，interface builder文件文件结构列表中组织源文件的Groupsproject级别的build选项targetsdebug或测试program的可执行环境：从xcode运行或调试时启动哪些可以执行文件，传给可执行文件的命令行参数，程序运行时设置的环境变量总之，project可以单独存在也可以包含在workspace中，同时可以在Scheme中指定哪个Target、build配置、哪个可执行配置在某个时刻是有效的。</p>
+<h4 id="build-settings"><a href="#build-settings" class="headerlink" title="build settings"></a>build settings</h4><p>一个build setting是一个指示产品某个方面构建方式的变量，比如决定xcode传给编译器的参数选项是怎样。其是一个常量或者一个公式供给xcode在构建的时候计算build setting。</p>
+<h4 id="workspace"><a href="#workspace" class="headerlink" title="workspace"></a>workspace</h4><p>workspace 是组织projects和其他协同工作的文档的一份文档。除此之外，它还维护project和target之间的显性及隐性的依赖关系。默认workspace中的所有Xcode projects都在同一个目录下构建，称为workspace build directory，由于所有project的所有文件都在同一个目录下，所以所有文件都对每个project可见。<br>比如两个project使用同一个库，则不用复制到另一个project目录中。workspace中的每个project都有其独立id,同时project可以属于多个workspace，可以单独打开project或者在其他workspace中打开，且都不用重新配置project或者workspace。<br>可以使用workspace默认的build 目录，也可以指定一个。如果project指定了构建目录，这个目录会被project构建时所在的workspace的build目录覆盖。</p>
+<h4 id="xcode-schemexcode"><a href="#xcode-schemexcode" class="headerlink" title="xcode schemexcode"></a>xcode schemexcode</h4><p>scheme定义了一系列构建的targets，构建时的配置，和一系列执行的测试。可以有很多scheme,但同一时刻只能有一个有效的。选择scheme时，意味着你也选择了一个运行目标（product构建的硬件平台)。可以指定scheme是否存储在project中，以便包含此project的所有workspace都可以使用些scheme,当然也可以指定只存储在某个workspace中。</p>
+<p>一般的某个应用单独新建一个 project 就可以了，然后把所有的程序文件都放在里面，这个可以满足大部分普通的需求，但是有时候，项目有可能要使用其他的项目文件，或者引入其他的静态库文件，这个时候 workspace 就派上用场了，workspace 即可以单独管理多个项目，又可以通过配置，让各个项目相互依赖，如果不用 workspace，以前的做法是如果用到其他项目的文件，要手动 copy 文件到当前的项目，在 workspace 里这个步骤不需要了。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2018/01/02/数据科学numpy/" itemprop="url">
                   数据科学numpy
                 </a>
@@ -1155,102 +1273,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/11/07/机器学习学习路径/" itemprop="url">
-                  机器学习学习路径
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-11-07T18:25:57+08:00" content="2017-11-07">
-              2017-11-07
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h3 id="机器学习解决的问题"><a href="#机器学习解决的问题" class="headerlink" title="机器学习解决的问题"></a>机器学习解决的问题</h3><p>并非所有的问题都适合用机器学习解决(很多逻辑清晰的问题用规则能很高效和准确地处理)，也没有一个机器学习算法可以通用于所有问题。咱们先来了解了解，机器学习，到底关心和解决什么样的问题。<br>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2017/11/07/机器学习学习路径/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1295,7 +1317,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">102</span>
+              <span class="site-state-item-count">103</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
