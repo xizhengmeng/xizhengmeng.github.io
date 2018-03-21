@@ -5,7 +5,7 @@
     <entry>
       <title><![CDATA[python的正则表达式使用]]></title>
       <url>/2018/03/20/python%E7%9A%84%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E4%BD%BF%E7%94%A8/</url>
-      <content type="html"><![CDATA[<p>在正则表达式中，如果直接给出字符，就是精确匹配。用\d可以匹配一个数字，\w可以匹配一个字母或数字，所以：</p>
+      <content type="html"><![CDATA[<p>在正则表达式中，如果直接给出字符，就是精确匹配。用\d可以匹配一个数字，\w可以匹配一个字母或数字，所以：<br><a id="more"></a></p>
 <ul>
 <li>‘00\d’可以匹配’007’，但无法匹配’00A’；</li>
 <li>‘\d\d\d’可以匹配’010’；</li>
