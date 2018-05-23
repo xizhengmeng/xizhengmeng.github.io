@@ -327,7 +327,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="/2017/10/10/xcode工程加密思路/">
+    <link itemprop="mainEntityOfPage" href="/2017/09/06/2017/c-string用法/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Hanson">
@@ -346,844 +346,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/10/10/xcode工程加密思路/" itemprop="url">
-                  xcode工程加密思路
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2017-10-10 19:45:46" itemprop="dateCreated datePublished" datetime="2017-10-10T19:45:46+08:00">2017-10-10</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2017-10-11 18:13:43" itemprop="dateModified" datetime="2017-10-11T18:13:43+08:00">2017-10-11</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>现在有这么一个需求，如何做到如果不安装我们的开发环境，就无法查看iOS工程。<br>首先我们如果对所有的代码进行加密这肯定是一个浩大的工程，所以我们选择是对project加密，</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div></pre></td><td class="code"><pre><div class="line">/usr/bin/env python</div><div class="line">#coding:utf-8</div><div class="line"></div><div class="line">from Crypto.Cipher import AES  </div><div class="line">from binascii import b2a_hex,a2b_hex  </div><div class="line">  </div><div class="line">class prpcrypt():   #定义一个类  </div><div class="line">    def __init__(self,key):  </div><div class="line">        self.key=key  </div><div class="line">        self.mode=AES.MODE_CBC  </div><div class="line">    def encrypt(self,text):  </div><div class="line">        cryptor=AES.new(self.key,self.mode,self.key)  </div><div class="line">        x = len(text) % 16  </div><div class="line">        if x != 0:  </div><div class="line">            text = text + &apos;0&apos; * (16 - x)     #不满16，32，64位补0  </div><div class="line">        self.ciphertext=cryptor.encrypt(text)  </div><div class="line">        return b2a_hex(self.ciphertext)  </div><div class="line">    def decrypt(self,text):  </div><div class="line">        cryptor=AES.new(self.key,self.mode,self.key)  </div><div class="line">        plain_text=cryptor.decrypt(a2b_hex(text))  </div><div class="line">        return plain_text.rstrip(&apos;\0&apos;)  </div><div class="line">  </div><div class="line">pc=prpcrypt(&apos;tecentbluewhaleA&apos;) #自己设定的密钥</div><div class="line"></div><div class="line">f = open(&apos;project.pbxproj&apos;,&apos;r&apos;)</div><div class="line">text = f.read()</div><div class="line">liens = text.split(&apos;\n&apos;)</div><div class="line"></div><div class="line">if len(liens) &gt; 10:</div><div class="line">    item = liens[10]</div><div class="line">    print item</div><div class="line">    # item = pc.decrypt(item)</div><div class="line">    item = pc.encrypt(item)</div><div class="line">    item = item.replace(&apos;000000000000000&apos;,&apos;&apos;)</div><div class="line">    print item</div><div class="line">    liens[10] = item</div><div class="line"></div><div class="line">for i in range(0,len(liens) - 1):</div><div class="line">    liens[i] = liens[i] + &apos;\n&apos;</div><div class="line"></div><div class="line">strings = &apos;&apos;.join(liens)</div><div class="line"></div><div class="line">f = open(&apos;project.pbxproj&apos;,&apos;w&apos;)</div><div class="line">f.writelines(strings)</div><div class="line">f.close()</div></pre></td></tr></table></figure>
-<p>这里我们使用到了pycrypto库，安装的时候需要先卸载<br><code>sudo pip uninstall crypto</code><br><code>sudo pip uninstall pycrypto</code></p>
-<p>然后<br><code>sudo pip install pycrypto</code>这样就安装好了需要的库</p>
-<p>关于我们加密那哪些东西，其实主要是project文件里边的解析文件，将一些关键是被符号进行加密，其实如果查看git操作记录是可以发现该如何还原的，这个时候就需要靠多行替换来增大替换的工作量来人为设置门槛</p>
-<p>另外需要配合改装的git，在commit的时候进行加密然后commit，在pull的时候也是解密然后commit一下，这样我们就做到了，在远端库里边是不能被直接有序查看的代码，在本地需要配合我们的git才能被顺畅的使用</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="/2017/10/10/xcode多版本自动化打包记录/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Hanson">
-      <meta itemprop="description" content="数据挖掘，客户端，研发效率提升，python，现在就职业京东金融">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hanson的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/10/10/xcode多版本自动化打包记录/" itemprop="url">
-                  xcode多版本自动化打包设置
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2017-10-10 12:29:12" itemprop="dateCreated datePublished" datetime="2017-10-10T12:29:12+08:00">2017-10-10</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2017-10-11 18:13:43" itemprop="dateModified" datetime="2017-10-11T18:13:43+08:00">2017-10-11</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>如果你升级了xcode但是这个时候你又想降级回去，你发现appstore已经不要指望了，我们需要下载一个你需要版本的xcode。<br>下载各个Xcode版本的地址<code>https://developer.apple.com/download/more</code><br>然后放置到我们的程序目录下，改个名字比如说叫Xcode2<br>但是现在问题又来了，加入你是个打包服务器，你使用的是xcodebuild来打包的，这个时候两个版本的xcode同时存在，它如何选择sdk进行打包呢？</p>
-<ul>
-<li>首先查看sdk版本     <code>xcodebuild -showsdks</code></li>
-<li>然后切换默认的xcode <code>sudo xcode-select -switch /Applications/Xcode2.app</code></li>
-<li>然后在执行<code>xcodebuild -showsdks</code></li>
-</ul>
-<p>你会发现sdk已经变了，这个时候你使用xcodebuild来打包可以选择你需要的这个版本的sdk了</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="/2017/10/09/Mach-O文件解析/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Hanson">
-      <meta itemprop="description" content="数据挖掘，客户端，研发效率提升，python，现在就职业京东金融">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hanson的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/10/09/Mach-O文件解析/" itemprop="url">
-                  Mac中的二进制文件
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2017-10-09 18:31:22" itemprop="dateCreated datePublished" datetime="2017-10-09T18:31:22+08:00">2017-10-09</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2017-10-24 15:12:32" itemprop="dateModified" datetime="2017-10-24T15:12:32+08:00">2017-10-24</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>在Unix系统中，任何文件都可以通过chmod+x命令来标记为可执行文件，但是这并不能保证这个文件是能够被执行的，这个标志只是告诉系统这个文件可以读入内容，然后寻找一个头签名，据此可以确定精确的可执行文件格式，这个文件签名通常称为”magic”。<br>例如:</p>
-<ul>
-<li>#!脚本</li>
-<li>0xcafebabe/0xbebafeca包含多种架构支持的二进制，又被称为通用二进制或者胖二进制</li>
-<li>0xfeedface(32位)，0xfeedfacf(64位)Mach-O格式或者叫OSX原生二进制格式</li>
-</ul>
-<h3 id="胖二进制"><a href="#胖二进制" class="headerlink" title="胖二进制"></a>胖二进制</h3><p>通用二进制只不过是其支持的各种架构的二进制文件的打包文件，这种格式的文件包含一个文件头，然后文件头后面依次拷贝了每一种支持架构的二进制文件。</p>
-<ul>
-<li>通用二进制文件的处理工具叫做<code>lipo</code>脂肪的意思，对应胖二进制的意思</li>
-<li>这个工具可以提取，删除和替换通用二进制文件中制定架构的二进制代码，因此可以通过这个工具对二进制文件进行瘦身</li>
-</ul>
-<h3 id="Mach-O"><a href="#Mach-O" class="headerlink" title="Mach-O"></a>Mach-O</h3><p>首先看mach_header<br><code>otool -hV JDMobile</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Mach header</div><div class="line"></div><div class="line">magic cputype cpusubtype  caps    filetype ncmds sizeofcmds      flags</div><div class="line"></div><div class="line">MH_MAGIC_64   ARM64        ALL  0x00     EXECUTE    68       7464   NOUNDEFS DYLDLINK TWOLEVEL WEAK_DEFINES BINDS_TO_WEAK PIE</div></pre></td></tr></table></figure></p>
-<ul>
-<li>magic魔数代表32或者64位</li>
-<li>cputype和subcuptype代表cup类型</li>
-<li>filetype代表文件类型(可执行文件，库文件，核心转储文件，内核扩展)</li>
-<li>ncmds和sizeofcmds用于加载的家在命令的条数和大小</li>
-<li>flags代表动态连接器(dyld)的标志</li>
-</ul>
-<h3 id="分析方法"><a href="#分析方法" class="headerlink" title="分析方法"></a>分析方法</h3><p>stings<br>otool<br>nm</p>
-<h4 id="otool"><a href="#otool" class="headerlink" title="otool"></a>otool</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">-f print the fat headers</div><div class="line">-a print the archive header</div><div class="line">-h print the mach header</div><div class="line">-l print the load commands</div><div class="line">-L print shared libraries used #使用到的库</div><div class="line">-D print shared library id name #支持的架构arm64 armv7</div><div class="line">-t print the text section (disassemble with -v)#查看数据段，基本无用</div><div class="line">-p &lt;routine name&gt;  start dissassemble from routine name#无用</div><div class="line">-s &lt;segname&gt; &lt;sectname&gt; print contents of section</div><div class="line">-d print the data section</div><div class="line">-o print the Objective-C segment</div><div class="line">-r print the relocation entries</div><div class="line">-S print the table of contents of a library</div><div class="line">-T print the table of contents of a dynamic shared library</div><div class="line">-M print the module table of a dynamic shared library</div><div class="line">-R print the reference table of a dynamic shared library</div><div class="line">-I print the indirect symbol table</div><div class="line">-H print the two-level hints table</div><div class="line">-G print the data in code table</div><div class="line">-v print verbosely (symbolically) when possible</div><div class="line">-V print disassembled operands symbolically</div><div class="line">-c print argument strings of a core file</div><div class="line">-X print no leading addresses or headers</div><div class="line">-m don&apos;t use archive(member) syntax</div><div class="line">-B force Thumb disassembly (ARM objects only)</div><div class="line">-q use llvm&apos;s disassembler (the default)</div><div class="line">-Q use otool(1)&apos;s disassembler</div><div class="line">-mcpu=arg use `arg&apos; as the cpu for disassembly</div><div class="line">-j print opcode bytes</div><div class="line">-P print the info plist section as strings</div><div class="line">-C print linker optimization hints</div></pre></td></tr></table></figure>
-<h3 id="瘦身实战"><a href="#瘦身实战" class="headerlink" title="瘦身实战"></a>瘦身实战</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line"># Address	Size    	Segment	Section</div><div class="line">0x1000070C0	0x02C814F0	__TEXT	__text</div><div class="line">0x102C885B0	0x00005C58	__TEXT	__stubs</div><div class="line">0x102C8E208	0x0000420C	__TEXT	__stub_helper</div><div class="line">0x102C92420	0x002C8B1F	__TEXT	__const</div><div class="line">0x102F5AF3F	0x0012A102	__TEXT	__objc_methname</div><div class="line">0x103085050	0x0017170F	__TEXT	__cstring</div><div class="line">0x1031F6760	0x000120F8	__TEXT	__ustring</div><div class="line">0x103208858	0x0002402D	__TEXT	__objc_classname</div><div class="line">0x10322C885	0x00028B82	__TEXT	__objc_methtype</div><div class="line">0x103255408	0x000C4E54	__TEXT	__gcc_except_tab</div><div class="line">0x10331A25C	0x00055918	__TEXT	__unwind_info</div><div class="line">0x10336FB78	0x00000464	__TEXT	__eh_frame</div><div class="line">0x103370000	0x00001910	__DATA	__got</div><div class="line">0x103371910	0x00003D90	__DATA	__la_symbol_ptr</div><div class="line">0x1033756A0	0x00000438	__DATA	__mod_init_func</div><div class="line">0x103375AE0	0x000DF810	__DATA	__const</div><div class="line">0x1034552F0	0x000BA100	__DATA	__cfstring</div><div class="line">0x10350F3F0	0x0000BAB0	__DATA	__objc_classlist</div><div class="line">0x10351AEA0	0x00000428	__DATA	__objc_nlclslist</div><div class="line">0x10351B2C8	0x00001120	__DATA	__objc_catlist</div><div class="line">0x10351C3E8	0x000000C0	__DATA	__objc_nlcatlist</div><div class="line">0x10351C4A8	0x000015E0	__DATA	__objc_protolist</div><div class="line">0x10351DA88	0x00000008	__DATA	__objc_imageinfo</div><div class="line">0x10351DA90	0x004ECB80	__DATA	__objc_const</div><div class="line">0x103A0A610	0x00047820	__DATA	__objc_selrefs</div><div class="line">0x103A51E30	0x00000148	__DATA	__objc_protorefs</div><div class="line">0x103A51F78	0x0000AA08	__DATA	__objc_classrefs</div><div class="line">0x103A5C980	0x00007DC8	__DATA	__objc_superrefs</div><div class="line">0x103A64748	0x0001E8A0	__DATA	__objc_ivar</div><div class="line">0x103A82FE8	0x00074B30	__DATA	__objc_data</div><div class="line">0x103AF7B20	0x002FCC08	__DATA	__data</div><div class="line">0x103DF4740	0x00489580	__DATA	__bss</div><div class="line">0x10427E000	0x000AD71C	__DATA	__common</div></pre></td></tr></table></figure>
-<h4 id="查看所有编译进去的方法"><a href="#查看所有编译进去的方法" class="headerlink" title="查看所有编译进去的方法"></a>查看所有编译进去的方法</h4><p><code>nm JDMobile</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
-<h4 id="查看所有被使用的方法"><a href="#查看所有被使用的方法" class="headerlink" title="查看所有被使用的方法"></a>查看所有被使用的方法</h4><p><code>otool -v -s __DATA  __objc_selrefs JDMobile-build-beta</code><br>-s 是说我要看这个seg下的这个section<br>-v 是说尽可能展示可识别内容</p>
-<p><code>GetFileInfo filename| grep modified</code>查看文件信息，包括</p>
-<blockquote>
-<ul>
-<li>directory: “/Users/jrmacpro/Library/Developer/Xcode/DerivedData/JDFinance-eqeqtaeyecxhiqgogjuodubajlyt/Build/Products/Beta-iphoneos/JDMobile.app”</li>
-<li>attributes: avbstclinmedz</li>
-<li>created: 10/18/2017 12:55:09</li>
-<li>modified: 10/18/2017 12:59:11</li>
-</ul>
-</blockquote>
-<h3 id="nm的使用"><a href="#nm的使用" class="headerlink" title="nm的使用"></a>nm的使用</h3><p>nm [option(s)] [file(s)]<br>有用的options:<br>-A 在每个符号信息的前面打印所在对象文件名称；<br>-C 输出demangle过了的符号名称；<br>-D 打印动态符号；<br>-l 使用对象文件中的调试信息打印出所在源文件及行号；<br>-n 按照地址/符号值来排序；<br>-u 打印出那些未定义的符号；<br>常见的符号类型:<br>A 该符号的值在今后的链接中将不再改变；<br>B 该符号放在BSS段中，通常是那些未初始化的全局变量；<br>D 该符号放在普通的数据段中，通常是那些已经初始化的全局变量；<br>T 该符号放在代码段中，通常是那些全局非静态函数；<br>U 该符号未定义过，需要自其他对象文件中链接进来；<br>W 未明确指定的弱链接符号；同链接的其他对象文件中有它的定义就用上，否则就用一个系统特别指定的默认值。<br>注意几点：<br>-C 总是适用于c++编译出来的对象文件。还记得c++中有重载么？为了区分重载函数，c++编译器会将函数返回值/参数等信息附加到函数名称中去形成一个mangle过的符号，那用这个选项列出符号的时候，做一个逆操作，输出那些原始的、我们可理解的符号名称。<br>使用 -l 时，必须保证你的对象文件中带有符号调式信息，这一般要求你在编译的时候指定一个 -g 选项，见 Linux:Gcc。<br>使用nm前，最好先用Linux:File查看对象文件所属处理器架构，然后再用相应交叉版本的nm工具。</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="/2017/09/28/otool作用以及使用/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Hanson">
-      <meta itemprop="description" content="数据挖掘，客户端，研发效率提升，python，现在就职业京东金融">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hanson的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/09/28/otool作用以及使用/" itemprop="url">
-                  otool作用以及使用
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2017-09-28 09:46:28" itemprop="dateCreated datePublished" datetime="2017-09-28T09:46:28+08:00">2017-09-28</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2017-10-11 18:13:43" itemprop="dateModified" datetime="2017-10-11T18:13:43+08:00">2017-10-11</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>首先来看看那些命令<br>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/09/28/otool作用以及使用/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="/2017/09/22/find命令/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Hanson">
-      <meta itemprop="description" content="数据挖掘，客户端，研发效率提升，python，现在就职业京东金融">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hanson的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/09/22/find命令/" itemprop="url">
-                  find与grep命令
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2017-09-22 09:37:29" itemprop="dateCreated datePublished" datetime="2017-09-22T09:37:29+08:00">2017-09-22</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2017-11-14 09:41:33" itemprop="dateModified" datetime="2017-11-14T09:41:33+08:00">2017-11-14</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h2><ul>
-<li>find命令是根据文件的属性进行查找，如文件名，文件大小，所有者，所属组，是否为空，访问时间，修改时间等。 </li>
-<li>grep是根据文件的内容进行查找，会对文件的每一行按照给定的模式(patter)进行匹配查找。</li>
-</ul>
-<h2 id="find"><a href="#find" class="headerlink" title="find"></a>find</h2><p>基本格式：find  path expression</p>
-<h3 id="按照文件名查找"><a href="#按照文件名查找" class="headerlink" title="按照文件名查找"></a>按照文件名查找</h3><ul>
-<li><code>find / -name httpd.conf</code> #在根目录下查找文件httpd.conf，表示在整个硬盘查找</li>
-<li><code>find /etc -name httpd.conf</code> #在/etc目录下文件httpd.conf</li>
-<li><code>find /etc -name &#39;*srm*&#39;</code> #使用通配符*(0或者任意多个)。表示在/etc目录下查找文件名中含有字符串‘srm’的文件</li>
-<li><code>find . -name &#39;srm*&#39;</code> #表示当前目录下查找文件名开头是字符串‘srm’的文件</li>
-</ul>
-<h3 id="按照文件特征查找"><a href="#按照文件特征查找" class="headerlink" title="按照文件特征查找 　　　　"></a>按照文件特征查找 　　　　</h3><ul>
-<li><code>find / -amin -10</code> 　　# 查找在系统中最后10分钟访问的文件(access time)</li>
-<li><code>find / -atime -2</code>　　 # 查找在系统中最后48小时访问的文件</li>
-<li><code>find / -empty</code> 　　# 查找在系统中为空的文件或者文件夹</li>
-<li><code>find / -group cat</code> 　　# 查找在系统中属于 group为cat的文件</li>
-<li><code>find / -mmin -5</code> 　　# 查找在系统中最后5分钟里修改过的文件(modify time)</li>
-<li><code>find / -mtime -1</code> 　　#查找在系统中最后24小时里修改过的文件</li>
-<li><code>find / -user fred</code> 　　#查找在系统中属于fred这个用户的文件</li>
-<li><code>find / -size +10000c</code>　　#查找出大于10000000字节的文件(c:字节，w:双字，k:KB，M:MB，G:GB)</li>
-<li><code>find / -size -1000k</code> 　　#查找出小于1000KB的文件</li>
-</ul>
-<h3 id="使用混合查找方式查找文件"><a href="#使用混合查找方式查找文件" class="headerlink" title="使用混合查找方式查找文件"></a>使用混合查找方式查找文件</h3><p>参数有： ！，-and(-a)，-or(-o)。</p>
-<ul>
-<li><code>find /tmp -size +10000c -and -mtime +2</code> #在/tmp目录下查找大于10000字节并在最后2分钟内修改的文件</li>
-<li><code>find / -user fred -or -user george</code> 　#在/目录下查找用户是fred或者george的文件文件</li>
-<li><code>find /tmp ! -user panda</code>　#在/tmp目录中查找所有不属于panda用户的文件</li>
-</ul>
-<h3 id="grep"><a href="#grep" class="headerlink" title="grep"></a>grep</h3><p><code>grep &#39;^[0-9]&#39; text.txt</code>返回以数字开头的行<br><code>grep &#39;@&#39; text.txt</code>返回包含@的行</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="/2017/09/06/c-string用法/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Hanson">
-      <meta itemprop="description" content="数据挖掘，客户端，研发效率提升，python，现在就职业京东金融">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hanson的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/09/06/c-string用法/" itemprop="url">
+                <a class="post-title-link" href="/2017/09/06/2017/c-string用法/" itemprop="url">
                   c++ string用法
                 </a>
               
@@ -1227,7 +390,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2017-10-11 18:13:43" itemprop="dateModified" datetime="2017-10-11T18:13:43+08:00">2017-10-11</time>
+                <time title="修改时间：2018-05-23 17:05:25" itemprop="dateModified" datetime="2018-05-23T17:05:25+08:00">2018-05-23</time>
               
             
           </span>
@@ -1261,10 +424,10 @@
 
       
         
-          <h2 id="C-string的用法和例子-转-Mark一下"><a href="#C-string的用法和例子-转-Mark一下" class="headerlink" title="C++ string的用法和例子(转)Mark一下"></a>C++ string的用法和例子(转)Mark一下</h2><h3 id="使用场合："><a href="#使用场合：" class="headerlink" title="使用场合："></a>使用场合：</h3><p>string是C++标准库的一个重要的部分，主要用于字符串处理。可以使用输入输出流方式直接进行操作，也可以通过文件等手段进行操作。同时C++的算法库对string也有着很好的支持，而且string还和c语言的字符串之间有着良好的接口。虽然也有一些弊端，但是瑕不掩瑜。<br>其中使用的代码多数都是来自cpp官网，因为例子非常全。<br>
+          <h2 id="C-string的用法和例子-转-Mark一下"><a href="#C-string的用法和例子-转-Mark一下" class="headerlink" title="C++ string的用法和例子(转)Mark一下"></a>C++ string的用法和例子(转)Mark一下</h2><h3 id="使用场合："><a href="#使用场合：" class="headerlink" title="使用场合："></a>使用场合：</h3><p>string是C++标准库的一个重要的部分，主要用于字符串处理。可以使用输入输出流方式直接进行操作，也可以通过文件等手段进行操作。同时C++的算法库对string也有着很好的支持，而且string还和c语言的字符串之间有着良好的接口。虽然也有一些弊端，但是瑕不掩瑜。<br>其中使用的代码多数都是来自cpp官网，因为例子非常全。<br></p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/09/06/c-string用法/#more" rel="contents">
+            <a class="btn" href="/2017/09/06/2017/c-string用法/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1320,7 +483,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="/2017/09/05/clang插件开发/">
+    <link itemprop="mainEntityOfPage" href="/2017/09/05/2017/clang插件开发/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Hanson">
@@ -1339,7 +502,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/09/05/clang插件开发/" itemprop="url">
+                <a class="post-title-link" href="/2017/09/05/2017/clang插件开发/" itemprop="url">
                   clang插件开发
                 </a>
               
@@ -1383,7 +546,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2017-10-11 18:13:43" itemprop="dateModified" datetime="2017-10-11T18:13:43+08:00">2017-10-11</time>
+                <time title="修改时间：2018-05-23 17:05:39" itemprop="dateModified" datetime="2018-05-23T17:05:39+08:00">2018-05-23</time>
               
             
           </span>
@@ -1420,7 +583,7 @@
           <h2 id="资源准备-amp-amp-编译源文件"><a href="#资源准备-amp-amp-编译源文件" class="headerlink" title="资源准备&amp;&amp;编译源文件"></a>资源准备&amp;&amp;编译源文件</h2><p>我们需要llvm和clang的源文件，而且这些文件都存在于github上，我们如果直接从github下载会很慢，所以第一步是制作国内源。</p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/09/05/clang插件开发/#more" rel="contents">
+            <a class="btn" href="/2017/09/05/2017/clang插件开发/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1476,7 +639,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="/2017/07/18/算法题汇总/">
+    <link itemprop="mainEntityOfPage" href="/2017/07/18/2018/算法题汇总/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Hanson">
@@ -1495,7 +658,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/07/18/算法题汇总/" itemprop="url">
+                <a class="post-title-link" href="/2017/07/18/2018/算法题汇总/" itemprop="url">
                   算法题汇总
                 </a>
               
@@ -1630,7 +793,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="/2017/07/17/数据结构算法-概论/">
+    <link itemprop="mainEntityOfPage" href="/2017/07/17/2018/数据结构算法-概论/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Hanson">
@@ -1649,7 +812,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/07/17/数据结构算法-概论/" itemprop="url">
+                <a class="post-title-link" href="/2017/07/17/2018/数据结构算法-概论/" itemprop="url">
                   数据结构算法-概论
                 </a>
               
@@ -1693,7 +856,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2017-10-11 18:13:43" itemprop="dateModified" datetime="2017-10-11T18:13:43+08:00">2017-10-11</time>
+                <time title="修改时间：2018-05-23 17:36:24" itemprop="dateModified" datetime="2018-05-23T17:36:24+08:00">2018-05-23</time>
               
             
           </span>
@@ -1748,7 +911,7 @@
 <li>常数项可忽略</li>
 <li>低次项可忽略</li>
 </ul>
-<p><img src="../images/Ojihao.png" alt="大O"></p>
+<p><img src="/17/2018/数据结构算法-概论/../../../images/Ojihao.png" alt="大O"></p>
 <h4 id="具体的刻度"><a href="#具体的刻度" class="headerlink" title="具体的刻度"></a>具体的刻度</h4><ul>
 <li>O(1)，再大的常数都是这个复杂度2023x239238</li>
 <li>O(logn)</li>
@@ -1759,7 +922,7 @@
 <li>递归：递归跟踪和递归方程</li>
 <li>猜测+验证</li>
 </ul>
-<h4 id="级数-迭代"><a href="#级数-迭代" class="headerlink" title="级数(迭代)"></a>级数(迭代)</h4><p><img src="../images/jishu.png" alt=""><br><img src="../images/jishu1.png" alt=""><br><img src="../images/jishu2.png" alt=""><br><img src="../images/jishu3.png" alt=""></p>
+<h4 id="级数-迭代"><a href="#级数-迭代" class="headerlink" title="级数(迭代)"></a>级数(迭代)</h4><p><img src="/17/2018/数据结构算法-概论/../../../images/jishu.png" alt=""><br><img src="/17/2018/数据结构算法-概论/../../../images/jishu1.png" alt=""><br><img src="/17/2018/数据结构算法-概论/../../../images/jishu2.png" alt=""><br><img src="/17/2018/数据结构算法-概论/../../../images/jishu3.png" alt=""></p>
 <p>估算：</p>
 <ul>
 <li>一天是10^5s</li>
@@ -1767,7 +930,7 @@
 <li>普通的pc一秒是10^9次运算</li>
 <li>最厉害的机器是10^15次运算</li>
 </ul>
-<h4 id="递归-更高级的做法，但是效率不应最好"><a href="#递归-更高级的做法，但是效率不应最好" class="headerlink" title="递归(更高级的做法，但是效率不应最好)"></a>递归(更高级的做法，但是效率不应最好)</h4><p><img src="../images/fenerzhizhi.png" alt=""></p>
+<h4 id="递归-更高级的做法，但是效率不应最好"><a href="#递归-更高级的做法，但是效率不应最好" class="headerlink" title="递归(更高级的做法，但是效率不应最好)"></a>递归(更高级的做法，但是效率不应最好)</h4><p><img src="/17/2018/数据结构算法-概论/../../../images/fenerzhizhi.png" alt=""></p>
 
           
         
@@ -1821,7 +984,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="/2017/06/27/自然语言处理概念基础/">
+    <link itemprop="mainEntityOfPage" href="/2017/06/27/2018/自然语言处理概念基础/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Hanson">
@@ -1840,7 +1003,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/06/27/自然语言处理概念基础/" itemprop="url">
+                <a class="post-title-link" href="/2017/06/27/2018/自然语言处理概念基础/" itemprop="url">
                   自然语言处理概念基础
                 </a>
               
@@ -1960,11 +1123,795 @@
 
 
     
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="/2017/06/14/2017/itchat使用总结/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Hanson">
+      <meta itemprop="description" content="数据挖掘，客户端，研发效率提升，python，现在就职业京东金融">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hanson的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/06/14/2017/itchat使用总结/" itemprop="url">
+                  itchat使用总结
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2017-06-14 09:23:30" itemprop="dateCreated datePublished" datetime="2017-06-14T09:23:30+08:00">2017-06-14</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2017-10-11 18:13:43" itemprop="dateModified" datetime="2017-10-11T18:13:43+08:00">2017-10-11</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="登录"><a href="#登录" class="headerlink" title="登录"></a>登录</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">itchat.auto_login()</div></pre></td></tr></table></figure>
+<h3 id="查找好友"><a href="#查找好友" class="headerlink" title="查找好友"></a>查找好友</h3><blockquote>
+<p>获取任何一项等于name键值的用户<br>itchat.search_friends(name=’littlecodersh’)<br>这里的name是RemarkName’, ‘NickName’, ‘Alias</p>
+</blockquote>
+<h3 id="发送中文"><a href="#发送中文" class="headerlink" title="发送中文"></a>发送中文</h3><p>要进行一个转换<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">f = open(path,&apos;r&apos;)</div><div class="line">text = f.read()</div><div class="line">text = text.decode(&apos;utf-8&apos;)</div></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="/2017/06/12/2018/利用hexo搭建团队博客系统/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Hanson">
+      <meta itemprop="description" content="数据挖掘，客户端，研发效率提升，python，现在就职业京东金融">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hanson的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/06/12/2018/利用hexo搭建团队博客系统/" itemprop="url">
+                  利用hexo搭建团队博客系统
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2017-06-12 15:08:39" itemprop="dateCreated datePublished" datetime="2017-06-12T15:08:39+08:00">2017-06-12</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2017-10-11 18:13:43" itemprop="dateModified" datetime="2017-10-11T18:13:43+08:00">2017-10-11</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h3 id="hexo搭建个人博客的原理"><a href="#hexo搭建个人博客的原理" class="headerlink" title="hexo搭建个人博客的原理"></a>hexo搭建个人博客的原理</h3><ul>
+<li>将md渲染为html</li>
+<li>将html以及资源文件上传到github，利用githubpages功能进行展示</li>
+<li>解析的过程是将目录下source/_post文件中的东西，渲染为publick中的html文件，然后将该文件夹下的文件复制到.deploy_git文件下，然后利用git操作将该文件夹下的文件push到对应的git库</li></ul>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/06/12/2018/利用hexo搭建团队博客系统/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="/2017/06/12/2018/Python多进程通信和调用/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Hanson">
+      <meta itemprop="description" content="数据挖掘，客户端，研发效率提升，python，现在就职业京东金融">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hanson的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/06/12/2018/Python多进程通信和调用/" itemprop="url">
+                  Python多进程通信和调用
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2017-06-12 15:00:31" itemprop="dateCreated datePublished" datetime="2017-06-12T15:00:31+08:00">2017-06-12</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2017-10-11 18:13:43" itemprop="dateModified" datetime="2017-10-11T18:13:43+08:00">2017-10-11</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="python多进程通信"><a href="#python多进程通信" class="headerlink" title="python多进程通信"></a>python多进程通信</h2><blockquote>
+<p>这里解决的主要是，如果是启动一个命令行，然后执行一个python脚本，如果有多个python脚本就需要多个命令行程序，这不是很明智的选择，最好的做法是，一个命令行搞定所有的python脚本，这里就涉及到两个问题</p>
+<ul>
+<li>如何做到并发</li>
+<li>如何在一个文件中添加一个python的执行入口</li></ul></blockquote>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/06/12/2018/Python多进程通信和调用/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="/2017/05/25/2017/mac下使用virtualbox安装win7以及设置共享文件/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Hanson">
+      <meta itemprop="description" content="数据挖掘，客户端，研发效率提升，python，现在就职业京东金融">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hanson的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/05/25/2017/mac下使用virtualbox安装win7以及设置共享文件/" itemprop="url">
+                  mac下使用virtualbox安装win7以及设置共享文件
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2017-05-25 10:03:15" itemprop="dateCreated datePublished" datetime="2017-05-25T10:03:15+08:00">2017-05-25</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2017-10-11 18:13:43" itemprop="dateModified" datetime="2017-10-11T18:13:43+08:00">2017-10-11</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>首先进入win7-pe环境，然后进行分区，这里的关键在于c盘要大于10G</p>
+<h3 id="设置共享文件夹"><a href="#设置共享文件夹" class="headerlink" title="设置共享文件夹"></a>设置共享文件夹</h3><p>要实现mac与windows的文件共享，信息互通，需要有一个都可以访问的文件夹，这里的关键是，要首先安装virtualbox的device下的insert Guest Additions CD image</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="/2017/05/18/2017/基于Django的平台构建笔记(2)/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Hanson">
+      <meta itemprop="description" content="数据挖掘，客户端，研发效率提升，python，现在就职业京东金融">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hanson的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/05/18/2017/基于Django的平台构建笔记(2)/" itemprop="url">
+                  基于Django的平台构建笔记(2)
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2017-05-18 09:57:42" itemprop="dateCreated datePublished" datetime="2017-05-18T09:57:42+08:00">2017-05-18</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-05-23 17:33:43" itemprop="dateModified" datetime="2018-05-23T17:33:43+08:00">2018-05-23</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h3 id="python中Json字符串的创建与javascript中json字符串的转换"><a href="#python中Json字符串的创建与javascript中json字符串的转换" class="headerlink" title="python中Json字符串的创建与javascript中json字符串的转换"></a>python中Json字符串的创建与javascript中json字符串的转换</h3>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/05/18/2017/基于Django的平台构建笔记(2)/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/4/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" href="/page/6/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/4/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/6/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -2007,7 +1954,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">106</span>
+                    <span class="site-state-item-count">87</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -2103,21 +2050,7 @@
                     
                       
                     
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                    <span class="site-state-item-count">39</span>
+                    <span class="site-state-item-count">27</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>

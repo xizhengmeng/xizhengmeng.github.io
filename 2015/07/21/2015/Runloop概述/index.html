@@ -109,7 +109,7 @@
 
 
   <meta name="description" content="1.基本概念为什么需要runloop 使程序一直活着 决定程序何时应该处理哪些event 调用解耦(message queue) 节省CPU时间 开启主线程要消耗1M内存，开启一个后台线程需要消耗512k内存，我们应当在线程没有任务的时候休眠，来释放所占用的资源  与runloop相关的类 NSTimer UIEvent Autorelease NSObjec–&amp;gt;NSDelayedPerfo">
-<meta name="keywords" content="iOS进阶">
+<meta name="keywords" content="iOS">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Runloop概述">
 <meta property="og:url" content="/2015/07/21/2015/Runloop概述/index.html">
@@ -120,8 +120,8 @@
 <meta property="og:image" content="http://i1.piimg.com/567571/83261feb726f1627.png">
 <meta property="og:image" content="http://i1.piimg.com/567571/8d1aff60c4248ca3.png">
 <meta property="og:image" content="http://img8.a.pcs.baidu.com/rest/2.0/pcs/thumbnail?method=generate&path=%2Fimages%2FSnip20160721_13.png&app_id=246327&width=1600&height=1600">
-<meta property="og:image" content="/2015/07/21/2015/Runloop概述/006.png">
-<meta property="og:updated_time" content="2017-10-11T10:13:43.000Z">
+<meta property="og:image" content="/21/2015/Runloop概述/006.png">
+<meta property="og:updated_time" content="2018-05-23T09:03:16.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Runloop概述">
 <meta name="twitter:description" content="1.基本概念为什么需要runloop 使程序一直活着 决定程序何时应该处理哪些event 调用解耦(message queue) 节省CPU时间 开启主线程要消耗1M内存，开启一个后台线程需要消耗512k内存，我们应当在线程没有任务的时候休眠，来释放所占用的资源  与runloop相关的类 NSTimer UIEvent Autorelease NSObjec–&amp;gt;NSDelayedPerfo">
@@ -393,7 +393,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2017-10-11 18:13:43" itemprop="dateModified" datetime="2017-10-11T18:13:43+08:00">2017-10-11</time>
+                <time title="修改时间：2018-05-23 17:03:16" itemprop="dateModified" datetime="2018-05-23T17:03:16+08:00">2018-05-23</time>
               
             
           </span>
@@ -555,7 +555,7 @@
 <h3 id="一直活着的后台线程"><a href="#一直活着的后台线程" class="headerlink" title="一直活着的后台线程"></a>一直活着的后台线程</h3><p>现在有这样一个需求，每点击一下屏幕，让子线程做一个任务,然后大家一般会想到这样的方式:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">@interface ViewController ()</div><div class="line"></div><div class="line">@property(nonatomic,strong) NSThread *myThread;</div><div class="line"></div><div class="line">@end</div><div class="line"></div><div class="line">@implementation ViewController</div><div class="line"></div><div class="line">- (void)alwaysLiveBackGoundThread&#123;</div><div class="line"></div><div class="line">NSThread *thread = [[NSThread alloc]initWithTarget:self selector:@selector(myThreadRun) object:@&quot;etund&quot;];</div><div class="line">self.myThread = thread;</div><div class="line">[self.myThread start];</div><div class="line"></div><div class="line">&#125;</div><div class="line">- (void)myThreadRun&#123;</div><div class="line"></div><div class="line">NSLog(@&quot;my thread run&quot;);</div><div class="line"></div><div class="line">&#125;</div><div class="line">- (void)touchesBegan:(NSSet&lt;UITouch *&gt; *)touches withEvent:(UIEvent *)event&#123;</div><div class="line"></div><div class="line">    NSLog(@&quot;%@&quot;,self.myThread);</div><div class="line">    [self performSelector:@selector(doBackGroundThreadWork) onThread:self.myThread withObject:nil waitUntilDone:NO];</div><div class="line">&#125;</div><div class="line">- (void)doBackGroundThreadWork&#123;</div><div class="line"></div><div class="line">    NSLog(@&quot;do some work %s&quot;,__FUNCTION__);</div><div class="line"></div><div class="line">&#125;</div><div class="line">@end</div></pre></td></tr></table></figure></p>
 <p>这个方法中，我们利用一个强引用来获取了后天线程中的thread,然后在点击屏幕的时候，在这个线程上执行doBackGroundThreadWork这个方法，此时我们可以看到，在touchesBegin方法中，self.myThread是存在的，但是这是为是什么呢？这就要从线程的五大状态来说明了:新建状态、就绪状态、运行状态、阻塞状态、死亡状态，这个时候尽管内存中还有线程，但是这个线程在执行完任务之后已经死亡了，经过上面的论述，我们应该怎样处理呢？我们可以给这个线程的RunLoop添加一个source，那么这个线程就会检测这个source等待执行，而不至于死亡(有工作的强烈愿望而不死亡):<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">- (void)myThreadRun&#123;</div><div class="line"></div><div class="line">[[NSRunLoop currentRunLoop] addPort:[[NSPort alloc] init] forMode:NSDefaultRunLoopMode];</div><div class="line">[[NSRunLoop currentRunLoop] run]</div><div class="line"></div><div class="line">  NSLog(@&quot;my thread run&quot;);</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>这个时候再次点击屏幕，我们就会发现，后台线程中执行的任务可以正常进行了。<br>小结:正常情况下，后台线程执行完任务之后就处于死亡状态，我们要避免这种情况的发生可以利用RunLoop，并且给它一个Source这样来保证线程依旧还在</p>
-<h3 id="NSURLConnection的执行过程"><a href="#NSURLConnection的执行过程" class="headerlink" title="NSURLConnection的执行过程"></a>NSURLConnection的执行过程</h3><p>在使用NSURLConnection时，我们会传入一个Delegate,当我们调用了[connection start]之后，这个Delegate会不停的收到事件的回调。实际上，start这个函数的内部会获取CurrentRunloop，然后在其中的DefaultMode中添加4个source。如下图所示，CFMultiplexerSource是负责各种Delegate回调的，CFHTTPCookieStorage是处理各种Cookie的。如下图所示:<br><img src="006.png" alt=""><br>从中可以看出，当开始网络传输是，我们可以看到NSURLConnection创建了两个新的线程:com.apple.NSURLConnectionLoader和com.apple.CFSocket.private。其中CFSocket是处理底层socket链接的。NSURLConnectionLoader这个线程内部会使用RunLoop来接收底层socket的事件，并通过之前添加的source，来通知(唤醒)上层的Delegate。这样我们就可以理解我们平时封装网络请求时候常见的下面逻辑了:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">while (!_isEndRequest)</div><div class="line">&#123;</div><div class="line">    NSLog(@&quot;entered run loop&quot;);</div><div class="line">    [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]];</div><div class="line">&#125;</div><div class="line"></div><div class="line">NSLog(@&quot;main finished，task be removed&quot;);</div><div class="line"></div><div class="line">- (void)connectionDidFinishLoading:(NSURLConnection *)connection</div><div class="line">&#123;</div><div class="line"></div><div class="line">  _isEndRequest = YES;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="NSURLConnection的执行过程"><a href="#NSURLConnection的执行过程" class="headerlink" title="NSURLConnection的执行过程"></a>NSURLConnection的执行过程</h3><p>在使用NSURLConnection时，我们会传入一个Delegate,当我们调用了[connection start]之后，这个Delegate会不停的收到事件的回调。实际上，start这个函数的内部会获取CurrentRunloop，然后在其中的DefaultMode中添加4个source。如下图所示，CFMultiplexerSource是负责各种Delegate回调的，CFHTTPCookieStorage是处理各种Cookie的。如下图所示:<br><img src="/21/2015/Runloop概述/006.png" alt=""><br>从中可以看出，当开始网络传输是，我们可以看到NSURLConnection创建了两个新的线程:com.apple.NSURLConnectionLoader和com.apple.CFSocket.private。其中CFSocket是处理底层socket链接的。NSURLConnectionLoader这个线程内部会使用RunLoop来接收底层socket的事件，并通过之前添加的source，来通知(唤醒)上层的Delegate。这样我们就可以理解我们平时封装网络请求时候常见的下面逻辑了:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">while (!_isEndRequest)</div><div class="line">&#123;</div><div class="line">    NSLog(@&quot;entered run loop&quot;);</div><div class="line">    [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]];</div><div class="line">&#125;</div><div class="line"></div><div class="line">NSLog(@&quot;main finished，task be removed&quot;);</div><div class="line"></div><div class="line">- (void)connectionDidFinishLoading:(NSURLConnection *)connection</div><div class="line">&#123;</div><div class="line"></div><div class="line">  _isEndRequest = YES;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>这里我们就可以解决下面这些疑问了:<br></p>
 <ul>
 <li>为什么这个While循环不停的执行，还需要使用一个RunLoop? 程序执行一个while循环是不会耗费很大性能的，我们这里的目的是想让子线程在有任务的时候处理任务，没有任务的时候休眠，来节约CPU的开支。</li>
@@ -616,7 +616,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/iOS进阶/" rel="tag"># iOS进阶</a>
+            <a href="/tags/iOS/" rel="tag"># iOS</a>
           
         </div>
       
@@ -720,7 +720,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">106</span>
+                    <span class="site-state-item-count">87</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -816,21 +816,7 @@
                     
                       
                     
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                    <span class="site-state-item-count">39</span>
+                    <span class="site-state-item-count">27</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>

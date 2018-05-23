@@ -121,9 +121,7 @@
 <meta property="og:image" content="http://7xrn7f.com1.z0.glb.clouddn.com/16-7-17/78134537.jpg">
 <meta property="og:image" content="http://7xrn7f.com1.z0.glb.clouddn.com/16-7-17/66098092.jpg">
 <meta property="og:image" content="http://7xrn7f.com1.z0.glb.clouddn.com/16-7-17/72839052.jpg">
-<meta property="og:image" content="http://7xrn7f.com1.z0.glb.clouddn.com/16-7-17/88431216.jpg">
-<meta property="og:image" content="http://7xrn7f.com1.z0.glb.clouddn.com/16-7-17/6813536.jpg">
-<meta property="og:updated_time" content="2017-10-11T10:13:43.000Z">
+<meta property="og:updated_time" content="2018-05-23T09:27:50.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="(转)视音频编解码技术零基础学习方法">
 <meta name="twitter:description" content="原文地址http://blog.csdn.net/leixiaohua1020/article/details/18893769">
@@ -395,7 +393,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2017-10-11 18:13:43" itemprop="dateModified" datetime="2017-10-11T18:13:43+08:00">2017-10-11</time>
+                <time title="修改时间：2018-05-23 17:27:50" itemprop="dateModified" datetime="2018-05-23T17:27:50+08:00">2018-05-23</time>
               
             
           </span>
@@ -458,9 +456,10 @@
 <h2 id="音频编码"><a href="#音频编码" class="headerlink" title="音频编码"></a>音频编码</h2><p>音频编码的主要作用是将音频采样数据（PCM等）压缩成为音频码流，从而降低音频的数据量。音频编码也是互联网视音频技术中一个重要的技术。但是一般情况下音频的数据量要远小于视频的数据量，因而即使使用稍微落后的音频编码标准，而导致音频数据量有所增加，也不会对视音频的总数据量产生太大的影响。高效率的音频编码在同等的码率下，可以获得更高的音质。<br>音频编码的简单原理可以参考：视频压缩编码和音频压缩编码的基本原理</p>
 <p>由表可见，近年来并未推出全新的音频编码方案，可见音频编码技术已经基本可以满足人们的需要。音频编码技术近期绝大部分的改动都是在MP3的继任者——AAC的基础上完成的。<br>这些编码标准之间的比较可以参考文章：音频编码方案之间音质比较（AAC，MP3，WMA等）<br>结果大致是这样的：<br>AAC+ &gt; MP3PRO &gt; AAC&gt; RealAudio &gt; WMA &gt; MP3<br>AAC格式的介绍：AAC格式简介<br>AAC几种不同版本之间的对比：AAC规格（LC，HE，HEv2）及性能对比<br>AAC专利方面的介绍：AAC专利介绍<br>此外杜比数字的编码标准也比较流行，但是貌似比最新的AAC稍为逊色：AC-3技术综述<br>我自己做的小工具： AAC格式分析器<br><img src="http://7xrn7f.com1.z0.glb.clouddn.com/16-7-17/72839052.jpg" alt=""></p>
 <h2 id="现有网络视音频平台对比"><a href="#现有网络视音频平台对比" class="headerlink" title="现有网络视音频平台对比"></a>现有网络视音频平台对比</h2><p>现有的网络视音频服务主要包括两种方式：点播和直播。点播意即根据用户的需要播放相应的视频节目，这是互联网视音频服务最主要的方式。绝大部分视频网站都提供了点播服务。直播意即互联网视音频平台直接将视频内容实时发送给用户，目前还处于发展阶段。直播在网络电视台，社交视频网站较为常见。</p>
-<h3 id="直播平台参数对比"><a href="#直播平台参数对比" class="headerlink" title="直播平台参数对比"></a>直播平台参数对比</h3><p>主流互联网视音频平台直播服务的参数对比如表所示：<br>现有网络视音频平台参数对比<br><img src="http://7xrn7f.com1.z0.glb.clouddn.com/16-7-17/88431216.jpg" alt=""></p>
+<h3 id="直播平台参数对比"><a href="#直播平台参数对比" class="headerlink" title="直播平台参数对比"></a>直播平台参数对比</h3><p>主流互联网视音频平台直播服务的参数对比如表所示：<br>现有网络视音频平台参数对比</p>
 <p>可以看出，直播服务普遍采用了RTMP作为流媒体协议，FLV作为封装格式，H.264作为视频编码格式，AAC作为音频编码格式。采用RTMP作为直播协议的好处在于其被Flash播放器支持。而Flash播放器如今已经安装在全球99%的电脑上，并且与浏览器结合的很好。因此这种流媒体直播平台可以实现“无插件直播”，极大的简化了客户端的操作。封装格式，视频编码，音频编码方面，无一例外的使用了FLV + H.264 + AAC的组合。FLV是RTMP使用的封装格式，H.264是当今实际应用中编码效率最高的视频编码标准，AAC则是当今实际应用中编码效率最高的音频编码标准。视频播放器方面，都使用了Flash播放器。</p>
-<h3 id="点播平台参数对比"><a href="#点播平台参数对比" class="headerlink" title="点播平台参数对比"></a>点播平台参数对比</h3><p>主流网络视音频平台点播服务的参数对比如表所示：<br>现有互联网视音频平台参数对比<br><img src="http://7xrn7f.com1.z0.glb.clouddn.com/16-7-17/6813536.jpg" alt=""><br>可以看出，点播服务普遍采用了HTTP作为流媒体协议，H.264作为视频编码格式，AAC作为音频编码格式。采用HTTP作为点播协议有以下两点优势：一方面，HTTP是基于TCP协议的应用层协议，媒体传输过程中不会出现丢包等现象，从而保证了视频的质量；另一方面，HTTP被绝大部分的Web服务器支持，因而流媒体服务机构不必投资购买额外的流媒体服务器，从而节约了开支。点播服务采用的封装格式有多种：MP4，FLV，F4V等，它们之间的区别不是很大。视频编码标准和音频编码标准是H.264和AAC。这两种标准分别是当今实际应用中编码效率最高的视频标准和音频标准。视频播放器方面，无一例外的都使用了Flash播放器。</p>
+<h3 id="点播平台参数对比"><a href="#点播平台参数对比" class="headerlink" title="点播平台参数对比"></a>点播平台参数对比</h3><p>主流网络视音频平台点播服务的参数对比如表所示：<br>现有互联网视音频平台参数对比</p>
+<p>可以看出，点播服务普遍采用了HTTP作为流媒体协议，H.264作为视频编码格式，AAC作为音频编码格式。采用HTTP作为点播协议有以下两点优势：一方面，HTTP是基于TCP协议的应用层协议，媒体传输过程中不会出现丢包等现象，从而保证了视频的质量；另一方面，HTTP被绝大部分的Web服务器支持，因而流媒体服务机构不必投资购买额外的流媒体服务器，从而节约了开支。点播服务采用的封装格式有多种：MP4，FLV，F4V等，它们之间的区别不是很大。视频编码标准和音频编码标准是H.264和AAC。这两种标准分别是当今实际应用中编码效率最高的视频标准和音频标准。视频播放器方面，无一例外的都使用了Flash播放器。</p>
 
       
     </div>
@@ -585,7 +584,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">106</span>
+                    <span class="site-state-item-count">87</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -681,21 +680,7 @@
                     
                       
                     
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                    <span class="site-state-item-count">39</span>
+                    <span class="site-state-item-count">27</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
