@@ -3,6 +3,46 @@
   
     
     <entry>
+      <title><![CDATA[word2vec入门]]></title>
+      <url>/2018/03/22/word2vec%E5%85%A5%E9%97%A8/</url>
+      <content type="html"></content>
+      
+        
+        <tags>
+            
+            <tag> python </tag>
+            
+            <tag> sklearn </tag>
+            
+            <tag> word2vec </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Seaborn数据展示入门]]></title>
+      <url>/2018/03/21/Seaborn%E6%95%B0%E6%8D%AE%E5%B1%95%E7%A4%BA%E5%85%A5%E9%97%A8/</url>
+      <content type="html"><![CDATA[<ul>
+<li>都有什么类型的图</li>
+<li>都能做哪几种分析</li>
+</ul>
+<p>Seaborn有五个预设好的主题：darkgrid, whitegrid, dark, white,和ticks</p>
+<h3 id="distplot-kdeplot"><a href="#distplot-kdeplot" class="headerlink" title="distplot()  kdeplot()"></a>distplot()  kdeplot()</h3><p>distplot()为hist加强版，kdeplot()为密度曲线图 </p>
+<h3 id="箱型图-boxplot"><a href="#箱型图-boxplot" class="headerlink" title="箱型图 boxplot()"></a>箱型图 boxplot()</h3><h3 id="联合分布jointplot"><a href="#联合分布jointplot" class="headerlink" title="联合分布jointplot()"></a>联合分布jointplot()</h3><h3 id="热点图heatmap"><a href="#热点图heatmap" class="headerlink" title="热点图heatmap()"></a>热点图heatmap()</h3><h3 id="Histograms直方图"><a href="#Histograms直方图" class="headerlink" title="Histograms直方图"></a>Histograms直方图</h3><h3 id="Kernel-density-estimaton核密度估计"><a href="#Kernel-density-estimaton核密度估计" class="headerlink" title="Kernel density estimaton核密度估计"></a>Kernel density estimaton核密度估计</h3>]]></content>
+      
+        
+        <tags>
+            
+            <tag> python </tag>
+            
+            <tag> 数据挖掘 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[python的正则表达式使用]]></title>
       <url>/2018/03/20/python%E7%9A%84%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E4%BD%BF%E7%94%A8/</url>
       <content type="html"><![CDATA[<p>在正则表达式中，如果直接给出字符，就是精确匹配。用\d可以匹配一个数字，\w可以匹配一个字母或数字，所以：<br><a id="more"></a></p>
@@ -246,9 +286,9 @@
             
             <tag> python </tag>
             
-            <tag> pandas </tag>
-            
             <tag> 数据挖掘 </tag>
+            
+            <tag> pandas </tag>
             
         </tags>
         
@@ -2167,9 +2207,9 @@ d = t ^ s          # 对称差集（项在t或s中，但不会同时出现在二
         
         <tags>
             
-            <tag> hexo </tag>
-            
             <tag> python </tag>
+            
+            <tag> hexo </tag>
             
         </tags>
         
