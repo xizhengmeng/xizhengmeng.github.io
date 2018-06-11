@@ -1,0 +1,1210 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.3.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.3.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '6.3.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="DCT信息的获取12345678910111213141516import cv2import numpy as npdef dct(m):    # img = np.uint8(dst)*255.0    m = np.float32(m)/255.0    return cv2.dct(m)*255img = cv2.imread(&amp;apos;new.jpeg&amp;apos;,0)#cv2.IM">
+<meta name="keywords" content="python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="opencv使用入门">
+<meta property="og:url" content="/2018/06/06/2018/opencv使用入门/index.html">
+<meta property="og:site_name" content="Hanson的博客">
+<meta property="og:description" content="DCT信息的获取12345678910111213141516import cv2import numpy as npdef dct(m):    # img = np.uint8(dst)*255.0    m = np.float32(m)/255.0    return cv2.dct(m)*255img = cv2.imread(&amp;apos;new.jpeg&amp;apos;,0)#cv2.IM">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-06-11T08:39:47.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="opencv使用入门">
+<meta name="twitter:description" content="DCT信息的获取12345678910111213141516import cv2import numpy as npdef dct(m):    # img = np.uint8(dst)*255.0    m = np.float32(m)/255.0    return cv2.dct(m)*255img = cv2.imread(&amp;apos;new.jpeg&amp;apos;,0)#cv2.IM">
+
+
+
+
+
+
+  <link rel="canonical" href="/2018/06/06/2018/opencv使用入门/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>opencv使用入门 | Hanson的博客</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hanson的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="/2018/06/06/2018/opencv使用入门/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Hanson">
+      <meta itemprop="description" content="数据挖掘，客户端，研发效率提升，python，现在就职业京东金融">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hanson的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">opencv使用入门
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-06-06 15:15:02" itemprop="dateCreated datePublished" datetime="2018-06-06T15:15:02+08:00">2018-06-06</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-06-11 16:39:47" itemprop="dateModified" datetime="2018-06-11T16:39:47+08:00">2018-06-11</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h4 id="DCT信息的获取"><a href="#DCT信息的获取" class="headerlink" title="DCT信息的获取"></a>DCT信息的获取</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">import cv2</div><div class="line">import numpy as np</div><div class="line"></div><div class="line">def dct(m):</div><div class="line">    # img = np.uint8(dst)*255.0</div><div class="line">    m = np.float32(m)/255.0</div><div class="line">    return cv2.dct(m)*255</div><div class="line"></div><div class="line">img = cv2.imread(&apos;new.jpeg&apos;,0)</div><div class="line">#cv2.IMREAD_COLOR，最后一个参数留空代表彩色，如果用0代表灰度载入</div><div class="line"></div><div class="line"></div><div class="line">cv2.namedWindow(&apos;image&apos;,cv2.WINDOW_NORMAL)</div><div class="line">cv2.imshow(&apos;image&apos;,img)#显示图像，</div><div class="line">cv2.waitKey(0)#等待键盘输入，为毫秒级</div><div class="line">cv2.destroyAllWindows()#可以轻易删除任何我们建立的窗口，括号内输入想删除的窗口名</div></pre></td></tr></table></figure>
+<a id="more"></a>
+<h4 id="分通道，合并，存储图片"><a href="#分通道，合并，存储图片" class="headerlink" title="分通道，合并，存储图片"></a>分通道，合并，存储图片</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line">import cv2  </div><div class="line">import numpy as np  </div><div class="line">import matplotlib.pyplot as plt  </div><div class="line"></div><div class="line">img = cv2.imread(&quot;new.jpeg&quot;) #全色彩</div><div class="line">b, g, r = cv2.split(img)#通道拆分</div><div class="line"></div><div class="line">out = cv2.merge([b,g,r])</div><div class="line"></div><div class="line">img1 = cv2.imread(&apos;new.jpeg&apos;,0) #一个通道的色彩</div><div class="line"></div><div class="line">def dct(m):</div><div class="line">    m = np.float32(m)/255.0</div><div class="line">    return cv2.dct(m)*255</div><div class="line"></div><div class="line">img_dct = dct(img1)         #进行离散余弦变换  </div><div class="line">  </div><div class="line">img_dct_log = np.log(abs(img_dct))  #进行log处理  </div><div class="line">  </div><div class="line">img_recor2 = cv2.idct(img_dct)    #进行离散余弦反变换  </div><div class="line"></div><div class="line">plt.subplot(121)  </div><div class="line">plt.imshow(img, &apos;gray&apos;)  </div><div class="line">plt.title(&apos;original image&apos;)  </div><div class="line">  </div><div class="line">plt.subplot(122)  </div><div class="line">plt.imshow(out,&apos;gray&apos;)  </div><div class="line">plt.title(&apos;IDCT2(cv2_idct)&apos;) </div><div class="line"></div><div class="line">cv2.imwrite(&quot;ouput.jpg&quot;,img) #存储要注意，只能存储为jpg格式，因为我解出来后没有进行压缩，不知道压缩后不能不能存储为jpeg，</div><div class="line">这里如果改为jpeg会报错 could not find a writer for the specified extensi</div><div class="line">on in function cv::imwrite_</div><div class="line"></div><div class="line">plt.show()</div></pre></td></tr></table></figure>
+<h4 id="自行分离"><a href="#自行分离" class="headerlink" title="自行分离"></a>自行分离</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">自行分离三通道函数</div><div class="line">定义了三个函数来获取三个通道的子矩阵。</div><div class="line"></div><div class="line">获取红色通道：</div><div class="line"></div><div class="line">def get_red(img):</div><div class="line">    redImg = img[:,:,2]</div><div class="line">    return redImg</div><div class="line">获取绿色通道：</div><div class="line"></div><div class="line">def get_green(img):</div><div class="line">    greenImg = img[:,:,1]</div><div class="line">    return greenImg</div><div class="line">获取蓝色通道</div><div class="line"></div><div class="line">def get_blue(img):</div><div class="line">    blueImg = img[:,:,0]</div><div class="line">    return blueImg</div></pre></td></tr></table></figure>
+<h4 id="opencv的DCT使用"><a href="#opencv的DCT使用" class="headerlink" title="opencv的DCT使用"></a>opencv的DCT使用</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">import cv2</div><div class="line">import numpy as np</div><div class="line"></div><div class="line">B = np.array([[1,2,3,4,5,6,7,8],[1,2,3,4,5,6,7,8],[1,2,3,4,5,6,7,8],[1,2,3,4,5,6,7,8],[1,2,3,4,5,6,7,8],[1,2,3,4,5,6,7,8],[1,2,3,4,5,6,7,8],[1,2,3,4,5,6,7,8]])</div><div class="line">#最少需要8*8</div><div class="line">B = B.astype(&apos;float&apos;) #int转float</div><div class="line"></div><div class="line">print B</div><div class="line"></div><div class="line">print type(B)</div><div class="line">print B.shape</div><div class="line"></div><div class="line">dctn = cv2.dct(B) #dct变换</div><div class="line"></div><div class="line">print dctn.shape</div><div class="line"></div><div class="line">print dctn</div><div class="line"></div><div class="line">B1 = cv2.idct(dctn) #逆dct变换成原来的数据</div><div class="line"></div><div class="line">print B1</div></pre></td></tr></table></figure>
+<h4 id="opencv加载图像"><a href="#opencv加载图像" class="headerlink" title="opencv加载图像"></a>opencv加载图像</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">import cv2</div><div class="line">import numpy as np</div><div class="line">import matplotlib.pyplot as plt  </div><div class="line"></div><div class="line">B=8 # blocksize (In Jpeg the</div><div class="line">img1 = cv2.imread(&quot;new.jpeg&quot;)</div><div class="line"></div><div class="line">h,w=np.array(img1.shape[:2])/B * B  #进行像素个数的格式化，因为这样就可以保证是8*8的个数配比了</div><div class="line">print h,w</div><div class="line">img1=img1[:h,:w] #这一步去掉无用的数据，而不是像我想的，增加像素</div><div class="line"></div><div class="line">#Convert BGR to RGB</div><div class="line">img2=np.zeros(img1.shape,np.uint8)</div><div class="line">img2[:,:,0]=img1[:,:,2]</div><div class="line">img2[:,:,1]=img1[:,:,1]</div><div class="line">img2[:,:,2]=img1[:,:,0]</div><div class="line"># plt.imshow(img1) #这个显示的时候是BGR颜色有点奇怪</div><div class="line">plt.imshow(img2)</div></pre></td></tr></table></figure>
+<h4 id="完整例子"><a href="#完整例子" class="headerlink" title="完整例子"></a>完整例子</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div></pre></td><td class="code"><pre><div class="line">import cv2  </div><div class="line">import numpy as np  </div><div class="line">import matplotlib.pyplot as plt  </div><div class="line"></div><div class="line">img = cv2.imread(&quot;ori.jpg&quot;) #全色彩</div><div class="line"></div><div class="line">b,g,r = cv2.split(img)</div><div class="line"></div><div class="line">imgYCC = cv2.cvtColor(img, cv2.COLOR_BGR2YCR_CB)</div><div class="line"></div><div class="line">y,cr,cb = cv2.split(imgYCC)</div><div class="line"></div><div class="line">QY=np.array([[16,11,10,16,24,40,51,61],</div><div class="line">                             [12,12,14,19,26,48,60,55],</div><div class="line">                             [14,13,16,24,40,57,69,56],</div><div class="line">                             [14,17,22,29,51,87,80,62],</div><div class="line">                             [18,22,37,56,68,109,103,77],</div><div class="line">                             [24,35,55,64,81,104,113,92],</div><div class="line">                             [49,64,78,87,103,121,120,101],</div><div class="line">                             [72,92,95,98,112,100,103,99]])</div><div class="line"></div><div class="line">def compile(y):</div><div class="line">    print &apos;y&apos;</div><div class="line">    print y</div><div class="line">    b = y.astype(&apos;float&apos;)</div><div class="line">#     b = y.astype(&apos;float&apos;)</div><div class="line">    print type(b)</div><div class="line">    print &apos;b&apos;</div><div class="line">    print b</div><div class="line">    bd = b[:8,:8]</div><div class="line">    print bd.shape</div><div class="line">    print &apos;bd&apos;</div><div class="line">    print bd</div><div class="line">    bdct = cv2.dct(bd)</div><div class="line">    print &apos;bdct&apos;</div><div class="line">    print bdct</div><div class="line">    print &apos;8&apos;</div><div class="line">    print bdct.astype(&apos;int16&apos;)</div><div class="line">    # dct1 = np.uint8(bdct)</div><div class="line">    dct1 = bdct.astype(&apos;int16&apos;)</div><div class="line">    </div><div class="line">    dct1 = dct1 / QY</div><div class="line">    </div><div class="line">    print &apos;dct1&apos;</div><div class="line">    print dct1</div><div class="line">    </div><div class="line">    return dct1</div><div class="line"></div><div class="line">dct1 = compile(y)</div><div class="line"></div><div class="line">dct1 = dct1 * QY</div><div class="line"></div><div class="line">imgf = dct1.astype(&apos;float&apos;)</div><div class="line"># print &apos;imgf&apos;,imgf</div><div class="line">iTrans = cv2.idct(imgf)</div><div class="line"># print &apos;iTrans&apos;,iTrans</div><div class="line">y2 = iTrans.astype(&apos;int16&apos;)</div><div class="line">print &apos;y2&apos;,y2</div><div class="line"></div><div class="line">dct2 = compile(y2.astype(&apos;float&apos;))</div><div class="line"></div><div class="line">dst = cv2.cvtColor(img_YUV, cv2.COLOR_YUV2BGR)</div><div class="line"></div><div class="line"># dct2 = compile(y2)</div></pre></td></tr></table></figure>
+<h4 id="基于DCT和RBG方差的隐写算法"><a href="#基于DCT和RBG方差的隐写算法" class="headerlink" title="基于DCT和RBG方差的隐写算法"></a>基于DCT和RBG方差的隐写算法</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div><div class="line">151</div><div class="line">152</div><div class="line">153</div><div class="line">154</div><div class="line">155</div><div class="line">156</div><div class="line">157</div><div class="line">158</div><div class="line">159</div><div class="line">160</div><div class="line">161</div><div class="line">162</div><div class="line">163</div><div class="line">164</div><div class="line">165</div><div class="line">166</div><div class="line">167</div><div class="line">168</div><div class="line">169</div><div class="line">170</div><div class="line">171</div><div class="line">172</div><div class="line">173</div><div class="line">174</div><div class="line">175</div><div class="line">176</div><div class="line">177</div><div class="line">178</div><div class="line">179</div><div class="line">180</div><div class="line">181</div><div class="line">182</div><div class="line">183</div><div class="line">184</div><div class="line">185</div><div class="line">186</div><div class="line">187</div><div class="line">188</div><div class="line">189</div><div class="line">190</div><div class="line">191</div><div class="line">192</div><div class="line">193</div><div class="line">194</div><div class="line">195</div><div class="line">196</div><div class="line">197</div><div class="line">198</div><div class="line">199</div><div class="line">200</div><div class="line">201</div><div class="line">202</div><div class="line">203</div><div class="line">204</div><div class="line">205</div><div class="line">206</div><div class="line">207</div><div class="line">208</div><div class="line">209</div><div class="line">210</div><div class="line">211</div><div class="line">212</div><div class="line">213</div><div class="line">214</div><div class="line">215</div><div class="line">216</div><div class="line">217</div><div class="line">218</div><div class="line">219</div><div class="line">220</div><div class="line">221</div><div class="line">222</div><div class="line">223</div><div class="line">224</div><div class="line">225</div><div class="line">226</div><div class="line">227</div><div class="line">228</div><div class="line">229</div><div class="line">230</div><div class="line">231</div><div class="line">232</div><div class="line">233</div><div class="line">234</div><div class="line">235</div><div class="line">236</div><div class="line">237</div><div class="line">238</div><div class="line">239</div><div class="line">240</div><div class="line">241</div><div class="line">242</div><div class="line">243</div><div class="line">244</div><div class="line">245</div><div class="line">246</div><div class="line">247</div><div class="line">248</div><div class="line">249</div><div class="line">250</div><div class="line">251</div><div class="line">252</div><div class="line">253</div><div class="line">254</div><div class="line">255</div><div class="line">256</div><div class="line">257</div><div class="line">258</div><div class="line">259</div><div class="line">260</div><div class="line">261</div><div class="line">262</div><div class="line">263</div><div class="line">264</div><div class="line">265</div><div class="line">266</div><div class="line">267</div><div class="line">268</div><div class="line">269</div><div class="line">270</div><div class="line">271</div><div class="line">272</div><div class="line">273</div><div class="line">274</div><div class="line">275</div><div class="line">276</div><div class="line">277</div><div class="line">278</div><div class="line">279</div><div class="line">280</div><div class="line">281</div><div class="line">282</div><div class="line">283</div><div class="line">284</div><div class="line">285</div><div class="line">286</div><div class="line">287</div><div class="line">288</div><div class="line">289</div><div class="line">290</div><div class="line">291</div><div class="line">292</div><div class="line">293</div><div class="line">294</div><div class="line">295</div><div class="line">296</div><div class="line">297</div><div class="line">298</div><div class="line">299</div><div class="line">300</div><div class="line">301</div><div class="line">302</div><div class="line">303</div><div class="line">304</div><div class="line">305</div><div class="line">306</div><div class="line">307</div><div class="line">308</div><div class="line">309</div><div class="line">310</div><div class="line">311</div><div class="line">312</div><div class="line">313</div><div class="line">314</div><div class="line">315</div><div class="line">316</div><div class="line">317</div><div class="line">318</div><div class="line">319</div><div class="line">320</div><div class="line">321</div><div class="line">322</div><div class="line">323</div><div class="line">324</div><div class="line">325</div><div class="line">326</div><div class="line">327</div><div class="line">328</div><div class="line">329</div><div class="line">330</div><div class="line">331</div><div class="line">332</div><div class="line">333</div><div class="line">334</div><div class="line">335</div><div class="line">336</div><div class="line">337</div><div class="line">338</div><div class="line">339</div><div class="line">340</div><div class="line">341</div><div class="line">342</div><div class="line">343</div><div class="line">344</div><div class="line">345</div><div class="line">346</div><div class="line">347</div><div class="line">348</div><div class="line">349</div><div class="line">350</div><div class="line">351</div><div class="line">352</div><div class="line">353</div><div class="line">354</div><div class="line">355</div><div class="line">356</div><div class="line">357</div><div class="line">358</div><div class="line">359</div><div class="line">360</div><div class="line">361</div><div class="line">362</div><div class="line">363</div><div class="line">364</div><div class="line">365</div><div class="line">366</div><div class="line">367</div><div class="line">368</div><div class="line">369</div><div class="line">370</div><div class="line">371</div><div class="line">372</div><div class="line">373</div><div class="line">374</div><div class="line">375</div><div class="line">376</div><div class="line">377</div><div class="line">378</div><div class="line">379</div><div class="line">380</div><div class="line">381</div><div class="line">382</div><div class="line">383</div><div class="line">384</div><div class="line">385</div><div class="line">386</div><div class="line">387</div><div class="line">388</div><div class="line">389</div><div class="line">390</div><div class="line">391</div><div class="line">392</div><div class="line">393</div><div class="line">394</div><div class="line">395</div><div class="line">396</div></pre></td><td class="code"><pre><div class="line">import cv2</div><div class="line">import numpy as np</div><div class="line">import matplotlib.pyplot as plt</div><div class="line">from compiler.ast import flatten</div><div class="line"></div><div class="line">QC=np.array([[17,18,24,47,99,99,99,99],</div><div class="line">                         [18,21,26,66,99,99,99,99],</div><div class="line">                         [24,26,56,99,99,99,99,99],</div><div class="line">                         [47,66,99,99,99,99,99,99],</div><div class="line">                         [99,99,99,99,99,99,99,99],</div><div class="line">                         [99,99,99,99,99,99,99,99],</div><div class="line">                         [99,99,99,99,99,99,99,99],</div><div class="line">                         [99,99,99,99,99,99,99,99]])</div><div class="line"></div><div class="line">QY=np.array([[16,11,10,16,24,40,51,61],</div><div class="line">             [12,12,14,19,26,48,60,55],</div><div class="line">             [14,13,16,24,40,57,69,56],</div><div class="line">             [14,17,22,29,51,87,80,62],</div><div class="line">             [18,22,37,56,68,109,103,77],</div><div class="line">             [24,35,55,64,81,104,113,92],</div><div class="line">             [49,64,78,87,103,121,120,101],</div><div class="line">             [72,92,95,98,112,100,103,99]])</div><div class="line"></div><div class="line"># QY=np.array([[8,1,1,1,1,1,1,1],</div><div class="line">#              [1,1,1,1,1,1,1,55],</div><div class="line">#              [1,1,1,1,1,1,69,56],</div><div class="line">#              [1,1,1,1,1,87,80,62],</div><div class="line">#              [1,1,1,1,68,109,103,77],</div><div class="line">#              [1,1,1,64,81,104,113,92],</div><div class="line">#              [1,1,78,87,103,121,120,101],</div><div class="line">#              [1,92,95,98,112,100,103,99]])</div><div class="line"></div><div class="line">zag = [(7,7),(7,6),(6,7),(5,7),(6,6),(7,5),(7,4),(6,5),</div><div class="line">       (5,6),(4,7),(3,7),(4,6),(5,5),(6,4),(7,3),(7,2),</div><div class="line">       (6,3),(5,4),(4,5),(3,6),(2,7),(1,7),(2,6),(3,5),</div><div class="line">       (4,4),(5,3),(6,2),(7,1),(7,0),(6,1),(5,2),(4,3),</div><div class="line">       (3,4),(2,5),(1,6),(0,7),(0,6),(1,5),(2,4),(3,3),</div><div class="line">       (4,2),(5,1),(6,0),(5,0),(4,1),(3,2),(2,3),(1,4),</div><div class="line">       (0,5),(0,4),(1,3),(2,2),(3,1),(4,0),(3,0),(2,1),</div><div class="line">       (1,2),(0,3),(0,2),(1,1),(2,0),(1,0),(0,1),(0,0)]</div><div class="line"></div><div class="line">singleO = &apos;0b&apos;</div><div class="line">output = &apos;&apos;</div><div class="line"></div><div class="line">printindex = []</div><div class="line"></div><div class="line">writeinfolist = []</div><div class="line">index = 0</div><div class="line"></div><div class="line">def convertcontenttobit(content): #把文字转化为二进制进行写入</div><div class="line">    global writeinfolist</div><div class="line">    strnew = content</div><div class="line">#     bits = []</div><div class="line">    for item in list(strnew):</div><div class="line">        bit = ord(item) #转位置编码</div><div class="line">        bitstring = bin(bit) #位置编码转二进制</div><div class="line">        bitnew = bitstring[2:]</div><div class="line">        bitnew = &apos;0&apos; * (8 - len(bitnew)) + bitnew</div><div class="line">        bitnewlist = []</div><div class="line">        for bi in bitnew:</div><div class="line">            bitnewlist.append(int(bi))</div><div class="line">        writeinfolist = writeinfolist + bitnewlist</div><div class="line">    end = [1,1,1,1,1,1,1,1]</div><div class="line">    writeinfolist = writeinfolist + end</div><div class="line">    print writeinfolist</div><div class="line">    </div><div class="line">def convertbittocontent(bit): #把二进制读取然后转化为文字   </div><div class="line">    </div><div class="line">    global singleO</div><div class="line">    global output</div><div class="line">    </div><div class="line">    bits = str(bit)</div><div class="line">    if len(singleO) == 9:</div><div class="line">        singleO = singleO + bits</div><div class="line">        if singleO.count(&apos;1&apos;) &gt; 6:</div><div class="line">            print &apos;eeeeeend&apos;,singleO</div><div class="line">            return False</div><div class="line">        inten = int(singleO,2)</div><div class="line">        output = output + chr(inten)</div><div class="line">        print &apos;*********&apos;,singleO,chr(inten)</div><div class="line">        singleO = &apos;0b&apos;</div><div class="line">    else:</div><div class="line">        singleO = singleO + bits</div><div class="line">    </div><div class="line">    return True  </div><div class="line">    </div><div class="line">def writeinfo(origin):</div><div class="line">    </div><div class="line">    global index</div><div class="line">    global writeinfolist</div><div class="line">    </div><div class="line">    if index &gt;= len(writeinfolist) - 1:</div><div class="line">        return origin</div><div class="line">    </div><div class="line">    data = writeinfolist[index]</div><div class="line">     </div><div class="line">#     data = 1</div><div class="line">    lower_bit=origin%2</div><div class="line">    </div><div class="line">#     print index,len(writeinfolist),lower_bit,data,origin</div><div class="line">    if lower_bit==data:</div><div class="line">#         print index,len(writeinfolist),lower_bit,data,origin</div><div class="line">#         print &apos;---------------&apos;</div><div class="line">        index = index + 1</div><div class="line">        return origin</div><div class="line">    elif origin&gt;0:</div><div class="line">        if (lower_bit,data) == (0,1):</div><div class="line">            origin = origin+1</div><div class="line">        elif (lower_bit,data) == (1,0):</div><div class="line">            origin = origin-1</div><div class="line">    elif origin&lt;0:</div><div class="line">        if (lower_bit,data) == (0,1):</div><div class="line">            origin=origin-1</div><div class="line">        elif (lower_bit,data) == (1,0):</div><div class="line">            origin=origin+1</div><div class="line">    </div><div class="line">#     print index,len(writeinfolist),lower_bit,data,origin</div><div class="line">#     print &apos;---------------&apos;</div><div class="line">    index = index + 1</div><div class="line">    return origin</div><div class="line"></div><div class="line">def findcanwritedct(dct):</div><div class="line">    global index</div><div class="line">    global writeinfolist</div><div class="line">    </div><div class="line">    change = False</div><div class="line">    </div><div class="line">#     if index == len(writeinfolist) - 1:</div><div class="line">#         return dct,change</div><div class="line">    </div><div class="line">    dcttemp = dct.copy()</div><div class="line">    dcttemp[0,0] = 0</div><div class="line">    </div><div class="line">    z = np.fabs(dcttemp)</div><div class="line">    z = flatten(z.tolist())</div><div class="line">    lenz = len(z)</div><div class="line">    zerocount = z.count(0)</div><div class="line">    sumz = np.sum(z)</div><div class="line">    total = sumz * 1.0 / (lenz - zerocount)</div><div class="line">#     if total &gt; 1 and dct[0,0] &lt; 100:</div><div class="line">    change = True</div><div class="line">    dct[0,0] = writeinfo(dct[0,0])</div><div class="line">#         for i in range(63):</div><div class="line">#             target = dct[zag[i]]</div><div class="line">#             if target not in [-1,0,1]:</div><div class="line">#                 dct[zag[i]] = writeinfo(target)</div><div class="line">#                 change = True</div><div class="line">#                 break</div><div class="line">                </div><div class="line">    return dct,change</div><div class="line"></div><div class="line">def findwriteddct(dct):</div><div class="line">    </div><div class="line">#     dcttemp = dct.copy()</div><div class="line">#     dcttemp[0,0] = 0</div><div class="line">    </div><div class="line">#     z = np.fabs(dcttemp)</div><div class="line">#     z = flatten(z.tolist())</div><div class="line">#     lenz = len(z)</div><div class="line">#     zerocount = z.count(0)</div><div class="line">#     sumz = np.sum(z)</div><div class="line">#     total = sumz * 1.0 / (lenz - zerocount)</div><div class="line">#     if total &gt; 1 and dct[0,0] &lt; 100:</div><div class="line">    change = True</div><div class="line">#         dct[0,0] = writeinfo(dct[0,0])</div><div class="line">    return dct[0,0]</div><div class="line">#         for i in range(63):</div><div class="line">#             if dct[zag[i]] not in [-1,0,1]:</div><div class="line">#                 return dct[zag[i]]</div><div class="line">#                 break</div><div class="line">                </div><div class="line">#     return None</div><div class="line"></div><div class="line">def converttodct(y):</div><div class="line">    global QY</div><div class="line">    </div><div class="line">    b = y.astype(&apos;float&apos;)</div><div class="line">    bdct = cv2.dct(b)</div><div class="line">    </div><div class="line">    dct1 = bdct.tolist()</div><div class="line">    dct1 = np.around(dct1) #四舍五入</div><div class="line">    dct1 = dct1 / QY</div><div class="line">    dct1 = dct1.tolist()</div><div class="line">    dct1 = np.around(dct1) #再次四舍五入</div><div class="line">    dct1 = dct1.astype(&apos;int16&apos;)</div><div class="line">    </div><div class="line">    dct1,change = findcanwritedct(dct1)</div><div class="line">    </div><div class="line">    return dct1,change</div><div class="line"></div><div class="line">def converttoycr(dct):</div><div class="line">    global QY</div><div class="line">    dct = dct * QY</div><div class="line">    imgf = dct.astype(&apos;float&apos;)</div><div class="line">    iTrans = cv2.idct(imgf)</div><div class="line">    iTrans = iTrans.tolist()</div><div class="line">    iTrans = np.around(iTrans)</div><div class="line">    cr = iTrans.astype(&apos;int16&apos;)</div><div class="line">    return cr</div><div class="line"></div><div class="line">def readinfofromyc(cr8):</div><div class="line">    global QY</div><div class="line">    global index</div><div class="line">    global printindex</div><div class="line">    global writeinfolist</div><div class="line">    </div><div class="line">    b = cr8.astype(&apos;float&apos;)</div><div class="line">    aver = b.mean()</div><div class="line">    </div><div class="line">    if aver &gt; 200 or aver &lt; 60:</div><div class="line">        return True</div><div class="line">    </div><div class="line">    bdct = cv2.dct(b)</div><div class="line">    </div><div class="line">    dct1 = bdct.tolist()</div><div class="line">    dct1 = np.around(dct1) #四舍五入</div><div class="line">    dct1 = dct1 / QY</div><div class="line">    dct1 = dct1.tolist()</div><div class="line">    dct1 = np.around(dct1) #再次四舍五入</div><div class="line">    dct1 = dct1.astype(&apos;int16&apos;)</div><div class="line">    </div><div class="line">    var = b.var()</div><div class="line">#     print var</div><div class="line">#     print dct1</div><div class="line"></div><div class="line">#     key = aver / 2</div><div class="line">#     topline = aver * 1.4</div><div class="line">#     m = b[np.where(b &lt; key)].shape[0]</div><div class="line">#     n = b[np.where(b &gt; topline)].shape[0]</div><div class="line">#     if var &gt; 5 or m &gt; 10 or n &gt; 5:</div><div class="line">#         return True</div><div class="line">    if var &gt; 1:</div><div class="line">        return True</div><div class="line">    </div><div class="line">#     if dct1[0,0] % 2 == 1:</div><div class="line">#         print &apos;aver&apos;,aver</div><div class="line">#         print &apos;shape+++++++&apos;,m</div><div class="line">#         print &apos;origin&apos;,b</div><div class="line">#         print &apos;dct&apos;,dct1</div><div class="line">#         print &apos;var&apos;,b.var()</div><div class="line"></div><div class="line">    if (index - 1) in printindex:</div><div class="line">        print &apos;new############start&apos;,writeinfolist[index - 1],index - 1</div><div class="line">        print dct1</div><div class="line">        print cr8</div><div class="line">        print &apos;new############end&apos;</div><div class="line"></div><div class="line">    origin = findwriteddct(dct1)</div><div class="line">    if (origin != None):</div><div class="line">        return convertbittocontent(origin % 2)</div><div class="line"></div><div class="line">def addinfotoyc(yc8):</div><div class="line">    global index</div><div class="line">    global printindex</div><div class="line">    global writeinfolist</div><div class="line">    </div><div class="line">    aver = yc8.mean()</div><div class="line">    </div><div class="line">    if aver &gt; 200 or aver &lt; 60:</div><div class="line">        return yc8</div><div class="line">    </div><div class="line">    var = yc8.var()</div><div class="line">#     key = aver / 2</div><div class="line">#     topline = aver * 1.4</div><div class="line">#     m = yc8[np.where(yc8 &lt; key)].shape[0]</div><div class="line">#     n = yc8[np.where(yc8 &gt; topline)].shape[0]</div><div class="line">#     if var &gt; 3 or m &gt; 10 or n &gt; 5:</div><div class="line">#         print yc8</div><div class="line">#         print &apos;var&apos;,var</div><div class="line">#         print &apos;m&apos;,m</div><div class="line">#         print &apos;n&apos;,n</div><div class="line">#         print &apos;topline&apos;,topline</div><div class="line">#         print &apos;key&apos;,key</div><div class="line">#         print &apos;aver&apos;,aver</div><div class="line">#         return yc8</div><div class="line">    if var &gt; 1:</div><div class="line">        return yc8</div><div class="line">    </div><div class="line">    dct,change = converttodct(yc8)</div><div class="line">    </div><div class="line">    if change == False:</div><div class="line">        return yc8</div><div class="line">    </div><div class="line">    cr = converttoycr(dct)</div><div class="line">    </div><div class="line">    if cr.var() &gt; 1:</div><div class="line">        index = index - 1</div><div class="line">#         print &apos;origin&apos;</div><div class="line">#         print yc8</div><div class="line">#         print &apos;oldvar&apos;,var</div><div class="line">#         print &apos;new&apos;</div><div class="line">#         print cr</div><div class="line">#         print &apos;newvar&apos;,cr.var()</div><div class="line">#         print &apos;index&apos;,index</div><div class="line">        return yc8</div><div class="line">    </div><div class="line">#     print dct</div><div class="line">#     print cr.var()</div><div class="line">    </div><div class="line">    </div><div class="line">    if (index - 1) in printindex:</div><div class="line">        print &apos;origin###########start&apos;,writeinfolist[index-1],index - 1</div><div class="line">        print dct</div><div class="line">        print cr</div><div class="line">        print &apos;origin###########end&apos;</div><div class="line">    </div><div class="line">    readinfofromyc(cr)</div><div class="line">    </div><div class="line">    cr[np.where(cr &gt; 254)] = 254</div><div class="line">    cr[np.where(cr &lt; 1)] = 0</div><div class="line">    </div><div class="line">    return cr</div><div class="line"></div><div class="line">def convertimg(img):</div><div class="line">    B = 8</div><div class="line">    imgYCC = cv2.cvtColor(img, cv2.COLOR_BGR2YCR_CB)</div><div class="line">    h,w=np.array(imgYCC.shape[:2])/B * B  #进行像素个数的格式化，因为这样就可以保证是8*8的个数配比了</div><div class="line">    imgYCC = imgYCC[:h,:w] #这一步去掉无用的数据，而不是像我想的，增加像素</div><div class="line">    y = imgYCC[:,:,0]</div><div class="line">    cr = imgYCC[:,:,1]</div><div class="line">    cb = imgYCC[:,:,2]</div><div class="line">    return y,cr,cb</div><div class="line"></div><div class="line">def scanpiex(cr):</div><div class="line">    global index</div><div class="line">    </div><div class="line">#     crn = np.zeros(cr.shape)</div><div class="line">    crn = cr.copy()</div><div class="line">    (h,w) = cr.shape</div><div class="line">    h = h/8</div><div class="line">    w = w/8</div><div class="line">    print h,w</div><div class="line">    for i in range(0,h):</div><div class="line">        for j in range(0,w):</div><div class="line">            cr8 = cr[i*8:i*8+8,j*8:j*8+8]</div><div class="line">            crn[i*8:i*8+8,j*8:j*8+8] = addinfotoyc(cr8)</div><div class="line">            if index &gt;= len(writeinfolist) - 1:</div><div class="line">                print &apos;stop&apos;,&apos;i=&apos;,i,&apos;j=&apos;,j,&apos;i*j=&apos;,i * j</div><div class="line">                index = 0</div><div class="line">                return crn</div><div class="line">    index = 0        </div><div class="line">    return crn</div><div class="line"></div><div class="line">def readinfo(cr):</div><div class="line">    global output</div><div class="line">    (h,w) = cr.shape</div><div class="line">    h = h/8</div><div class="line">    w = w/8</div><div class="line">    print h,w</div><div class="line">    for i in range(0,h):</div><div class="line">        for j in range(0,w):</div><div class="line">            cr8 = cr[i*8:i*8+8,j*8:j*8+8]</div><div class="line">            out = readinfofromyc(cr8)</div><div class="line">#             print &apos;stop&apos;,&apos;i=&apos;,i,&apos;j=&apos;,j,&apos;i*j=&apos;,i * j</div><div class="line">            if out == False or (i == (h - 1) and j == (w - 1)):</div><div class="line">                print output</div><div class="line">                break</div><div class="line"></div><div class="line">def test():            </div><div class="line">            </div><div class="line">    print &apos;write&apos;,writeinfolist       </div><div class="line">    img = cv2.imread(&quot;WechatIMG37.jpeg&quot;) #全色彩</div><div class="line"></div><div class="line">    y,cr,cb = convertimg(img)</div><div class="line"></div><div class="line">    y = scanpiex(y)</div><div class="line">    y = y.astype(&apos;uint8&apos;)</div><div class="line">    </div><div class="line">    print &apos;分割线分割线分割线&apos;</div><div class="line">    </div><div class="line">    img_YCbCr = cv2.merge([y,cr,cb])</div><div class="line">    imgnew = cv2.cvtColor(img_YCbCr, cv2.COLOR_YCR_CB2BGR)</div><div class="line"></div><div class="line">#     cv2.imwrite(&quot;newpress.jpg&quot;,imgnew,[cv2.IMWRITE_JPEG_QUALITY, 50])</div><div class="line">    cv2.imwrite(&quot;newpress.jpg&quot;,imgnew)</div><div class="line"></div><div class="line">    imgout = cv2.imread(&quot;newpress.jpg&quot;) #全色彩</div><div class="line"></div><div class="line">    y,cr,cb = convertimg(imgout)</div><div class="line">    print &apos;read&apos;</div><div class="line">    readinfo(y)</div><div class="line">    </div><div class="line">def writecontent():</div><div class="line">    global writeinfolist</div><div class="line">    global output</div><div class="line">    convertcontenttobit(&apos;wangxiugang618wangxiugang618wangxiugang618wangxiugang618wangxiugang618&apos;)   </div><div class="line"></div><div class="line">def readimage(imagename):</div><div class="line">    imgout = cv2.imread(imagename) #全色彩</div><div class="line">    y,cr,cb = convertimg(imgout)</div><div class="line">    print &apos;read&apos;</div><div class="line">    readinfo(y)</div><div class="line"></div><div class="line">writecontent()</div><div class="line">test()</div><div class="line"># readimage(&apos;WechatIMG65.jpeg’)</div></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/python/" rel="tag"># python</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/05/30/2018/iOS包大小计算备忘/" rel="next" title="iOS包大小计算备忘">
+                <i class="fa fa-chevron-left"></i> iOS包大小计算备忘
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zNjcxNi8xMzI1MQ=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Hanson</p>
+              <p class="site-description motion-element" itemprop="description">数据挖掘，客户端，研发效率提升，python，现在就职业京东金融</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">89</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">3</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">27</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#DCT信息的获取"><span class="nav-number">1.</span> <span class="nav-text">DCT信息的获取</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#分通道，合并，存储图片"><span class="nav-number">2.</span> <span class="nav-text">分通道，合并，存储图片</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#自行分离"><span class="nav-number">3.</span> <span class="nav-text">自行分离</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#opencv的DCT使用"><span class="nav-number">4.</span> <span class="nav-text">opencv的DCT使用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#opencv加载图像"><span class="nav-number">5.</span> <span class="nav-text">opencv加载图像</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#完整例子"><span class="nav-number">6.</span> <span class="nav-text">完整例子</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#基于DCT和RBG方差的隐写算法"><span class="nav-number">7.</span> <span class="nav-text">基于DCT和RBG方差的隐写算法</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Hanson</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.3.9</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Pisces</a> v6.3.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.3.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script>
+
+
+
+  
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
