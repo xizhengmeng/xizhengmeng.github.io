@@ -17,6 +17,11 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[移动端图片隐写术的实现思路]]></title>
+    <url>%2F2018%2F04%2F17%2F%E7%A7%BB%E5%8A%A8%E7%AB%AF%E5%9B%BE%E7%89%87%E9%9A%90%E5%86%99%E6%9C%AF%E7%9A%84%E5%AE%9E%E7%8E%B0%E6%80%9D%E8%B7%AF%2F</url>
+    <content type="text"></content>
+  </entry>
+  <entry>
     <title><![CDATA[Seaborn数据展示入门]]></title>
     <url>%2F2018%2F03%2F21%2F2018%2FSeaborn%E6%95%B0%E6%8D%AE%E5%B1%95%E7%A4%BA%E5%85%A5%E9%97%A8%2F</url>
     <content type="text"><![CDATA[都有什么类型的图 都能做哪几种分析 Seaborn有五个预设好的主题：darkgrid, whitegrid, dark, white,和ticks distplot() kdeplot()distplot()为hist加强版，kdeplot()为密度曲线图 箱型图 boxplot()联合分布jointplot()热点图heatmap()Histograms直方图Kernel density estimaton核密度估计]]></content>
@@ -102,7 +107,7 @@
   <entry>
     <title><![CDATA[c++面试题汇总]]></title>
     <url>%2F2018%2F02%2F17%2Fc-%E9%9D%A2%E8%AF%95%E9%A2%98%E6%B1%87%E6%80%BB%2F</url>
-    <content type="text"><![CDATA[https://www.jianshu.com/p/cc1bdada166fhttps://www.jianshu.com/p/06d2f28d0747https://www.cnblogs.com/fangyukuan/archive/2010/09/18/1829871.html]]></content>
+    <content type="text"><![CDATA[https://www.jianshu.com/p/cc1bdada166fhttps://www.jianshu.com/p/06d2f28d0747https://www.cnblogs.com/fangyukuan/archive/2010/09/18/1829871.htmlhttps://github.com/huihut/interview]]></content>
       <tags>
         <tag>c++</tag>
       </tags>
