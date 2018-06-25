@@ -327,6 +327,176 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="/2017/10/25/2017/iOS可执行文件分析记录系统构建/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Hanson">
+      <meta itemprop="description" content="数据挖掘，客户端，研发效率提升，python，现在就职业京东金融">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hanson的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/10/25/2017/iOS可执行文件分析记录系统构建/" itemprop="url">
+                  iOS可执行文件分析记录系统构建
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2017-10-25 14:38:04" itemprop="dateCreated datePublished" datetime="2017-10-25T14:38:04+08:00">2017-10-25</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-05-23 17:27:36" itemprop="dateModified" datetime="2018-05-23T17:27:36+08:00">2018-05-23</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ul>
+<li>配置文件选项构建</li>
+<li>设置文件路径和linkmap选项为YES</li>
+<li>编写自动化解析脚本</li>
+<li>编写自动打包脚本</li>
+<li>将脚本进行编译，并且在服务器上进行安装</li>
+<li>搭建可视化界面</li>
+<li>将任务开始命令植入git</li>
+<li>历史数据展示</li>
+</ul>
+<h3 id="配置文件选项构建"><a href="#配置文件选项构建" class="headerlink" title="配置文件选项构建"></a>配置文件选项构建</h3><p><img src="/25/2017/iOS可执行文件分析记录系统构建/../../../images/configImage.png" alt="Alt text"><br>重点：<br>所有的工程都要添加一个Analyse这个项，否则你选择这个进行编译，就会报错</p>
+<h3 id="设置文件路径和linkmap选项为YES"><a href="#设置文件路径和linkmap选项为YES" class="headerlink" title="设置文件路径和linkmap选项为YES"></a>设置文件路径和linkmap选项为YES</h3><p><img src="/25/2017/iOS可执行文件分析记录系统构建/../../../images/linkmapconfig.png" alt="Alt text"></p>
+<blockquote>
+<ul>
+<li>$(TARGET_TEMP_DIR)/$(PRODUCT_NAME)-LinkMap-$(CURRENT_VARIANT)-$(CURRENT_ARCH).txt</li>
+<li>$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)<br>我们可以设置路径为BUILD_DIR，这样就直接出现在Build这个目录下了</li>
+</ul>
+</blockquote>
+<h3 id="编写自动化解析脚本"><a href="#编写自动化解析脚本" class="headerlink" title="编写自动化解析脚本"></a>编写自动化解析脚本</h3><h3 id="编写自动打包脚本"><a href="#编写自动打包脚本" class="headerlink" title="编写自动打包脚本"></a>编写自动打包脚本</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">xcodebuild -workspace JDFinance.xcworkspace -scheme JDMobile -configuration Analyse build</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="/2017/10/23/2017/iOS安全点罗列/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1777,157 +1947,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="/2017/10/10/2018/python发送邮件代码记录/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Hanson">
-      <meta itemprop="description" content="数据挖掘，客户端，研发效率提升，python，现在就职业京东金融">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hanson的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/10/10/2018/python发送邮件代码记录/" itemprop="url">
-                  python发送邮件代码记录
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2017-10-10 20:38:05" itemprop="dateCreated datePublished" datetime="2017-10-10T20:38:05+08:00">2017-10-10</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2017-10-11 18:13:43" itemprop="dateModified" datetime="2017-10-11T18:13:43+08:00">2017-10-11</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div></pre></td><td class="code"><pre><div class="line">#!/usr/bin/env python</div><div class="line">#coding:utf-8</div><div class="line"></div><div class="line">from email import encoders</div><div class="line">from email.header import Header</div><div class="line">from email.mime.text import MIMEText</div><div class="line">from email.mime.multipart import MIMEMultipart</div><div class="line">from email.mime.application import MIMEApplication</div><div class="line">from email.utils import parseaddr, formataddr</div><div class="line">import smtplib,os</div><div class="line"></div><div class="line">def _format_addr(s):</div><div class="line">    name, addr = parseaddr(s)</div><div class="line">    return formataddr(( \</div><div class="line">        Header(name, &apos;utf-8&apos;).encode(), \</div><div class="line">        addr.encode(&apos;utf-8&apos;) if isinstance(addr, unicode) else addr))</div><div class="line"></div><div class="line">def sendMail():</div><div class="line">    username = &apos;hanshenghui&apos;</div><div class="line">    password = &apos;11111111111&apos;</div><div class="line"></div><div class="line">    from_addr = &apos;hanshenghui@jd.com&apos;</div><div class="line">    to_addr = &apos;hanshenghui@jd.com&apos;</div><div class="line">    # to_addrList = [&apos;hanshenghui@jd.com&apos;,&apos;gaixutian@jd.com&apos;,&apos;wangzhenyang1@jd.com&apos;]</div><div class="line">    to_addrList = [&apos;hanshenghui@jd.com&apos;,&apos;wangxiugang@jd.com&apos;,&apos;dingchao1@jd.com&apos;]</div><div class="line">    smtp_server = &apos;smtp.jd.local&apos;</div><div class="line"></div><div class="line">    msg = MIMEMultipart()</div><div class="line">    part = MIMEText(&quot;这是一封测试邮件\n\n现在主要有以下几个待确定点:\n1.我们可以通过对数据进行提取，做一些分析和简介作为邮件的正文，或者是一些其他什么内容\n2.现在邮箱我添加了名字为JDJRMobile，实际上是我自己的邮箱，用哪个邮箱来发送比较合适\n3.检测哪个分支\n4.检测频率\n\n&quot;)</div><div class="line">    msg.attach(part)</div><div class="line">    </div><div class="line">    basePath = os.environ[&apos;HOME&apos;]</div><div class="line">    reportPath = basePath + &apos;/Documents/Build/JDJRAPPAndroid/infer-out/report.csv&apos;</div><div class="line">    if os.path.exists(reportPath):    </div><div class="line">       part1 = MIMEApplication(open(reportPath,&apos;rb&apos;).read())</div><div class="line">       part1.add_header(&apos;Content-Disposition&apos;, &apos;attachment&apos;, filename=&quot;report.csv&quot;)</div><div class="line">       msg.attach(part1)</div><div class="line"></div><div class="line">    # part2 = MIMEApplication(open(&apos;cesh.png&apos;,&apos;rb&apos;).read())</div><div class="line">    # part2.add_header(&apos;Content-Disposition&apos;, &apos;attachment&apos;, filename=&quot;cesh.png&quot;)</div><div class="line">    # msg.attach(part2)</div><div class="line"></div><div class="line">    msg[&apos;From&apos;] = _format_addr(u&apos;JDJRMobile &lt;%s&gt;&apos; % from_addr)</div><div class="line">    msg[&apos;To&apos;] = _format_addr(&apos;JDJR&apos;)</div><div class="line">    msg[&apos;Subject&apos;] = Header(u&apos;JDJR安卓源码检测报告&apos;, &apos;utf-8&apos;).encode()</div><div class="line"></div><div class="line">    server = smtplib.SMTP(smtp_server,25)</div><div class="line">    server.set_debuglevel(1)</div><div class="line">    server.sendmail(from_addr, to_addrList, msg.as_string())</div><div class="line">    server.quit()</div></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1975,7 +1994,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">92</span>
+                    <span class="site-state-item-count">93</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
