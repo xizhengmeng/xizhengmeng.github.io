@@ -108,25 +108,24 @@
 
 
 
-  <meta name="description" content="区别 find命令是根据文件的属性进行查找，如文件名，文件大小，所有者，所属组，是否为空，访问时间，修改时间等。  grep是根据文件的内容进行查找，会对文件的每一行按照给定的模式(patter)进行匹配查找。  find基本格式：find  path expression 按照文件名查找 find / -name httpd.conf #在根目录下查找文件httpd.conf，表示在整个硬盘查找">
-<meta name="keywords" content="linux">
+  <meta name="description" content="主要罗列iOS开发中涉及到的基础知识点以及架构和基础的一些方面">
 <meta property="og:type" content="article">
-<meta property="og:title" content="find与grep命令">
-<meta property="og:url" content="/2017/09/22/2017/find命令/index.html">
+<meta property="og:title" content="iOS知识地图">
+<meta property="og:url" content="/2017/09/25/iOS知识总结/index.html">
 <meta property="og:site_name" content="Hanson的博客">
-<meta property="og:description" content="区别 find命令是根据文件的属性进行查找，如文件名，文件大小，所有者，所属组，是否为空，访问时间，修改时间等。  grep是根据文件的内容进行查找，会对文件的每一行按照给定的模式(patter)进行匹配查找。  find基本格式：find  path expression 按照文件名查找 find / -name httpd.conf #在根目录下查找文件httpd.conf，表示在整个硬盘查找">
+<meta property="og:description" content="主要罗列iOS开发中涉及到的基础知识点以及架构和基础的一些方面">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-05-23T09:05:45.000Z">
+<meta property="og:updated_time" content="2018-06-25T06:11:27.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="find与grep命令">
-<meta name="twitter:description" content="区别 find命令是根据文件的属性进行查找，如文件名，文件大小，所有者，所属组，是否为空，访问时间，修改时间等。  grep是根据文件的内容进行查找，会对文件的每一行按照给定的模式(patter)进行匹配查找。  find基本格式：find  path expression 按照文件名查找 find / -name httpd.conf #在根目录下查找文件httpd.conf，表示在整个硬盘查找">
+<meta name="twitter:title" content="iOS知识地图">
+<meta name="twitter:description" content="主要罗列iOS开发中涉及到的基础知识点以及架构和基础的一些方面">
 
 
 
 
 
 
-  <link rel="canonical" href="/2017/09/22/2017/find命令/"/>
+  <link rel="canonical" href="/2017/09/25/iOS知识总结/"/>
 
 
 
@@ -136,7 +135,7 @@
   };
 </script>
 
-  <title>find与grep命令 | Hanson的博客</title>
+  <title>iOS知识地图 | Hanson的博客</title>
   
 
 
@@ -328,7 +327,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="/2017/09/22/2017/find命令/">
+    <link itemprop="mainEntityOfPage" href="/2017/09/25/iOS知识总结/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Hanson">
@@ -345,7 +344,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">find与grep命令
+          <h1 class="post-title" itemprop="name headline">iOS知识地图
               
             
           </h1>
@@ -370,7 +369,7 @@
                 
               
 
-              <time title="创建时间：2017-09-22 09:37:29" itemprop="dateCreated datePublished" datetime="2017-09-22T09:37:29+08:00">2017-09-22</time>
+              <time title="创建时间：2017-09-25 12:10:15" itemprop="dateCreated datePublished" datetime="2017-09-25T12:10:15+08:00">2017-09-25</time>
             
 
             
@@ -387,7 +386,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-05-23 17:05:45" itemprop="dateModified" datetime="2018-05-23T17:05:45+08:00">2018-05-23</time>
+                <time title="修改时间：2018-06-25 14:11:27" itemprop="dateModified" datetime="2018-06-25T14:11:27+08:00">2018-06-25</time>
               
             
           </span>
@@ -420,35 +419,138 @@
       
 
       
-        <h2 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h2><ul>
-<li>find命令是根据文件的属性进行查找，如文件名，文件大小，所有者，所属组，是否为空，访问时间，修改时间等。 </li>
-<li>grep是根据文件的内容进行查找，会对文件的每一行按照给定的模式(patter)进行匹配查找。</li>
+        <p>主要罗列iOS开发中涉及到的基础知识点以及架构和基础的一些方面<br><a id="more"></a></p>
+<h3 id="01-UI视图"><a href="#01-UI视图" class="headerlink" title="01 UI视图"></a>01 UI视图</h3><ul>
+<li>事件传递机制</li>
+<li>UI绘制原理</li>
+<li>异步绘制原理</li>
+<li>流式页面的性能优化</li>
+<li>离屏渲染</li>
 </ul>
-<h2 id="find"><a href="#find" class="headerlink" title="find"></a>find</h2><p>基本格式：find  path expression</p>
-<h3 id="按照文件名查找"><a href="#按照文件名查找" class="headerlink" title="按照文件名查找"></a>按照文件名查找</h3><ul>
-<li><code>find / -name httpd.conf</code> #在根目录下查找文件httpd.conf，表示在整个硬盘查找</li>
-<li><code>find /etc -name httpd.conf</code> #在/etc目录下文件httpd.conf</li>
-<li><code>find /etc -name &#39;*srm*&#39;</code> #使用通配符*(0或者任意多个)。表示在/etc目录下查找文件名中含有字符串‘srm’的文件</li>
-<li><code>find . -name &#39;srm*&#39;</code> #表示当前目录下查找文件名开头是字符串‘srm’的文件</li>
+<h3 id="02-OC语言"><a href="#02-OC语言" class="headerlink" title="02 OC语言"></a>02 OC语言</h3><ul>
+<li>KVO</li>
+<li>KVC</li>
+<li>分类</li>
+<li>关联对象</li>
+<li>copy</li>
+<li>property</li>
 </ul>
-<h3 id="按照文件特征查找"><a href="#按照文件特征查找" class="headerlink" title="按照文件特征查找 　　　　"></a>按照文件特征查找 　　　　</h3><ul>
-<li><code>find / -amin -10</code> 　　# 查找在系统中最后10分钟访问的文件(access time)</li>
-<li><code>find / -atime -2</code>　　 # 查找在系统中最后48小时访问的文件</li>
-<li><code>find / -empty</code> 　　# 查找在系统中为空的文件或者文件夹</li>
-<li><code>find / -group cat</code> 　　# 查找在系统中属于 group为cat的文件</li>
-<li><code>find / -mmin -5</code> 　　# 查找在系统中最后5分钟里修改过的文件(modify time)</li>
-<li><code>find / -mtime -1</code> 　　#查找在系统中最后24小时里修改过的文件</li>
-<li><code>find / -user fred</code> 　　#查找在系统中属于fred这个用户的文件</li>
-<li><code>find / -size +10000c</code>　　#查找出大于10000000字节的文件(c:字节，w:双字，k:KB，M:MB，G:GB)</li>
-<li><code>find / -size -1000k</code> 　　#查找出小于1000KB的文件</li>
+<h3 id="03-Runtime"><a href="#03-Runtime" class="headerlink" title="03 Runtime"></a>03 Runtime</h3><ul>
+<li>对象、类对象、元类对象</li>
+<li>消息传递机制</li>
+<li>消息转发流程</li>
+<li>Method-Swizzling</li>
+<li>对象、类对象、原类对象的理解、消息传递机制、消息转发流程、Method-Swizzling、ISA-swizzling、动态方法解析、动态添加方法</li>
 </ul>
-<h3 id="使用混合查找方式查找文件"><a href="#使用混合查找方式查找文件" class="headerlink" title="使用混合查找方式查找文件"></a>使用混合查找方式查找文件</h3><p>参数有： ！，-and(-a)，-or(-o)。</p>
+<h3 id="04-内存"><a href="#04-内存" class="headerlink" title="04 内存"></a>04 内存</h3><ul>
+<li>引用计数表</li>
+<li>弱引用表</li>
+<li>ARC、MRC</li>
+<li>循环引用</li>
+<li>内存管理</li>
+<li>为什么用copy，哪些情况下用copy，为什么用copy?</li>
+</ul>
+<h3 id="05-Block"><a href="#05-Block" class="headerlink" title="05 Block"></a>05 Block</h3><ul>
+<li>Block本质</li>
+<li>截获变量特性</li>
+<li>内存管理</li>
+<li>循环引用</li>
+</ul>
+<h3 id="06-多线程"><a href="#06-多线程" class="headerlink" title="06 多线程"></a>06 多线程</h3><ul>
+<li>GCD、nsoperation</li>
+<li>资源共享</li>
+<li>线程同步</li>
+<li>SpinLock等</li>
+<li>atomic和线程安全</li>
+<li>你怎样实现线程安全的？这些线程安全的办法和atomic有什么不一样？atomic的实现机制是怎样</li>
+</ul>
+<h3 id="07-RunLoop"><a href="#07-RunLoop" class="headerlink" title="07 RunLoop"></a>07 RunLoop</h3><ul>
+<li>事件循环</li>
+<li>用户态</li>
+<li>核心态</li>
+<li>常驻线程</li>
+</ul>
+<h3 id="08-网络"><a href="#08-网络" class="headerlink" title="08 网络"></a>08 网络</h3><ul>
+<li>HTTPS</li>
+<li>对称加密算法</li>
+<li>非对称加密</li>
+<li>DNS解析</li>
+<li>HTTP、TCP</li>
+<li>ASI</li>
+<li>AFN</li>
+<li>有听过HTTPDNS吗？</li>
+<li>有哪些方法能加快网络连接速度</li>
+<li>如何维持长链接</li>
+<li>如何发送心跳包</li>
+<li>用户产生一个下拉刷新动作，请详细描述网络如何传输</li>
+<li>简述tcp连接时的握手过程，不要第三次握手行不行？</li>
+</ul>
+<h3 id="09-设计模式"><a href="#09-设计模式" class="headerlink" title="09 设计模式"></a>09 设计模式</h3><ul>
+<li>桥接、适配器、命令</li>
+<li>责任链、单例</li>
+<li>六大设计原则</li>
+</ul>
+<h3 id="10-架构-框架"><a href="#10-架构-框架" class="headerlink" title="10 架构/框架"></a>10 架构/框架</h3><ul>
+<li>MVVM、时长统计框架</li>
+<li>图片缓存框架</li>
+<li>PV量级10亿级业务架构</li>
+<li>CocoaPods</li>
+</ul>
+<h3 id="优化理论与实践"><a href="#优化理论与实践" class="headerlink" title="优化理论与实践"></a>优化理论与实践</h3><ul>
+<li>启动时长优化</li>
+<li>卡顿优化</li>
+<li>cpu占用</li>
+<li>内存占用</li>
+<li>UI主线程</li>
+<li>电量</li>
+<li>图片</li>
+</ul>
+<h3 id="效率提升"><a href="#效率提升" class="headerlink" title="效率提升"></a>效率提升</h3><ul>
+<li>代码块</li>
+<li>功能模版</li>
+<li>自动代码</li>
+<li>json转model</li>
+<li>跨平台</li>
+</ul>
+<h3 id="研发质量管理"><a href="#研发质量管理" class="headerlink" title="研发质量管理"></a>研发质量管理</h3><ul>
+<li>codereview</li>
+<li>clang二次开发(编译器警告)</li>
+<li>oclint</li>
+<li>infer</li>
+<li>git commit(增量检测)</li>
+<li>冗余代码</li>
+<li>重复代码</li>
+<li>重复图片检测</li>
+<li>ipa包大小和模块大小检测</li>
+</ul>
+<h3 id="监控理论和实践"><a href="#监控理论和实践" class="headerlink" title="监控理论和实践"></a>监控理论和实践</h3><ul>
+<li>crash</li>
+<li>网络</li>
+<li>流量</li>
+<li>性能</li>
+<li>行为</li>
+<li>截图行为应用</li>
+</ul>
+<h3 id="热修复理论与实践"><a href="#热修复理论与实践" class="headerlink" title="热修复理论与实践"></a>热修复理论与实践</h3><ul>
+<li>JSPatch</li>
+<li>Lua？</li>
+</ul>
+<h3 id="发包与灰度"><a href="#发包与灰度" class="headerlink" title="发包与灰度"></a>发包与灰度</h3><ul>
+<li>testflight灰度的应用</li>
+<li>CI的优化(自动发包)</li>
+</ul>
+<p>###11 算法</p>
 <ul>
-<li><code>find /tmp -size +10000c -and -mtime +2</code> #在/tmp目录下查找大于10000字节并在最后2分钟内修改的文件</li>
-<li><code>find / -user fred -or -user george</code> 　#在/目录下查找用户是fred或者george的文件文件</li>
-<li><code>find /tmp ! -user panda</code>　#在/tmp目录中查找所有不属于panda用户的文件</li>
+<li>字符串反转</li>
+<li>快速排序</li>
+<li>单链表反转</li>
+<li>有序数组归并</li>
+<li>无序数组找中位数</li>
 </ul>
-<h3 id="grep"><a href="#grep" class="headerlink" title="grep"></a>grep</h3><p><code>grep &#39;^[0-9]&#39; text.txt</code>返回以数字开头的行<br><code>grep &#39;@&#39; text.txt</code>返回包含@的行</p>
+<h3 id="12-第三方"><a href="#12-第三方" class="headerlink" title="12 第三方"></a>12 第三方</h3><ul>
+<li>AFNetworking </li>
+<li>ReactCocoa响应式编程库</li>
+</ul>
 
       
     </div>
@@ -467,12 +569,6 @@
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/linux/" rel="tag"># linux</a>
-          
-        </div>
-      
 
       
       
@@ -482,8 +578,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/09/06/2017/c-string用法/" rel="next" title="c++ string用法">
-                <i class="fa fa-chevron-left"></i> c++ string用法
+              <a href="/2017/09/22/2017/find命令/" rel="next" title="find与grep命令">
+                <i class="fa fa-chevron-left"></i> find与grep命令
               </a>
             
           </div>
@@ -492,8 +588,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/09/25/iOS知识总结/" rel="prev" title="iOS知识地图">
-                iOS知识地图 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/09/28/2018/otool作用以及使用/" rel="prev" title="otool作用以及使用">
+                otool作用以及使用 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -697,7 +793,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#区别"><span class="nav-number">1.</span> <span class="nav-text">区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#find"><span class="nav-number">2.</span> <span class="nav-text">find</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#按照文件名查找"><span class="nav-number">2.1.</span> <span class="nav-text">按照文件名查找</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#按照文件特征查找"><span class="nav-number">2.2.</span> <span class="nav-text">按照文件特征查找 　　　　</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用混合查找方式查找文件"><span class="nav-number">2.3.</span> <span class="nav-text">使用混合查找方式查找文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#grep"><span class="nav-number">2.4.</span> <span class="nav-text">grep</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#01-UI视图"><span class="nav-number">1.</span> <span class="nav-text">01 UI视图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#02-OC语言"><span class="nav-number">2.</span> <span class="nav-text">02 OC语言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#03-Runtime"><span class="nav-number">3.</span> <span class="nav-text">03 Runtime</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#04-内存"><span class="nav-number">4.</span> <span class="nav-text">04 内存</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#05-Block"><span class="nav-number">5.</span> <span class="nav-text">05 Block</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#06-多线程"><span class="nav-number">6.</span> <span class="nav-text">06 多线程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#07-RunLoop"><span class="nav-number">7.</span> <span class="nav-text">07 RunLoop</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#08-网络"><span class="nav-number">8.</span> <span class="nav-text">08 网络</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#09-设计模式"><span class="nav-number">9.</span> <span class="nav-text">09 设计模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-架构-框架"><span class="nav-number">10.</span> <span class="nav-text">10 架构/框架</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#优化理论与实践"><span class="nav-number">11.</span> <span class="nav-text">优化理论与实践</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#效率提升"><span class="nav-number">12.</span> <span class="nav-text">效率提升</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#研发质量管理"><span class="nav-number">13.</span> <span class="nav-text">研发质量管理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#监控理论和实践"><span class="nav-number">14.</span> <span class="nav-text">监控理论和实践</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#热修复理论与实践"><span class="nav-number">15.</span> <span class="nav-text">热修复理论与实践</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#发包与灰度"><span class="nav-number">16.</span> <span class="nav-text">发包与灰度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#12-第三方"><span class="nav-number">17.</span> <span class="nav-text">12 第三方</span></a></li></ol></div>
             
 
           </div>
