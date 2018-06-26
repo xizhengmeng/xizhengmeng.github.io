@@ -2105,15 +2105,26 @@ d = t ^ s          # 对称差集（项在t或s中，但不会同时出现在二
     <entry>
       <title><![CDATA[iOS知识地图]]></title>
       <url>/2017/09/25/iOS%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/</url>
-      <content type="html"><![CDATA[<p>主要罗列iOS开发中涉及到的基础知识点以及架构和基础的一些方面<br><a id="more"></a></p>
-<h3 id="01-UI视图"><a href="#01-UI视图" class="headerlink" title="01 UI视图"></a>01 UI视图</h3><ul>
-<li>事件传递机制</li>
+      <content type="html"><![CDATA[<p>主要罗列iOS开发中涉及到的基础知识点以及架构和基础的一些方面</p>
+<ul>
+<li>基础</li>
+<li>需求</li>
+<li>质量</li>
+<li>效率</li>
+</ul>
+<a id="more"></a>
+<h3 id="01-UI视图-基础"><a href="#01-UI视图-基础" class="headerlink" title="01 UI视图(基础)"></a>01 UI视图(基础)</h3><ul>
+<li><a href="https://www.jianshu.com/p/2e074db792ba" target="_blank" rel="external">事件传递机制</a> </li>
 <li>UI绘制原理</li>
 <li>异步绘制原理</li>
 <li>流式页面的性能优化</li>
 <li>离屏渲染</li>
 </ul>
-<h3 id="02-OC语言"><a href="#02-OC语言" class="headerlink" title="02 OC语言"></a>02 OC语言</h3><ul>
+<h4 id="事件传递"><a href="#事件传递" class="headerlink" title="事件传递"></a>事件传递</h4><p>1.如何更改响应对象</p>
+<p>2.最重要的两个函数</p>
+<p>3.传递链和响应链</p>
+<p>4.一个事件多次响应</p>
+<h4 id="UI绘制原理"><a href="#UI绘制原理" class="headerlink" title="UI绘制原理"></a>UI绘制原理</h4><h3 id="02-OC语言-基础"><a href="#02-OC语言-基础" class="headerlink" title="02 OC语言(基础)"></a>02 OC语言(基础)</h3><ul>
 <li>KVO</li>
 <li>KVC</li>
 <li>分类</li>
@@ -2121,14 +2132,14 @@ d = t ^ s          # 对称差集（项在t或s中，但不会同时出现在二
 <li>copy</li>
 <li>property</li>
 </ul>
-<h3 id="03-Runtime"><a href="#03-Runtime" class="headerlink" title="03 Runtime"></a>03 Runtime</h3><ul>
+<h3 id="03-Runtime-基础"><a href="#03-Runtime-基础" class="headerlink" title="03 Runtime(基础)"></a>03 Runtime(基础)</h3><ul>
 <li>对象、类对象、元类对象</li>
 <li>消息传递机制</li>
 <li>消息转发流程</li>
 <li>Method-Swizzling</li>
 <li>对象、类对象、原类对象的理解、消息传递机制、消息转发流程、Method-Swizzling、ISA-swizzling、动态方法解析、动态添加方法</li>
 </ul>
-<h3 id="04-内存"><a href="#04-内存" class="headerlink" title="04 内存"></a>04 内存</h3><ul>
+<h3 id="04-内存-基础"><a href="#04-内存-基础" class="headerlink" title="04 内存(基础)"></a>04 内存(基础)</h3><ul>
 <li>引用计数表</li>
 <li>弱引用表</li>
 <li>ARC、MRC</li>
@@ -2136,13 +2147,13 @@ d = t ^ s          # 对称差集（项在t或s中，但不会同时出现在二
 <li>内存管理</li>
 <li>为什么用copy，哪些情况下用copy，为什么用copy?</li>
 </ul>
-<h3 id="05-Block"><a href="#05-Block" class="headerlink" title="05 Block"></a>05 Block</h3><ul>
+<h3 id="05-Block-基础"><a href="#05-Block-基础" class="headerlink" title="05 Block(基础)"></a>05 Block(基础)</h3><ul>
 <li>Block本质</li>
 <li>截获变量特性</li>
 <li>内存管理</li>
 <li>循环引用</li>
 </ul>
-<h3 id="06-多线程"><a href="#06-多线程" class="headerlink" title="06 多线程"></a>06 多线程</h3><ul>
+<h3 id="06-多线程-基础"><a href="#06-多线程-基础" class="headerlink" title="06 多线程(基础)"></a>06 多线程(基础)</h3><ul>
 <li>GCD、nsoperation</li>
 <li>资源共享</li>
 <li>线程同步</li>
@@ -2150,13 +2161,13 @@ d = t ^ s          # 对称差集（项在t或s中，但不会同时出现在二
 <li>atomic和线程安全</li>
 <li>你怎样实现线程安全的？这些线程安全的办法和atomic有什么不一样？atomic的实现机制是怎样</li>
 </ul>
-<h3 id="07-RunLoop"><a href="#07-RunLoop" class="headerlink" title="07 RunLoop"></a>07 RunLoop</h3><ul>
+<h3 id="07-RunLoop-基础"><a href="#07-RunLoop-基础" class="headerlink" title="07 RunLoop(基础)"></a>07 RunLoop(基础)</h3><ul>
 <li>事件循环</li>
 <li>用户态</li>
 <li>核心态</li>
 <li>常驻线程</li>
 </ul>
-<h3 id="08-网络"><a href="#08-网络" class="headerlink" title="08 网络"></a>08 网络</h3><ul>
+<h3 id="08-网络-基础"><a href="#08-网络-基础" class="headerlink" title="08 网络(基础)"></a>08 网络(基础)</h3><ul>
 <li>HTTPS</li>
 <li>对称加密算法</li>
 <li>非对称加密</li>
@@ -2171,18 +2182,18 @@ d = t ^ s          # 对称差集（项在t或s中，但不会同时出现在二
 <li>用户产生一个下拉刷新动作，请详细描述网络如何传输</li>
 <li>简述tcp连接时的握手过程，不要第三次握手行不行？</li>
 </ul>
-<h3 id="09-设计模式"><a href="#09-设计模式" class="headerlink" title="09 设计模式"></a>09 设计模式</h3><ul>
+<h3 id="09-设计模式-基础"><a href="#09-设计模式-基础" class="headerlink" title="09 设计模式(基础)"></a>09 设计模式(基础)</h3><ul>
 <li>桥接、适配器、命令</li>
 <li>责任链、单例</li>
 <li>六大设计原则</li>
 </ul>
-<h3 id="10-架构-框架"><a href="#10-架构-框架" class="headerlink" title="10 架构/框架"></a>10 架构/框架</h3><ul>
+<h3 id="10-架构-框架-效率"><a href="#10-架构-框架-效率" class="headerlink" title="10 架构/框架(效率)"></a>10 架构/框架(效率)</h3><ul>
 <li>MVVM、时长统计框架</li>
 <li>图片缓存框架</li>
 <li>PV量级10亿级业务架构</li>
 <li>CocoaPods</li>
 </ul>
-<h3 id="优化理论与实践"><a href="#优化理论与实践" class="headerlink" title="优化理论与实践"></a>优化理论与实践</h3><ul>
+<h3 id="优化理论与实践-质量"><a href="#优化理论与实践-质量" class="headerlink" title="优化理论与实践(质量)"></a>优化理论与实践(质量)</h3><ul>
 <li>启动时长优化</li>
 <li>卡顿优化</li>
 <li>cpu占用</li>
@@ -2190,15 +2201,16 @@ d = t ^ s          # 对称差集（项在t或s中，但不会同时出现在二
 <li>UI主线程</li>
 <li>电量</li>
 <li>图片</li>
+<li>瘦身</li>
 </ul>
-<h3 id="效率提升"><a href="#效率提升" class="headerlink" title="效率提升"></a>效率提升</h3><ul>
+<h3 id="效率提升-效率"><a href="#效率提升-效率" class="headerlink" title="效率提升(效率)"></a>效率提升(效率)</h3><ul>
 <li>代码块</li>
 <li>功能模版</li>
 <li>自动代码</li>
 <li>json转model</li>
 <li>跨平台</li>
 </ul>
-<h3 id="研发质量管理"><a href="#研发质量管理" class="headerlink" title="研发质量管理"></a>研发质量管理</h3><ul>
+<h3 id="研发质量管理-质量"><a href="#研发质量管理-质量" class="headerlink" title="研发质量管理(质量)"></a>研发质量管理(质量)</h3><ul>
 <li>codereview</li>
 <li>clang二次开发(编译器警告)</li>
 <li>oclint</li>
@@ -2209,7 +2221,7 @@ d = t ^ s          # 对称差集（项在t或s中，但不会同时出现在二
 <li>重复图片检测</li>
 <li>ipa包大小和模块大小检测</li>
 </ul>
-<h3 id="监控理论和实践"><a href="#监控理论和实践" class="headerlink" title="监控理论和实践"></a>监控理论和实践</h3><ul>
+<h3 id="监控理论和实践-质量"><a href="#监控理论和实践-质量" class="headerlink" title="监控理论和实践(质量)"></a>监控理论和实践(质量)</h3><ul>
 <li>crash</li>
 <li>网络</li>
 <li>流量</li>
@@ -2221,7 +2233,7 @@ d = t ^ s          # 对称差集（项在t或s中，但不会同时出现在二
 <li>JSPatch</li>
 <li>Lua？</li>
 </ul>
-<h3 id="发包与灰度"><a href="#发包与灰度" class="headerlink" title="发包与灰度"></a>发包与灰度</h3><ul>
+<h3 id="发包与灰度-效率"><a href="#发包与灰度-效率" class="headerlink" title="发包与灰度(效率)"></a>发包与灰度(效率)</h3><ul>
 <li>testflight灰度的应用</li>
 <li>CI的优化(自动发包)</li>
 </ul>
@@ -2388,6 +2400,75 @@ d = t ^ s          # 对称差集（项在t或s中，但不会同时出现在二
     </entry>
     
     <entry>
+      <title><![CDATA[iOS中的视图渲染流程 iOS Rendering Process]]></title>
+      <url>/2017/08/26/iOS%E4%B8%AD%E7%9A%84%E8%A7%86%E5%9B%BE%E6%B8%B2%E6%9F%93/</url>
+      <content type="html"><![CDATA[<p>从软件层面上，iOS借助<code>Core Graohics</code>，<code>Core Animation</code>，<code>Core Image</code>完成图形的处理，它们又都是借助OpenGL ES来完成底层的工作，如下图</p>
+<p><img src="/26/iOS中的视图渲染/../images/arch01.png" alt="Text"></p>
+<p><img src="/26/iOS中的视图渲染/../images/QcQlN7B.png" alt="Text"></p>
+<p><img src="/26/iOS中的视图渲染/../images/offscreen06.png" alt="Text"></p>
+<p><img src="/26/iOS中的视图渲染/../images/arch03.png" alt="Text"></p>
+<p>计算机系统中 CPU、GPU、显示器是以上面这种方式协同工作的。CPU 计算好显示内容提交到 GPU，GPU 渲染完成后将渲染结果放入帧缓冲区，随后视频控制器会按照 VSync 信号逐行读取帧缓冲区的数据，经过可能的数模转换传递给显示器显示。</p>
+<p>在最简单的情况下，帧缓冲区只有一个，这时帧缓冲区的读取和刷新都都会有比较大的效率问题。为了解决效率问题，显示系统通常会引入两个缓冲区，即双缓冲机制。在这种情况下，GPU 会预先渲染好一帧放入一个缓冲区内，让视频控制器读取，当下一帧渲染好后，GPU 会直接把视频控制器的指针指向第二个缓冲器。如此一来效率会有很大的提升。</p>
+<p>在 iOS上，动画和视图的渲染其实是在另外一个进程做的（下面我们叫这个进程 render server），在 iOS 5 以前这个进程叫 SpringBoard，在 iOS 6 之后叫 BackBoard。</p>
+<blockquote>
+<p>对Core Animation的理解，不能认为这是一个动画框架，其实之前它叫做Layer Kit</p>
+</blockquote>
+<p>CoreAnimation的渲染流程可以用下图来概括:</p>
+<p><img src="/26/iOS中的视图渲染/../images/offscreen07.png" alt="Text"></p>
+<h3 id="视图或者动画渲染的几个阶段"><a href="#视图或者动画渲染的几个阶段" class="headerlink" title="视图或者动画渲染的几个阶段"></a>视图或者动画渲染的几个阶段</h3><h4 id="在-APP-内部的有4个阶段"><a href="#在-APP-内部的有4个阶段" class="headerlink" title="在 APP 内部的有4个阶段"></a>在 APP 内部的有4个阶段</h4><ul>
+<li><p>布局：在这个阶段，程序设置 View/Layer 的层级信息，设置 layer 的属性，如 frame，background color 等等。</p>
+</li>
+<li><p>创建 backing image：在这个阶段程序会创建 layer 的 backing image，无论是通过 setContents 将一个 image 传給 layer，还是通过 drawRect：或 drawLayer:inContext：来画出来的。所以 drawRect：等函数是在这个阶段被调用的。注意最终显示的图像</p>
+</li>
+<li><p>准备：在这个阶段，Core Animation 框架准备要渲染的 layer 的各种属性数据，以及要做的动画的参数，准备传递給 render server。同时在这个阶段也会解压要渲染的 image。（除了用 imageNamed：方法从 bundle 加载的 image 会立刻解压之外，其他的比如直接从硬盘读入，或者从网络上下载的 image 不会立刻解压，只有在真正要渲染的时候才会解压）。</p>
+</li>
+<li><p>提交：在这个阶段，Core Animation 打包 layer 的信息以及需要做的动画的参数，通过 IPC（inter-Process Communication）传递給 render server。</p>
+</li>
+</ul>
+<h4 id="在-APP-外部的2个阶段"><a href="#在-APP-外部的2个阶段" class="headerlink" title="在 APP 外部的2个阶段"></a>在 APP 外部的2个阶段</h4><p>当这些数据到达 render server 后，会被反序列化成 render tree。然后 render server 会做下面的两件事：</p>
+<ul>
+<li><p>根据 layer 的各种属性（如果是动画的，会计算动画 layer 的属性的中间值），用 OpenGL 准备渲染。</p>
+</li>
+<li><p>渲染这些可视的 layer 到屏幕。</p>
+</li>
+</ul>
+<h3 id="具体的UIView绘制流程"><a href="#具体的UIView绘制流程" class="headerlink" title="具体的UIView绘制流程"></a>具体的UIView绘制流程</h3><p><img src="/26/iOS中的视图渲染/../images/572639-02b179aa4d510a8a.png" alt="UIView"><br>下面我们来对这个流程进行说明：</p>
+<ul>
+<li>当我们调用[UIView setNeedsDisplay]方法时，并没有执行立即执行绘制工作。</li>
+<li>而是马上调用[view.layer setNeedsDisplay]方法，给当前layer打上脏标记。<br>在当前RunLoop快要结束的时候调用layer 的display方法，来进入到当前视图的真正绘制当中。</li>
+<li>在layer的display方法内部，系统会判断layer的layer.delegate是否实现了displayLayer:方法，a.如果没有实现，则执行系统的绘制流程;b.如果实现了则会进入异步绘制的入口。</li>
+<li>最后把绘制完的backing store（可以理解为位图）提交给GPU。</li>
+</ul>
+<p><img src="/26/iOS中的视图渲染/../images/572639-cf50391b5f8a5bfc.png" alt="UIView"></p>
+<p>对流程加以说明：</p>
+<ul>
+<li>在layer内部会创建一个backing store，我们可以理解为CGContextRef上下文。<br>判断layer是否有delegate:</li>
+<li>如果有delegate，则会执行[layer.delegate drawLayer:inContext]（这个方法的执行是在系统内部执行的），然后在这个方法中会调用view的drawRect:方法，也就是我们重写view的drawRect:方法才会被调用到。</li>
+<li>如果没有delegate，会调用layer的drawInContext方法，也就是我们可以重写的layer的该方法，此刻会被调用到。</li>
+<li>最后把绘制完的backing store（可以理解为位图）提交给GPU。</li>
+</ul>
+<h3 id="与runloop的关系"><a href="#与runloop的关系" class="headerlink" title="与runloop的关系"></a>与runloop的关系</h3><p><img src="/26/iOS中的视图渲染/../images/offscreen.png" alt="UIView"></p>
+<h3 id="几个问题"><a href="#几个问题" class="headerlink" title="几个问题"></a>几个问题</h3><h4 id="图像多层次的合成—为何设置透明会增加GPU工作量"><a href="#图像多层次的合成—为何设置透明会增加GPU工作量" class="headerlink" title="图像多层次的合成—为何设置透明会增加GPU工作量"></a>图像多层次的合成—为何设置透明会增加GPU工作量</h4><p>所以当源纹理是完全不透明的时候，目标像素就等于源纹理。这可以省下 GPU 很大的工作量，因为可以直接使用最上边的纹理，而不需要计算多个纹理的融合，这也是为什么 CALayer 有一个叫做 opaque 的属性了。如果这个属性为 NO，GPU 将不会做任何合成，而是简单从这个层拷贝，不需要考虑它下方的任何东西(因为都被它遮挡住了)。</p>
+<h4 id="关于卡顿的简单原理解释"><a href="#关于卡顿的简单原理解释" class="headerlink" title="关于卡顿的简单原理解释"></a>关于卡顿的简单原理解释</h4><p><img src="/26/iOS中的视图渲染/../images/offscreen022.png" alt="Text"><br>在 VSync 信号到来后，系统图形服务会通过 CADisplayLink 等机制通知 App，App 主线程开始在 CPU 中计算显示内容，比如视图的创建、布局计算、图片解码、文本绘制等。随后 CPU 会将计算好的内容提交到 GPU 去，由 GPU 进行变换、合成、渲染。随后 GPU 会把渲染结果提交到帧缓冲区去，等待下一次 VSync 信号到来时显示到屏幕上。由于垂直同步的机制，如果在一个 VSync 时间内，CPU 或者 GPU 没有完成内容提交，则那一帧就会被丢弃，等待下一次机会再显示，而这时显示屏会保留之前的内容不变。这就是界面卡顿的原因。最直接的理解，当我们拖动屏幕的时候，画面跟不上手指的移动，因为总是需要显示上一个或者上几个画面的内容。</p>
+<p>从上面的图中可以看到，CPU 和 GPU 不论哪个阻碍了显示流程，都会造成掉帧现象。所以开发时，也需要分别对 CPU 和 GPU 压力进行评估和优化。</p>
+<h4 id="drawRect导致内存暴增的原理"><a href="#drawRect导致内存暴增的原理" class="headerlink" title="drawRect导致内存暴增的原理"></a>drawRect导致内存暴增的原理</h4><p><a href="http://bihongbo.com/2016/01/03/memoryGhostdrawRect/" target="_blank" rel="external">drawRect恶魔</a></p>
+<p>视图的本质是来自于CALayer的contents属性，这是一个CGImage的类型，contents也被称为寄宿图，除了给它赋值CGImage之外，我们也可以直接对它进行绘制，绘制的方法正是这次问题的关键，通过继承UIView并实现-drawRect:方法即可自定义绘制。-drawRect: 方法没有默认的实现，因为对UIView来说，寄宿图并不是必须的，UIView不关心绘制的内容。如果UIView检测到-drawRect:方法被调用了，它就会为视图分配一个寄宿图，这个寄宿图的像素尺寸等于视图大小乘以contentsScale(这个属性与屏幕分辨率有关，我们的画板程序在不同模拟器下呈现的内存用量不同也是因为它)的值</p>
+<h4 id="我们经常在drawrect方法里绘制代码，但该方法是谁调用的-何时调用的？"><a href="#我们经常在drawrect方法里绘制代码，但该方法是谁调用的-何时调用的？" class="headerlink" title="我们经常在drawrect方法里绘制代码，但该方法是谁调用的 何时调用的？"></a>我们经常在drawrect方法里绘制代码，但该方法是谁调用的 何时调用的？</h4><p>[self.view addSubview:view]<br>[CALayer drawInContext:]<br>[UIView(CALayerDelegate) drawLayer:inContext:]<br>[ZYYView drawRect:]</p>
+<h4 id="drawrect方法内为何第一行代码总要获取图形的上下文"><a href="#drawrect方法内为何第一行代码总要获取图形的上下文" class="headerlink" title="drawrect方法内为何第一行代码总要获取图形的上下文"></a>drawrect方法内为何第一行代码总要获取图形的上下文</h4><p>每一个UIView都有一个layer，每一个layer都有个content，这个content指向的是一块缓存，叫做backing store<br>当UIView被绘制时（从 CA::Transaction::commit:以后），CPU执行drawRect，通过context将数据写入backing store<br>当backing store写完后，通过render server交给GPU去渲染，将backing store中的bitmap数据显示在屏幕上<br>所以在 drawRect 方法中 要首先获取 context</p>
+<h4 id="layer的代理必须是view吗，可以是vc吗？为何CALayerDelegate-不能主动遵循？"><a href="#layer的代理必须是view吗，可以是vc吗？为何CALayerDelegate-不能主动遵循？" class="headerlink" title="layer的代理必须是view吗，可以是vc吗？为何CALayerDelegate 不能主动遵循？"></a>layer的代理必须是view吗，可以是vc吗？为何CALayerDelegate 不能主动遵循？</h4><p><img src="/26/iOS中的视图渲染/../images/delegate.png" alt="Text"></p>
+<p>不能再将某个UIView设置为CALayer的delegate，因为UIView对象已经是它内部根层的delegate，再次设置为其他层的delegate就会出问题。UIViewController是可以的。在设置代理的时候，它并不要求我们遵守协议，说明这个方法为非正式协议，就不需要再额外的显示遵守协议了</p>
+]]></content>
+      
+        
+        <tags>
+            
+            <tag> iOS基础 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[算法题汇总]]></title>
       <url>/2017/07/18/2018/%E7%AE%97%E6%B3%95%E9%A2%98%E6%B1%87%E6%80%BB/</url>
       <content type="html"><![CDATA[<p>Given an array of 2n integers, your task is to group these integers into n pairs of integer, say (a1, b1), (a2, b2), …, (an, bn) which makes sum of min(ai, bi) for all i from 1 to n as large as possible.</p>
@@ -2502,9 +2583,9 @@ d = t ^ s          # 对称差集（项在t或s中，但不会同时出现在二
         
         <tags>
             
-            <tag> hexo </tag>
-            
             <tag> python </tag>
+            
+            <tag> hexo </tag>
             
         </tags>
         
@@ -4463,8 +4544,10 @@ d = t ^ s          # 对称差集（项在t或s中，但不会同时出现在二
 <li>获取到脚本文件后，调用JSPatch引擎，执行脚本文件进行修复</li>
 </ul>
 <blockquote>
-<p>补充:终端获取脚本文件是需要一个策略的，最简单的就是，终端根据版本号，获取与该版本号有关的脚本文件：<br>如：本次终端发布的版本是：1.0.3，那在上传脚本文件时，就可以将脚本文件的名称定义为：patch1_0_3.js<br>这样终端就可以根据版本号，动态组织脚本的下载地址，而且一个版本对应一个脚本文件，简单明了～～<br><img src="/12/2016/热修复技术在移动端的应用/./20151127111300698.jpeg" alt="Alt text"></p>
+<p>补充:终端获取脚本文件是需要一个策略的，最简单的就是，终端根据版本号，获取与该版本号有关的脚本文件：<br>如：本次终端发布的版本是：1.0.3，那在上传脚本文件时，就可以将脚本文件的名称定义为：patch1_0_3.js<br>这样终端就可以根据版本号，动态组织脚本的下载地址，而且一个版本对应一个脚本文件，简单明了～～</p>
 </blockquote>
+<p><img src="/12/2016/热修复技术在移动端的应用/./20151127111300698.jpeg" alt="Alt text"></p>
+<p><img src="/12/2016/热修复技术在移动端的应用/../images/Snip20160714_1.png" alt="Alt text"></p>
 <h4 id="JSPatch的引入"><a href="#JSPatch的引入" class="headerlink" title="JSPatch的引入"></a>JSPatch的引入</h4><ul>
 <li>引入SDK<ul>
 <li>原版SDK</li>
