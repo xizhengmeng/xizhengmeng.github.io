@@ -115,7 +115,7 @@
 <meta property="og:site_name" content="Hanson的博客">
 <meta property="og:description" content="主要罗列iOS开发中涉及到的基础知识点以及架构和基础的一些方面  基础 需求 质量 效率">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-06-29T03:30:18.000Z">
+<meta property="og:updated_time" content="2018-06-29T10:22:56.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS知识地图">
 <meta name="twitter:description" content="主要罗列iOS开发中涉及到的基础知识点以及架构和基础的一些方面  基础 需求 质量 效率">
@@ -424,14 +424,21 @@
 <p>2.最重要的两个函数</p>
 <p>3.传递链和响应链</p>
 <p>4.一个事件多次响应</p>
-<h4 id="UI绘制原理"><a href="#UI绘制原理" class="headerlink" title="UI绘制原理"></a>UI绘制原理</h4><h3 id="02-OC语言-基础"><a href="#02-OC语言-基础" class="headerlink" title="02 OC语言(基础)"></a>02 OC语言(基础)</h3><ul>
+<h4 id="UI绘制原理"><a href="#UI绘制原理" class="headerlink" title="UI绘制原理"></a>UI绘制原理</h4><ul>
+<li>卡顿的本质</li>
+<li>绘制的时候cpu和gpu怎么分工</li>
+<li>绘制优化点</li>
+</ul>
+<h3 id="02-OC语言-基础"><a href="#02-OC语言-基础" class="headerlink" title="02 OC语言(基础)"></a>02 OC语言(基础)</h3><ul>
 <li><a href="https://zhangbuhuai.com/understanding-kvo/" target="_blank" rel="external">KVO，observer</a></li>
 <li><a href="http://www.cocoachina.com/ios/20180411/22975.html" target="_blank" rel="external">KVC，set value for key</a></li>
 <li><a href="https://www.jianshu.com/p/c9a5fe906457" target="_blank" rel="external">kvc vs kvo</a></li>
 <li><a href="http://hanson647.com/2015/12/15/2015/category内部实现原理/" target="_blank" rel="external">分类</a></li>
+<li><a href="http://hanson647.com/2016/03/18/2016/转-delegate-KVO-Notification选择/" target="_blank" rel="external">kvo/delegate/notification选择</a></li>
 <li>关联对象</li>
 <li><a href="https://blog.csdn.net/lzhgxiaoxiong/article/details/47954687" target="_blank" rel="external">copy/strong/weak</a></li>
 <li>property</li>
+<li>通知(同步执行还是异步？)</li>
 </ul>
 <h3 id="03-Runtime-基础"><a href="#03-Runtime-基础" class="headerlink" title="03 Runtime(基础)"></a>03 Runtime(基础)</h3><p><a href="http://hanson647.com/2015/08/10/2015/runtime概述/" target="_blank" rel="external">runtime概述</a></p>
 <ul>
@@ -449,6 +456,7 @@
 <li>循环引用</li>
 <li>内存管理</li>
 <li>为什么用copy，哪些情况下用copy，为什么用copy?</li>
+<li>NSTimer的引用释放(runloop引用timer，timer引用self，导致不能释放)</li>
 </ul>
 <h3 id="05-Block-基础"><a href="#05-Block-基础" class="headerlink" title="05 Block(基础)"></a>05 Block(基础)</h3><ul>
 <li>Block本质</li>
@@ -496,7 +504,12 @@
 <li>PV量级10亿级业务架构</li>
 <li>CocoaPods</li>
 </ul>
-<h3 id="编译原理"><a href="#编译原理" class="headerlink" title="编译原理"></a>编译原理</h3><h3 id="优化理论与实践-质量"><a href="#优化理论与实践-质量" class="headerlink" title="优化理论与实践(质量)"></a>优化理论与实践(质量)</h3><p><a href="https://blog.ibireme.com/2015/11/12/smooth_user_interfaces_for_ios/" target="_blank" rel="external">YYKit终极优化</a></p>
+<h3 id="编译原理"><a href="#编译原理" class="headerlink" title="编译原理"></a>编译原理</h3><ul>
+<li>宏</li>
+<li>编译过程</li>
+<li>clang</li>
+</ul>
+<h3 id="优化理论与实践-质量"><a href="#优化理论与实践-质量" class="headerlink" title="优化理论与实践(质量)"></a>优化理论与实践(质量)</h3><p><a href="https://blog.ibireme.com/2015/11/12/smooth_user_interfaces_for_ios/" target="_blank" rel="external">YYKit终极优化</a></p>
 <ul>
 <li>启动时长优化</li>
 <li>卡顿优化</li>
@@ -543,7 +556,7 @@
 </ul>
 <h3 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h3><ul>
 <li>字符串反转</li>
-<li>快速排序</li>
+<li><a href="http://developer.51cto.com/art/201403/430986.htm" target="_blank" rel="external">快速排序</a></li>
 <li>单链表反转</li>
 <li>有序数组归并</li>
 <li>无序数组找中位数</li>
