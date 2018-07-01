@@ -1,0 +1,1176 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.3.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.3.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '6.3.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="文本分类模型以及使用代码记录">
+<meta name="keywords" content="python,机器学习,sklearn">
+<meta property="og:type" content="article">
+<meta property="og:title" content="skleanrn文本分类代码记录">
+<meta property="og:url" content="/2018/03/19/2018/skleanrn文本分类代码记录/index.html">
+<meta property="og:site_name" content="Hanson的博客">
+<meta property="og:description" content="文本分类模型以及使用代码记录">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-03-19T06:34:18.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="skleanrn文本分类代码记录">
+<meta name="twitter:description" content="文本分类模型以及使用代码记录">
+
+
+
+
+
+
+  <link rel="canonical" href="/2018/03/19/2018/skleanrn文本分类代码记录/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>skleanrn文本分类代码记录 | Hanson的博客</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hanson的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="/2018/03/19/2018/skleanrn文本分类代码记录/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Hanson">
+      <meta itemprop="description" content="主要做移动端开发，和研发效率提升，会一点python和数据挖掘，现在就职业京东金融">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hanson的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">skleanrn文本分类代码记录
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-03-19 14:33:02" itemprop="dateCreated datePublished" datetime="2018-03-19T14:33:02+08:00">2018-03-19</time>
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>文本分类模型以及使用代码记录<br><a id="more"></a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div><div class="line">151</div><div class="line">152</div><div class="line">153</div><div class="line">154</div><div class="line">155</div><div class="line">156</div><div class="line">157</div><div class="line">158</div><div class="line">159</div><div class="line">160</div><div class="line">161</div><div class="line">162</div><div class="line">163</div><div class="line">164</div><div class="line">165</div><div class="line">166</div><div class="line">167</div><div class="line">168</div><div class="line">169</div><div class="line">170</div><div class="line">171</div><div class="line">172</div><div class="line">173</div><div class="line">174</div><div class="line">175</div><div class="line">176</div><div class="line">177</div><div class="line">178</div><div class="line">179</div><div class="line">180</div><div class="line">181</div><div class="line">182</div><div class="line">183</div><div class="line">184</div><div class="line">185</div><div class="line">186</div><div class="line">187</div><div class="line">188</div><div class="line">189</div><div class="line">190</div><div class="line">191</div><div class="line">192</div><div class="line">193</div><div class="line">194</div><div class="line">195</div><div class="line">196</div><div class="line">197</div><div class="line">198</div><div class="line">199</div><div class="line">200</div><div class="line">201</div><div class="line">202</div><div class="line">203</div><div class="line">204</div><div class="line">205</div><div class="line">206</div><div class="line">207</div><div class="line">208</div><div class="line">209</div><div class="line">210</div><div class="line">211</div><div class="line">212</div><div class="line">213</div><div class="line">214</div><div class="line">215</div><div class="line">216</div><div class="line">217</div><div class="line">218</div><div class="line">219</div><div class="line">220</div><div class="line">221</div><div class="line">222</div><div class="line">223</div><div class="line">224</div><div class="line">225</div><div class="line">226</div><div class="line">227</div><div class="line">228</div><div class="line">229</div><div class="line">230</div><div class="line">231</div><div class="line">232</div><div class="line">233</div><div class="line">234</div><div class="line">235</div><div class="line">236</div><div class="line">237</div><div class="line">238</div><div class="line">239</div><div class="line">240</div><div class="line">241</div><div class="line">242</div><div class="line">243</div><div class="line">244</div><div class="line">245</div><div class="line">246</div><div class="line">247</div><div class="line">248</div><div class="line">249</div><div class="line">250</div><div class="line">251</div><div class="line">252</div><div class="line">253</div><div class="line">254</div><div class="line">255</div><div class="line">256</div><div class="line">257</div><div class="line">258</div><div class="line">259</div><div class="line">260</div><div class="line">261</div><div class="line">262</div><div class="line">263</div><div class="line">264</div><div class="line">265</div><div class="line">266</div><div class="line">267</div><div class="line">268</div><div class="line">269</div><div class="line">270</div><div class="line">271</div><div class="line">272</div><div class="line">273</div><div class="line">274</div><div class="line">275</div><div class="line">276</div><div class="line">277</div><div class="line">278</div><div class="line">279</div><div class="line">280</div><div class="line">281</div><div class="line">282</div><div class="line">283</div><div class="line">284</div><div class="line">285</div><div class="line">286</div><div class="line">287</div><div class="line">288</div><div class="line">289</div><div class="line">290</div><div class="line">291</div><div class="line">292</div><div class="line">293</div><div class="line">294</div><div class="line">295</div><div class="line">296</div><div class="line">297</div><div class="line">298</div><div class="line">299</div><div class="line">300</div><div class="line">301</div><div class="line">302</div><div class="line">303</div><div class="line">304</div><div class="line">305</div><div class="line">306</div><div class="line">307</div><div class="line">308</div><div class="line">309</div><div class="line">310</div><div class="line">311</div><div class="line">312</div><div class="line">313</div><div class="line">314</div><div class="line">315</div><div class="line">316</div><div class="line">317</div><div class="line">318</div><div class="line">319</div><div class="line">320</div><div class="line">321</div><div class="line">322</div><div class="line">323</div><div class="line">324</div><div class="line">325</div><div class="line">326</div><div class="line">327</div><div class="line">328</div><div class="line">329</div><div class="line">330</div><div class="line">331</div><div class="line">332</div><div class="line">333</div><div class="line">334</div><div class="line">335</div><div class="line">336</div><div class="line">337</div><div class="line">338</div><div class="line">339</div><div class="line">340</div><div class="line">341</div><div class="line">342</div><div class="line">343</div><div class="line">344</div><div class="line">345</div><div class="line">346</div><div class="line">347</div><div class="line">348</div><div class="line">349</div><div class="line">350</div><div class="line">351</div><div class="line">352</div><div class="line">353</div><div class="line">354</div><div class="line">355</div><div class="line">356</div><div class="line">357</div><div class="line">358</div><div class="line">359</div><div class="line">360</div><div class="line">361</div><div class="line">362</div><div class="line">363</div><div class="line">364</div><div class="line">365</div><div class="line">366</div><div class="line">367</div><div class="line">368</div><div class="line">369</div><div class="line">370</div><div class="line">371</div><div class="line">372</div><div class="line">373</div><div class="line">374</div><div class="line">375</div><div class="line">376</div><div class="line">377</div><div class="line">378</div><div class="line">379</div><div class="line">380</div><div class="line">381</div><div class="line">382</div><div class="line">383</div><div class="line">384</div><div class="line">385</div><div class="line">386</div><div class="line">387</div><div class="line">388</div><div class="line">389</div><div class="line">390</div><div class="line">391</div><div class="line">392</div><div class="line">393</div><div class="line">394</div><div class="line">395</div><div class="line">396</div><div class="line">397</div><div class="line">398</div><div class="line">399</div><div class="line">400</div><div class="line">401</div><div class="line">402</div><div class="line">403</div><div class="line">404</div><div class="line">405</div><div class="line">406</div><div class="line">407</div><div class="line">408</div><div class="line">409</div><div class="line">410</div><div class="line">411</div><div class="line">412</div><div class="line">413</div><div class="line">414</div><div class="line">415</div><div class="line">416</div><div class="line">417</div><div class="line">418</div><div class="line">419</div><div class="line">420</div><div class="line">421</div><div class="line">422</div><div class="line">423</div><div class="line">424</div><div class="line">425</div><div class="line">426</div><div class="line">427</div><div class="line">428</div><div class="line">429</div><div class="line">430</div><div class="line">431</div><div class="line">432</div><div class="line">433</div><div class="line">434</div><div class="line">435</div><div class="line">436</div><div class="line">437</div><div class="line">438</div><div class="line">439</div><div class="line">440</div><div class="line">441</div><div class="line">442</div><div class="line">443</div><div class="line">444</div><div class="line">445</div><div class="line">446</div><div class="line">447</div><div class="line">448</div><div class="line">449</div><div class="line">450</div><div class="line">451</div><div class="line">452</div><div class="line">453</div><div class="line">454</div><div class="line">455</div><div class="line">456</div><div class="line">457</div><div class="line">458</div><div class="line">459</div><div class="line">460</div><div class="line">461</div><div class="line">462</div><div class="line">463</div><div class="line">464</div><div class="line">465</div><div class="line">466</div><div class="line">467</div><div class="line">468</div><div class="line">469</div><div class="line">470</div><div class="line">471</div><div class="line">472</div><div class="line">473</div><div class="line">474</div><div class="line">475</div><div class="line">476</div><div class="line">477</div><div class="line">478</div><div class="line">479</div><div class="line">480</div><div class="line">481</div><div class="line">482</div><div class="line">483</div><div class="line">484</div><div class="line">485</div><div class="line">486</div><div class="line">487</div><div class="line">488</div><div class="line">489</div><div class="line">490</div><div class="line">491</div><div class="line">492</div><div class="line">493</div><div class="line">494</div><div class="line">495</div><div class="line">496</div><div class="line">497</div><div class="line">498</div><div class="line">499</div><div class="line">500</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">import os,re  </div><div class="line">import sys,jieba</div><div class="line">import codecs,time</div><div class="line">import shutil</div><div class="line">import numpy as np</div><div class="line">import pandas as pd</div><div class="line">import matplotlib</div><div class="line">import scipy,json,pinyin</div><div class="line">from sklearn.externals import joblib</div><div class="line">from sklearn.svm import SVC</div><div class="line">import matplotlib.pyplot as plt</div><div class="line">from sklearn.naive_bayes import MultinomialNB  </div><div class="line">from sklearn.naive_bayes import GaussianNB</div><div class="line">from sklearn.linear_model import Perceptron</div><div class="line">from sklearn.model_selection import train_test_split</div><div class="line">from sklearn import feature_extraction  </div><div class="line">from sklearn.feature_extraction.text import TfidfTransformer  </div><div class="line">from sklearn.feature_extraction.text import CountVectorizer</div><div class="line">from sklearn.feature_extraction.text import HashingVectorizer </div><div class="line">from pandas import DataFrame </div><div class="line">import enchant</div><div class="line">checkeng = enchant.Dict(&quot;en_US&quot;)</div><div class="line">    </div><div class="line">reload(sys) # Python2.5 初始化后会删除 sys.setdefaultencoding 这个方法，我们需要重新载入   </div><div class="line">sys.setdefaultencoding(&apos;utf-8&apos;)  </div><div class="line"></div><div class="line">jieba.load_userdict(&apos;customdict.txt&apos;)</div><div class="line">stopwords = open(&apos;stopwords.txt&apos;,&apos;r&apos;).read().split(&apos;\n&apos;)</div><div class="line">stopwordsadv = open(&apos;stopwordsadv.txt&apos;,&apos;r&apos;).read().split(&apos;\n&apos;)</div><div class="line">stopwords = open(&apos;teststopwords.txt&apos;,&apos;r&apos;).read().split(&apos;\n&apos;) + stopwords + stopwordsadv</div><div class="line"></div><div class="line">def handleadvkeywords(inputString):</div><div class="line">    if hasNumbers(inputString) == False:</div><div class="line">        return inputString</div><div class="line">    </div><div class="line">    pinyinlist = []</div><div class="line">    </div><div class="line">    for char in inputString:</div><div class="line">        pin = pinyin.get(char, format=&apos;strip&apos;, delimiter=&quot;&quot;)</div><div class="line">        pinyinlist.append(pin)</div><div class="line">    </div><div class="line">    setp = 2</div><div class="line">    </div><div class="line">    indexwei = 100</div><div class="line">    indexxin = 200</div><div class="line">    indexjia = 300</div><div class="line">    indexhao = 400</div><div class="line">    indexxing = 500</div><div class="line">    indexkou = 600</div><div class="line">    </div><div class="line">    if &apos;wei&apos; in pinyinlist:    </div><div class="line">        indexwei = pinyinlist.index(&apos;wei&apos;)</div><div class="line">        </div><div class="line">    if &apos;v&apos; in pinyinlist:    </div><div class="line">        indexwei = pinyinlist.index(&apos;v&apos;)    </div><div class="line">        </div><div class="line">    if &apos;xin&apos; in pinyinlist:    </div><div class="line">        indexxin = pinyinlist.index(&apos;xin&apos;)</div><div class="line">        </div><div class="line">    if &apos;xing&apos; in pinyinlist:    </div><div class="line">        indexxin = pinyinlist.index(&apos;xing&apos;)</div><div class="line">        </div><div class="line">    if &apos;hao&apos; in pinyinlist:    </div><div class="line">        indexhao = pinyinlist.index(&apos;hao&apos;)</div><div class="line">        </div><div class="line">    if &apos;jia&apos; in pinyinlist:    </div><div class="line">        indexjia = pinyinlist.index(&apos;jia&apos;)</div><div class="line">        </div><div class="line">    if &apos;zhao&apos; in pinyinlist:  </div><div class="line">        indexjia = pinyinlist.index(&apos;zhao&apos;)    </div><div class="line">    </div><div class="line">    if abs(indexxin - indexwei) &lt; setp:</div><div class="line">        inputString = u&apos;微信&apos; + inputString</div><div class="line">    </div><div class="line">    if abs(indexhao - indexwei) &lt; setp:</div><div class="line">        inputString = u&apos;微号&apos; + inputString</div><div class="line">    </div><div class="line">    if abs(indexwei - indexjia) &lt; setp:</div><div class="line">        inputString = u&apos;加微&apos; + inputString</div><div class="line">        </div><div class="line">#     if indexwei - indexjia &lt;= 2:</div><div class="line">#         inputString = &apos;加微&apos; + inputString</div><div class="line">        </div><div class="line">    if abs(indexxing - indexwei) &lt; setp:</div><div class="line">        inputString = u&apos;微信&apos; + inputString</div><div class="line">         </div><div class="line">    if  pinyinlist.count(&apos;kou&apos;) &gt;= 2:</div><div class="line">        inputString = &apos;qq&apos; + inputString</div><div class="line">    </div><div class="line">    if abs(indexkou - indexjia) &lt; setp:</div><div class="line">        inputString = u&apos;qq&apos; + inputString</div><div class="line">    </div><div class="line">    if &apos;加微微&apos; in inputString:</div><div class="line">        inputString = inputString.replace(&apos;加微微&apos;,&apos;加微&apos;)</div><div class="line">    </div><div class="line">    return inputString    </div><div class="line"></div><div class="line">def getwordcount(inputString):</div><div class="line">    df = pd.read_excel(&apos;lowfrequency.xls&apos;)</div><div class="line">    </div><div class="line">    negkeydicstring = open(&apos;negkeydic.json&apos;,&apos;r&apos;).read()</div><div class="line">    negkeydic = json.loads(negkeydicstring)</div><div class="line">    </div><div class="line">    count = 0</div><div class="line">    countdic = negkeydic.get(inputString)</div><div class="line">    if type(countdic) != type(None):</div><div class="line">        count = countdic[1]</div><div class="line">    print df[df[&apos;name&apos;] == inputString],count</div><div class="line"></div><div class="line">def cos_sim(vector_a, vector_b):</div><div class="line">    &quot;&quot;&quot;</div><div class="line">    计算两个向量之间的余弦相似度</div><div class="line">    :param vector_a: 向量 a </div><div class="line">    :param vector_b: 向量 b</div><div class="line">    :return: sim</div><div class="line">    &quot;&quot;&quot;</div><div class="line">    vector_a = np.mat(vector_a)</div><div class="line">    vector_b = np.mat(vector_b)</div><div class="line">    num = float(vector_a * vector_b.T)</div><div class="line">    denom = np.linalg.norm(vector_a) * np.linalg.norm(vector_b)</div><div class="line">    cos = num / denom</div><div class="line">    sim = 0.5 + 0.5 * cos</div><div class="line">    return sim</div><div class="line"></div><div class="line">def hasNumbers(inputString):</div><div class="line">    return any(char.isdigit() for char in inputString)</div><div class="line">    </div><div class="line">def replacenum(inputString):</div><div class="line">    </div><div class="line">    replaceDic = &#123;&apos;yi&apos;:&apos;1&apos;,&apos;yao&apos;:&apos;1&apos;,&apos;er&apos;:&apos;2&apos;,&apos;san&apos;:&apos;3&apos;,&apos;si&apos;:&apos;4&apos;,&apos;wu&apos;:&apos;5&apos;,&apos;liu&apos;:&apos;6&apos;,&apos;qi&apos;:&apos;7&apos;,&apos;ba&apos;:&apos;8&apos;,&apos;jiu&apos;:&apos;9&apos;,&apos;ling&apos;:&apos;0&apos;&#125;</div><div class="line">#     .replace(u&apos;腰&apos;,&apos;1&apos;).replace(u&apos;一&apos;,&apos;1&apos;).replace(u&apos;二&apos;,&apos;2&apos;).replace(u&apos;三&apos;,&apos;3&apos;).replace(u&apos;斯&apos;,&apos;4&apos;).replace(u&apos;四&apos;,&apos;4&apos;).replace(u&apos;五&apos;,&apos;5&apos;).replace(u&apos;六&apos;,&apos;6&apos;).replace(u&apos;齐&apos;,&apos;7&apos;).replace(u&apos;七&apos;,&apos;7&apos;).replace(u&apos;扒&apos;,&apos;8&apos;).replace(u&apos;八&apos;,&apos;8&apos;).replace(u&apos;九&apos;,&apos;9&apos;).replace(u&apos;零&apos;,&apos;0&apos;)</div><div class="line">    returnString = &apos;&apos;</div><div class="line">    if len(inputString) &lt;= 2:</div><div class="line">        for item in inputString:</div><div class="line">            pin = pinyin.get(item, format=&apos;strip&apos;, delimiter=&quot;&quot;)</div><div class="line">            output = replaceDic.get(pin)</div><div class="line">            if type(output) == type(&apos;1&apos;):</div><div class="line">                returnString = returnString + output   </div><div class="line">    </div><div class="line">    if returnString == &apos;&apos; or len(returnString) &lt; len(inputString):</div><div class="line">        returnString = inputString</div><div class="line">    </div><div class="line">    return returnString</div><div class="line">    </div><div class="line">def handlenum(inputString):</div><div class="line">    </div><div class="line">    if inputString.count(&apos;0&apos;) &gt;= 2:</div><div class="line">        inputString = inputString.replace(&apos;0&apos;,&apos;&apos;)</div><div class="line">    </div><div class="line">    if hasNumbers(inputString):</div><div class="line">        s = re.findall(&quot;\d+&quot;,inputString)</div><div class="line">        for item in s:</div><div class="line">            if len(item) == 11:</div><div class="line">                inputString = inputString.replace(item,&apos;䞄&apos;) #电话</div><div class="line">            else:</div><div class="line">                if len(inputString.replace(&apos;0&apos;,&apos;&apos;).replace(&apos;g&apos;,&apos;&apos;)) &gt;= 5 and inputString[-1] != &apos;0&apos;:</div><div class="line">                    if &apos;988511&apos; in inputString:</div><div class="line">                        inputString = &apos;京东&apos;</div><div class="line">                    else:</div><div class="line">                        if len(item) &gt;= 2:</div><div class="line">                            inputString = inputString.replace(item,&apos;藨&apos;) #qq微信之类的</div><div class="line">                        else:</div><div class="line">                            inputString = inputString.replace(item,&apos;&apos;)</div><div class="line"> </div><div class="line">        outList = jieba.lcut(inputString)</div><div class="line">        if &apos;&apos; in outList:</div><div class="line">            outList.remove(&apos;&apos;)</div><div class="line">        if &apos; &apos; in outList:</div><div class="line">            outList.remove(&apos; &apos;)    </div><div class="line">        outListNew = []</div><div class="line">        </div><div class="line">        for item in outList:</div><div class="line">            if (&apos;䞄&apos; in item) or (&apos;藨&apos; in item) or (&apos;京东&apos; in item):</div><div class="line">                outListNew.append(item)</div><div class="line">            else:</div><div class="line">                if hasNumbers(item) == False:</div><div class="line">                    if checkeng.check(item):</div><div class="line">                        outListNew.append(&apos;isenglish&apos;)</div><div class="line">                    else:</div><div class="line">                        outListNew.append(item)</div><div class="line">                               </div><div class="line">        return outListNew</div><div class="line">    </div><div class="line">    if inputString.isalpha() == True and len(inputString) &gt; 5:#如果是纯英文，并且英文长度大于5</div><div class="line">        if &apos;jd&apos; in inputString:</div><div class="line">            inputString = &apos;京东&apos;</div><div class="line">        else:</div><div class="line">            if checkeng.check(inputString):</div><div class="line">                inputString = &apos;isallenglish&apos;</div><div class="line">    </div><div class="line">    return [inputString]</div><div class="line"></div><div class="line">def translate(comment):</div><div class="line">    testline = re.sub(u&quot;[\s+\.\!\/_,$%^*(+\&quot;\&apos;]+|[+——！，！。？、~@#￥%……&amp;*（）]+&quot;, &apos;&apos;, comment)</div><div class="line">    testline = testline.replace(u&apos;[&apos;,&apos;&apos;).replace(u&apos;丨&apos;,&apos;&apos;).replace(chr(32),&apos;&apos;).replace(u&apos;！&apos;, u&apos;&apos;).replace(u&apos;，&apos;, u&apos;&apos;).replace(u&apos;。&apos;, u&apos;&apos;).replace(u&apos;\n&apos;, u&apos;&apos;).replace(u&apos;\t&apos;, u&apos;&apos;).replace(</div><div class="line">        u&apos;?&apos;, u&apos;&apos;).replace(u&apos;【&apos;,&apos;&apos;).replace(u&apos;o&apos;,&apos;&apos;).replace(u&apos;O&apos;,&apos;&apos;).replace(u&apos;丶&apos;,&apos;&apos;).replace(u&apos;‘&apos;,&apos;&apos;).replace(&apos;:&apos;,&apos;&apos;).replace(u&apos;：&apos;,&apos;&apos;).replace(&apos;(&apos;,&apos;&apos;).replace(&apos;)&apos;,&apos;&apos;).replace(&apos;&#123;&apos;,&apos;&apos;).replace(&apos;&#125;&apos;,&apos;&apos;).replace(u&apos;？&apos;, u&apos;&apos;).replace(u&apos;-&apos;,&apos;&apos;)</div><div class="line">    </div><div class="line">    if &apos;危险性&apos; in testline:</div><div class="line">        testline = testline.replace(&apos;危险性&apos;,&apos;&apos;)</div><div class="line">    if &apos;2018&apos; in testline:</div><div class="line">        testline = testline.replace(&apos;2018&apos;,&apos;&apos;)</div><div class="line">    if &apos;行为&apos; in testline:</div><div class="line">        testline = testline.replace(&apos;行为&apos;,&apos;&apos;)</div><div class="line">    if &apos;vivox&apos; in testline:</div><div class="line">        testline = testline.replace(&apos;vivox&apos;,&apos;&apos;)  </div><div class="line">    if &apos;越来越扣&apos; in testline:</div><div class="line">        testline = testline.replace(&apos;越来越扣&apos;,&apos;&apos;)      </div><div class="line">    if &apos;weixin&apos; in testline:</div><div class="line">        testline = testline.replace(&apos;weixin&apos;, &apos;微信&apos;)</div><div class="line">    if &apos;vxin&apos; in testline:</div><div class="line">        testline = testline.replace(&apos;vxin&apos;,&apos;微信&apos;)</div><div class="line">    if &apos;wxin&apos; in testline:</div><div class="line">        testline = testline.replace(&apos;wxin&apos;,&apos;微信&apos;)</div><div class="line">    </div><div class="line">    testline = testline.lower()</div><div class="line">    return testline </div><div class="line"></div><div class="line">def changeToWords(sentence):</div><div class="line">    global stopwords</div><div class="line">    out = translate(sentence)</div><div class="line">    out = handleadvkeywords(out)</div><div class="line">    jiebalistnew = []</div><div class="line">    jiebalist = jieba.lcut(out)</div><div class="line">    </div><div class="line">    forcut = &apos;&apos;</div><div class="line">    for item in jiebalist:</div><div class="line">        item = replacenum(item)</div><div class="line">        forcut = forcut + item</div><div class="line">    </div><div class="line">    jiebalist = jieba.lcut(forcut)</div><div class="line">    </div><div class="line">    for item in jiebalist:</div><div class="line">        if item not in stopwords:</div><div class="line">            jiebalistnew = jiebalistnew + handlenum(item)</div><div class="line">    </div><div class="line">    if &apos;&apos; in jiebalistnew:</div><div class="line">        jiebalistnew.remove(&apos;&apos;) </div><div class="line">    if &apos; &apos; in jiebalistnew:</div><div class="line">        jiebalistnew.remove(&apos; &apos;)     </div><div class="line">    string = &apos; &apos;.join(jiebalistnew)</div><div class="line">    print string</div><div class="line">    return string</div><div class="line"></div><div class="line">def getkeywords(corpus): #应该是计算每个词个数除以我这个阵营的词总数，倒数，这样来衡量占的比重，如果两者比重接近，那么无意义</div><div class="line">    corpus = map(changeToWords,corpus)</div><div class="line">    vectorizer = CountVectorizer(token_pattern=u&apos;(?u)\w+&apos;)</div><div class="line">    X = vectorizer.fit_transform(corpus)</div><div class="line">    names = vectorizer.get_feature_names()</div><div class="line">    count = X.toarray().sum(axis=0)</div><div class="line">    dictn = &#123;&#125;</div><div class="line">    values = vectorizer.vocabulary_.values()</div><div class="line">    </div><div class="line">    sum = np.array(values).sum()</div><div class="line">    </div><div class="line">    for i in range(len(names)):</div><div class="line">        key = names[i]</div><div class="line">        value = sum * 1.0 / count[i]</div><div class="line">        valuenew = count[i]</div><div class="line">        dictn[key] = (value,valuenew)</div><div class="line">    </div><div class="line">    return dictn</div><div class="line"></div><div class="line">def getcompare(cols1,cols2):#比较两边的占比情况</div><div class="line">    coldic1 = getkeywords(cols1)</div><div class="line">    coldic2 = getkeywords(cols2)</div><div class="line">    </div><div class="line">    negkeydicstring = json.dumps(coldic1)</div><div class="line">    f = open(&apos;negkeydic.json&apos;,&apos;w&apos;)</div><div class="line">    f.write(negkeydicstring)</div><div class="line">    f.close()</div><div class="line">    </div><div class="line">    listn = sorted(coldic1.items(), key=lambda d: d[1][0], reverse=True) </div><div class="line">    </div><div class="line">    returnList = []</div><div class="line">    for item in listn:</div><div class="line">        name = item[0]</div><div class="line">        count = coldic1.get(name)[0]</div><div class="line">        if name in coldic2.keys():</div><div class="line">            count1 = coldic2.get(name)[0]</div><div class="line">            ratio = count * 1.0 / count1</div><div class="line">            if ratio &gt; 0.7 and ratio &lt; 1.5:</div><div class="line">                returnList.append(name)</div><div class="line">            </div><div class="line">            countppos = coldic2.get(name)[1]</div><div class="line">            countpneg = coldic1.get(name)[1]</div><div class="line">            </div><div class="line">            if countppos * 1.0 / countpneg &gt; 3:</div><div class="line">                returnList.append(name)</div><div class="line">        </div><div class="line">    return returnList</div><div class="line">    </div><div class="line"></div><div class="line">def trainmodel():</div><div class="line">    </div><div class="line">    #########################################################################</div><div class="line">    #                           第一步 计算TFIDF</div><div class="line">    #文档预料 空格连接</div><div class="line">    corpus = []</div><div class="line">    global stopwords</div><div class="line">    </div><div class="line">    #读取预料 一行预料为一个文档</div><div class="line">    neg = pd.read_excel(&apos;adver.xls&apos;)</div><div class="line">    negcontents = neg[&apos;content&apos;].dropna()</div><div class="line">    negcorpus = list(negcontents)</div><div class="line">    negcorpus = map(changeToWords,negcorpus)</div><div class="line">    </div><div class="line">    #读取预料 一行预料为一个文档</div><div class="line">    pos = pd.read_excel(&apos;notadver.xls&apos;)</div><div class="line">    poscontents = pos[&apos;content&apos;].dropna() </div><div class="line">    poscorpus = list(poscontents)</div><div class="line">    poscorpus = map(changeToWords,poscorpus)</div><div class="line">    </div><div class="line">    stopwords = getcompare(negcorpus,poscorpus) + stopwords #停止词，两边比重差不多或者正常的多的词</div><div class="line">    tostop = CountVectorizer(stop_words=stopwords,token_pattern=u&apos;(?u)\w+&apos;)</div><div class="line">    #第一个fit_transform是计算tf-idf 第二个fit_transform是将文本转为词频矩阵</div><div class="line">    tostopcount = tostop.fit_transform(poscorpus+negcorpus)</div><div class="line">    words = tostop.get_feature_names()</div><div class="line">    sumlist = list(tostopcount.toarray().sum(axis=0))</div><div class="line">    a1 = np.array([words,sumlist])</div><div class="line">    a1 = np.transpose(a1)</div><div class="line">    dfnew = DataFrame(a1,columns=[&apos;name&apos;,&apos;count&apos;])</div><div class="line">    dfnew[&apos;count&apos;] = dfnew[&apos;count&apos;].astype(int)</div><div class="line">    dfnew.to_excel(&apos;lowfrequency.xls&apos;)</div><div class="line">    tostopwords = list(dfnew[dfnew[&apos;count&apos;] &lt; 7][&apos;name&apos;]) #去除频次小于7的词组</div><div class="line"></div><div class="line">    stopwords = stopwords + tostopwords</div><div class="line">    if os.path.exists(&apos;teststopwords.txt&apos;):</div><div class="line">        os.popen(&apos;rm -rf teststopwords.txt&apos;)</div><div class="line">    f = open(&apos;teststopwords.txt&apos;,&apos;w&apos;)</div><div class="line">    for item in stopwords:</div><div class="line">        if item.isalpha() == False:</div><div class="line">            f.write(item + &apos;\n&apos;)</div><div class="line">    f.close()   </div><div class="line">    </div><div class="line">#     #该类会统计每个词语的tf-idf权值</div><div class="line">    transformer = TfidfTransformer()</div><div class="line">    vectorizer = CountVectorizer(token_pattern=u&apos;(?u)\w+&apos;)</div><div class="line">    count0 = vectorizer.fit_transform(poscorpus+negcorpus)</div><div class="line">    tfidf = transformer.fit_transform(count0)</div><div class="line">    </div><div class="line">    #将tf-idf矩阵抽取出来，元素w[i][j]表示j词在i类文本中的tf-idf权重</div><div class="line">    weight = tfidf.toarray()</div><div class="line">    </div><div class="line">    x = weight</div><div class="line">    y = np.concatenate((np.zeros(len(poscorpus)), np.ones(len(negcorpus))))</div><div class="line">    </div><div class="line">    list0 = list(poscontents) + list(negcontents)</div><div class="line">    list1 = list(poscorpus+negcorpus)</div><div class="line">    list2 = list(weight)</div><div class="line">   </div><div class="line">    list3 = []</div><div class="line">    for item in list2:</div><div class="line">        item = list(item)</div><div class="line">        list3.append(&apos;/&apos;.join(&apos;%s&apos; % id for id in item))</div><div class="line">    </div><div class="line">    a2 = np.array([list0,list1,list3,y])</div><div class="line">    a2 = np.transpose(a2)</div><div class="line"></div><div class="line">    dftosave = DataFrame(a2,columns=[&apos;content&apos;,&apos;name&apos;,&apos;weight&apos;,&apos;isadver&apos;])</div><div class="line">    dftosave.to_csv(&apos;vecdict.csv&apos;)</div><div class="line">    </div><div class="line">    x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.01)</div><div class="line">    </div><div class="line">    # 构建支持向量机分类模型</div><div class="line">#     model = SVC(kernel=&apos;rbf&apos;, verbose=True)</div><div class="line">    </div><div class="line">#     model = GaussianNB()</div><div class="line">    modelnew = MultinomialNB()</div><div class="line">#     model = Perceptron()</div><div class="line">    </div><div class="line">#     model.fit(x_train, y_train)</div><div class="line">    modelnew.fit(x_train, y_train)</div><div class="line">    </div><div class="line">#     score = model.score(x_test, y_test)</div><div class="line">    scorenew = modelnew.score(x_test, y_test)</div><div class="line">#     print score</div><div class="line">    print scorenew</div><div class="line">    print &apos;donetest&apos;</div><div class="line">    joblib.dump(modelnew, &apos;bayes.pkl&apos;)</div><div class="line">    joblib.dump(transformer, &apos;transformer&apos;)</div><div class="line">    joblib.dump(vectorizer, &apos;vectorizer&apos;)</div><div class="line">    </div><div class="line">def testmodel(testString):</div><div class="line">    </div><div class="line">    isadver = False       </div><div class="line">    </div><div class="line">    testList = [testString]</div><div class="line">    negtestcorpus = map(changeToWords,testList)</div><div class="line">    </div><div class="line">    foruse = negtestcorpus[0].split(&apos; &apos;)</div><div class="line">    </div><div class="line">    nums = re.findall(r&apos;\d+&apos;, testString)</div><div class="line">    numstring = &apos;&apos;.join(nums)</div><div class="line">    count = len(numstring)</div><div class="line">    </div><div class="line">    forteststring = translate(testString) + &apos;&apos;.join(negtestcorpus)</div><div class="line">    </div><div class="line">    abList = [u&apos;微号&apos;,u&apos;QQ&apos;,u&apos;qq&apos;,u&apos;微我&apos;,u&apos;微信&apos;,u&apos;加微&apos;,u&apos;卫星&apos;,u&apos;*信&apos;,u&apos;维新&apos;,u&apos;企鹅&apos;,u&apos;加扣&apos;]</div><div class="line">    if count &gt;= 2:</div><div class="line">        for item in abList:</div><div class="line">            if item in forteststring:</div><div class="line">                isadver = True</div><div class="line">    </div><div class="line">    if (&apos;http&apos; in testString and &apos;jd&apos; not in testString) or (&apos;www&apos; in testString and &apos;jd&apos; not in testString) or ((&apos;com&apos; in testString and &apos;jd&apos; not in testString)):</div><div class="line">        isadver = True</div><div class="line">    </div><div class="line">    if isadver == True:</div><div class="line">        return isadver </div><div class="line">    </div><div class="line">    model = joblib.load(&apos;bayes.pkl&apos;)</div><div class="line">    vectorizer = joblib.load(&apos;vectorizer&apos;)</div><div class="line">    transformer = joblib.load(&apos;transformer&apos;)</div><div class="line">    </div><div class="line">    counts_train = vectorizer.transform(negtestcorpus)</div><div class="line">    testtfidf = transformer.transform(counts_train)</div><div class="line">    </div><div class="line">    result = model.predict(testtfidf.toarray())</div><div class="line">    </div><div class="line">    if result[0] == 0.0:</div><div class="line">        isadver = False</div><div class="line">    </div><div class="line">    if result[0] == 1.0:</div><div class="line">        isadver = True</div><div class="line">    </div><div class="line">    return isadver</div><div class="line"></div><div class="line">def tagalldata():</div><div class="line">    </div><div class="line">    negtest = pd.read_excel(&apos;notadver.xls&apos;)</div><div class="line">    print negtest.info()</div><div class="line">    negtest = negtest.dropna()</div><div class="line">    negtestcontents = negtest[&apos;content&apos;]</div><div class="line">    </div><div class="line">    df1 = map(testmodel,negtestcontents)</div><div class="line">    negtest[&apos;isadnew&apos;] = df1</div><div class="line">    </div><div class="line">    f = open(&apos;outputpos.txt&apos;,&apos;w&apos;)</div><div class="line">    for item in negtest[negtest[&apos;isadnew&apos;] == True][&apos;content&apos;]:</div><div class="line">        f.write(item + &apos;\n&apos;)</div><div class="line">    f.close()</div><div class="line">    print &apos;done&apos;</div><div class="line"></div><div class="line">def getsimiliar(testString):</div><div class="line">    vecdic = pd.read_csv(&apos;vecdict.csv&apos;)</div><div class="line">    namelist = list(vecdic[&apos;name&apos;])</div><div class="line">    weightlist = list(vecdic[&apos;weight&apos;])</div><div class="line">    contentlist = list(vecdic[&apos;content&apos;])</div><div class="line">    adverlist = list(vecdic[&apos;isadver&apos;])</div><div class="line"></div><div class="line">    weightlistnew = []</div><div class="line">    for item in weightlist:</div><div class="line">        itemlist = item.split(&apos;/&apos;)</div><div class="line">        outlist = []</div><div class="line">        for i in itemlist:</div><div class="line">            outlist.append(float(i))</div><div class="line">        weightlistnew.append(outlist)</div><div class="line">    </div><div class="line">    testList = [testString]</div><div class="line">    </div><div class="line">    negtestcorpus = map(changeToWords,testList)</div><div class="line">    </div><div class="line">    model = joblib.load(&apos;bayes.pkl&apos;)</div><div class="line">    transformer = joblib.load(&apos;transformer&apos;)</div><div class="line">    vectorizer = joblib.load(&apos;vectorizer&apos;)</div><div class="line">    </div><div class="line">    names = vectorizer.get_feature_names()</div><div class="line">    </div><div class="line">    counts_train = vectorizer.transform(negtestcorpus)</div><div class="line">    testtfidf = transformer.transform(counts_train)</div><div class="line">    </div><div class="line">    sentence = testtfidf.toarray()[0]</div><div class="line">    for item in weightlist:</div><div class="line">        itemlist = item.split(&apos;/&apos;)</div><div class="line">        outlist = []</div><div class="line">        for i in itemlist:</div><div class="line">            outlist.append(float(i))</div><div class="line">        similar = cos_sim(sentence,outlist)</div><div class="line">        if similar &gt; 0.65:</div><div class="line">            print contentlist[weightlist.index(item)],&apos;+++++++&apos;,namelist[weightlist.index(item)],&apos;------&apos;,adverlist[weightlist.index(item)]</div><div class="line">    </div><div class="line">def testsentence(inputString):</div><div class="line">    global contentlist</div><div class="line">    time1 = time.time()</div><div class="line">    print testmodel(inputString)</div><div class="line">    print time.time() - time1</div><div class="line">    getsimiliar(inputString)</div><div class="line">    print time.time() - time1</div><div class="line">    </div><div class="line">    </div><div class="line"># print testmodel(u&apos;京东，白，条好啊，白，条，可，以，唤，线，金。秒，到手。 有无，闪，付都一样，秒，到。还可以任，性，福，花，把。任，性，带。卫，星（q29206）&apos;)</div><div class="line"># tagalldata()</div><div class="line">print &apos;******&apos;</div><div class="line">time1 = time.time()</div><div class="line"># trainmodel()</div><div class="line"># tagalldata()</div><div class="line">testsentence(u&apos;我不相信weixinasdfasdf&apos;)</div><div class="line"># print getwordcount(u&apos;开户&apos;)</div><div class="line"># changeToWords(u&apos;想获得白条联系我qw6727444&apos;)</div><div class="line">print time.time() - time1</div></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/python/" rel="tag"># python</a>
+          
+            <a href="/tags/机器学习/" rel="tag"># 机器学习</a>
+          
+            <a href="/tags/sklearn/" rel="tag"># sklearn</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/03/17/iOS面试题总结/" rel="next" title="iOS面试题总结">
+                <i class="fa fa-chevron-left"></i> iOS面试题总结
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/03/20/2018/python的正则表达式使用/" rel="prev" title="python的正则表达式使用">
+                python的正则表达式使用 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zNjcxNi8xMzI1MQ=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Hanson</p>
+              <p class="site-description motion-element" itemprop="description">主要做移动端开发，和研发效率提升，会一点python和数据挖掘，现在就职业京东金融</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">94</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">3</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">29</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Hanson</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.3.9</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Pisces</a> v6.3.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.3.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script>
+
+
+
+  
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
