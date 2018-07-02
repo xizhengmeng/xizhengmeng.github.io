@@ -123,7 +123,18 @@
 <meta property="og:image" content="/30/images/2018-07-022.37.15.png">
 <meta property="og:image" content="/30/images/2018-07-022.39.06.png">
 <meta property="og:image" content="/30/images/2018-07-02.png2.39.59.png">
-<meta property="og:updated_time" content="2018-07-02T06:44:38.000Z">
+<meta property="og:image" content="/30/images/2018-07-023.21.23.png">
+<meta property="og:image" content="/30/images/2018-07-023.17.12.png">
+<meta property="og:image" content="/30/images/2018-07-023.19.10.png">
+<meta property="og:image" content="/30/images/2018-07-023.25.46.png">
+<meta property="og:image" content="/30/images/2018-07-023.28.20.png">
+<meta property="og:image" content="/30/images/2018-07-023.29.37.png">
+<meta property="og:image" content="/30/images/2018-07-023.30.57.png">
+<meta property="og:image" content="/30/images/2018-07-023.40.04.png">
+<meta property="og:image" content="/30/images/2018-07-023.39.10.png">
+<meta property="og:image" content="/30/images/2018-07-023.41.21.png">
+<meta property="og:image" content="/30/images/2018-07-023.42.38.png">
+<meta property="og:updated_time" content="2018-07-02T07:46:36.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS中的内存管理">
 <meta name="twitter:description" content="内存布局 内存管理方案 内存布局 MRC/ARC 引用计数 弱引用 自动释放池 循环引用  内存布局 栈(stack)方法调用都是在栈区，栈向下增长， 堆(heap)alloc的数据都是在堆区间，还有copy过的block 代码段(text)内存管理方案不同场景，不同方案  小数据 TaggedPointer NONPOINTER_ISA，剩余多余的位数用来存储点别的 散列表，包括引用计数表和弱">
@@ -431,12 +442,24 @@
 <li>NONPOINTER_ISA，剩余多余的位数用来存储点别的</li>
 <li>散列表，包括引用计数表和弱引用表</li>
 </ul>
+<p>先使用NON这种形式，不行的话散列表</p>
 <h4 id="散列表"><a href="#散列表" class="headerlink" title="散列表"></a>散列表</h4><p><img src="/30/iOS中的内存管理/../images/2018-07-02 2.33.00.png" alt=""></p>
 <p><img src="/30/iOS中的内存管理/../images/2018-07-022.33.20.png" alt=""></p>
 <p><img src="/30/iOS中的内存管理/../images/2018-07-022.36.06.png" alt=""></p>
 <p><img src="/30/iOS中的内存管理/../images/2018-07-022.37.15.png" alt=""></p>
 <p>如何实现快速分流，也就是找到SideTable的位置的？<br><img src="/30/iOS中的内存管理/../images/2018-07-022.39.06.png" alt=""><br><img src="/30/iOS中的内存管理/../images/2018-07-02.png2.39.59.png" alt=""></p>
-
+<h4 id="散列式数据结构"><a href="#散列式数据结构" class="headerlink" title="散列式数据结构"></a>散列式数据结构</h4><h5 id="自旋锁"><a href="#自旋锁" class="headerlink" title="自旋锁"></a>自旋锁</h5><p><img src="/30/iOS中的内存管理/../images/2018-07-023.21.23.png" alt=""></p>
+<h5 id="RedcountMap-引用计数"><a href="#RedcountMap-引用计数" class="headerlink" title="RedcountMap(引用计数)"></a>RedcountMap(引用计数)</h5><p><img src="/30/iOS中的内存管理/../images/2018-07-023.17.12.png" alt=""></p>
+<h5 id="弱引用表"><a href="#弱引用表" class="headerlink" title="弱引用表"></a>弱引用表</h5><p><img src="/30/iOS中的内存管理/../images/2018-07-023.19.10.png" alt=""></p>
+<h3 id="MRC和ARC"><a href="#MRC和ARC" class="headerlink" title="MRC和ARC"></a>MRC和ARC</h3><p><img src="/30/iOS中的内存管理/../images/2018-07-023.25.46.png" alt=""><br>禁止调用只是禁止显示调用，我们仍然可以用kvc来进行调用。</p>
+<p><img src="/30/iOS中的内存管理/../images/2018-07-023.28.20.png" alt=""></p>
+<p><img src="/30/iOS中的内存管理/../images/2018-07-023.29.37.png" alt=""></p>
+<p><img src="/30/iOS中的内存管理/../images/2018-07-023.30.57.png" alt=""></p>
+<p><img src="/30/iOS中的内存管理/../images/2018-07-023.40.04.png" alt=""></p>
+<p><img src="/30/iOS中的内存管理/../images/2018-07-023.39.10.png" alt=""></p>
+<p><img src="/30/iOS中的内存管理/../images/2018-07-023.41.21.png" alt=""></p>
+<p><img src="/30/iOS中的内存管理/../images/2018-07-023.42.38.png" alt=""></p>
+<h4 id="弱引用相关"><a href="#弱引用相关" class="headerlink" title="弱引用相关"></a>弱引用相关</h4>
       
     </div>
 
@@ -686,7 +709,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#内存布局"><span class="nav-number">1.</span> <span class="nav-text">内存布局</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#栈-stack"><span class="nav-number">1.0.1.</span> <span class="nav-text">栈(stack)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#堆-heap"><span class="nav-number">1.0.2.</span> <span class="nav-text">堆(heap)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#代码段-text"><span class="nav-number">1.0.3.</span> <span class="nav-text">代码段(text)</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#内存管理方案"><span class="nav-number">2.</span> <span class="nav-text">内存管理方案</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#散列表"><span class="nav-number">2.1.</span> <span class="nav-text">散列表</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#内存布局"><span class="nav-number">1.</span> <span class="nav-text">内存布局</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#栈-stack"><span class="nav-number">1.0.1.</span> <span class="nav-text">栈(stack)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#堆-heap"><span class="nav-number">1.0.2.</span> <span class="nav-text">堆(heap)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#代码段-text"><span class="nav-number">1.0.3.</span> <span class="nav-text">代码段(text)</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#内存管理方案"><span class="nav-number">2.</span> <span class="nav-text">内存管理方案</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#散列表"><span class="nav-number">2.1.</span> <span class="nav-text">散列表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#散列式数据结构"><span class="nav-number">2.2.</span> <span class="nav-text">散列式数据结构</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#自旋锁"><span class="nav-number">2.2.1.</span> <span class="nav-text">自旋锁</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#RedcountMap-引用计数"><span class="nav-number">2.2.2.</span> <span class="nav-text">RedcountMap(引用计数)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#弱引用表"><span class="nav-number">2.2.3.</span> <span class="nav-text">弱引用表</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MRC和ARC"><span class="nav-number">3.</span> <span class="nav-text">MRC和ARC</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#弱引用相关"><span class="nav-number">3.1.</span> <span class="nav-text">弱引用相关</span></a></li></ol></li></ol></div>
             
 
           </div>

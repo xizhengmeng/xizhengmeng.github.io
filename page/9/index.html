@@ -2155,12 +2155,24 @@
 <li>NONPOINTER_ISA，剩余多余的位数用来存储点别的</li>
 <li>散列表，包括引用计数表和弱引用表</li>
 </ul>
+<p>先使用NON这种形式，不行的话散列表</p>
 <h4 id="散列表"><a href="#散列表" class="headerlink" title="散列表"></a>散列表</h4><p><img src="/30/iOS中的内存管理/../images/2018-07-02 2.33.00.png" alt=""></p>
 <p><img src="/30/iOS中的内存管理/../images/2018-07-022.33.20.png" alt=""></p>
 <p><img src="/30/iOS中的内存管理/../images/2018-07-022.36.06.png" alt=""></p>
 <p><img src="/30/iOS中的内存管理/../images/2018-07-022.37.15.png" alt=""></p>
 <p>如何实现快速分流，也就是找到SideTable的位置的？<br><img src="/30/iOS中的内存管理/../images/2018-07-022.39.06.png" alt=""><br><img src="/30/iOS中的内存管理/../images/2018-07-02.png2.39.59.png" alt=""></p>
-
+<h4 id="散列式数据结构"><a href="#散列式数据结构" class="headerlink" title="散列式数据结构"></a>散列式数据结构</h4><h5 id="自旋锁"><a href="#自旋锁" class="headerlink" title="自旋锁"></a>自旋锁</h5><p><img src="/30/iOS中的内存管理/../images/2018-07-023.21.23.png" alt=""></p>
+<h5 id="RedcountMap-引用计数"><a href="#RedcountMap-引用计数" class="headerlink" title="RedcountMap(引用计数)"></a>RedcountMap(引用计数)</h5><p><img src="/30/iOS中的内存管理/../images/2018-07-023.17.12.png" alt=""></p>
+<h5 id="弱引用表"><a href="#弱引用表" class="headerlink" title="弱引用表"></a>弱引用表</h5><p><img src="/30/iOS中的内存管理/../images/2018-07-023.19.10.png" alt=""></p>
+<h3 id="MRC和ARC"><a href="#MRC和ARC" class="headerlink" title="MRC和ARC"></a>MRC和ARC</h3><p><img src="/30/iOS中的内存管理/../images/2018-07-023.25.46.png" alt=""><br>禁止调用只是禁止显示调用，我们仍然可以用kvc来进行调用。</p>
+<p><img src="/30/iOS中的内存管理/../images/2018-07-023.28.20.png" alt=""></p>
+<p><img src="/30/iOS中的内存管理/../images/2018-07-023.29.37.png" alt=""></p>
+<p><img src="/30/iOS中的内存管理/../images/2018-07-023.30.57.png" alt=""></p>
+<p><img src="/30/iOS中的内存管理/../images/2018-07-023.40.04.png" alt=""></p>
+<p><img src="/30/iOS中的内存管理/../images/2018-07-023.39.10.png" alt=""></p>
+<p><img src="/30/iOS中的内存管理/../images/2018-07-023.41.21.png" alt=""></p>
+<p><img src="/30/iOS中的内存管理/../images/2018-07-023.42.38.png" alt=""></p>
+<h4 id="弱引用相关"><a href="#弱引用相关" class="headerlink" title="弱引用相关"></a>弱引用相关</h4>
           
         
       
