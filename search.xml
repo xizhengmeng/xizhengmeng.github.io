@@ -423,8 +423,8 @@
     <url>%2F2017%2F06%2F12%2F2018%2F%E5%88%A9%E7%94%A8hexo%E6%90%AD%E5%BB%BA%E5%9B%A2%E9%98%9F%E5%8D%9A%E5%AE%A2%E7%B3%BB%E7%BB%9F%2F</url>
     <content type="text"><![CDATA[hexo搭建个人博客的原理 将md渲染为html 将html以及资源文件上传到github，利用githubpages功能进行展示 解析的过程是将目录下source/_post文件中的东西，渲染为publick中的html文件，然后将该文件夹下的文件复制到.deploy_git文件下，然后利用git操作将该文件夹下的文件push到对应的git库 使用hexo制作团队博客的困难 内网不能直接依赖于github 团队开发的权限管理问题 团队开发的作者识别问题 团队开发的文件冲突问题 问题的解决方案]]></content>
       <tags>
-        <tag>hexo</tag>
         <tag>python</tag>
+        <tag>hexo</tag>
       </tags>
   </entry>
   <entry>
@@ -742,7 +742,7 @@
   <entry>
     <title><![CDATA[深入理解block]]></title>
     <url>%2F2015%2F07%2F02%2F%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3block%2F</url>
-    <content type="text"><![CDATA[block介绍 截获变量 __block 内存管理 循环引用 什么是block是将函数及其执行上下文封装起来的对象。 查看编译后的内容clang -rewrite-objc file.m 什么是block调用block调用就是函数调用 截获变量 局部变量 基本数据类型，截获其值 对象，连同所有权修饰符一起截获 静态局部变量(static)，以指针形式进行截获 全局变量，不截获 静态全局变量，不截获 __block什么时候使用一般情况下，对被截获变量进行赋值操作需要添加__block修饰符，注意赋值不等于操作 1234__block NSMutableArray *arr = nil; void(^Block)(void) = ^&#123; arr = [NSMutableArray array]; &#125; 这种没有__block直接会报错 __block的原理是什么？__block修饰后的int类型会变成结构体，也就是对象。 12345678__block int muti = 6; int(^newBlock)(int) = ^int(int num) &#123; return muti * num; &#125;; muti = 4; newBlock(2); 这个结果是8 12345678int muti = 6;int(^newBlock)(int) = ^int(int num) &#123; return muti * num;&#125;;muti = 4;newBlock(2); 这个结果是12 12345678static int muti = 6;int(^newBlock)(int) = ^int(int num) &#123; return muti * num;&#125;; muti = 4; newBlock(2); 这个结果也是8]]></content>
+    <content type="text"><![CDATA[block介绍 截获变量 __block 内存管理 循环引用 什么是block是将函数及其执行上下文封装起来的对象。 查看编译后的内容clang -rewrite-objc file.m 什么是block调用block调用就是函数调用 截获变量 局部变量 基本数据类型，截获其值 对象，连同所有权修饰符一起截获 静态局部变量(static)，以指针形式进行截获 全局变量，不截获 静态全局变量，不截获 __block什么时候使用一般情况下，对被截获变量进行赋值操作需要添加__block修饰符，注意赋值不等于操作 1234__block NSMutableArray *arr = nil; void(^Block)(void) = ^&#123; arr = [NSMutableArray array]; &#125; 这种没有__block直接会报错 __block的原理是什么？__block修饰后的int类型会变成结构体，也就是对象。 12345678__block int muti = 6; int(^newBlock)(int) = ^int(int num) &#123; return muti * num; &#125;; muti = 4; newBlock(2); 这个结果是8 12345678int muti = 6;int(^newBlock)(int) = ^int(int num) &#123; return muti * num;&#125;;muti = 4;newBlock(2); 这个结果是12 12345678static int muti = 6;int(^newBlock)(int) = ^int(int num) &#123; return muti * num;&#125;; muti = 4; newBlock(2); 这个结果也是8 block内存管理]]></content>
       <tags>
         <tag>iOS</tag>
       </tags>
