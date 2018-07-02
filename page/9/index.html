@@ -2172,7 +2172,23 @@
 <p><img src="/30/iOS中的内存管理/../images/2018-07-023.39.10.png" alt=""></p>
 <p><img src="/30/iOS中的内存管理/../images/2018-07-023.41.21.png" alt=""></p>
 <p><img src="/30/iOS中的内存管理/../images/2018-07-023.42.38.png" alt=""></p>
-<h4 id="弱引用相关"><a href="#弱引用相关" class="headerlink" title="弱引用相关"></a>弱引用相关</h4>
+<h4 id="弱引用相关"><a href="#弱引用相关" class="headerlink" title="弱引用相关"></a>弱引用相关</h4><p><img src="/30/iOS中的内存管理/../images/2018-07-024.png" alt=""><br>源码入口<code>NSObject.mm/objc_initWeak</code></p>
+<h3 id="自动释放池"><a href="#自动释放池" class="headerlink" title="自动释放池"></a>自动释放池</h3><p>AutoreleasePool 原理？<br>为何可以嵌套使用？</p>
+<p><img src="/30/iOS中的内存管理/../images/2018-07-024.42.22.png" alt=""></p>
+<h4 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h4><p><code>objc_autoreleasePoolPush</code>调用<code>AutoreleasePoolPage::push</code>，一次pop相当于批量的pop</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">class AutoreleasePoolPage </div><div class="line">&#123;</div><div class="line">	id *next; //指向下一个可添加节点</div><div class="line">	pthread_t const thread;</div><div class="line">	AutoreleasePoolPage * const parent;</div><div class="line">	AutoreleasePoolPage *child;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><img src="/30/iOS中的内存管理/../images/2018-07-024.44.52.png" alt=""></p>
+<p>栈结构复习<br><img src="/30/iOS中的内存管理/../images/2018-07-024.46.29.png" alt=""></p>
+<p>双向链表结构复习<br><img src="/30/iOS中的内存管理/../images/2018-07-024.46.16.png" alt=""></p>
+<p>Push的时候发生了什么<br><img src="/30/iOS中的内存管理/../images/2018-07-024.53.19.png" alt=""><br>创建一个自动释放池就会创建一个哨兵，然后返回这个哨兵的位置，然后next向上移动，然后在池子中间创建的对象都会被自动添加到这个池子中，next不断移动，当执行pop的时候，中间的内容都会接收到release消息被释放，next指针会移动到哨兵的位置。</p>
+<p><code>[obj autorelease]的调用逻辑</code></p>
+<p><img src="/30/iOS中的内存管理/../images/2018-07-024.53.40.png" alt=""><br>这里一个逻辑有一点要注意就是如果这个栈已经满了，再添加节点在链表上，然后增加栈节点。</p>
+<h3 id="循环引用"><a href="#循环引用" class="headerlink" title="循环引用"></a>循环引用</h3><ul>
+<li>自循环引用</li>
+<li>相互循环引用</li>
+<li>多循环引用</li>
+</ul>
+
           
         
       
