@@ -904,6 +904,174 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="/2018/01/29/iOS线程安全与原子属性/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Hanson">
+      <meta itemprop="description" content="主要做移动端开发，和研发效率提升，会一点python和数据挖掘，现在就职业京东金融">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hanson的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/01/29/iOS线程安全与原子属性/" itemprop="url">
+                  iOS线程安全与原子属性
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-01-29 11:13:02" itemprop="dateCreated datePublished" datetime="2018-01-29T11:13:02+08:00">2018-01-29</time>
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>Objective-C 在声明一个属性的时候，想必大家都是不用经过大脑思考就会写 <code>@property (nonatomic, ...</code></p>
+<p>我们都知道属性可以是 nonatomic 也可以使 atomic 的，但是好像几乎所有属性在声明的时候 nonatomic，atomic 的属性几乎没出现过。atomic 修饰符仿佛已被大家遗忘。</p>
+<p>实际上，如果声明属性时既不写 atomic 也不写 nonatomic，那么这个属性默认是 atomic 的。</p>
+<h3 id="atomic-的作用和工作原理"><a href="#atomic-的作用和工作原理" class="headerlink" title="atomic 的作用和工作原理"></a>atomic 的作用和工作原理</h3><p>从字面上来看 nonatomic 是非原子的，atomic 是原子的。</p>
+<h3 id="atomic-的作用为："><a href="#atomic-的作用为：" class="headerlink" title="atomic 的作用为："></a>atomic 的作用为：</h3><p>atomic 修饰的属性的写操作是一个原子操作。</p>
+<h3 id="什么是原子操作？"><a href="#什么是原子操作？" class="headerlink" title="什么是原子操作？"></a>什么是原子操作？</h3><p>原子操作就是指不会被线程调度机制打断的操作。这个操作是一个整体，CPU 一旦开始执行它，就会一直到执行结束，在这期间 CPU 不会转而去执行其它线程的操作。</p>
+<h3 id="两种加锁的方式"><a href="#两种加锁的方式" class="headerlink" title="两种加锁的方式"></a>两种加锁的方式</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">- (void)setCount:(NSInteger)count &#123;</div><div class="line">    @synchronized (self) &#123;</div><div class="line">        _count = count;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>上面代码实现了和 atomic 相同的功能，但是底层的工作方式还是有区别的。我们常常用 @synchronized 来加锁，这种锁是互斥锁。而 atomic 修饰的属性自带了一把自旋锁。</p>
+<ul>
+<li>互斥锁    <code>当某个资源被先进入的线程上了锁以后，其它后面进入的线程会进入休眠状态。当锁释放后，进入休眠状态的线程变为唤醒状态。</code></li>
+<li>自旋锁    <code>当某个资源被先进入的线程上了锁以后，其它后进入的线程会开启一个循环，不断检查锁有没有释放，当锁释放后，退出循环开始访问资源，整个过程中后进入的线程一直保持运行状态。</code></li>
+</ul>
+<h3 id="对比-nonatomic-和-atomic"><a href="#对比-nonatomic-和-atomic" class="headerlink" title="对比 nonatomic 和 atomic"></a>对比 nonatomic 和 atomic</h3><ul>
+<li>nonatomic    执行效率高，性能好    不是线程安全的</li>
+<li>atomic    线程安全，但是仅能保证写操作的线程安全    大幅降低执行效率</li>
+</ul>
+<h3 id="关于线程安全首先理解"><a href="#关于线程安全首先理解" class="headerlink" title="关于线程安全首先理解"></a>关于线程安全首先理解</h3><p>我们只有一个地址总线，一个内存。即使是在多线程的环境下，也不可能存在两个线程同时访问同一块内存区域的场景，内存的访问一定是通过一个地址总线串行排队访问的，所以在继续后续之前，我们先要明确几个结论：</p>
+<p>结论一：内存的访问时串行的，并不会导致内存数据的错乱或者应用的crash。</p>
+<p>结论二：如果读写（load or store）的内存长度小于等于地址总线的长度，那么读写的操作是原子的，一次完成。比如bool，int，long在64位系统下的单次读写都是原子操作。</p>
+<h3 id="线程不安全举例"><a href="#线程不安全举例" class="headerlink" title="线程不安全举例"></a>线程不安全举例</h3><ul>
+<li>针对int类型，可能出现，数值计算不对的情况</li>
+<li>针对指针那就是，如果A线程获取了指针，但是在B线程对对这个指针的内存空间进行了释放，那么在A线程就会造成崩溃</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">@property (atomic, strong) NSString*                 stringA;</div><div class="line"></div><div class="line">//thread A</div><div class="line">for (int i = 0; i &lt; 100000; i ++) &#123;</div><div class="line">    if (i % 2 == 0) &#123;</div><div class="line">        self.stringA = @&quot;a very long string&quot;;</div><div class="line">    &#125;</div><div class="line">    else &#123;</div><div class="line">        self.stringA = @&quot;string&quot;;</div><div class="line">    &#125;</div><div class="line">    NSLog(@&quot;Thread A: %@\n&quot;, self.stringA);</div><div class="line">&#125;</div><div class="line"></div><div class="line">//thread B</div><div class="line">for (int i = 0; i &lt; 100000; i ++) &#123;</div><div class="line">    if (self.stringA.length &gt;= 10) &#123;</div><div class="line">        NSString* subStr = [self.stringA substringWithRange:NSMakeRange(0, 10)];</div><div class="line">    &#125;</div><div class="line">    NSLog(@&quot;Thread B: %@\n&quot;, self.stringA);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>正确做法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">//thread A</div><div class="line">[_lock lock];</div><div class="line">for (int i = 0; i &lt; 100000; i ++) &#123;</div><div class="line">    if (i % 2 == 0) &#123;</div><div class="line">        self.stringA = @&quot;a very long string&quot;;</div><div class="line">    &#125;</div><div class="line">    else &#123;</div><div class="line">        self.stringA = @&quot;string&quot;;</div><div class="line">    &#125;</div><div class="line">    NSLog(@&quot;Thread A: %@\n&quot;, self.stringA);</div><div class="line">&#125;</div><div class="line">[_lock unlock];</div><div class="line"></div><div class="line">//thread B</div><div class="line">[_lock lock];</div><div class="line">if (self.stringA.length &gt;= 10) &#123;</div><div class="line">    NSString* subStr = [self.stringA substringWithRange:NSMakeRange(0, 10)];</div><div class="line">&#125;</div><div class="line">[_lock unlock];</div></pre></td></tr></table></figure>
+<p>虽然stringA是atomic的property，而且在取substring的时候做了length判断，线程B还是很容易crash，因为在前一刻读length的时候self.stringA = @”a very long string”;，下一刻取substring的时候线程A已经将self.stringA = @”string”;，立即出现out of bounds的Exception，crash，多线程不安全。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">@property (atomic, strong) NSArray*                 arr;</div><div class="line"></div><div class="line">//thread A</div><div class="line">for (int i = 0; i &lt; 100000; i ++) &#123;</div><div class="line">    if (i % 2 == 0) &#123;</div><div class="line">        self.arr = @[@&quot;1&quot;, @&quot;2&quot;, @&quot;3&quot;];</div><div class="line">    &#125;</div><div class="line">    else &#123;</div><div class="line">        self.arr = @[@&quot;1&quot;];</div><div class="line">    &#125;</div><div class="line">    NSLog(@&quot;Thread A: %@\n&quot;, self.arr);</div><div class="line">&#125;</div><div class="line"></div><div class="line">//thread B</div><div class="line">for (int i = 0; i &lt; 100000; i ++) &#123;</div><div class="line">    if (self.arr.count &gt;= 2) &#123;</div><div class="line">        NSString* str = [self.arr objectAtIndex:1];</div><div class="line">    &#125;</div><div class="line">    NSLog(@&quot;Thread B: %@\n&quot;, self.arr);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">//thread A</div><div class="line">[_lock lock];</div><div class="line">for (int i = 0; i &lt; 100000; i ++) &#123;</div><div class="line">    if (i % 2 == 0) &#123;</div><div class="line">        self.arr = @[@&quot;1&quot;, @&quot;2&quot;, @&quot;3&quot;];</div><div class="line">    &#125;</div><div class="line">    else &#123;</div><div class="line">        self.arr = @[@&quot;1&quot;];</div><div class="line">    &#125;</div><div class="line">    NSLog(@&quot;Thread A: %@\n&quot;, self.arr);</div><div class="line">&#125;</div><div class="line">[_lock unlock];</div><div class="line">    </div><div class="line">//thread B</div><div class="line">[_lock lock];</div><div class="line">if (self.arr.count &gt;= 2) &#123;</div><div class="line">    NSString* str = [self.arr objectAtIndex:1];</div><div class="line">&#125;</div><div class="line">[_lock unlock];</div></pre></td></tr></table></figure>
+<p>同理，即使我们在访问objectAtIndex之前做了count的判断，线程B依旧很容易crash，原因也是由于前后两行代码之间arr所指向的内存区域被其他线程修改了。</p>
+<p>所以你看，真正需要操心的是这一类内存区域的访问，即使声明为atomic也没有用，我们平常App出现莫名其妙难以重现的多线程crash多是属于这一类，一旦在多线程的场景下访问这类内存区域的时候，要提起十二分的小心。如何避免这类crash后面会谈到。</p>
+<h3 id="Property多线程安全小结："><a href="#Property多线程安全小结：" class="headerlink" title="Property多线程安全小结："></a>Property多线程安全小结：</h3><p>简而言之，atomic的作用只是给getter和setter加了个锁，atomic只能保证代码进入getter或者setter函数内部时是安全的，一旦出了getter和setter，多线程安全只能靠程序员自己保障了。所以atomic属性和使用property的多线程安全并没什么直接的联系。另外，atomic由于加锁也会带来一些性能损耗，所以我们在编写iOS代码的时候，一般声明property为nonatomic，在需要做多线程安全的场景，自己去额外加锁做同步。</p>
+<h4 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h4><p><a href="http://mrpeak.cn/blog/ios-thread-safety/" target="_blank" rel="external">MrPeak</a></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="/2018/01/23/2018/用户行为路径分析思路/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1667,155 +1835,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="/2017/12/15/2017/centos6配置/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Hanson">
-      <meta itemprop="description" content="主要做移动端开发，和研发效率提升，会一点python和数据挖掘，现在就职业京东金融">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hanson的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/12/15/2017/centos6配置/" itemprop="url">
-                  centos6配置
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2017-12-15 14:53:04" itemprop="dateCreated datePublished" datetime="2017-12-15T14:53:04+08:00">2017-12-15</time>
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <ul>
-<li>首先需要python环境为2.7以上版本</li>
-<li>需要yum版本为<code>3.4.3</code>及以上，因为这样才能安装httpd为<code>2.4</code>版本及以上</li>
-<li>安装Django<code>sudo pip install --upgrade django==1.11</code></li>
-<li>安装numpy<code>sudo pip install numpy</code></li>
-<li>安装pymong<code>sudo pip install pymongo</code></li>
-<li>lunix 安装apxs扩展<code>yum install httpd-devel</code>安装mod-wsgi需要</li>
-<li>安装mod_wsgi<code>sudo pip install mod_wsgi</code>Django需要</li>
-<li>安装mod_wsgi<code>sudo yum install mod_wsgi</code>这个模块会出现在./usr/lib64/httpd/modules/mod_wsgi.so这里</li>
-<li>使用rz/sz来上传或者下载文件<code>yum install lrzsz</code></li></ul>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/12/15/2017/centos6配置/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1863,7 +1882,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">97</span>
+                    <span class="site-state-item-count">98</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
