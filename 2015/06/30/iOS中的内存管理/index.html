@@ -141,7 +141,9 @@
 <meta property="og:image" content="/30/images/2018-07-024.46.16.png">
 <meta property="og:image" content="/30/images/2018-07-024.53.19.png">
 <meta property="og:image" content="/30/images/2018-07-024.53.40.png">
-<meta property="og:updated_time" content="2018-07-02T09:01:42.000Z">
+<meta property="og:image" content="/30/images/2018-07-025.29.27.png">
+<meta property="og:image" content="/30/images/2018-07-025.33.14.png">
+<meta property="og:updated_time" content="2018-07-02T09:45:10.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS中的内存管理">
 <meta name="twitter:description" content="内存布局 内存管理方案 内存布局 MRC/ARC 引用计数 弱引用 自动释放池 循环引用  内存布局 栈(stack)方法调用都是在栈区，栈向下增长， 堆(heap)alloc的数据都是在堆区间，还有copy过的block 代码段(text)内存管理方案不同场景，不同方案  小数据 TaggedPointer NONPOINTER_ISA，剩余多余的位数用来存储点别的 散列表，包括引用计数表和弱">
@@ -482,6 +484,34 @@
 <li>相互循环引用</li>
 <li>多循环引用</li>
 </ul>
+<p>常考<br>&gt;</p>
+<blockquote>
+<ul>
+<li>代理</li>
+<li>Block</li>
+<li>NSTimer</li>
+<li>大环</li>
+</ul>
+</blockquote>
+<p>解决思路:</p>
+<ul>
+<li>避免产生</li>
+<li>在何时时机手动断环</li>
+</ul>
+<p>具体的方案:</p>
+<ul>
+<li>__weak，不增加计数</li>
+<li>__block</li>
+<li>__unsafe_unretained，不会增加计数，但是会产生悬垂指针</li>
+</ul>
+<h5 id="block注意"><a href="#block注意" class="headerlink" title="__block注意"></a>__block注意</h5><ul>
+<li>MRC下，__block修饰对象不会增加引用计数</li>
+<li>ARC下，__block修饰的对象会被强引用，无法避免循环引用，需要手动破解环</li>
+</ul>
+<h4 id="NSTimer的循环引用"><a href="#NSTimer的循环引用" class="headerlink" title="NSTimer的循环引用"></a>NSTimer的循环引用</h4><p><img src="/30/iOS中的内存管理/../images/2018-07-025.29.27.png" alt=""></p>
+<p>即使对象不引用Timer，也没用，因为Runloop会引用Timer，Timer的taget是对象，依然会增加对其的引用，当然如果timer只执行一次，我们可以断掉runloop的引用，但是如果是多次的timer咋办呢？</p>
+<p>解决方案：<br>增加中间对象</p>
+<p><img src="/30/iOS中的内存管理/../images/2018-07-025.33.14.png" alt=""></p>
 
       
     </div>
@@ -606,7 +636,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">99</span>
+                    <span class="site-state-item-count">100</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -732,7 +762,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#内存布局"><span class="nav-number">1.</span> <span class="nav-text">内存布局</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#栈-stack"><span class="nav-number">1.0.1.</span> <span class="nav-text">栈(stack)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#堆-heap"><span class="nav-number">1.0.2.</span> <span class="nav-text">堆(heap)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#代码段-text"><span class="nav-number">1.0.3.</span> <span class="nav-text">代码段(text)</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#内存管理方案"><span class="nav-number">2.</span> <span class="nav-text">内存管理方案</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#散列表"><span class="nav-number">2.1.</span> <span class="nav-text">散列表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#散列式数据结构"><span class="nav-number">2.2.</span> <span class="nav-text">散列式数据结构</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#自旋锁"><span class="nav-number">2.2.1.</span> <span class="nav-text">自旋锁</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#RedcountMap-引用计数"><span class="nav-number">2.2.2.</span> <span class="nav-text">RedcountMap(引用计数)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#弱引用表"><span class="nav-number">2.2.3.</span> <span class="nav-text">弱引用表</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MRC和ARC"><span class="nav-number">3.</span> <span class="nav-text">MRC和ARC</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#弱引用相关"><span class="nav-number">3.1.</span> <span class="nav-text">弱引用相关</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自动释放池"><span class="nav-number">4.</span> <span class="nav-text">自动释放池</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#数据结构"><span class="nav-number">4.1.</span> <span class="nav-text">数据结构</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#循环引用"><span class="nav-number">5.</span> <span class="nav-text">循环引用</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#内存布局"><span class="nav-number">1.</span> <span class="nav-text">内存布局</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#栈-stack"><span class="nav-number">1.0.1.</span> <span class="nav-text">栈(stack)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#堆-heap"><span class="nav-number">1.0.2.</span> <span class="nav-text">堆(heap)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#代码段-text"><span class="nav-number">1.0.3.</span> <span class="nav-text">代码段(text)</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#内存管理方案"><span class="nav-number">2.</span> <span class="nav-text">内存管理方案</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#散列表"><span class="nav-number">2.1.</span> <span class="nav-text">散列表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#散列式数据结构"><span class="nav-number">2.2.</span> <span class="nav-text">散列式数据结构</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#自旋锁"><span class="nav-number">2.2.1.</span> <span class="nav-text">自旋锁</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#RedcountMap-引用计数"><span class="nav-number">2.2.2.</span> <span class="nav-text">RedcountMap(引用计数)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#弱引用表"><span class="nav-number">2.2.3.</span> <span class="nav-text">弱引用表</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MRC和ARC"><span class="nav-number">3.</span> <span class="nav-text">MRC和ARC</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#弱引用相关"><span class="nav-number">3.1.</span> <span class="nav-text">弱引用相关</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自动释放池"><span class="nav-number">4.</span> <span class="nav-text">自动释放池</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#数据结构"><span class="nav-number">4.1.</span> <span class="nav-text">数据结构</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#循环引用"><span class="nav-number">5.</span> <span class="nav-text">循环引用</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#block注意"><span class="nav-number">5.0.1.</span> <span class="nav-text">__block注意</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#NSTimer的循环引用"><span class="nav-number">5.1.</span> <span class="nav-text">NSTimer的循环引用</span></a></li></ol></li></ol></div>
             
 
           </div>
