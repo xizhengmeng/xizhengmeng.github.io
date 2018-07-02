@@ -1948,6 +1948,40 @@
 <p>是否开辟新地址，是否影响引用计数</p>
 </blockquote>
 <p>面试题<br><img src="/01/汇总/../images/2018-07-01 7.46.27.png" alt=""></p>
+<h3 id="runtime"><a href="#runtime" class="headerlink" title="runtime"></a>runtime</h3><p>先了解这四种结构:</p>
+<ul>
+<li>objc_object</li>
+<li>objc_class</li>
+<li>isa指针</li>
+<li>method_t</li>
+</ul>
+<h4 id="objc-object"><a href="#objc-object" class="headerlink" title="objc_object"></a>objc_object</h4><p>id == objc_object</p>
+<p>包括</p>
+<p>isa_t isa相关操作</p>
+<p>弱引用相关</p>
+<p>关联对象相关</p>
+<p>内存管理相关</p>
+<h4 id="objc-class"><a href="#objc-class" class="headerlink" title="objc_class"></a>objc_class</h4><p>Class == objc_class 继承自objc_objct</p>
+<p>包括</p>
+<p>Class superClass</p>
+<p>cache_t cache   方法缓存</p>
+<p>class_data_bits_t bits 变量，属性和方法都在这</p>
+<h5 id="关于Class"><a href="#关于Class" class="headerlink" title="关于Class"></a>关于Class</h5><p><img src="/01/汇总/../images/2018-07-02 10.43.54.png" alt=""><br>说明:当我们调用实例方法，实际是通过isa去Class对象中查找的，当我们调用类方法，实际是通过类对象的isa去元类中查找的。</p>
+<h5 id="关于cache-t"><a href="#关于cache-t" class="headerlink" title="关于cache_t"></a>关于cache_t</h5><p><img src="/01/汇总/../images/2018-07-02 11.13.08.png" alt=""></p>
+<p><img src="/01/汇总/../images/2018-07-02 11.15.07.png" alt=""><br>说明cache_t是一个数组，然后里边每个元素里都有一个key，也即是SEL，还有一个IMP，当我们传入一个SEL的时候，通过hash算法获取这个对象的索引，然后快速的获取到这个bucket_t，然后获取IMP进行调用</p>
+<h5 id="关于class-data-bits-t"><a href="#关于class-data-bits-t" class="headerlink" title="关于class_data_bits_t"></a>关于class_data_bits_t</h5><p>这个是对class_rw_t的封装</p>
+<p><img src="/01/汇总/../images/2018-07-02 11.21.25.png" alt=""></p>
+<p>methods里边每一个元素又是一个数组，然后每个数组代表的是一个分类中的添加的所有的方法，最终都会被汇总到这里，进行方法查找的时候就是在这里进行的查找，遍历methods，从前到后，现在第一个数组里查找，再到第二个数组里查找，以此类推</p>
+<p>分类中添加的东西都在上边这个结构中，class_rw_t，宿体本身的内容在下边这个结构当中</p>
+<p><img src="/01/汇总/../images/ 2018-07-02 11.26.53.png" alt=""></p>
+<h5 id="method-t"><a href="#method-t" class="headerlink" title="method_t"></a>method_t</h5><p><img src="/01/汇总/../images/2018-07-02 11.40.12.png" alt=""><br><img src="/01/汇总/../images/ 2018-07-02 11.36.39.png" alt=""></p>
+<p>一个函数只有一个返回值，多个参数，这里是类型的表示</p>
+<h5 id="总体结构图"><a href="#总体结构图" class="headerlink" title="总体结构图"></a>总体结构图</h5><p><img src="/01/汇总/../images/ 2018-07-02 11.32.44.png" alt=""></p>
+<h4 id="对象，类对象，元类对象"><a href="#对象，类对象，元类对象" class="headerlink" title="对象，类对象，元类对象"></a>对象，类对象，元类对象</h4><p>方法调用的时候的查找路径图</p>
+<p><img src="/01/汇总/../images/ 2018-07-02 11.47.06.png" alt=""></p>
+<p>根元类对象的superclass指向了NSObject，那么就意味着一个调用一个类方法，如果NSObject中有同名的实例方法，那么这个时候会执行这个实例方法，而不会发生崩溃</p>
+<h4 id="实际例子"><a href="#实际例子" class="headerlink" title="实际例子"></a>实际例子</h4><p><img src="/01/汇总/../images/2018-07-02 12.03.52.png" alt=""></p>
+<p>这个题目的结果两个都打印，Phone，这里要理解调用super的意思是说，跳过self这个类，直接从super这个类对象来查找，但是消息的接受者仍然是self，所以这里都打印Phone</p>
 
           
         
