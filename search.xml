@@ -808,6 +808,14 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[runtime源码下载]]></title>
+    <url>%2F2015%2F04%2F02%2Fruntime%E6%BA%90%E7%A0%81%E4%B8%8B%E8%BD%BD%2F</url>
+    <content type="text"><![CDATA[需要了解runtime的实现原理https://opensource.apple.com/source/objc4/有各个版本，下载的命令 比如下载680wget -c -r -np -k -L -p https://opensource.apple.com/source/objc4/objc4-680/]]></content>
+      <tags>
+        <tag>iOS</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Hexo 配置/使用教程]]></title>
     <url>%2F2015%2F03%2F09%2F2015%2FHexo-%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B%2F</url>
     <content type="text"><![CDATA[hexo安装 前提已经安装了node.js和git npm install hexo --no-optional hexo init myBlog//创建hexo的文件夹 cd myBlog npm install hexo server//打开对应的链接可看到效果 git配置 创建git仓库name/name.github.io 添加信息到配置文件_config.yml 123456# Deployment## Docs: https://hexo.io/docs/deployment.htmldeploy: type: git repository: git@github.com:xizhengmeng/xizhengmeng.github.io.git branch: master 安装插件npm install hexo-deployer-git --save 如果要访问这个网站直接xizhengmeng.github.io就好了 使用 进入博客所在的文件夹，比如我说的是~/myBlog hexo clean hexo g//生成 hexo d//推送到github服务器 hexo new &quot;fileName&quot;创建新的文件，在_post文件中 hexo new page fileName创建一个文件夹，然后在其中创建一个index.md文件，比如标签云页面，或者分类页面 绑定域名 申请域名，直接搜索hexo和github，域名和github绑定的问题 生成CNAME文件，并添加到source文件夹下，与post同级目录 更改配置文件–——config.ymlurl: www.hanson647.com 主题安装 进入Hexo文件的根目录cd Hexo 拉取主题文件，并在本地创建对应的文件git clone https://github.com/kathyqian/crisp-ghost-theme.git themes/gost 更改配置文件的主题为该主题 1theme: yilia 重新部署 主题更新git pull 使用了yelee主题，主题使用说明http://moxfive.coding.me/yelee/ 搜索功能配置 安装插件npm install --save hexo-generator-search 设置主题配置文件 123search: on: true onload: true 设置hexo配置文件 123search: path: search.xml field: post 重新生成 最后你会在publick文件中看到一个search.xml文件，最后你会在你的网站中看到你的搜索框 注意在工程的_config文件中，要将url对应的字段设置为/，否则你会发现搜索会自动加上一个前置的url，这样就又错乱了 添加标签以及标签云页面 创建tags页面hexo new page tags 直接在文章中的tags关键字后边添加对应的标签就好 12tags:- 工具 编辑刚才创建的tags页面，将其类型更改为tags 123title: tagsdate: type: &quot;tags&quot; 在主题配置文件中，将tags添加到menu中 1234menu: home: / archives: /archives tags: /tags 创建关于页面hexo new page about 容易出现的问题hexo d Error: ssh_exchange_identification: read: Connection reset by peer说明是网关的问题，我是解决了一下网络解决的，一开始连接的是京东的guest网络，出现该问题，切换为access解决 md文件格式标题中#号要与后边的标题留出间隙，也就是一个空格，否则hexo渲染是不认的 参考链接 next主题设置http://theme-next.iissnan.com hexo官网https://hexo.io/zh-cn/]]></content>
