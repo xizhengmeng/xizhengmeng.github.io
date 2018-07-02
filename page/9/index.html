@@ -1948,7 +1948,7 @@
 <p>是否开辟新地址，是否影响引用计数</p>
 </blockquote>
 <p>面试题<br><img src="/01/汇总/../images/2018-07-01 7.46.27.png" alt=""></p>
-<h3 id="runtime"><a href="#runtime" class="headerlink" title="runtime"></a>runtime</h3><p>先了解这四种结构:</p>
+<h3 id="runtime-重点"><a href="#runtime-重点" class="headerlink" title="runtime(重点)"></a>runtime(重点)</h3><p>先了解这四种结构:</p>
 <ul>
 <li>objc_object</li>
 <li>objc_class</li>
@@ -1992,6 +1992,15 @@
 <p>父类逐级查找<br><img src="/01/汇总/../images/2018-07-0212.43.03.png" alt=""></p>
 <p>总流程</p>
 <p><img src="/01/汇总/../images/2018-07-0212.43.41.png" alt=""></p>
+<h4 id="消息转发流程"><a href="#消息转发流程" class="headerlink" title="消息转发流程"></a>消息转发流程</h4><p><img src="/01/汇总/../images/ 2018-07-02 2.11.14.png" alt=""></p>
+<h4 id="方法交换"><a href="#方法交换" class="headerlink" title="方法交换"></a>方法交换</h4><h4 id="动态添加方法"><a href="#动态添加方法" class="headerlink" title="动态添加方法"></a>动态添加方法</h4><p>performSeletor:</p>
+<h4 id="动态方法解析"><a href="#动态方法解析" class="headerlink" title="动态方法解析"></a>动态方法解析</h4><p>@dynamic</p>
+<ul>
+<li>动态运行时语言将函数决议推迟到运行时</li>
+<li>编译语言编译时决议，无法修改</li>
+</ul>
+<p>[obj foo]和obj_msgSend()函数关系？<br>runtime图和通过Selector找到对应的IMP地址的？</p>
+<p>能否向编译后的类中添加实例变量？不能，为啥？因为有一个类型是不可变的…得复习一下</p>
 
           
         
@@ -2140,7 +2149,18 @@
 <h3 id="内存布局"><a href="#内存布局" class="headerlink" title="内存布局"></a>内存布局</h3><p><img src="/30/iOS中的内存管理/../images/2018-06-305.51.54.png" alt=""></p>
 <h5 id="栈-stack"><a href="#栈-stack" class="headerlink" title="栈(stack)"></a>栈(stack)</h5><p>方法调用都是在栈区，栈向下增长，</p>
 <h5 id="堆-heap"><a href="#堆-heap" class="headerlink" title="堆(heap)"></a>堆(heap)</h5><p>alloc的数据都是在堆区间，还有copy过的block</p>
-<h5 id="代码段-text"><a href="#代码段-text" class="headerlink" title="代码段(text)"></a>代码段(text)</h5>
+<h5 id="代码段-text"><a href="#代码段-text" class="headerlink" title="代码段(text)"></a>代码段(text)</h5><h3 id="内存管理方案"><a href="#内存管理方案" class="headerlink" title="内存管理方案"></a>内存管理方案</h3><p>不同场景，不同方案</p>
+<ul>
+<li>小数据 TaggedPointer</li>
+<li>NONPOINTER_ISA，剩余多余的位数用来存储点别的</li>
+<li>散列表，包括引用计数表和弱引用表</li>
+</ul>
+<h4 id="散列表"><a href="#散列表" class="headerlink" title="散列表"></a>散列表</h4><p><img src="/30/iOS中的内存管理/../images/2018-07-02 2.33.00.png" alt=""></p>
+<p><img src="/30/iOS中的内存管理/../images/2018-07-022.33.20.png" alt=""></p>
+<p><img src="/30/iOS中的内存管理/../images/2018-07-022.36.06.png" alt=""></p>
+<p><img src="/30/iOS中的内存管理/../images/2018-07-022.37.15.png" alt=""></p>
+<p>如何实现快速分流，也就是找到SideTable的位置的？<br><img src="/30/iOS中的内存管理/../images/2018-07-022.39.06.png" alt=""><br><img src="/30/iOS中的内存管理/../images/2018-07-02.png2.39.59.png" alt=""></p>
+
           
         
       

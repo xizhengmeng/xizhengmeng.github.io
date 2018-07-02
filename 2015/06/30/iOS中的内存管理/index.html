@@ -108,19 +108,25 @@
 
 
 
-  <meta name="description" content="内存布局 内存管理方案 内存布局 MRC/ARC 引用计数 弱引用 自动释放池 循环引用  内存布局 栈(stack)方法调用都是在栈区，栈向下增长， 堆(heap)alloc的数据都是在堆区间，还有copy过的block 代码段(text)">
+  <meta name="description" content="内存布局 内存管理方案 内存布局 MRC/ARC 引用计数 弱引用 自动释放池 循环引用  内存布局 栈(stack)方法调用都是在栈区，栈向下增长， 堆(heap)alloc的数据都是在堆区间，还有copy过的block 代码段(text)内存管理方案不同场景，不同方案  小数据 TaggedPointer NONPOINTER_ISA，剩余多余的位数用来存储点别的 散列表，包括引用计数表和弱">
 <meta name="keywords" content="iOS">
 <meta property="og:type" content="article">
 <meta property="og:title" content="iOS中的内存管理">
 <meta property="og:url" content="/2015/06/30/iOS中的内存管理/index.html">
 <meta property="og:site_name" content="Hanson的博客">
-<meta property="og:description" content="内存布局 内存管理方案 内存布局 MRC/ARC 引用计数 弱引用 自动释放池 循环引用  内存布局 栈(stack)方法调用都是在栈区，栈向下增长， 堆(heap)alloc的数据都是在堆区间，还有copy过的block 代码段(text)">
+<meta property="og:description" content="内存布局 内存管理方案 内存布局 MRC/ARC 引用计数 弱引用 自动释放池 循环引用  内存布局 栈(stack)方法调用都是在栈区，栈向下增长， 堆(heap)alloc的数据都是在堆区间，还有copy过的block 代码段(text)内存管理方案不同场景，不同方案  小数据 TaggedPointer NONPOINTER_ISA，剩余多余的位数用来存储点别的 散列表，包括引用计数表和弱">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="/30/images/2018-06-305.51.54.png">
-<meta property="og:updated_time" content="2018-07-01T13:44:01.000Z">
+<meta property="og:image" content="/30/images/2018-07-02%202.33.00.png">
+<meta property="og:image" content="/30/images/2018-07-022.33.20.png">
+<meta property="og:image" content="/30/images/2018-07-022.36.06.png">
+<meta property="og:image" content="/30/images/2018-07-022.37.15.png">
+<meta property="og:image" content="/30/images/2018-07-022.39.06.png">
+<meta property="og:image" content="/30/images/2018-07-02.png2.39.59.png">
+<meta property="og:updated_time" content="2018-07-02T06:44:38.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS中的内存管理">
-<meta name="twitter:description" content="内存布局 内存管理方案 内存布局 MRC/ARC 引用计数 弱引用 自动释放池 循环引用  内存布局 栈(stack)方法调用都是在栈区，栈向下增长， 堆(heap)alloc的数据都是在堆区间，还有copy过的block 代码段(text)">
+<meta name="twitter:description" content="内存布局 内存管理方案 内存布局 MRC/ARC 引用计数 弱引用 自动释放池 循环引用  内存布局 栈(stack)方法调用都是在栈区，栈向下增长， 堆(heap)alloc的数据都是在堆区间，还有copy过的block 代码段(text)内存管理方案不同场景，不同方案  小数据 TaggedPointer NONPOINTER_ISA，剩余多余的位数用来存储点别的 散列表，包括引用计数表和弱">
 <meta name="twitter:image" content="/30/images/2018-06-305.51.54.png">
 
 
@@ -419,7 +425,18 @@
 <h3 id="内存布局"><a href="#内存布局" class="headerlink" title="内存布局"></a>内存布局</h3><p><img src="/30/iOS中的内存管理/../images/2018-06-305.51.54.png" alt=""></p>
 <h5 id="栈-stack"><a href="#栈-stack" class="headerlink" title="栈(stack)"></a>栈(stack)</h5><p>方法调用都是在栈区，栈向下增长，</p>
 <h5 id="堆-heap"><a href="#堆-heap" class="headerlink" title="堆(heap)"></a>堆(heap)</h5><p>alloc的数据都是在堆区间，还有copy过的block</p>
-<h5 id="代码段-text"><a href="#代码段-text" class="headerlink" title="代码段(text)"></a>代码段(text)</h5>
+<h5 id="代码段-text"><a href="#代码段-text" class="headerlink" title="代码段(text)"></a>代码段(text)</h5><h3 id="内存管理方案"><a href="#内存管理方案" class="headerlink" title="内存管理方案"></a>内存管理方案</h3><p>不同场景，不同方案</p>
+<ul>
+<li>小数据 TaggedPointer</li>
+<li>NONPOINTER_ISA，剩余多余的位数用来存储点别的</li>
+<li>散列表，包括引用计数表和弱引用表</li>
+</ul>
+<h4 id="散列表"><a href="#散列表" class="headerlink" title="散列表"></a>散列表</h4><p><img src="/30/iOS中的内存管理/../images/2018-07-02 2.33.00.png" alt=""></p>
+<p><img src="/30/iOS中的内存管理/../images/2018-07-022.33.20.png" alt=""></p>
+<p><img src="/30/iOS中的内存管理/../images/2018-07-022.36.06.png" alt=""></p>
+<p><img src="/30/iOS中的内存管理/../images/2018-07-022.37.15.png" alt=""></p>
+<p>如何实现快速分流，也就是找到SideTable的位置的？<br><img src="/30/iOS中的内存管理/../images/2018-07-022.39.06.png" alt=""><br><img src="/30/iOS中的内存管理/../images/2018-07-02.png2.39.59.png" alt=""></p>
+
       
     </div>
 
@@ -669,7 +686,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#内存布局"><span class="nav-number">1.</span> <span class="nav-text">内存布局</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#栈-stack"><span class="nav-number">1.0.1.</span> <span class="nav-text">栈(stack)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#堆-heap"><span class="nav-number">1.0.2.</span> <span class="nav-text">堆(heap)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#代码段-text"><span class="nav-number">1.0.3.</span> <span class="nav-text">代码段(text)</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#内存布局"><span class="nav-number">1.</span> <span class="nav-text">内存布局</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#栈-stack"><span class="nav-number">1.0.1.</span> <span class="nav-text">栈(stack)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#堆-heap"><span class="nav-number">1.0.2.</span> <span class="nav-text">堆(heap)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#代码段-text"><span class="nav-number">1.0.3.</span> <span class="nav-text">代码段(text)</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#内存管理方案"><span class="nav-number">2.</span> <span class="nav-text">内存管理方案</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#散列表"><span class="nav-number">2.1.</span> <span class="nav-text">散列表</span></a></li></ol></li></ol></div>
             
 
           </div>
