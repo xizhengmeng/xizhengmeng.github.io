@@ -1982,6 +1982,16 @@
 <p>根元类对象的superclass指向了NSObject，那么就意味着一个调用一个类方法，如果NSObject中有同名的实例方法，那么这个时候会执行这个实例方法，而不会发生崩溃</p>
 <h4 id="实际例子"><a href="#实际例子" class="headerlink" title="实际例子"></a>实际例子</h4><p><img src="/01/汇总/../images/2018-07-02 12.03.52.png" alt=""></p>
 <p>这个题目的结果两个都打印，Phone，这里要理解调用super的意思是说，跳过self这个类，直接从super这个类对象来查找，但是消息的接受者仍然是self，所以这里都打印Phone</p>
+<h4 id="查找过程"><a href="#查找过程" class="headerlink" title="查找过程"></a>查找过程</h4><ul>
+<li>缓存查找</li>
+<li>当前类查找</li>
+</ul>
+<p><img src="/01/汇总/../images/2018-07-0212.39.22.png" alt=""><br>关键点在于通过hash查找，找到对应的bucket_t</p>
+<p>当前类查找</p>
+<p><img src="/01/汇总/../images/2018-07-0212.41.50.png" alt=""></p>
+<p>父类逐级查找<br><img src="/01/汇总/../images/2018-07-0212.43.03.png" alt=""></p>
+<p>总流程</p>
+<p><img src="/01/汇总/../images/2018-07-0212.43.41.png" alt=""></p>
 
           
         
