@@ -1649,7 +1649,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="/2016/07/19/2016/多线程技术-GCD/">
+    <link itemprop="mainEntityOfPage" href="/2016/06/30/分类与拓展/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Hanson">
@@ -1668,8 +1668,8 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2016/07/19/2016/多线程技术-GCD/" itemprop="url">
-                  多线程技术--GCD
+                <a class="post-title-link" href="/2016/06/30/分类与拓展/" itemprop="url">
+                  分类与拓展
                 </a>
               
             
@@ -1695,30 +1695,12 @@
                 
               
 
-              <time title="创建时间：2016-07-19 15:12:21" itemprop="dateCreated datePublished" datetime="2016-07-19T15:12:21+08:00">2016-07-19</time>
+              <time title="创建时间：2016-06-30 16:55:23" itemprop="dateCreated datePublished" datetime="2016-06-30T16:55:23+08:00">2016-06-30</time>
             
 
             
           </span>
 
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/iOS/" itemprop="url" rel="index"><span itemprop="name">iOS</span></a></span>
-
-                
-                
-              
-            </span>
           
 
           
@@ -1748,33 +1730,9 @@
 
       
         
-          <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ol>
-<li><p>并发执行的本质是多线程，不是多队列</p>
-</li>
-<li><p>开不开线程，取决于执行任务的函数，同步不开，异步开。</p>
-</li>
-<li><p>开几条线程，取决于队列，串行开一条，并发开多条(异步)</p>
-</li>
-<li><p>主队列：  专门用来在主线程上调度任务的”队列”，主队列不能在其他线程中调度任务！</p>
-</li>
-<li><p>如果主线程上当前正在有执行的任务，主队列暂时不会调度任务的执行！主队列同步任务，会造成死锁。原因是循环等待</p>
-</li>
-<li><p>同步任务可以队列调度多个异步任务前，指定一个同步任务，让所有的异步任务，等待同步任务执行完成，这是依赖关系。</p>
-</li>
-<li><p>全局队列：并发，能够调度多个线程，执行效率高，但是相对费电。 串行队列效率较低，省电省流量，或者是任务之间需要依赖也可以使用串行队列。</p>
-</li>
-<li><p>也可以通过判断当前用户的网络环境来决定开的线程数。WIFI下6条，3G/4G下2～3条。</p>
-</li>
-</ol>
-<h2 id="什么是GCD"><a href="#什么是GCD" class="headerlink" title="什么是GCD"></a>什么是GCD</h2><p>同步/异步</p>
-<p>串行/并发</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2016/07/19/2016/多线程技术-GCD/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+          
+            
+          
         
       
     </div>
