@@ -118,7 +118,8 @@
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="/02/images/2018-07-035.51.14.png">
 <meta property="og:image" content="/02/images/2018-07-036.05.38.png">
-<meta property="og:updated_time" content="2018-07-03T10:25:27.000Z">
+<meta property="og:image" content="/images/2018-07-039.31.30.png">
+<meta property="og:updated_time" content="2018-07-03T13:38:16.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="runloop相关">
 <meta name="twitter:description" content="什么是runloop是通过内部维护事件循环来对事件/消息进行管理的一个对象。 没有消息处理的时候，是用户态到内核态，有消息需要处理的时候，是内核态到用户态。 状态的切换才是关键。 数据结构解析 说明： 与pthread是一对一的关系 models是一个集合NSMutableSet commonModes也是一个集合，NSMutableSet  说明： source0和source1是NSMutab">
@@ -421,6 +422,7 @@
 <p>observers和timers是NSMutableArray类型，有序</p>
 <h4 id="runloopMode"><a href="#runloopMode" class="headerlink" title="runloopMode"></a>runloopMode</h4><p>当运行在mode1的情况下，无法接受mode2种的一些事件，比如在滑动的时候无法接受正常状态的事件。</p>
 <h4 id="CommonMode"><a href="#CommonMode" class="headerlink" title="CommonMode"></a>CommonMode</h4><p>不是一种实际存在的mode，它是同步source/timer/observer到多个mode的一种技术方案</p>
+<h3 id="从点击app图标开始发生了什么？"><a href="#从点击app图标开始发生了什么？" class="headerlink" title="从点击app图标开始发生了什么？"></a>从点击app图标开始发生了什么？</h3><h3 id="常驻线程"><a href="#常驻线程" class="headerlink" title="常驻线程"></a>常驻线程</h3><p><img src="/02/runloop相关/../../../images/2018-07-039.31.30.png" alt=""></p>
 
       
     </div>
@@ -671,7 +673,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是runloop"><span class="nav-number">1.</span> <span class="nav-text">什么是runloop</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据结构解析"><span class="nav-number">2.</span> <span class="nav-text">数据结构解析</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#runloopMode"><span class="nav-number">2.1.</span> <span class="nav-text">runloopMode</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#CommonMode"><span class="nav-number">2.2.</span> <span class="nav-text">CommonMode</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是runloop"><span class="nav-number">1.</span> <span class="nav-text">什么是runloop</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据结构解析"><span class="nav-number">2.</span> <span class="nav-text">数据结构解析</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#runloopMode"><span class="nav-number">2.1.</span> <span class="nav-text">runloopMode</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#CommonMode"><span class="nav-number">2.2.</span> <span class="nav-text">CommonMode</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#从点击app图标开始发生了什么？"><span class="nav-number">3.</span> <span class="nav-text">从点击app图标开始发生了什么？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常驻线程"><span class="nav-number">4.</span> <span class="nav-text">常驻线程</span></a></li></ol></div>
             
 
           </div>
