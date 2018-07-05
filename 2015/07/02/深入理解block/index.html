@@ -116,18 +116,18 @@
 <meta property="og:site_name" content="Hanson的博客">
 <meta property="og:description" content="block介绍 截获变量 __block 内存管理 循环引用  什么是block是将函数及其执行上下文封装起来的对象。 查看编译后的内容clang -rewrite-objc file.m查看含有UIKit.h的 clang -x objective-c -rewrite-objc -isysroot /Applications/Xcode.app/Contents/Developer/Plat">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="/02/images/2018-07-029.26.24.png">
-<meta property="og:image" content="/02/images/2018-07-029.26.30.png">
-<meta property="og:image" content="/02/images/2018-07-029.26.47.png">
-<meta property="og:image" content="/02/images/2018-07-029.26.58.png">
-<meta property="og:image" content="/02/images/2018-07-029.27.17.png">
-<meta property="og:image" content="/02/images/2018-07-029.27.28.png">
-<meta property="og:image" content="/02/images/2018-07-033.03.09.png">
-<meta property="og:updated_time" content="2018-07-04T01:08:33.000Z">
+<meta property="og:image" content="/images/2018-07-029.26.24.png">
+<meta property="og:image" content="/images/2018-07-029.26.30.png">
+<meta property="og:image" content="/images/2018-07-029.26.47.png">
+<meta property="og:image" content="/images/2018-07-029.26.58.png">
+<meta property="og:image" content="/images/2018-07-029.27.17.png">
+<meta property="og:image" content="/images/2018-07-029.27.28.png">
+<meta property="og:image" content="/images/2018-07-033.03.09.png">
+<meta property="og:updated_time" content="2018-07-05T08:28:05.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="深入理解block">
 <meta name="twitter:description" content="block介绍 截获变量 __block 内存管理 循环引用  什么是block是将函数及其执行上下文封装起来的对象。 查看编译后的内容clang -rewrite-objc file.m查看含有UIKit.h的 clang -x objective-c -rewrite-objc -isysroot /Applications/Xcode.app/Contents/Developer/Plat">
-<meta name="twitter:image" content="/02/images/2018-07-029.26.24.png">
+<meta name="twitter:image" content="/images/2018-07-029.26.24.png">
 
 
 
@@ -459,7 +459,7 @@
 <p>这段代码有没有问题？答案是没有，这里是修改的内存中的内容，并没有修改内存地址</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">- (void)blockDemo3</div><div class="line">&#123;</div><div class="line">    NSMutableString *strM= [NSMutableString stringWithString:@&quot;hello&quot;];</div><div class="line"></div><div class="line">    void (^block)() = ^ &#123;</div><div class="line">        [strM appendString:@&quot;hehe&quot;];</div><div class="line">    &#125;;</div><div class="line"></div><div class="line">    block();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>这样写有没有问题？这样写直接就报错了，没有__block修饰不允许修改指针地址。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"> NSMutableString *strM= [NSMutableString stringWithString:@&quot;hello&quot;];</div><div class="line">    </div><div class="line">void (^block)() = ^ &#123;</div><div class="line">    strM = @&quot;hehe&quot;;</div><div class="line">&#125;;</div><div class="line">    </div><div class="line">block();</div></pre></td></tr></table></figure></p>
-<h3 id="block内存管理"><a href="#block内存管理" class="headerlink" title="block内存管理"></a>block内存管理</h3><p><img src="/02/深入理解block/../images/2018-07-029.26.24.png" alt=""></p>
+<h3 id="block内存管理"><a href="#block内存管理" class="headerlink" title="block内存管理"></a>block内存管理</h3><p><img src="/02/深入理解block/../../../images/2018-07-029.26.24.png" alt=""></p>
 <p>&gt;</p>
 <blockquote>
 <ul>
@@ -470,11 +470,11 @@
 </blockquote>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">__block NSMutableString *strM= [NSMutableString stringWithString:@&quot;hello&quot;];</div><div class="line">    </div><div class="line">void (^block)() = ^&#123;</div><div class="line">    strM = @&quot;hehe&quot;;</div><div class="line">&#125;;</div><div class="line">    </div><div class="line">block();</div><div class="line">    </div><div class="line">NSLog(@&quot;%@&quot;,^&#123;&#125;);</div><div class="line">NSLog(@&quot;%@&quot;, ^&#123;strM = @&quot;123&quot;;&#125;);</div><div class="line">NSLog(@&quot;%@&quot;,block);</div></pre></td></tr></table></figure>
 <p>2018-07-03 10:02:20.760734+0800 xiancheng[77686:36486980] <__nsglobalblock__: 0x104050138=""><br>2018-07-03 10:02:20.763747+0800 xiancheng[77686:36486980] <__nsstackblock__: 0x7fff5bbb0b88=""><br>2018-07-03 10:02:20.764553+0800 xiancheng[77686:36486980] <__nsmallocblock__: 0x608000058e70=""></__nsmallocblock__:></__nsstackblock__:></__nsglobalblock__:></p>
-<p><img src="/02/深入理解block/../images/2018-07-029.26.30.png" alt=""></p>
-<p><img src="/02/深入理解block/../images/2018-07-029.26.47.png" alt=""></p>
-<p><img src="/02/深入理解block/../images/2018-07-029.26.58.png" alt=""><br>这个是会有内存泄漏的，栈上的会释放，但是堆上的不会</p>
-<p><img src="/02/深入理解block/../images/2018-07-029.27.17.png" alt=""></p>
-<p><img src="/02/深入理解block/../images/2018-07-029.27.28.png" alt=""></p>
+<p><img src="/02/深入理解block/../../../images/2018-07-029.26.30.png" alt=""></p>
+<p><img src="/02/深入理解block/../../../images/2018-07-029.26.47.png" alt=""></p>
+<p><img src="/02/深入理解block/../../../images/2018-07-029.26.58.png" alt=""><br>这个是会有内存泄漏的，栈上的会释放，但是堆上的不会</p>
+<p><img src="/02/深入理解block/../../../images/2018-07-029.27.17.png" alt=""></p>
+<p><img src="/02/深入理解block/../../../images/2018-07-029.27.28.png" alt=""></p>
 <h3 id="循环引用"><a href="#循环引用" class="headerlink" title="循环引用"></a>循环引用</h3><h4 id="weakSelf-StrongSelf-的使用"><a href="#weakSelf-StrongSelf-的使用" class="headerlink" title="weakSelf StrongSelf 的使用"></a>weakSelf StrongSelf 的使用</h4><p>解决循环应用的问题一定要分析清楚哪里出现了循环引用，只需要把其中一环加上weakSelf这类似的宏，就可以解决循环引用。_weak的实现原理，在原对象释放之后，_weak对象就会变成null，防止野指针。所以就输出了null了。</p>
 <p>那么我们怎么才能在weakSelf之后，block里面还能继续使用weakSelf之后的对象呢？</p>
 <p>究其根本原因就是weakSelf之后，无法控制什么时候会被释放，为了保证在block内不会被释放，需要添加_strong。</p>
@@ -491,7 +491,7 @@
 <p>说明一下_arr实际上是self-&gt;_arr，也是需要依赖self才能访问的，即使在内部，属性和成员变量的访问都是需要依赖对象。再从runtime角度看一下，当我调用一个方法的时候，经过msg_send函数转发，这里的参数只有self，和SEL以及参数，没有self的成员变量，所以只能依靠self去获取，这样的话无论如何都要穿入self才行。</p>
 <h4 id="block在MRC和ARC下的区别"><a href="#block在MRC和ARC下的区别" class="headerlink" title="__block在MRC和ARC下的区别"></a>__block在MRC和ARC下的区别</h4><p>下边这种写法使block持有了blockSelf这个对象，这个强引用在，解决的办法是破环，使用完之后释放blockSelf，这个方案的弊端是，如果这个block不调用，那么这个环就一直存在</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">__block typeof(self) blockSelf = self;</div><div class="line">    </div><div class="line">_block = ^NSString *(NSString *num) &#123;</div><div class="line">    NSLog(@&quot;%@&quot;, blockSelf.arr[0]);</div><div class="line">//    blockSelf = nil;</div><div class="line">    return @&quot;123&quot;;</div><div class="line">&#125;;</div><div class="line">    </div><div class="line">=========================================</div><div class="line"></div><div class="line">static NSString * __ViewController__viewDidLoad_block_func_0(struct __ViewController__viewDidLoad_block_impl_0 *__cself, NSString *num) &#123;</div><div class="line">__Block_byref_blockSelf_0 *blockSelf = __cself-&gt;blockSelf; // bound by ref</div><div class="line"></div><div class="line">    NSLog((NSString *)&amp;__NSConstantStringImpl__var_folders_h6_b8d2vwjj7hz3kdq9kpxts5j00000gq_T_ViewController_614b65_mi_0, ((id (*)(id, SEL, NSUInteger))(void *)objc_msgSend)((id)((NSMutableArray *(*)(id, SEL))(void *)objc_msgSend)((id)(blockSelf-&gt;__forwarding-&gt;blockSelf), sel_registerName(&quot;arr&quot;)), sel_registerName(&quot;objectAtIndexedSubscript:&quot;), (NSUInteger)0));</div><div class="line">    return (NSString *)&amp;__NSConstantStringImpl__var_folders_h6_b8d2vwjj7hz3kdq9kpxts5j00000gq_T_ViewController_614b65_mi_1;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p> <img src="/02/深入理解block/../images/2018-07-033.03.09.png" alt=""></p>
+<p><img src="/02/深入理解block/../../../images/2018-07-033.03.09.png" alt=""></p>
 
       
     </div>
@@ -616,7 +616,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">103</span>
+                    <span class="site-state-item-count">104</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
