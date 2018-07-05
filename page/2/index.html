@@ -327,6 +327,164 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="/2018/02/28/2018/数据科学-matplotlib/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Hanson">
+      <meta itemprop="description" content="主要做移动端开发，和研发效率提升，会一点python和数据挖掘，现在就职业京东金融">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hanson的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/02/28/2018/数据科学-matplotlib/" itemprop="url">
+                  数据科学--绘图--matplotlib+Seaborn+Bokeh
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-02-28 12:25:24" itemprop="dateCreated datePublished" datetime="2018-02-28T12:25:24+08:00">2018-02-28</time>
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>matplotlib 是面向对象的绘图工具包，绘制的图形中每一个元素都是一个对象，比如线条，文字，刻度等信息，可以通过修改这些对象的属性，从而改变绘图样式。</p>
+<p>matplotlib 中主要的绘图对象列表如下：<br>&gt;</p>
+<ul>
+<li>Figure 对象，可以想象为一张画布；</li>
+<li>Axes 对象，字面理解为坐标轴（因为每一个 Axes 都有一套 X Y轴坐标系，绘制图形时基于此坐标系绘制。) 也可以认为是子图，在一个 Figure 对象中可以包含多个 Axes 对象，也就是说一张画布可以包含多个子图；可以通过 plt.gcf() 和 plt.gca() 分别获取当前用于绘图的 Figure 和 Axes 对象</li>
+<li>Line2D 对象，代表线条；</li>
+<li>Text 对象，代表了文字，比如一张子图需要标题，就可以使用一个 Text 对象；</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">fig.add_subplot(2, 2, 4）#意思是，添加一个坐标体系，两行两列，然后添加到第四个位置上</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">import numpy as np</div><div class="line">import matplotlib.pyplot as plt</div><div class="line"></div><div class="line">fig1 = plt.figure()</div><div class="line"></div><div class="line">ax1 = fig1.add_subplot(2,2,1) #2行2列，我是第1个</div><div class="line">ax1.plot(np.random.randn(150).cumsum(), &apos;k--&apos;) #</div><div class="line"></div><div class="line">ax2 = fig1.add_subplot(2,2,2) #2行2列，我是第2个</div><div class="line">ax2.hist(np.random.randn(100), bins=20, color=&apos;k&apos;)</div><div class="line"></div><div class="line">ax3 = fig1.add_subplot(2,2,3) #2行2列，我是第3个</div><div class="line">ax3.scatter(np.arange(30), np.arange(30) + 3 * np.random.randn(30)) #散点</div><div class="line"></div><div class="line">plt.show()</div></pre></td></tr></table></figure>
+<p>其他的一些设置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">import numpy as np                                                               </div><div class="line">import matplotlib.pyplot as plt                                                                                                                                 </div><div class="line"></div><div class="line">fig = plt.figure()                                                               </div><div class="line">ax = fig.add_subplot(1,1,1)                                                      </div><div class="line"></div><div class="line"># 设置标题</div><div class="line">ax.set_title(&quot;Axes Example&quot;)</div><div class="line"></div><div class="line">major_ticks = np.arange(0, 101, 20)                                              </div><div class="line">minor_ticks = np.arange(0, 101, 5)                                               </div><div class="line"></div><div class="line"># 设置刻度</div><div class="line">ax.set_xticks(major_ticks)                                                       </div><div class="line">ax.set_xticks(minor_ticks, minor=True)                                           </div><div class="line">ax.set_yticks(major_ticks)                                                       </div><div class="line">ax.set_yticks(minor_ticks, minor=True)                                         </div><div class="line"></div><div class="line"># 设置 X, Y 轴 标签</div><div class="line">ax.set_xlabel(&quot;X axis&quot;)</div><div class="line">ax.set_ylabel(&quot;Y axis&quot;)</div><div class="line"></div><div class="line"># 设置网格                                                                       </div><div class="line">ax.grid(which=&apos;minor&apos;, alpha=0.2)                                                </div><div class="line">ax.grid(which=&apos;major&apos;, alpha=0.5)</div><div class="line"></div><div class="line"># 添加文字</div><div class="line">ax.text(42.5, 50, &quot;shiyanlou&quot;)</div></pre></td></tr></table></figure>
+<h3 id="常用图形"><a href="#常用图形" class="headerlink" title="常用图形"></a>常用图形</h3><h4 id="线性图"><a href="#线性图" class="headerlink" title="线性图"></a>线性图</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">import numpy as np</div><div class="line">import matplotlib.pyplot as plt</div><div class="line"></div><div class="line">fig = plt.figure()                                                               </div><div class="line">ax = fig.add_subplot(1,1,1)</div><div class="line"></div><div class="line">x = np.random.randn(100)</div><div class="line">y = np.random.randn(100)</div><div class="line"></div><div class="line">ax.plot(x, y)</div><div class="line">fig.show()</div></pre></td></tr></table></figure>
+<h4 id="直方图"><a href="#直方图" class="headerlink" title="直方图"></a>直方图</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">data = np.random.normal(0, 20, 1000)</div><div class="line">bins = np.arange(-100, 100, 5)</div><div class="line">ax.hist(data, bins=bins)</div><div class="line">fig.show()</div></pre></td></tr></table></figure>
+<p>上面的代码首先通过 np.random.normal 方法，在 0 到 20 的范围产生 1000 个符合正态分布的数据值，然后通过 np.arange(-100, 100, 5) 创建了 X 轴的区间刻度</p>
+<h4 id="散点图"><a href="#散点图" class="headerlink" title="散点图"></a>散点图</h4><p>散点图，将所有的数据值在图形中绘制成点，这样有多少数据值在图形中就会有多少个点。通过这些数据点可以看出数据值的分布模式，比如是否有聚类模式，或者相关关系或者发现离群点。在 matplotlib 中可以通过 Axes.scatter 绘制散点图：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">x = np.arange(1, 101)</div><div class="line">y = 20 + 3 * x + np.random.normal(0, 60, 100)</div><div class="line">ax.scatter(x, y)</div><div class="line">fig.show()</div></pre></td></tr></table></figure>
+<p>为了模拟散点图，我们先通过 np.arange(1, 101) 创建了 100 个数据值，接着基于此创建了 100 个 Y 轴数据，可以看到这里两组数据值之间有相关关系，因为是基于线性关系然后加上随机数生成的，绘制的散点图也证明了这点（图形向上倾斜）</p>
+<h4 id="箱线图"><a href="#箱线图" class="headerlink" title="箱线图"></a>箱线图</h4><p>箱线图可以看出数据的分散程度，异常值等信息，箱线图根据一组数据的以下 5 个统计值进行绘制：</p>
+<p>最小值；<br>第1四分位数；<br>中位数；<br>第3四分位数；<br>最大值；<br>其中四分位数，是指将一组数据值按大小排序后分成四等分，每一部分包含 1/4 的数据，这种划分的分割点就是四分位数。其中第1部分和第2部分的分割点称为第1分位数 Q_1Q<br>​1<br>​​ , 也被称为第25百分位数，第3部分和第4部分的分割点称为第3四分位数 Q_3Q<br>​3<br>​​ ，也被称为第75百分位数。而第二部分和第三部分的分割点是第2四分数，也就是中位数。其中四分位距 IQRIQR 是指第三四分位数和第一分四分位数的差，也就是 IQR = Q_3 - Q_1 IQR=Q<br>​3<br>​​ −Q<br>​1<br>​​ 。四分位距反映了中间 50% 数据的离散程度，数值越小代表数据越集中，越大代表数据越分散。</p>
+<p>在 matplotlib 中可以使用 Axes.boxplot 方法绘制箱线图：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"># 产生 50 个小于 100 的随机数</div><div class="line">spread = np.random.rand(50) * 100</div><div class="line"># 产生 25 个值为 50 的数据</div><div class="line">center = np.ones(25) * 50</div><div class="line"># 异常值</div><div class="line"></div><div class="line">outlier_high = np.random.rand(10) * 100 + 100</div><div class="line">outlier_low = np.random.rand(10) * -100</div><div class="line">data = np.concatenate((spread, center, outlier_high, outlier_low), 0)</div><div class="line">ax.boxplot(data)</div><div class="line">fig.show()</div></pre></td></tr></table></figure>
+<p>上面的代码中，我们特意创建了 data 数据，可以推断出该数据的中位数是 50，还有一些其他异常值</p>
+<h3 id="Seaborn"><a href="#Seaborn" class="headerlink" title="Seaborn"></a>Seaborn</h3><h3 id="Bokeh"><a href="#Bokeh" class="headerlink" title="Bokeh"></a>Bokeh</h3>
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="/2018/02/26/2018/kaggle入门随笔/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1686,155 +1844,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="/2017/12/18/2018/pymongo/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Hanson">
-      <meta itemprop="description" content="主要做移动端开发，和研发效率提升，会一点python和数据挖掘，现在就职业京东金融">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hanson的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/12/18/2018/pymongo/" itemprop="url">
-                  mongo日常命令记录
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2017-12-18 12:40:52" itemprop="dateCreated datePublished" datetime="2017-12-18T12:40:52+08:00">2017-12-18</time>
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="mongo常用"><a href="#mongo常用" class="headerlink" title="mongo常用"></a>mongo常用</h3><h4 id="mongo命令行"><a href="#mongo命令行" class="headerlink" title="mongo命令行"></a>mongo命令行</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">mongo jrappcomment:jrappcomment@xxxxxx:27017/jrappcomment?authSource=jrappcomment //连接远程数据库</div><div class="line"></div><div class="line">mongoexport -h xxxxxx --port 27017 -d jrappcomment -u jrappcomment -p jrappcomment -c jrcommentcategory -o goods2.json //导出</div><div class="line"></div><div class="line">mongoimport -h xxxxxx --port 27017 -d jrappcomment -u jrappcomment -p jrappcomment -c cachecomment --file goods2.json//导入</div></pre></td></tr></table></figure>
-<ul>
-<li>db.stats()</li>
-<li>show dbs</li>
-<li>show tables</li>
-<li>show collections</li>
-<li>db.collection.totalIndexSize()</li>
-<li>db.collection.totalSize()</li>
-<li>db.jrcomment.ensureIndex({id:1}) //mongo建立索引 </li>
-</ul>
-<h4 id="pymongo远程连接数据库"><a href="#pymongo远程连接数据库" class="headerlink" title="pymongo远程连接数据库"></a>pymongo远程连接数据库</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">dbs = comment.find(&#123;&#125;).sort([(&apos;datetime&apos;,1),(&apos;created_time&apos;,1)]).limit(10000)</div><div class="line">print type(list(dbs))</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">import os, time, json ,sys</div><div class="line">from pymongo import MongoClient</div><div class="line">import urllib</div><div class="line"></div><div class="line">username = urllib.quote_plus(&apos;jrappcomment&apos;)</div><div class="line">password = urllib.quote_plus(&apos;jrappcomment&apos;)</div><div class="line"></div><div class="line">client = MongoClient(&apos;mongodb://%s:%s@xxxxxx:27017/jrappcomment?authSource=jrappcomment&apos; % (username, password))</div><div class="line"></div><div class="line"># client = MongoClient(&quot;mongodb://172.25.60.48:27017&quot;)</div><div class="line"># client.adb.authenticate(username, password, mechanism=&apos;SCRAM-SHA-1&apos;)</div><div class="line"></div><div class="line"># client = MongoClient(&apos;mongodb://jrappcomment:jrappcomment@172.25.60.48:27017/&apos;)</div><div class="line">db = client.jrappcomment</div><div class="line"></div><div class="line">comment = db.Comment</div><div class="line"></div><div class="line">comment.insert(&#123;&apos;name&apos;:&apos;ceshi&apos;&#125;)</div><div class="line"></div><div class="line">dbs = comment.find(&#123;&#125;)</div><div class="line"></div><div class="line">print dbs</div><div class="line">for item in dbs:</div><div class="line">    print &apos;ceshi&apos;</div><div class="line">    print item</div></pre></td></tr></table></figure>
-<h4 id="pymongo常用命令"><a href="#pymongo常用命令" class="headerlink" title="pymongo常用命令"></a>pymongo常用命令</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">comment.update(&#123;&apos;name&apos;:&apos;hanshenghui&apos;&#125;,&#123;&apos;$set&apos;:&#123;&apos;age&apos;:30&#125;&#125;)</div></pre></td></tr></table></figure>
-<p>不等于<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&#123; x : &#123; $ne : 3 &#125; &#125;</div></pre></td></tr></table></figure></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1882,7 +1891,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">101</span>
+                    <span class="site-state-item-count">103</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>

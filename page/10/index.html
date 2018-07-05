@@ -327,6 +327,547 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="/2015/07/01/汇总/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Hanson">
+      <meta itemprop="description" content="主要做移动端开发，和研发效率提升，会一点python和数据挖掘，现在就职业京东金融">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hanson的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2015/07/01/汇总/" itemprop="url">
+                  汇总
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2015-07-01 09:46:46" itemprop="dateCreated datePublished" datetime="2015-07-01T09:46:46+08:00">2015-07-01</time>
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="UI视图相关"><a href="#UI视图相关" class="headerlink" title="UI视图相关"></a>UI视图相关</h3><ul>
+<li>tableview的cell重用机制</li>
+</ul>
+<h4 id="tablevie的数据源同步"><a href="#tablevie的数据源同步" class="headerlink" title="tablevie的数据源同步"></a>tablevie的数据源同步</h4><p>两种一种是拷贝数据，然后并发执行，一种是在串行队列中去执行</p>
+<p><img src="/01/汇总/../../../images/2018-07-01 9.47.40.png" alt=""></p>
+<p><img src="/01/汇总/../../../images/2018-07-019.49.24.png" alt=""></p>
+<h4 id="UIView与CALayer的区别"><a href="#UIView与CALayer的区别" class="headerlink" title="UIView与CALayer的区别"></a>UIView与CALayer的区别</h4><p>UIView参与响应链条，处理事件，CALayer负责显示内容<br>单一职责原则</p>
+<h4 id="事件传递"><a href="#事件传递" class="headerlink" title="事件传递"></a>事件传递</h4><p><img src="/01/汇总/../../../images/2018-07-01 9.57.57.png" alt=""></p>
+<p><img src="/01/汇总/../../../images/2018-07-01 9.57.35.png" alt=""></p>
+<p><img src="/01/汇总/../../../images/2018-07-01 10.01.52.png" alt=""></p>
+<p>如何实现一个正方形，只有中间圆形响应事件呢？<br>重写<code>- (BOOL)pointInside:(CGPoint)point withEvent:(UIEvent *)event</code></p>
+<h4 id="cpu"><a href="#cpu" class="headerlink" title="cpu"></a>cpu</h4><p>cpu负责 <code>布局和文本计算，绘制，图片编解码，提交位图</code></p>
+<h4 id="卡顿和掉帧的根本原因"><a href="#卡顿和掉帧的根本原因" class="headerlink" title="卡顿和掉帧的根本原因"></a>卡顿和掉帧的根本原因</h4><h4 id="滑动优化"><a href="#滑动优化" class="headerlink" title="滑动优化"></a>滑动优化</h4><p>CPU</p>
+<ul>
+<li>对象的创建，销毁，调整</li>
+<li>预排版(布局计算，文本计算)</li>
+<li>预渲染(文本异步绘制，图片解码)</li>
+</ul>
+<p>GPU</p>
+<ul>
+<li>离屏渲染</li>
+<li>视图混合(透明度)</li>
+</ul>
+<h4 id="UIView绘制流程"><a href="#UIView绘制流程" class="headerlink" title="UIView绘制流程"></a>UIView绘制流程</h4><p><img src="/01/汇总/../../../images/2018-07-01 10.11.15.png" alt=""></p>
+<p>系统绘制流程图</p>
+<p><img src="/01/汇总/../../../images/2018-07-01 10.12.22.png" alt=""></p>
+<p>异步绘制流程</p>
+<p><code>[layer.delegate displayLayer:]</code></p>
+<ul>
+<li>代理负责生成bitmap</li>
+<li>设置bitmap为layer的contents属性</li>
+</ul>
+<p><img src="/01/汇总/../../../images/2018-07-01 10.15.56.png" alt=""></p>
+<p>现在问一个问题，异步绘制的时候，是在本次runloop的时候提交gpu的吗？</p>
+<h4 id="离屏渲染"><a href="#离屏渲染" class="headerlink" title="离屏渲染"></a>离屏渲染</h4><p>这个概念起源于GPU，当某些视图的某些属性不能在未合成之前用于屏幕直接显示的时候就会在当前屏幕缓冲区之外再开辟一个缓冲区进行渲染操作。</p>
+<h5 id="何时触发？"><a href="#何时触发？" class="headerlink" title="何时触发？"></a>何时触发？</h5><ul>
+<li>圆角和masktobound一起设置</li>
+<li>图层蒙版</li>
+<li>光栅化</li>
+<li>阴影</li>
+</ul>
+<h5 id="为何要避免"><a href="#为何要避免" class="headerlink" title="为何要避免"></a>为何要避免</h5><p>UI卡顿和掉帧</p>
+<ul>
+<li>创建新的缓冲区</li>
+<li>上下文切换</li>
+</ul>
+<h3 id="OC语言基础"><a href="#OC语言基础" class="headerlink" title="OC语言基础"></a>OC语言基础</h3><h4 id="分类做哪些事"><a href="#分类做哪些事" class="headerlink" title="分类做哪些事"></a>分类做哪些事</h4><ul>
+<li>声明私有方法</li>
+<li>分解庞大的类文件</li>
+<li>把framework私有方法公开</li>
+</ul>
+<h4 id="分类特点"><a href="#分类特点" class="headerlink" title="分类特点"></a>分类特点</h4><ul>
+<li>运行时决议(编译时，分类和宿主没有一毛钱关系)</li>
+<li>可以为系统添加分类</li>
+</ul>
+<p>最后编译的分类的方法，最先被搜索到，同时在宿主之前，这也就是我们怎么替换宿主的方法的原理</p>
+<p>最终分类中的方法是拼接到宿主类中得以被调用的，这也就是为什么分类是运行时决议，这个时候注意，在类的方法列表中我们是正向遍历的，但是拼接的时候是反向遍历拼接的，那么为什么分类可以覆盖宿主方法呢，是因为在进行拼接的时候会讲宿主方法挪到分类方法的后边。<br><img src="/01/汇总/../../../images/2018-07-0112.00.34.png" alt=""></p>
+<h4 id="分类中都能添加什么内容"><a href="#分类中都能添加什么内容" class="headerlink" title="分类中都能添加什么内容"></a>分类中都能添加什么内容</h4><ul>
+<li>实例方法</li>
+<li>类方法</li>
+<li>协议</li>
+<li>属性(定义了一个属性，只声明set和get方法，并没有添加实例变量，变量需要通过关联对象)</li>
+</ul>
+<h4 id="分类数据结构"><a href="#分类数据结构" class="headerlink" title="分类数据结构"></a>分类数据结构</h4><p><img src="/01/汇总/../images/2018-07-01 10.34.59.png" alt=""></p>
+<h4 id="关联对象"><a href="#关联对象" class="headerlink" title="关联对象"></a>关联对象</h4><p>关联对象是否被添加到了宿主类？</p>
+<p>关联对象本质</p>
+<p><img src="/01/汇总/../../../images/2018-07-0112.07.40.png" alt=""></p>
+<p>策略:retain或者copy</p>
+<p><img src="/01/汇总/../images/2018-07-01 12.12.50.png" alt=""></p>
+<h4 id="用扩展来做什么"><a href="#用扩展来做什么" class="headerlink" title="用扩展来做什么"></a>用扩展来做什么</h4><ul>
+<li>声明私有属性</li>
+<li>声明私有方法</li>
+<li>声明私有变量</li>
+<li>声明私有属性</li>
+</ul>
+<h4 id="扩展和分类的区别"><a href="#扩展和分类的区别" class="headerlink" title="扩展和分类的区别"></a>扩展和分类的区别</h4><ul>
+<li>这个是编译的时候决议</li>
+<li>不能为系统类添加扩展</li>
+<li>只是以声明的形式存在</li>
+</ul>
+<h4 id="代理"><a href="#代理" class="headerlink" title="代理"></a>代理</h4><ul>
+<li>代理是一种设计模式</li>
+<li>与通知的区别是代理一对一，通知一对多</li>
+<li>委托方以weak声明，防止循环引用，代理方用strong声明</li>
+</ul>
+<h4 id="通知"><a href="#通知" class="headerlink" title="通知"></a>通知</h4><ul>
+<li>用观察者设计模式实现的</li>
+<li>一对多</li>
+</ul>
+<p><img src="/01/汇总/../../../images/2018-07-0112.27.51.png" alt=""></p>
+<p>observer中包含观察者对象，和回调的方法</p>
+<h4 id="KVO"><a href="#KVO" class="headerlink" title="KVO"></a>KVO</h4><p>key-value-observing</p>
+<p>观察者模式的实现</p>
+<p>使用isa混写技术来实现kvo</p>
+<p><img src="/01/汇总/../../../images/2018-07-01 7.07.35.png" alt=""></p>
+<p><img src="/01/汇总/../../../images/2018-07-01 7.12.03.png" alt=""></p>
+<p>通过kvc设置value，kvo能否生效？可以，调用了setter方法<br>通过成员变量直接赋值能否生效？不能，没有调用setter方法<br>手动kvo是什么？</p>
+<h4 id="KVC"><a href="#KVC" class="headerlink" title="KVC"></a>KVC</h4><p>key-value-coding</p>
+<p>是否破坏面向对象编程思想？是的</p>
+<p>valueForKey:</p>
+<p><img src="/01/汇总/../../../images/2018-07-01 7.22.32.png" alt=""></p>
+<p>有没有get方法，有的话直接返回，如果没有的话，那么去看看有没有相同或者相似的变量存在？这里有一个方法可以禁止这个流程。</p>
+<p>Accessor Method:</p>
+<ul>
+<li>getKey</li>
+<li>key</li>
+<li>isKey</li>
+</ul>
+<p>Instance Var:</p>
+<ul>
+<li>_key</li>
+<li>_isKey</li>
+<li>key</li>
+<li>isKey</li>
+</ul>
+<p>setvalueForKey一样的流程和道理</p>
+<h4 id="属性关键字"><a href="#属性关键字" class="headerlink" title="属性关键字"></a>属性关键字</h4><p>读写 readonly,readwrite</p>
+<p>原子性 atomic,nonatomic</p>
+<p>引用计数</p>
+<ul>
+<li>retain/strong</li>
+<li>assign/unsafe_unretained</li>
+<li>weak</li>
+<li>copy</li>
+</ul>
+<p>assign/weak区别</p>
+<ul>
+<li>assign可以修饰int，bool，也可以修饰对象，weak只能修饰对象</li>
+<li>assign修饰的对象被释放后，会导致悬垂指针，weak指针会被置为nil</li>
+<li>都不改变引用计数</li>
+</ul>
+<p><code>@property (copy) NSMutableArray *arr;</code>这样声明有啥问题？经过copy修饰都是不可变对象，这是一个深拷贝，只有copy修饰不可变对象才是浅拷贝</p>
+<p>浅拷贝增加对象的引用计数，因为多了一个指针指向，深拷贝是产生了一个内存空间，不会影响引用计数。</p>
+<p>深拷贝vs浅拷贝区别:</p>
+<blockquote>
+<p>是否开辟新地址，是否影响引用计数</p>
+</blockquote>
+<p>面试题<br><img src="/01/汇总/../../../images/2018-07-01 7.46.27.png" alt=""></p>
+<h3 id="runtime-重点"><a href="#runtime-重点" class="headerlink" title="runtime(重点)"></a>runtime(重点)</h3><p>先了解这四种结构:</p>
+<ul>
+<li>objc_object</li>
+<li>objc_class</li>
+<li>isa指针</li>
+<li>method_t</li>
+</ul>
+<h4 id="objc-object"><a href="#objc-object" class="headerlink" title="objc_object"></a>objc_object</h4><p>id == objc_object</p>
+<p>包括</p>
+<p>isa_t isa相关操作</p>
+<p>弱引用相关</p>
+<p>关联对象相关</p>
+<p>内存管理相关</p>
+<h4 id="objc-class"><a href="#objc-class" class="headerlink" title="objc_class"></a>objc_class</h4><p>Class == objc_class 继承自objc_objct</p>
+<p>包括</p>
+<p>Class superClass</p>
+<p>cache_t cache   方法缓存</p>
+<p>class_data_bits_t bits 变量，属性和方法都在这</p>
+<h5 id="关于Class"><a href="#关于Class" class="headerlink" title="关于Class"></a>关于Class</h5><p><img src="/01/汇总/../../../images/2018-07-02 10.43.54.png" alt=""><br>说明:当我们调用实例方法，实际是通过isa去Class对象中查找的，当我们调用类方法，实际是通过类对象的isa去元类中查找的。</p>
+<h5 id="关于cache-t"><a href="#关于cache-t" class="headerlink" title="关于cache_t"></a>关于cache_t</h5><p><img src="/01/汇总/../../../images/2018-07-02 11.13.08.png" alt=""></p>
+<p><img src="/01/汇总/../../../images/2018-07-02 11.15.07.png" alt=""><br>说明cache_t是一个数组，然后里边每个元素里都有一个key，也即是SEL，还有一个IMP，当我们传入一个SEL的时候，通过hash算法获取这个对象的索引，然后快速的获取到这个bucket_t，然后获取IMP进行调用</p>
+<h5 id="关于class-data-bits-t"><a href="#关于class-data-bits-t" class="headerlink" title="关于class_data_bits_t"></a>关于class_data_bits_t</h5><p>这个是对class_rw_t的封装</p>
+<p><img src="/01/汇总/../../../images/2018-07-02 11.21.25.png" alt=""></p>
+<p>methods里边每一个元素又是一个数组，然后每个数组代表的是一个分类中的添加的所有的方法，最终都会被汇总到这里，进行方法查找的时候就是在这里进行的查找，遍历methods，从前到后，现在第一个数组里查找，再到第二个数组里查找，以此类推</p>
+<p>分类中添加的东西都在上边这个结构中，class_rw_t，宿体本身的内容在下边这个结构当中</p>
+<p><img src="/01/汇总/../../../images/ 2018-07-02 11.26.53.png" alt=""></p>
+<h5 id="method-t"><a href="#method-t" class="headerlink" title="method_t"></a>method_t</h5><p><img src="/01/汇总/../../../images/2018-07-02 11.40.12.png" alt=""><br><img src="/01/汇总/../../../images/ 2018-07-02 11.36.39.png" alt=""></p>
+<p>一个函数只有一个返回值，多个参数，这里是类型的表示</p>
+<h5 id="总体结构图"><a href="#总体结构图" class="headerlink" title="总体结构图"></a>总体结构图</h5><p><img src="/01/汇总/../../../images/ 2018-07-02 11.32.44.png" alt=""></p>
+<h4 id="对象，类对象，元类对象"><a href="#对象，类对象，元类对象" class="headerlink" title="对象，类对象，元类对象"></a>对象，类对象，元类对象</h4><p>方法调用的时候的查找路径图</p>
+<p><img src="/01/汇总/../../../images/ 2018-07-02 11.47.06.png" alt=""></p>
+<p>根元类对象的superclass指向了NSObject，那么就意味着一个调用一个类方法，如果NSObject中有同名的实例方法，那么这个时候会执行这个实例方法，而不会发生崩溃</p>
+<h4 id="实际例子"><a href="#实际例子" class="headerlink" title="实际例子"></a>实际例子</h4><p><img src="/01/汇总/../../../images/2018-07-02 12.03.52.png" alt=""></p>
+<p>这个题目的结果两个都打印，Phone，这里要理解调用super的意思是说，跳过self这个类，直接从super这个类对象来查找，但是消息的接受者仍然是self，所以这里都打印Phone</p>
+<h4 id="查找过程"><a href="#查找过程" class="headerlink" title="查找过程"></a>查找过程</h4><ul>
+<li>缓存查找</li>
+<li>当前类查找</li>
+</ul>
+<p><img src="/01/汇总/../../../images/2018-07-0212.39.22.png" alt=""><br>关键点在于通过hash查找，找到对应的bucket_t</p>
+<p>当前类查找</p>
+<p><img src="/01/汇总/../../../images/2018-07-0212.41.50.png" alt=""></p>
+<p>父类逐级查找<br><img src="/01/汇总/../../../images/2018-07-0212.43.03.png" alt=""></p>
+<p>总流程</p>
+<p><img src="/01/汇总/../../../images/2018-07-0212.43.41.png" alt=""></p>
+<h4 id="消息转发流程"><a href="#消息转发流程" class="headerlink" title="消息转发流程"></a>消息转发流程</h4><p><img src="/01/汇总/../../../images/ 2018-07-02 2.11.14.png" alt=""></p>
+<h4 id="方法交换"><a href="#方法交换" class="headerlink" title="方法交换"></a>方法交换</h4><h4 id="动态添加方法"><a href="#动态添加方法" class="headerlink" title="动态添加方法"></a>动态添加方法</h4><p>performSeletor:</p>
+<h4 id="动态方法解析"><a href="#动态方法解析" class="headerlink" title="动态方法解析"></a>动态方法解析</h4><p>@dynamic</p>
+<ul>
+<li>动态运行时语言将函数决议推迟到运行时</li>
+<li>编译语言编译时决议，无法修改</li>
+</ul>
+<p>[obj foo]和obj_msgSend()函数关系？<br>runtime图和通过Selector找到对应的IMP地址的？</p>
+<p>能否向编译后的类中添加实例变量？不能，为啥？因为有一个类型是不可变的…得复习一下</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="/2015/06/30/iOS中的内存管理/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Hanson">
+      <meta itemprop="description" content="主要做移动端开发，和研发效率提升，会一点python和数据挖掘，现在就职业京东金融">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hanson的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2015/06/30/iOS中的内存管理/" itemprop="url">
+                  iOS中的内存管理
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2015-06-30 17:45:21" itemprop="dateCreated datePublished" datetime="2015-06-30T17:45:21+08:00">2015-06-30</time>
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <ul>
+<li>内存布局</li>
+<li>内存管理方案</li>
+<li>内存布局</li>
+<li>MRC/ARC</li>
+<li>引用计数</li>
+<li>弱引用</li>
+<li>自动释放池</li>
+<li>循环引用</li>
+</ul>
+<h3 id="内存布局"><a href="#内存布局" class="headerlink" title="内存布局"></a>内存布局</h3><p><img src="/30/iOS中的内存管理/../../../images/2018-06-305.51.54.png" alt=""></p>
+<h5 id="栈-stack"><a href="#栈-stack" class="headerlink" title="栈(stack)"></a>栈(stack)</h5><p>方法调用都是在栈区，栈向下增长，</p>
+<h5 id="堆-heap"><a href="#堆-heap" class="headerlink" title="堆(heap)"></a>堆(heap)</h5><p>alloc的数据都是在堆区间，还有copy过的block</p>
+<h5 id="代码段-text"><a href="#代码段-text" class="headerlink" title="代码段(text)"></a>代码段(text)</h5><h3 id="内存管理方案"><a href="#内存管理方案" class="headerlink" title="内存管理方案"></a>内存管理方案</h3><p>不同场景，不同方案</p>
+<ul>
+<li>小数据 TaggedPointer</li>
+<li>NONPOINTER_ISA，剩余多余的位数用来存储点别的</li>
+<li>散列表，包括引用计数表和弱引用表</li>
+</ul>
+<p>先使用NON这种形式，不行的话散列表</p>
+<h4 id="散列表"><a href="#散列表" class="headerlink" title="散列表"></a>散列表</h4><p><img src="/30/iOS中的内存管理/../../../images/2018-07-02 2.33.00.png" alt=""></p>
+<p><img src="/30/iOS中的内存管理/../../../images/2018-07-022.33.20.png" alt=""></p>
+<p><img src="/30/iOS中的内存管理/../../../images/2018-07-022.36.06.png" alt=""></p>
+<p><img src="/30/iOS中的内存管理/../../../images/2018-07-022.37.15.png" alt=""></p>
+<p>如何实现快速分流，也就是找到SideTable的位置的？<br><img src="/30/iOS中的内存管理/../../../images/2018-07-022.39.06.png" alt=""><br><img src="/30/iOS中的内存管理/../../../images/2018-07-02.png2.39.59.png" alt=""></p>
+<h4 id="散列式数据结构"><a href="#散列式数据结构" class="headerlink" title="散列式数据结构"></a>散列式数据结构</h4><h5 id="自旋锁"><a href="#自旋锁" class="headerlink" title="自旋锁"></a>自旋锁</h5><p><img src="/30/iOS中的内存管理/../../../images/2018-07-023.21.23.png" alt=""></p>
+<h5 id="RedcountMap-引用计数"><a href="#RedcountMap-引用计数" class="headerlink" title="RedcountMap(引用计数)"></a>RedcountMap(引用计数)</h5><p><img src="/30/iOS中的内存管理/../../../images/2018-07-023.17.12.png" alt=""></p>
+<h5 id="弱引用表"><a href="#弱引用表" class="headerlink" title="弱引用表"></a>弱引用表</h5><p><img src="/30/iOS中的内存管理/../../../images/2018-07-023.19.10.png" alt=""></p>
+<h3 id="MRC和ARC"><a href="#MRC和ARC" class="headerlink" title="MRC和ARC"></a>MRC和ARC</h3><p><img src="/30/iOS中的内存管理/../../../images/2018-07-023.25.46.png" alt=""><br>禁止调用只是禁止显示调用，我们仍然可以用kvc来进行调用。</p>
+<p><img src="/30/iOS中的内存管理/../../../images/2018-07-023.28.20.png" alt=""></p>
+<p><img src="/30/iOS中的内存管理/../../../images/2018-07-023.29.37.png" alt=""></p>
+<p><img src="/30/iOS中的内存管理/../../../images/2018-07-023.30.57.png" alt=""></p>
+<p><img src="/30/iOS中的内存管理/../../../images/2018-07-023.40.04.png" alt=""></p>
+<p><img src="/30/iOS中的内存管理/../../../images/2018-07-023.39.10.png" alt=""></p>
+<p><img src="/30/iOS中的内存管理/../../../images/2018-07-023.41.21.png" alt=""></p>
+<p><img src="/30/iOS中的内存管理/../../../images/2018-07-023.42.38.png" alt=""></p>
+<h4 id="弱引用相关"><a href="#弱引用相关" class="headerlink" title="弱引用相关"></a>弱引用相关</h4><p><img src="/30/iOS中的内存管理/../../../images/2018-07-024.png" alt=""><br>源码入口<code>NSObject.mm/objc_initWeak</code></p>
+<h3 id="自动释放池"><a href="#自动释放池" class="headerlink" title="自动释放池"></a>自动释放池</h3><p>AutoreleasePool 原理？<br>为何可以嵌套使用？</p>
+<p><img src="/30/iOS中的内存管理/../../../images/2018-07-024.42.22.png" alt=""></p>
+<h4 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h4><p><code>objc_autoreleasePoolPush</code>调用<code>AutoreleasePoolPage::push</code>，一次pop相当于批量的pop</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">class AutoreleasePoolPage </div><div class="line">&#123;</div><div class="line">	id *next; //指向下一个可添加节点</div><div class="line">	pthread_t const thread;</div><div class="line">	AutoreleasePoolPage * const parent;</div><div class="line">	AutoreleasePoolPage *child;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><img src="/30/iOS中的内存管理/../../../images/2018-07-024.44.52.png" alt=""></p>
+<p>栈结构复习<br><img src="/30/iOS中的内存管理/../../../images/2018-07-024.46.29.png" alt=""></p>
+<p>双向链表结构复习<br><img src="/30/iOS中的内存管理/../../../images/2018-07-024.46.16.png" alt=""></p>
+<p>Push的时候发生了什么<br><img src="/30/iOS中的内存管理/../../../images/2018-07-024.53.19.png" alt=""><br>创建一个自动释放池就会创建一个哨兵，然后返回这个哨兵的位置，然后next向上移动，然后在池子中间创建的对象都会被自动添加到这个池子中，next不断移动，当执行pop的时候，中间的内容都会接收到release消息被释放，next指针会移动到哨兵的位置。</p>
+<p><code>[obj autorelease]的调用逻辑</code></p>
+<p><img src="/30/iOS中的内存管理/../../../images/2018-07-024.53.40.png" alt=""><br>这里一个逻辑有一点要注意就是如果这个栈已经满了，再添加节点在链表上，然后增加栈节点。</p>
+<h3 id="循环引用"><a href="#循环引用" class="headerlink" title="循环引用"></a>循环引用</h3><ul>
+<li>自循环引用</li>
+<li>相互循环引用</li>
+<li>多循环引用</li>
+</ul>
+<p>常考<br>&gt;</p>
+<blockquote>
+<ul>
+<li>代理</li>
+<li>Block</li>
+<li>NSTimer</li>
+<li>大环</li>
+</ul>
+</blockquote>
+<p>解决思路:</p>
+<ul>
+<li>避免产生</li>
+<li>在何时时机手动断环</li>
+</ul>
+<p>具体的方案:</p>
+<ul>
+<li>__weak，不增加计数</li>
+<li>__block</li>
+<li>__unsafe_unretained，不会增加计数，但是会产生悬垂指针</li>
+</ul>
+<h5 id="block注意"><a href="#block注意" class="headerlink" title="__block注意"></a>__block注意</h5><ul>
+<li>MRC下，__block修饰对象不会增加引用计数</li>
+<li>ARC下，__block修饰的对象会被强引用，无法避免循环引用，需要手动破解环</li>
+</ul>
+<h4 id="NSTimer的循环引用"><a href="#NSTimer的循环引用" class="headerlink" title="NSTimer的循环引用"></a>NSTimer的循环引用</h4><p><img src="/30/iOS中的内存管理/../../../images/2018-07-025.29.27.png" alt=""></p>
+<p>即使对象不引用Timer，也没用，因为Runloop会引用Timer，Timer的taget是对象，依然会增加对其的引用，当然如果timer只执行一次，我们可以断掉runloop的引用，但是如果是多次的timer咋办呢？</p>
+<p>解决方案：<br>增加中间对象</p>
+<p><img src="/30/iOS中的内存管理/../../../images/2018-07-025.33.14.png" alt=""></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="/2015/06/26/iOS中的视图渲染/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1659,324 +2200,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="/2015/01/23/2015/iOS中的定时和延时/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Hanson">
-      <meta itemprop="description" content="主要做移动端开发，和研发效率提升，会一点python和数据挖掘，现在就职业京东金融">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hanson的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2015/01/23/2015/iOS中的定时和延时/" itemprop="url">
-                  iOS中的定时和延时
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2015-01-23 17:04:55" itemprop="dateCreated datePublished" datetime="2015-01-23T17:04:55+08:00">2015-01-23</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/iOS/" itemprop="url" rel="index"><span itemprop="name">iOS</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>我们使用延时和定时可以使用以下方法：</p>
-<ul>
-<li>NSTimer</li>
-</ul>
-<h2 id="NSTimer"><a href="#NSTimer" class="headerlink" title="NSTimer"></a>NSTimer</h2><h3 id="循环引用"><a href="#循环引用" class="headerlink" title="循环引用"></a>循环引用</h3><p>我们使用一个nstimer的时候，使用一个类方法来创建一个timer，返回一个timer指针，有时需要把tiemr加到runloop，有时系统自己来帮你做，你会发现，即使我并没有去强引用这个指针，timer只要在runloop中，timer就可以自然的回调，这是因为timer被runloop所引用，我们用控制器去引用这个timer，也只是增加了一个引用而已。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">+(id)scheduledTimerWithTimeInterval:(NSTimeInterval)inTimeInterval block:(void (^)())inBlock repeats:(BOOL)inRepeats</div><div class="line">&#123;</div><div class="line">    void (^block)() = [inBlock copy];</div><div class="line">    id ret = [self scheduledTimerWithTimeInterval:inTimeInterval target:self selector:@selector(jdExecuteSimpleBlock:) userInfo:block repeats:inRepeats];</div><div class="line">    [block release];</div><div class="line">    return ret;</div><div class="line">&#125;</div><div class="line"></div><div class="line">+(id)timerWithTimeInterval:(NSTimeInterval)inTimeInterval block:(void (^)())inBlock repeats:(BOOL)inRepeats</div><div class="line">&#123;</div><div class="line">    void (^block)() = [inBlock copy];</div><div class="line">    id ret = [self timerWithTimeInterval:inTimeInterval target:self selector:@selector(jdExecuteSimpleBlock:) userInfo:block repeats:inRepeats];</div><div class="line">    [block release];</div><div class="line">    return ret;</div><div class="line">&#125;</div><div class="line"></div><div class="line">+(void)jdExecuteSimpleBlock:(NSTimer *)inTimer;</div><div class="line">&#123;</div><div class="line">    if([inTimer userInfo])</div><div class="line">    &#123;</div><div class="line">        void (^block)() = (void (^)())[inTimer userInfo];</div><div class="line">        block();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>这也是Block实现的tiemr不会被释放的原因。</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="/2015/01/17/2015/流媒体技术概述/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Hanson">
-      <meta itemprop="description" content="主要做移动端开发，和研发效率提升，会一点python和数据挖掘，现在就职业京东金融">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hanson的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2015/01/17/2015/流媒体技术概述/" itemprop="url">
-                  流媒体技术概述
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2015-01-17 14:05:59" itemprop="dateCreated datePublished" datetime="2015-01-17T14:05:59+08:00">2015-01-17</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/基础/" itemprop="url" rel="index"><span itemprop="name">基础</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="什么是流媒体技术"><a href="#什么是流媒体技术" class="headerlink" title="什么是流媒体技术"></a>什么是流媒体技术</h2><p>随着现代技术的发展，网络带给人们形式多样的信息，从第一张图片出现在网络上到如今各种形式的网络视频和三维动画，网络让人们的视听觉得到了很大的满足。然而在流媒体技术出现之前，人们必须要先下载这些多媒体内容到本地计算机，在漫长的等待之后（因为受限于带宽，下载通常要花上较长的时间），才可以看到或听到媒体传达的信息。令人欣慰的是，在流媒体技术出现之后，人们便无需再等待媒体完全下载完成了。<br></p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2015/01/17/2015/流媒体技术概述/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2024,7 +2247,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">101</span>
+                    <span class="site-state-item-count">103</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
