@@ -638,7 +638,10 @@
 <li>创建新的缓冲区</li>
 <li>上下文切换</li>
 </ul>
-<h3 id="OC语言基础"><a href="#OC语言基础" class="headerlink" title="OC语言基础"></a>OC语言基础</h3><h4 id="分类做哪些事"><a href="#分类做哪些事" class="headerlink" title="分类做哪些事"></a>分类做哪些事</h4><ul>
+<h3 id="OC语言基础"><a href="#OC语言基础" class="headerlink" title="OC语言基础"></a>OC语言基础</h3><h4 id="self与super"><a href="#self与super" class="headerlink" title="self与super"></a>self与super</h4><p><a href="https://blog.csdn.net/shihuboke/article/details/78967824" target="_blank" rel="external">self/super</a></p>
+<p>objc_msgSend(id,sel)</p>
+<p>objc_msgSendSuper(struct,sel)</p>
+<h4 id="分类做哪些事"><a href="#分类做哪些事" class="headerlink" title="分类做哪些事"></a>分类做哪些事</h4><ul>
 <li>声明私有方法</li>
 <li>分解庞大的类文件</li>
 <li>把framework私有方法公开</li>
@@ -660,7 +663,7 @@
 <p>关联对象本质</p>
 <p><img src="/01/汇总/../../../images/2018-07-0112.07.40.png" alt=""></p>
 <p>策略:retain或者copy</p>
-<p><img src="/01/汇总/../images/2018-07-01 12.12.50.png" alt=""></p>
+<p><img src="/01/汇总/../../../images/2018-07-01 12.12.50.png" alt=""></p>
 <h4 id="用扩展来做什么"><a href="#用扩展来做什么" class="headerlink" title="用扩展来做什么"></a>用扩展来做什么</h4><ul>
 <li>声明私有属性</li>
 <li>声明私有方法</li>
@@ -693,6 +696,8 @@
 <p>kvo能否使用成员变量作为k？可以的，在底层会为其创建setter方法，在其他地方调用或者进行kvc的时候就会调用</p>
 <p><a href="https://www.cnblogs.com/wengzilin/p/4346775.html" target="_blank" rel="external">kvo使用中的坑</a></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">-(void)printInfo</div><div class="line">&#123;</div><div class="line">    NSLog(@&quot;isa:%@, supper class:%@&quot;, NSStringFromClass(object_getClass(self)),</div><div class="line">          class_getSuperclass(object_getClass(self)));</div></pre></td></tr></table></figure>
+<p>当keyPath是成员变量的时候，确实会调用成功，但是具体的方式却并不是重写set方法，具体是啥有待探究。</p>
+<p><code>willChangeValueForKey:</code></p>
 <h4 id="KVC"><a href="#KVC" class="headerlink" title="KVC"></a>KVC</h4><p>key-value-coding</p>
 <p>是否破坏面向对象编程思想？是的</p>
 <p>valueForKey:</p>
@@ -712,6 +717,12 @@
 <li>isKey</li>
 </ul>
 <p>setvalueForKey一样的流程和道理</p>
+<p><a href="https://www.cnblogs.com/panda1024/p/6014399.html" target="_blank" rel="external">kvc集合运算符</a></p>
+<h5 id="KVC集合运算符号如何使用"><a href="#KVC集合运算符号如何使用" class="headerlink" title="KVC集合运算符号如何使用"></a>KVC集合运算符号如何使用</h5><ul>
+<li>必须用在集合对象上活着普通对象的集合属性上</li>
+<li>鸡蛋集合运算符号有@avg,@count,@max,@min,@sum</li>
+<li>格式@”@sum.age”或者@”集合属性.@max.age”</li>
+</ul>
 <h4 id="属性关键字"><a href="#属性关键字" class="headerlink" title="属性关键字"></a>属性关键字</h4><p>读写 readonly,readwrite</p>
 <p>原子性 atomic,nonatomic</p>
 <p>引用计数</p>
@@ -763,6 +774,10 @@
 <h5 id="method-t"><a href="#method-t" class="headerlink" title="method_t"></a>method_t</h5><p><img src="/01/汇总/../../../images/2018-07-02 11.40.12.png" alt=""><br><img src="/01/汇总/../../../images/ 2018-07-02 11.36.39.png" alt=""></p>
 <p>一个函数只有一个返回值，多个参数，这里是类型的表示</p>
 <h5 id="总体结构图"><a href="#总体结构图" class="headerlink" title="总体结构图"></a>总体结构图</h5><p><img src="/01/汇总/../../../images/ 2018-07-02 11.32.44.png" alt=""></p>
+<h5 id="动态添加方法和分类有啥关系？"><a href="#动态添加方法和分类有啥关系？" class="headerlink" title="动态添加方法和分类有啥关系？"></a>动态添加方法和分类有啥关系？</h5><p>他们走的是同一套逻辑，都是将方法加在了可变数组那里，我们本身的类里边的内容是不可变的，具体逻辑如下图</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line">static IMP </div><div class="line">addMethod(Class cls, SEL name, IMP imp, const char *types, bool replace)</div><div class="line">&#123;</div><div class="line">    IMP result = nil;</div><div class="line"></div><div class="line">    runtimeLock.assertWriting();</div><div class="line"></div><div class="line">    assert(types);</div><div class="line">    assert(cls-&gt;isRealized());</div><div class="line"></div><div class="line">    method_t *m;</div><div class="line">    if ((m = getMethodNoSuper_nolock(cls, name))) &#123;</div><div class="line">        // already exists</div><div class="line">        if (!replace) &#123;</div><div class="line">            result = m-&gt;imp;</div><div class="line">        &#125; else &#123;</div><div class="line">            result = _method_setImplementation(cls, m, imp);</div><div class="line">        &#125;</div><div class="line">    &#125; else &#123;</div><div class="line">        // fixme optimize</div><div class="line">        method_list_t *newlist;</div><div class="line">        newlist = (method_list_t *)calloc(sizeof(*newlist), 1);</div><div class="line">        newlist-&gt;entsizeAndFlags = </div><div class="line">            (uint32_t)sizeof(method_t) | fixed_up_method_list;</div><div class="line">        newlist-&gt;count = 1;</div><div class="line">        newlist-&gt;first.name = name;</div><div class="line">        newlist-&gt;first.types = strdup(types);</div><div class="line">        if (!ignoreSelector(name)) &#123;</div><div class="line">            newlist-&gt;first.imp = imp;</div><div class="line">        &#125; else &#123;</div><div class="line">            newlist-&gt;first.imp = (IMP)&amp;_objc_ignored_method;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        prepareMethodLists(cls, &amp;newlist, 1, NO, NO);</div><div class="line">        cls-&gt;data()-&gt;methods.attachLists(&amp;newlist, 1);//这是最核心的一句，将newlist给了data的methods，这是那个存放分类方法的二维数组</div><div class="line">        flushCaches(cls);</div><div class="line"></div><div class="line">        result = nil;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    return result;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>那么问题来了，addIvars是咋实现的，因为可变的对象中没有ivars，这里要体现苹果的变通了，直接将不可变的变成可变的..</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div></pre></td><td class="code"><pre><div class="line">BOOL </div><div class="line">class_addIvar(Class cls, const char *name, size_t size, </div><div class="line">              uint8_t alignment, const char *type)</div><div class="line">&#123;</div><div class="line">    if (!cls) return NO;</div><div class="line"></div><div class="line">    if (!type) type = &quot;&quot;;</div><div class="line">    if (name  &amp;&amp;  0 == strcmp(name, &quot;&quot;)) name = nil;</div><div class="line"></div><div class="line">    rwlock_writer_t lock(runtimeLock);</div><div class="line"></div><div class="line">    assert(cls-&gt;isRealized());</div><div class="line"></div><div class="line">    // No class variables</div><div class="line">    if (cls-&gt;isMetaClass()) &#123;</div><div class="line">        return NO;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    // Can only add ivars to in-construction classes.</div><div class="line">    if (!(cls-&gt;data()-&gt;flags &amp; RW_CONSTRUCTING)) &#123;</div><div class="line">        return NO;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    // Check for existing ivar with this name, unless it&apos;s anonymous.</div><div class="line">    // Check for too-big ivar.</div><div class="line">    // fixme check for superclass ivar too?</div><div class="line">    if ((name  &amp;&amp;  getIvar(cls, name))  ||  size &gt; UINT32_MAX) &#123;</div><div class="line">        return NO;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    class_ro_t *ro_w = make_ro_writeable(cls-&gt;data());//我想把ro变成可变再说...</div><div class="line"></div><div class="line">    // fixme allocate less memory here</div><div class="line">    </div><div class="line">    ivar_list_t *oldlist, *newlist;</div><div class="line">    if ((oldlist = (ivar_list_t *)cls-&gt;data()-&gt;ro-&gt;ivars)) &#123;</div><div class="line">        size_t oldsize = oldlist-&gt;byteSize();</div><div class="line">        newlist = (ivar_list_t *)calloc(oldsize + oldlist-&gt;entsize(), 1);</div><div class="line">        memcpy(newlist, oldlist, oldsize);</div><div class="line">        free(oldlist);</div><div class="line">    &#125; else &#123;</div><div class="line">        newlist = (ivar_list_t *)calloc(sizeof(ivar_list_t), 1);</div><div class="line">        newlist-&gt;entsizeAndFlags = (uint32_t)sizeof(ivar_t);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    uint32_t offset = cls-&gt;unalignedInstanceSize();</div><div class="line">    uint32_t alignMask = (1&lt;&lt;alignment)-1;</div><div class="line">    offset = (offset + alignMask) &amp; ~alignMask;</div><div class="line"></div><div class="line">    ivar_t&amp; ivar = newlist-&gt;get(newlist-&gt;count++);</div><div class="line">#if __x86_64__</div><div class="line">    // Deliberately over-allocate the ivar offset variable. </div><div class="line">    // Use calloc() to clear all 64 bits. See the note in struct ivar_t.</div><div class="line">    ivar.offset = (int32_t *)(int64_t *)calloc(sizeof(int64_t), 1);</div><div class="line">#else</div><div class="line">    ivar.offset = (int32_t *)malloc(sizeof(int32_t));</div><div class="line">#endif</div><div class="line">    *ivar.offset = offset;</div><div class="line">    ivar.name = name ? strdup(name) : nil;</div><div class="line">    ivar.type = strdup(type);</div><div class="line">    ivar.alignment_raw = alignment;</div><div class="line">    ivar.size = (uint32_t)size;</div><div class="line"></div><div class="line">    ro_w-&gt;ivars = newlist;</div><div class="line">    cls-&gt;setInstanceSize((uint32_t)(offset + size));</div><div class="line"></div><div class="line">    // Ivar layout updated in registerClass.</div><div class="line"></div><div class="line">    return YES;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h4 id="对象，类对象，元类对象"><a href="#对象，类对象，元类对象" class="headerlink" title="对象，类对象，元类对象"></a>对象，类对象，元类对象</h4><p>方法调用的时候的查找路径图</p>
 <p><img src="/01/汇总/../../../images/ 2018-07-02 11.47.06.png" alt=""></p>
 <p>根元类对象的superclass指向了NSObject，那么就意味着一个调用一个类方法，如果NSObject中有同名的实例方法，那么这个时候会执行这个实例方法，而不会发生崩溃</p>
@@ -779,6 +794,9 @@
 <p>总流程</p>
 <p><img src="/01/汇总/../../../images/2018-07-0212.43.41.png" alt=""></p>
 <h4 id="消息转发流程"><a href="#消息转发流程" class="headerlink" title="消息转发流程"></a>消息转发流程</h4><p><img src="/01/汇总/../../../images/ 2018-07-02 2.11.14.png" alt=""></p>
+<p>一个应用就是用来实现多重代理<br><a href="http://www.cocoachina.com/ios/20151208/14595.html" target="_blank" rel="external">多重代理</a></p>
+<p>NSPointerArray防止循环引用</p>
+<p>再一个应用就是实现@dynamic的属性</p>
 <h4 id="方法交换"><a href="#方法交换" class="headerlink" title="方法交换"></a>方法交换</h4><h4 id="动态添加方法"><a href="#动态添加方法" class="headerlink" title="动态添加方法"></a>动态添加方法</h4><p>performSeletor:</p>
 <h4 id="动态方法解析"><a href="#动态方法解析" class="headerlink" title="动态方法解析"></a>动态方法解析</h4><p>@dynamic</p>
 <ul>
@@ -786,8 +804,15 @@
 <li>编译语言编译时决议，无法修改</li>
 </ul>
 <p>[obj foo]和obj_msgSend()函数关系？<br>runtime图和通过Selector找到对应的IMP地址的？</p>
-<p>能否向编译后的类中添加实例变量？不能，为啥？因为有一个类型是不可变的…得复习一下</p>
-
+<h4 id="能否向编译后的类中添加实例变量？不能，为啥？"><a href="#能否向编译后的类中添加实例变量？不能，为啥？" class="headerlink" title="能否向编译后的类中添加实例变量？不能，为啥？"></a>能否向编译后的类中添加实例变量？不能，为啥？</h4><blockquote>
+<p>答：从runtime实现原理来说，本来是可以的，但是苹果做了禁止，就像下边这样通过flag去标记这个类是已经建设完成了，还是正在建设中，编译完成的就是建设完成的，动态添加的就是正在建设中</p>
+</blockquote>
+<p>class_addIvar实现</p>
+<pre><code>// Can only add ivars to in-construction classes.
+    if (!(cls-&gt;data()-&gt;flags &amp; RW_CONSTRUCTING)) {
+        return NO;
+    }
+</code></pre>
           
         
       
@@ -975,8 +1000,8 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">2018-07-07 17:37:03.997243+0800 gpu[57393:720434] 1</div><div class="line">2018-07-07 17:45:56.191210+0800 gpu[57878:728352] -[TestView dealloc]</div><div class="line">2018-07-07 17:37:03.997573+0800 gpu[57393:720434] 2</div></pre></td></tr></table></figure>
 <p>这里要说的是调用alloc以后，并没有对其retain，但是当调用retainCount的时候会变成1的，因为最开始并没有这个对象对应的table，所以不会做到if逻辑里边去，</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">objc_object::sidetable_retainCount()</div><div class="line">&#123;</div><div class="line">    SideTable&amp; table = SideTables()[this];</div><div class="line"></div><div class="line">    size_t refcnt_result = 1;</div><div class="line">    </div><div class="line">    table.lock();</div><div class="line">    RefcountMap::iterator it = table.refcnts.find(this);</div><div class="line">    if (it != table.refcnts.end()) &#123;</div><div class="line">        // this is valid for SIDE_TABLE_RC_PINNED too</div><div class="line">        refcnt_result += it-&gt;second &gt;&gt; SIDE_TABLE_RC_SHIFT;</div><div class="line">    &#125;</div><div class="line">    table.unlock();</div><div class="line">    return refcnt_result;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h5 id="dealloc的实现"><a href="#dealloc的实现" class="headerlink" title="dealloc的实现"></a>dealloc的实现</h5><p><img src="/30/iOS中的内存管理/../../../images/2018-07-023.40.04.png" alt=""></p>
-<p><img src="/30/iOS中的内存管理/../../../images/2018-07-023.39.10.png" alt=""></p>
+<h5 id="dealloc的实现"><a href="#dealloc的实现" class="headerlink" title="dealloc的实现"></a>dealloc的实现</h5><p><img src="/30/iOS中的内存管理/../../../images/2018-07-023.39.10.png" alt=""></p>
+<p><img src="/30/iOS中的内存管理/../../../images/2018-07-023.40.04.png" alt=""></p>
 <p><img src="/30/iOS中的内存管理/../../../images/2018-07-023.41.21.png" alt=""></p>
 <p><img src="/30/iOS中的内存管理/../../../images/2018-07-023.42.38.png" alt=""></p>
 <h4 id="弱引用相关"><a href="#弱引用相关" class="headerlink" title="弱引用相关"></a>弱引用相关</h4><p><img src="/30/iOS中的内存管理/../../../images/2018-07-024.png" alt=""><br>源码入口<code>NSObject.mm/objc_initWeak</code></p>

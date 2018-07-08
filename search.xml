@@ -2215,178 +2215,6 @@ d = t ^ s          # 对称差集（项在t或s中，但不会同时出现在二
     </entry>
     
     <entry>
-      <title><![CDATA[iOS知识地图]]></title>
-      <url>/2017/09/25/iOS%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93/</url>
-      <content type="html"><![CDATA[<p>主要罗列iOS开发中涉及到的基础知识点以及架构和基础的一些方面</p>
-<ul>
-<li>基础</li>
-<li>需求</li>
-<li>质量</li>
-<li>效率</li>
-</ul>
-<a id="more"></a>
-<h3 id="01-UI视图-基础"><a href="#01-UI视图-基础" class="headerlink" title="01 UI视图(基础)"></a>01 UI视图(基础)</h3><ul>
-<li><a href="https://www.jianshu.com/p/2e074db792ba" target="_blank" rel="external">事件传递机制</a> </li>
-<li><a href="http://hanson647.com/2017/08/26/iOS中的视图渲染/" target="_blank" rel="external">UI绘制原理</a></li>
-<li>异步绘制原理</li>
-<li>流式页面的性能优化</li>
-<li>离屏渲染</li>
-<li>UIImageView的完成绘制过程</li>
-<li>UILabel完整绘制过程</li>
-</ul>
-<h4 id="事件传递"><a href="#事件传递" class="headerlink" title="事件传递"></a>事件传递</h4><p>1.如何更改响应对象</p>
-<p>2.最重要的两个函数</p>
-<p>3.传递链和响应链</p>
-<p>4.一个事件多次响应</p>
-<h4 id="UI绘制原理"><a href="#UI绘制原理" class="headerlink" title="UI绘制原理"></a>UI绘制原理</h4><ul>
-<li>卡顿的本质</li>
-<li>绘制的时候cpu和gpu怎么分工</li>
-<li>绘制优化点</li>
-</ul>
-<h3 id="02-OC语言-基础"><a href="#02-OC语言-基础" class="headerlink" title="02 OC语言(基础)"></a>02 OC语言(基础)</h3><ul>
-<li><a href="https://zhangbuhuai.com/understanding-kvo/" target="_blank" rel="external">KVO，observer</a></li>
-<li><a href="http://www.cocoachina.com/ios/20180411/22975.html" target="_blank" rel="external">KVC，set value for key</a></li>
-<li><a href="https://www.jianshu.com/p/c9a5fe906457" target="_blank" rel="external">kvc vs kvo</a></li>
-<li><a href="http://hanson647.com/2015/12/15/2015/category内部实现原理/" target="_blank" rel="external">分类</a></li>
-<li><a href="">分类与拓展区别</a></li>
-<li><a href="http://hanson647.com/2016/03/18/2016/转-delegate-KVO-Notification选择/" target="_blank" rel="external">kvo/delegate/notification选择</a></li>
-<li>关联对象</li>
-<li><a href="https://blog.csdn.net/lzhgxiaoxiong/article/details/47954687" target="_blank" rel="external">copy/strong/weak</a></li>
-<li>property</li>
-<li>通知(同步执行还是异步？)</li>
-</ul>
-<h3 id="03-Runtime-基础"><a href="#03-Runtime-基础" class="headerlink" title="03 Runtime(基础)"></a>03 Runtime(基础)</h3><p><a href="http://hanson647.com/2015/08/10/2015/runtime概述/" target="_blank" rel="external">runtime概述</a></p>
-<ul>
-<li>对象、类对象、元类对象</li>
-<li>消息传递机制</li>
-<li>消息转发流程</li>
-<li>Method-Swizzling</li>
-<li>对象、类对象、原类对象的理解、消息传递机制、消息转发流程、Method-Swizzling、ISA-swizzling、动态方法解析、动态添加方法</li>
-<li>一个程序启动之后，类对象和方法是如何存在的？</li>
-</ul>
-<h3 id="04-内存-基础"><a href="#04-内存-基础" class="headerlink" title="04 内存(基础)"></a>04 内存(基础)</h3><ul>
-<li>引用计数表</li>
-<li>弱引用表</li>
-<li>ARC、MRC</li>
-<li>循环引用</li>
-<li>内存管理</li>
-<li>为什么用copy，哪些情况下用copy，为什么用copy?</li>
-<li>NSTimer的引用释放(runloop引用timer，timer引用self，导致不能释放)</li>
-</ul>
-<h3 id="05-Block-基础"><a href="#05-Block-基础" class="headerlink" title="05 Block(基础)"></a>05 Block(基础)</h3><ul>
-<li>Block本质</li>
-<li>截获变量特性</li>
-<li>内存管理</li>
-<li>循环引用</li>
-</ul>
-<h3 id="06-多线程-基础"><a href="#06-多线程-基础" class="headerlink" title="06 多线程(基础)"></a>06 多线程(基础)</h3><ul>
-<li>GCD、nsoperation</li>
-<li>资源共享</li>
-<li>线程同步</li>
-<li>SpinLock等</li>
-<li>atomic和线程安全</li>
-<li>你怎样实现线程安全的？这些线程安全的办法和atomic有什么不一样？atomic的实现机制是怎样</li>
-</ul>
-<h3 id="07-RunLoop-基础"><a href="#07-RunLoop-基础" class="headerlink" title="07 RunLoop(基础)"></a>07 RunLoop(基础)</h3><ul>
-<li>事件循环</li>
-<li>用户态</li>
-<li>核心态</li>
-<li>常驻线程</li>
-</ul>
-<h3 id="08-网络-基础"><a href="#08-网络-基础" class="headerlink" title="08 网络(基础)"></a>08 网络(基础)</h3><ul>
-<li>HTTPS</li>
-<li>对称加密算法</li>
-<li>非对称加密</li>
-<li>DNS解析</li>
-<li>HTTP、TCP</li>
-<li>ASI</li>
-<li>AFN</li>
-<li>有听过HTTPDNS吗？</li>
-<li>有哪些方法能加快网络连接速度</li>
-<li>如何维持长链接</li>
-<li>如何发送心跳包</li>
-<li>用户产生一个下拉刷新动作，请详细描述网络如何传输</li>
-<li>简述tcp连接时的握手过程，不要第三次握手行不行？</li>
-</ul>
-<h3 id="09-设计模式-基础"><a href="#09-设计模式-基础" class="headerlink" title="09 设计模式(基础)"></a>09 设计模式(基础)</h3><ul>
-<li>桥接、适配器、命令</li>
-<li>责任链、单例</li>
-<li>六大设计原则</li>
-</ul>
-<h3 id="10-架构-框架-效率"><a href="#10-架构-框架-效率" class="headerlink" title="10 架构/框架(效率)"></a>10 架构/框架(效率)</h3><ul>
-<li>MVVM、时长统计框架</li>
-<li>图片缓存框架</li>
-<li>PV量级10亿级业务架构</li>
-<li>CocoaPods</li>
-</ul>
-<h3 id="编译原理"><a href="#编译原理" class="headerlink" title="编译原理"></a>编译原理</h3><ul>
-<li>宏</li>
-<li>编译过程</li>
-<li>clang</li>
-</ul>
-<h3 id="优化理论与实践-质量"><a href="#优化理论与实践-质量" class="headerlink" title="优化理论与实践(质量)"></a>优化理论与实践(质量)</h3><p><a href="https://blog.ibireme.com/2015/11/12/smooth_user_interfaces_for_ios/" target="_blank" rel="external">YYKit终极优化</a></p>
-<ul>
-<li>启动时长优化</li>
-<li>卡顿优化</li>
-<li>cpu占用</li>
-<li>内存占用</li>
-<li>UI主线程</li>
-<li>电量</li>
-<li>图片</li>
-<li>瘦身</li>
-</ul>
-<h3 id="效率提升-效率"><a href="#效率提升-效率" class="headerlink" title="效率提升(效率)"></a>效率提升(效率)</h3><ul>
-<li>代码块</li>
-<li>功能模版</li>
-<li>自动代码</li>
-<li>json转model</li>
-<li>跨平台</li>
-</ul>
-<h3 id="研发质量管理-质量"><a href="#研发质量管理-质量" class="headerlink" title="研发质量管理(质量)"></a>研发质量管理(质量)</h3><ul>
-<li>codereview</li>
-<li>clang二次开发(编译器警告)</li>
-<li>oclint</li>
-<li>infer</li>
-<li>git commit(增量检测)</li>
-<li>冗余代码</li>
-<li>重复代码</li>
-<li>重复图片检测</li>
-<li>ipa包大小和模块大小检测</li>
-</ul>
-<h3 id="监控理论和实践-质量"><a href="#监控理论和实践-质量" class="headerlink" title="监控理论和实践(质量)"></a>监控理论和实践(质量)</h3><ul>
-<li>crash</li>
-<li>网络</li>
-<li>流量</li>
-<li>性能</li>
-<li>行为</li>
-<li>截图行为应用</li>
-</ul>
-<h3 id="热修复理论与实践"><a href="#热修复理论与实践" class="headerlink" title="热修复理论与实践"></a>热修复理论与实践</h3><ul>
-<li>JSPatch</li>
-<li>Lua？</li>
-</ul>
-<h3 id="发包与灰度-效率"><a href="#发包与灰度-效率" class="headerlink" title="发包与灰度(效率)"></a>发包与灰度(效率)</h3><ul>
-<li>testflight灰度的应用</li>
-<li>CI的优化(自动发包)</li>
-</ul>
-<h3 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h3><ul>
-<li>字符串反转</li>
-<li>句子反转</li>
-<li><a href="http://developer.51cto.com/art/201403/430986.htm" target="_blank" rel="external">快速排序</a></li>
-<li>单链表反转</li>
-<li>有序数组归并</li>
-<li>无序数组找中位数(快排)</li>
-</ul>
-<h3 id="12-第三方"><a href="#12-第三方" class="headerlink" title="12 第三方"></a>12 第三方</h3><ul>
-<li>AFNetworking </li>
-<li>ReactCocoa响应式编程库</li>
-</ul>
-]]></content>
-      
-        
-    </entry>
-    
-    <entry>
       <title><![CDATA[find与grep命令]]></title>
       <url>/2017/09/22/2017/find%E5%91%BD%E4%BB%A4/</url>
       <content type="html"><![CDATA[<h2 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h2><ul>
@@ -4698,6 +4526,179 @@ d = t ^ s          # 对称差集（项在t或s中，但不会同时出现在二
     </entry>
     
     <entry>
+      <title><![CDATA[iOS知识地图]]></title>
+      <url>/2015/09/25/iOS%E7%9F%A5%E8%AF%86%E5%9C%B0%E5%9B%BE/</url>
+      <content type="html"><![CDATA[<p>主要罗列iOS开发中涉及到的基础知识点以及架构和基础的一些方面</p>
+<ul>
+<li>基础</li>
+<li>需求</li>
+<li>质量</li>
+<li>效率</li>
+</ul>
+<a id="more"></a>
+<h3 id="01-UI视图-基础"><a href="#01-UI视图-基础" class="headerlink" title="01 UI视图(基础)"></a>01 UI视图(基础)</h3><ul>
+<li><a href="https://www.jianshu.com/p/2e074db792ba" target="_blank" rel="external">事件传递机制</a> </li>
+<li><a href="http://hanson647.com/2017/08/26/iOS中的视图渲染/" target="_blank" rel="external">UI绘制原理</a></li>
+<li><a href="http://hanson647.com/2015/07/01/汇总/" target="_blank" rel="external">UI绘制原理2</a></li>
+<li>异步绘制原理</li>
+<li>流式页面的性能优化</li>
+<li>离屏渲染</li>
+<li>UIImageView的完成绘制过程</li>
+<li>UILabel完整绘制过程</li>
+</ul>
+<h4 id="事件传递"><a href="#事件传递" class="headerlink" title="事件传递"></a>事件传递</h4><p>1.如何更改响应对象</p>
+<p>2.最重要的两个函数</p>
+<p>3.传递链和响应链</p>
+<p>4.一个事件多次响应</p>
+<h4 id="UI绘制原理"><a href="#UI绘制原理" class="headerlink" title="UI绘制原理"></a>UI绘制原理</h4><ul>
+<li>卡顿的本质</li>
+<li>绘制的时候cpu和gpu怎么分工</li>
+<li>绘制优化点</li>
+</ul>
+<h3 id="02-OC语言-基础"><a href="#02-OC语言-基础" class="headerlink" title="02 OC语言(基础)"></a>02 OC语言(基础)</h3><ul>
+<li><a href="https://zhangbuhuai.com/understanding-kvo/" target="_blank" rel="external">KVO，observer</a></li>
+<li><a href="http://www.cocoachina.com/ios/20180411/22975.html" target="_blank" rel="external">KVC，set value for key</a></li>
+<li><a href="https://www.jianshu.com/p/c9a5fe906457" target="_blank" rel="external">kvc vs kvo</a></li>
+<li><a href="http://hanson647.com/2015/12/15/2015/category内部实现原理/" target="_blank" rel="external">分类</a></li>
+<li><a href="">分类与拓展区别</a></li>
+<li><a href="http://hanson647.com/2016/03/18/2016/转-delegate-KVO-Notification选择/" target="_blank" rel="external">kvo/delegate/notification选择</a></li>
+<li>关联对象</li>
+<li><a href="https://blog.csdn.net/lzhgxiaoxiong/article/details/47954687" target="_blank" rel="external">copy/strong/weak</a></li>
+<li>property</li>
+<li>通知(同步执行还是异步？)</li>
+</ul>
+<h3 id="03-Runtime-基础"><a href="#03-Runtime-基础" class="headerlink" title="03 Runtime(基础)"></a>03 Runtime(基础)</h3><p><a href="http://hanson647.com/2015/08/10/2015/runtime概述/" target="_blank" rel="external">runtime概述</a></p>
+<ul>
+<li>对象、类对象、元类对象</li>
+<li>消息传递机制</li>
+<li>消息转发流程</li>
+<li>Method-Swizzling</li>
+<li>对象、类对象、原类对象的理解、消息传递机制、消息转发流程、Method-Swizzling、ISA-swizzling、动态方法解析、动态添加方法</li>
+<li>一个程序启动之后，类对象和方法是如何存在的？</li>
+</ul>
+<h3 id="04-内存-基础"><a href="#04-内存-基础" class="headerlink" title="04 内存(基础)"></a>04 内存(基础)</h3><ul>
+<li>引用计数表</li>
+<li>弱引用表</li>
+<li>ARC、MRC</li>
+<li>循环引用</li>
+<li>内存管理</li>
+<li>为什么用copy，哪些情况下用copy，为什么用copy?</li>
+<li>NSTimer的引用释放(runloop引用timer，timer引用self，导致不能释放)</li>
+</ul>
+<h3 id="05-Block-基础"><a href="#05-Block-基础" class="headerlink" title="05 Block(基础)"></a>05 Block(基础)</h3><ul>
+<li>Block本质</li>
+<li>截获变量特性</li>
+<li>内存管理</li>
+<li>循环引用</li>
+</ul>
+<h3 id="06-多线程-基础"><a href="#06-多线程-基础" class="headerlink" title="06 多线程(基础)"></a>06 多线程(基础)</h3><ul>
+<li>GCD、nsoperation</li>
+<li>资源共享</li>
+<li>线程同步</li>
+<li>SpinLock等</li>
+<li>atomic和线程安全</li>
+<li>你怎样实现线程安全的？这些线程安全的办法和atomic有什么不一样？atomic的实现机制是怎样</li>
+</ul>
+<h3 id="07-RunLoop-基础"><a href="#07-RunLoop-基础" class="headerlink" title="07 RunLoop(基础)"></a>07 RunLoop(基础)</h3><ul>
+<li>事件循环</li>
+<li>用户态</li>
+<li>核心态</li>
+<li>常驻线程</li>
+</ul>
+<h3 id="08-网络-基础"><a href="#08-网络-基础" class="headerlink" title="08 网络(基础)"></a>08 网络(基础)</h3><ul>
+<li>HTTPS</li>
+<li>对称加密算法</li>
+<li>非对称加密</li>
+<li>DNS解析</li>
+<li>HTTP、TCP</li>
+<li>ASI</li>
+<li>AFN</li>
+<li>有听过HTTPDNS吗？</li>
+<li>有哪些方法能加快网络连接速度</li>
+<li>如何维持长链接</li>
+<li>如何发送心跳包</li>
+<li>用户产生一个下拉刷新动作，请详细描述网络如何传输</li>
+<li>简述tcp连接时的握手过程，不要第三次握手行不行？</li>
+</ul>
+<h3 id="09-设计模式-基础"><a href="#09-设计模式-基础" class="headerlink" title="09 设计模式(基础)"></a>09 设计模式(基础)</h3><ul>
+<li>桥接、适配器、命令</li>
+<li>责任链、单例</li>
+<li>六大设计原则</li>
+</ul>
+<h3 id="10-架构-框架-效率"><a href="#10-架构-框架-效率" class="headerlink" title="10 架构/框架(效率)"></a>10 架构/框架(效率)</h3><ul>
+<li>MVVM、时长统计框架</li>
+<li>图片缓存框架</li>
+<li>PV量级10亿级业务架构</li>
+<li>CocoaPods</li>
+</ul>
+<h3 id="编译原理"><a href="#编译原理" class="headerlink" title="编译原理"></a>编译原理</h3><ul>
+<li>宏</li>
+<li>编译过程</li>
+<li>clang</li>
+</ul>
+<h3 id="优化理论与实践-质量"><a href="#优化理论与实践-质量" class="headerlink" title="优化理论与实践(质量)"></a>优化理论与实践(质量)</h3><p><a href="https://blog.ibireme.com/2015/11/12/smooth_user_interfaces_for_ios/" target="_blank" rel="external">YYKit终极优化</a></p>
+<ul>
+<li>启动时长优化</li>
+<li>卡顿优化</li>
+<li>cpu占用</li>
+<li>内存占用</li>
+<li>UI主线程</li>
+<li>电量</li>
+<li>图片</li>
+<li>瘦身</li>
+</ul>
+<h3 id="效率提升-效率"><a href="#效率提升-效率" class="headerlink" title="效率提升(效率)"></a>效率提升(效率)</h3><ul>
+<li>代码块</li>
+<li>功能模版</li>
+<li>自动代码</li>
+<li>json转model</li>
+<li>跨平台</li>
+</ul>
+<h3 id="研发质量管理-质量"><a href="#研发质量管理-质量" class="headerlink" title="研发质量管理(质量)"></a>研发质量管理(质量)</h3><ul>
+<li>codereview</li>
+<li>clang二次开发(编译器警告)</li>
+<li>oclint</li>
+<li>infer</li>
+<li>git commit(增量检测)</li>
+<li>冗余代码</li>
+<li>重复代码</li>
+<li>重复图片检测</li>
+<li>ipa包大小和模块大小检测</li>
+</ul>
+<h3 id="监控理论和实践-质量"><a href="#监控理论和实践-质量" class="headerlink" title="监控理论和实践(质量)"></a>监控理论和实践(质量)</h3><ul>
+<li>crash</li>
+<li>网络</li>
+<li>流量</li>
+<li>性能</li>
+<li>行为</li>
+<li>截图行为应用</li>
+</ul>
+<h3 id="热修复理论与实践"><a href="#热修复理论与实践" class="headerlink" title="热修复理论与实践"></a>热修复理论与实践</h3><ul>
+<li>JSPatch</li>
+<li>Lua？</li>
+</ul>
+<h3 id="发包与灰度-效率"><a href="#发包与灰度-效率" class="headerlink" title="发包与灰度(效率)"></a>发包与灰度(效率)</h3><ul>
+<li>testflight灰度的应用</li>
+<li>CI的优化(自动发包)</li>
+</ul>
+<h3 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h3><ul>
+<li>字符串反转</li>
+<li>句子反转</li>
+<li><a href="http://developer.51cto.com/art/201403/430986.htm" target="_blank" rel="external">快速排序</a></li>
+<li>单链表反转</li>
+<li>有序数组归并</li>
+<li>无序数组找中位数(快排)</li>
+</ul>
+<h3 id="12-第三方"><a href="#12-第三方" class="headerlink" title="12 第三方"></a>12 第三方</h3><ul>
+<li>AFNetworking </li>
+<li>ReactCocoa响应式编程库</li>
+</ul>
+]]></content>
+      
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[runtime概述]]></title>
       <url>/2015/08/10/2015/runtime%E6%A6%82%E8%BF%B0/</url>
       <content type="html"><![CDATA[<a id="more"></a>
@@ -5633,6 +5634,8 @@ d = t ^ s          # 对称差集（项在t或s中，但不会同时出现在二
 <p>这段代码打印什么？</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">int i = 10;</div><div class="line">    </div><div class="line">void (^block)() = ^ &#123;</div><div class="line">    i = 30;</div><div class="line">    NSLog(@&quot;%d&quot;, i);</div><div class="line">&#125;;</div><div class="line">    </div><div class="line">i = 20;</div><div class="line">    </div><div class="line">block();</div></pre></td></tr></table></figure>
 <p>啥都打印不了，直接报错了</p>
+<p>但是改成下边这样就没有问题，或者用static</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">__block int i = 10;</div><div class="line">    </div><div class="line">    void (^block)() = ^ &#123;</div><div class="line">        i = 30;</div><div class="line">        NSLog(@&quot;+++++%d&quot;, i);</div><div class="line">    &#125;;</div><div class="line">    </div><div class="line">    i = 20;</div><div class="line">    </div><div class="line">    block();</div></pre></td></tr></table></figure>
 <p>这段代码有没有问题？答案是没有，这里是修改的内存中的内容，并没有修改内存地址</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">- (void)blockDemo3</div><div class="line">&#123;</div><div class="line">    NSMutableString *strM= [NSMutableString stringWithString:@&quot;hello&quot;];</div><div class="line"></div><div class="line">    void (^block)() = ^ &#123;</div><div class="line">        [strM appendString:@&quot;hehe&quot;];</div><div class="line">    &#125;;</div><div class="line"></div><div class="line">    block();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>这样写有没有问题？这样写直接就报错了，没有__block修饰不允许修改指针地址。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"> NSMutableString *strM= [NSMutableString stringWithString:@&quot;hello&quot;];</div><div class="line">    </div><div class="line">void (^block)() = ^ &#123;</div><div class="line">    strM = @&quot;hehe&quot;;</div><div class="line">&#125;;</div><div class="line">    </div><div class="line">block();</div></pre></td></tr></table></figure></p>
@@ -5930,7 +5933,10 @@ d = t ^ s          # 对称差集（项在t或s中，但不会同时出现在二
 <li>创建新的缓冲区</li>
 <li>上下文切换</li>
 </ul>
-<h3 id="OC语言基础"><a href="#OC语言基础" class="headerlink" title="OC语言基础"></a>OC语言基础</h3><h4 id="分类做哪些事"><a href="#分类做哪些事" class="headerlink" title="分类做哪些事"></a>分类做哪些事</h4><ul>
+<h3 id="OC语言基础"><a href="#OC语言基础" class="headerlink" title="OC语言基础"></a>OC语言基础</h3><h4 id="self与super"><a href="#self与super" class="headerlink" title="self与super"></a>self与super</h4><p><a href="https://blog.csdn.net/shihuboke/article/details/78967824" target="_blank" rel="external">self/super</a></p>
+<p>objc_msgSend(id,sel)</p>
+<p>objc_msgSendSuper(struct,sel)</p>
+<h4 id="分类做哪些事"><a href="#分类做哪些事" class="headerlink" title="分类做哪些事"></a>分类做哪些事</h4><ul>
 <li>声明私有方法</li>
 <li>分解庞大的类文件</li>
 <li>把framework私有方法公开</li>
@@ -5952,7 +5958,7 @@ d = t ^ s          # 对称差集（项在t或s中，但不会同时出现在二
 <p>关联对象本质</p>
 <p><img src="/01/汇总/../../../images/2018-07-0112.07.40.png" alt=""></p>
 <p>策略:retain或者copy</p>
-<p><img src="/01/汇总/../images/2018-07-01 12.12.50.png" alt=""></p>
+<p><img src="/01/汇总/../../../images/2018-07-01 12.12.50.png" alt=""></p>
 <h4 id="用扩展来做什么"><a href="#用扩展来做什么" class="headerlink" title="用扩展来做什么"></a>用扩展来做什么</h4><ul>
 <li>声明私有属性</li>
 <li>声明私有方法</li>
@@ -5985,6 +5991,8 @@ d = t ^ s          # 对称差集（项在t或s中，但不会同时出现在二
 <p>kvo能否使用成员变量作为k？可以的，在底层会为其创建setter方法，在其他地方调用或者进行kvc的时候就会调用</p>
 <p><a href="https://www.cnblogs.com/wengzilin/p/4346775.html" target="_blank" rel="external">kvo使用中的坑</a></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">-(void)printInfo</div><div class="line">&#123;</div><div class="line">    NSLog(@&quot;isa:%@, supper class:%@&quot;, NSStringFromClass(object_getClass(self)),</div><div class="line">          class_getSuperclass(object_getClass(self)));</div></pre></td></tr></table></figure>
+<p>当keyPath是成员变量的时候，确实会调用成功，但是具体的方式却并不是重写set方法，具体是啥有待探究。</p>
+<p><code>willChangeValueForKey:</code></p>
 <h4 id="KVC"><a href="#KVC" class="headerlink" title="KVC"></a>KVC</h4><p>key-value-coding</p>
 <p>是否破坏面向对象编程思想？是的</p>
 <p>valueForKey:</p>
@@ -6004,6 +6012,12 @@ d = t ^ s          # 对称差集（项在t或s中，但不会同时出现在二
 <li>isKey</li>
 </ul>
 <p>setvalueForKey一样的流程和道理</p>
+<p><a href="https://www.cnblogs.com/panda1024/p/6014399.html" target="_blank" rel="external">kvc集合运算符</a></p>
+<h5 id="KVC集合运算符号如何使用"><a href="#KVC集合运算符号如何使用" class="headerlink" title="KVC集合运算符号如何使用"></a>KVC集合运算符号如何使用</h5><ul>
+<li>必须用在集合对象上活着普通对象的集合属性上</li>
+<li>鸡蛋集合运算符号有@avg,@count,@max,@min,@sum</li>
+<li>格式@”@sum.age”或者@”集合属性.@max.age”</li>
+</ul>
 <h4 id="属性关键字"><a href="#属性关键字" class="headerlink" title="属性关键字"></a>属性关键字</h4><p>读写 readonly,readwrite</p>
 <p>原子性 atomic,nonatomic</p>
 <p>引用计数</p>
@@ -6055,6 +6069,10 @@ d = t ^ s          # 对称差集（项在t或s中，但不会同时出现在二
 <h5 id="method-t"><a href="#method-t" class="headerlink" title="method_t"></a>method_t</h5><p><img src="/01/汇总/../../../images/2018-07-02 11.40.12.png" alt=""><br><img src="/01/汇总/../../../images/ 2018-07-02 11.36.39.png" alt=""></p>
 <p>一个函数只有一个返回值，多个参数，这里是类型的表示</p>
 <h5 id="总体结构图"><a href="#总体结构图" class="headerlink" title="总体结构图"></a>总体结构图</h5><p><img src="/01/汇总/../../../images/ 2018-07-02 11.32.44.png" alt=""></p>
+<h5 id="动态添加方法和分类有啥关系？"><a href="#动态添加方法和分类有啥关系？" class="headerlink" title="动态添加方法和分类有啥关系？"></a>动态添加方法和分类有啥关系？</h5><p>他们走的是同一套逻辑，都是将方法加在了可变数组那里，我们本身的类里边的内容是不可变的，具体逻辑如下图</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line">static IMP </div><div class="line">addMethod(Class cls, SEL name, IMP imp, const char *types, bool replace)</div><div class="line">&#123;</div><div class="line">    IMP result = nil;</div><div class="line"></div><div class="line">    runtimeLock.assertWriting();</div><div class="line"></div><div class="line">    assert(types);</div><div class="line">    assert(cls-&gt;isRealized());</div><div class="line"></div><div class="line">    method_t *m;</div><div class="line">    if ((m = getMethodNoSuper_nolock(cls, name))) &#123;</div><div class="line">        // already exists</div><div class="line">        if (!replace) &#123;</div><div class="line">            result = m-&gt;imp;</div><div class="line">        &#125; else &#123;</div><div class="line">            result = _method_setImplementation(cls, m, imp);</div><div class="line">        &#125;</div><div class="line">    &#125; else &#123;</div><div class="line">        // fixme optimize</div><div class="line">        method_list_t *newlist;</div><div class="line">        newlist = (method_list_t *)calloc(sizeof(*newlist), 1);</div><div class="line">        newlist-&gt;entsizeAndFlags = </div><div class="line">            (uint32_t)sizeof(method_t) | fixed_up_method_list;</div><div class="line">        newlist-&gt;count = 1;</div><div class="line">        newlist-&gt;first.name = name;</div><div class="line">        newlist-&gt;first.types = strdup(types);</div><div class="line">        if (!ignoreSelector(name)) &#123;</div><div class="line">            newlist-&gt;first.imp = imp;</div><div class="line">        &#125; else &#123;</div><div class="line">            newlist-&gt;first.imp = (IMP)&amp;_objc_ignored_method;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        prepareMethodLists(cls, &amp;newlist, 1, NO, NO);</div><div class="line">        cls-&gt;data()-&gt;methods.attachLists(&amp;newlist, 1);//这是最核心的一句，将newlist给了data的methods，这是那个存放分类方法的二维数组</div><div class="line">        flushCaches(cls);</div><div class="line"></div><div class="line">        result = nil;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    return result;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>那么问题来了，addIvars是咋实现的，因为可变的对象中没有ivars，这里要体现苹果的变通了，直接将不可变的变成可变的..</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div></pre></td><td class="code"><pre><div class="line">BOOL </div><div class="line">class_addIvar(Class cls, const char *name, size_t size, </div><div class="line">              uint8_t alignment, const char *type)</div><div class="line">&#123;</div><div class="line">    if (!cls) return NO;</div><div class="line"></div><div class="line">    if (!type) type = &quot;&quot;;</div><div class="line">    if (name  &amp;&amp;  0 == strcmp(name, &quot;&quot;)) name = nil;</div><div class="line"></div><div class="line">    rwlock_writer_t lock(runtimeLock);</div><div class="line"></div><div class="line">    assert(cls-&gt;isRealized());</div><div class="line"></div><div class="line">    // No class variables</div><div class="line">    if (cls-&gt;isMetaClass()) &#123;</div><div class="line">        return NO;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    // Can only add ivars to in-construction classes.</div><div class="line">    if (!(cls-&gt;data()-&gt;flags &amp; RW_CONSTRUCTING)) &#123;</div><div class="line">        return NO;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    // Check for existing ivar with this name, unless it&apos;s anonymous.</div><div class="line">    // Check for too-big ivar.</div><div class="line">    // fixme check for superclass ivar too?</div><div class="line">    if ((name  &amp;&amp;  getIvar(cls, name))  ||  size &gt; UINT32_MAX) &#123;</div><div class="line">        return NO;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    class_ro_t *ro_w = make_ro_writeable(cls-&gt;data());//我想把ro变成可变再说...</div><div class="line"></div><div class="line">    // fixme allocate less memory here</div><div class="line">    </div><div class="line">    ivar_list_t *oldlist, *newlist;</div><div class="line">    if ((oldlist = (ivar_list_t *)cls-&gt;data()-&gt;ro-&gt;ivars)) &#123;</div><div class="line">        size_t oldsize = oldlist-&gt;byteSize();</div><div class="line">        newlist = (ivar_list_t *)calloc(oldsize + oldlist-&gt;entsize(), 1);</div><div class="line">        memcpy(newlist, oldlist, oldsize);</div><div class="line">        free(oldlist);</div><div class="line">    &#125; else &#123;</div><div class="line">        newlist = (ivar_list_t *)calloc(sizeof(ivar_list_t), 1);</div><div class="line">        newlist-&gt;entsizeAndFlags = (uint32_t)sizeof(ivar_t);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    uint32_t offset = cls-&gt;unalignedInstanceSize();</div><div class="line">    uint32_t alignMask = (1&lt;&lt;alignment)-1;</div><div class="line">    offset = (offset + alignMask) &amp; ~alignMask;</div><div class="line"></div><div class="line">    ivar_t&amp; ivar = newlist-&gt;get(newlist-&gt;count++);</div><div class="line">#if __x86_64__</div><div class="line">    // Deliberately over-allocate the ivar offset variable. </div><div class="line">    // Use calloc() to clear all 64 bits. See the note in struct ivar_t.</div><div class="line">    ivar.offset = (int32_t *)(int64_t *)calloc(sizeof(int64_t), 1);</div><div class="line">#else</div><div class="line">    ivar.offset = (int32_t *)malloc(sizeof(int32_t));</div><div class="line">#endif</div><div class="line">    *ivar.offset = offset;</div><div class="line">    ivar.name = name ? strdup(name) : nil;</div><div class="line">    ivar.type = strdup(type);</div><div class="line">    ivar.alignment_raw = alignment;</div><div class="line">    ivar.size = (uint32_t)size;</div><div class="line"></div><div class="line">    ro_w-&gt;ivars = newlist;</div><div class="line">    cls-&gt;setInstanceSize((uint32_t)(offset + size));</div><div class="line"></div><div class="line">    // Ivar layout updated in registerClass.</div><div class="line"></div><div class="line">    return YES;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h4 id="对象，类对象，元类对象"><a href="#对象，类对象，元类对象" class="headerlink" title="对象，类对象，元类对象"></a>对象，类对象，元类对象</h4><p>方法调用的时候的查找路径图</p>
 <p><img src="/01/汇总/../../../images/ 2018-07-02 11.47.06.png" alt=""></p>
 <p>根元类对象的superclass指向了NSObject，那么就意味着一个调用一个类方法，如果NSObject中有同名的实例方法，那么这个时候会执行这个实例方法，而不会发生崩溃</p>
@@ -6071,6 +6089,9 @@ d = t ^ s          # 对称差集（项在t或s中，但不会同时出现在二
 <p>总流程</p>
 <p><img src="/01/汇总/../../../images/2018-07-0212.43.41.png" alt=""></p>
 <h4 id="消息转发流程"><a href="#消息转发流程" class="headerlink" title="消息转发流程"></a>消息转发流程</h4><p><img src="/01/汇总/../../../images/ 2018-07-02 2.11.14.png" alt=""></p>
+<p>一个应用就是用来实现多重代理<br><a href="http://www.cocoachina.com/ios/20151208/14595.html" target="_blank" rel="external">多重代理</a></p>
+<p>NSPointerArray防止循环引用</p>
+<p>再一个应用就是实现@dynamic的属性</p>
 <h4 id="方法交换"><a href="#方法交换" class="headerlink" title="方法交换"></a>方法交换</h4><h4 id="动态添加方法"><a href="#动态添加方法" class="headerlink" title="动态添加方法"></a>动态添加方法</h4><p>performSeletor:</p>
 <h4 id="动态方法解析"><a href="#动态方法解析" class="headerlink" title="动态方法解析"></a>动态方法解析</h4><p>@dynamic</p>
 <ul>
@@ -6078,8 +6099,15 @@ d = t ^ s          # 对称差集（项在t或s中，但不会同时出现在二
 <li>编译语言编译时决议，无法修改</li>
 </ul>
 <p>[obj foo]和obj_msgSend()函数关系？<br>runtime图和通过Selector找到对应的IMP地址的？</p>
-<p>能否向编译后的类中添加实例变量？不能，为啥？因为有一个类型是不可变的…得复习一下</p>
-]]></content>
+<h4 id="能否向编译后的类中添加实例变量？不能，为啥？"><a href="#能否向编译后的类中添加实例变量？不能，为啥？" class="headerlink" title="能否向编译后的类中添加实例变量？不能，为啥？"></a>能否向编译后的类中添加实例变量？不能，为啥？</h4><blockquote>
+<p>答：从runtime实现原理来说，本来是可以的，但是苹果做了禁止，就像下边这样通过flag去标记这个类是已经建设完成了，还是正在建设中，编译完成的就是建设完成的，动态添加的就是正在建设中</p>
+</blockquote>
+<p>class_addIvar实现</p>
+<pre><code>// Can only add ivars to in-construction classes.
+    if (!(cls-&gt;data()-&gt;flags &amp; RW_CONSTRUCTING)) {
+        return NO;
+    }
+</code></pre>]]></content>
       
         
         <tags>
@@ -6146,8 +6174,8 @@ d = t ^ s          # 对称差集（项在t或s中，但不会同时出现在二
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">2018-07-07 17:37:03.997243+0800 gpu[57393:720434] 1</div><div class="line">2018-07-07 17:45:56.191210+0800 gpu[57878:728352] -[TestView dealloc]</div><div class="line">2018-07-07 17:37:03.997573+0800 gpu[57393:720434] 2</div></pre></td></tr></table></figure>
 <p>这里要说的是调用alloc以后，并没有对其retain，但是当调用retainCount的时候会变成1的，因为最开始并没有这个对象对应的table，所以不会做到if逻辑里边去，</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">objc_object::sidetable_retainCount()</div><div class="line">&#123;</div><div class="line">    SideTable&amp; table = SideTables()[this];</div><div class="line"></div><div class="line">    size_t refcnt_result = 1;</div><div class="line">    </div><div class="line">    table.lock();</div><div class="line">    RefcountMap::iterator it = table.refcnts.find(this);</div><div class="line">    if (it != table.refcnts.end()) &#123;</div><div class="line">        // this is valid for SIDE_TABLE_RC_PINNED too</div><div class="line">        refcnt_result += it-&gt;second &gt;&gt; SIDE_TABLE_RC_SHIFT;</div><div class="line">    &#125;</div><div class="line">    table.unlock();</div><div class="line">    return refcnt_result;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h5 id="dealloc的实现"><a href="#dealloc的实现" class="headerlink" title="dealloc的实现"></a>dealloc的实现</h5><p><img src="/30/iOS中的内存管理/../../../images/2018-07-023.40.04.png" alt=""></p>
-<p><img src="/30/iOS中的内存管理/../../../images/2018-07-023.39.10.png" alt=""></p>
+<h5 id="dealloc的实现"><a href="#dealloc的实现" class="headerlink" title="dealloc的实现"></a>dealloc的实现</h5><p><img src="/30/iOS中的内存管理/../../../images/2018-07-023.39.10.png" alt=""></p>
+<p><img src="/30/iOS中的内存管理/../../../images/2018-07-023.40.04.png" alt=""></p>
 <p><img src="/30/iOS中的内存管理/../../../images/2018-07-023.41.21.png" alt=""></p>
 <p><img src="/30/iOS中的内存管理/../../../images/2018-07-023.42.38.png" alt=""></p>
 <h4 id="弱引用相关"><a href="#弱引用相关" class="headerlink" title="弱引用相关"></a>弱引用相关</h4><p><img src="/30/iOS中的内存管理/../../../images/2018-07-024.png" alt=""><br>源码入口<code>NSObject.mm/objc_initWeak</code></p>

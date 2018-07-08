@@ -130,8 +130,8 @@
 <meta property="og:image" content="/images/2018-07-023.28.20.png">
 <meta property="og:image" content="/images/2018-07-023.29.37.png">
 <meta property="og:image" content="/images/2018-07-023.30.57.png">
-<meta property="og:image" content="/images/2018-07-023.40.04.png">
 <meta property="og:image" content="/images/2018-07-023.39.10.png">
+<meta property="og:image" content="/images/2018-07-023.40.04.png">
 <meta property="og:image" content="/images/2018-07-023.41.21.png">
 <meta property="og:image" content="/images/2018-07-023.42.38.png">
 <meta property="og:image" content="/images/2018-07-024.png">
@@ -143,7 +143,7 @@
 <meta property="og:image" content="/images/2018-07-024.53.40.png">
 <meta property="og:image" content="/images/2018-07-025.29.27.png">
 <meta property="og:image" content="/images/2018-07-025.33.14.png">
-<meta property="og:updated_time" content="2018-07-08T00:24:45.000Z">
+<meta property="og:updated_time" content="2018-07-08T14:00:13.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS中的内存管理">
 <meta name="twitter:description" content="内存布局 内存管理方案 内存布局 MRC/ARC 引用计数 弱引用 自动释放池 循环引用  内存布局 栈(stack)方法调用都是在栈区，栈向下增长， 堆(heap)alloc的数据都是在堆区间，还有copy过的block 代码段(text)内存管理方案strong实现探究 weak实现探究 不同场景，不同方案  小数据 TaggedPointer NONPOINTER_ISA，剩余多余的位数用">
@@ -485,8 +485,8 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">2018-07-07 17:37:03.997243+0800 gpu[57393:720434] 1</div><div class="line">2018-07-07 17:45:56.191210+0800 gpu[57878:728352] -[TestView dealloc]</div><div class="line">2018-07-07 17:37:03.997573+0800 gpu[57393:720434] 2</div></pre></td></tr></table></figure>
 <p>这里要说的是调用alloc以后，并没有对其retain，但是当调用retainCount的时候会变成1的，因为最开始并没有这个对象对应的table，所以不会做到if逻辑里边去，</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">objc_object::sidetable_retainCount()</div><div class="line">&#123;</div><div class="line">    SideTable&amp; table = SideTables()[this];</div><div class="line"></div><div class="line">    size_t refcnt_result = 1;</div><div class="line">    </div><div class="line">    table.lock();</div><div class="line">    RefcountMap::iterator it = table.refcnts.find(this);</div><div class="line">    if (it != table.refcnts.end()) &#123;</div><div class="line">        // this is valid for SIDE_TABLE_RC_PINNED too</div><div class="line">        refcnt_result += it-&gt;second &gt;&gt; SIDE_TABLE_RC_SHIFT;</div><div class="line">    &#125;</div><div class="line">    table.unlock();</div><div class="line">    return refcnt_result;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h5 id="dealloc的实现"><a href="#dealloc的实现" class="headerlink" title="dealloc的实现"></a>dealloc的实现</h5><p><img src="/30/iOS中的内存管理/../../../images/2018-07-023.40.04.png" alt=""></p>
-<p><img src="/30/iOS中的内存管理/../../../images/2018-07-023.39.10.png" alt=""></p>
+<h5 id="dealloc的实现"><a href="#dealloc的实现" class="headerlink" title="dealloc的实现"></a>dealloc的实现</h5><p><img src="/30/iOS中的内存管理/../../../images/2018-07-023.39.10.png" alt=""></p>
+<p><img src="/30/iOS中的内存管理/../../../images/2018-07-023.40.04.png" alt=""></p>
 <p><img src="/30/iOS中的内存管理/../../../images/2018-07-023.41.21.png" alt=""></p>
 <p><img src="/30/iOS中的内存管理/../../../images/2018-07-023.42.38.png" alt=""></p>
 <h4 id="弱引用相关"><a href="#弱引用相关" class="headerlink" title="弱引用相关"></a>弱引用相关</h4><p><img src="/30/iOS中的内存管理/../../../images/2018-07-024.png" alt=""><br>源码入口<code>NSObject.mm/objc_initWeak</code></p>
