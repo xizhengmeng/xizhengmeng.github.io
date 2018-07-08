@@ -148,7 +148,7 @@
 <meta property="og:image" content="/images/2018-07-0212.43.03.png">
 <meta property="og:image" content="/images/2018-07-0212.43.41.png">
 <meta property="og:image" content="/images/%202018-07-02%202.11.14.png">
-<meta property="og:updated_time" content="2018-07-05T08:52:12.000Z">
+<meta property="og:updated_time" content="2018-07-08T00:24:40.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="汇总">
 <meta name="twitter:description" content="UI视图相关 tableview的cell重用机制  tablevie的数据源同步两种一种是拷贝数据，然后并发执行，一种是在串行队列中去执行   UIView与CALayer的区别UIView参与响应链条，处理事件，CALayer负责显示内容单一职责原则 事件传递   如何实现一个正方形，只有中间圆形响应事件呢？重写- (BOOL)pointInside:(CGPoint)point withEv">
@@ -533,7 +533,11 @@
 <p>使用isa混写技术来实现kvo</p>
 <p><img src="/01/汇总/../../../images/2018-07-01 7.07.35.png" alt=""></p>
 <p><img src="/01/汇总/../../../images/2018-07-01 7.12.03.png" alt=""></p>
-<p>通过kvc设置value，kvo能否生效？可以，调用了setter方法<br>通过成员变量直接赋值能否生效？不能，没有调用setter方法<br>手动kvo是什么？</p>
+<p>通过kvc设置value，kvo能否生效？可以，因为调用了setter方法<br>那么通过成员变量直接赋值能否生效？不能，没有调用setter方法</p>
+<p>手动kvo是什么？</p>
+<p>kvo能否使用成员变量作为k？可以的，在底层会为其创建setter方法，在其他地方调用或者进行kvc的时候就会调用</p>
+<p><a href="https://www.cnblogs.com/wengzilin/p/4346775.html" target="_blank" rel="external">kvo使用中的坑</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">-(void)printInfo</div><div class="line">&#123;</div><div class="line">    NSLog(@&quot;isa:%@, supper class:%@&quot;, NSStringFromClass(object_getClass(self)),</div><div class="line">          class_getSuperclass(object_getClass(self)));</div></pre></td></tr></table></figure>
 <h4 id="KVC"><a href="#KVC" class="headerlink" title="KVC"></a>KVC</h4><p>key-value-coding</p>
 <p>是否破坏面向对象编程思想？是的</p>
 <p>valueForKey:</p>
