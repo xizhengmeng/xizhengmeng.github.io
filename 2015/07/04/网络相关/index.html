@@ -108,13 +108,13 @@
 
 
 
-  <meta name="description" content="HTTP请求行 首部字段区 实体主体，get没有，post有 响应行 首部字段区           https的建立流程     https建立连接详细 关于加密算法非对称  RSA  对称  DES  TCP/UDP UDP ===================特点与功能 特点:面向报文，既不合并也不拆分    差错检测的思路和策略可以用在微信等IM应用上 TCP =============">
+  <meta name="description" content="HTTP请求行 首部字段区 实体主体，get没有，post有 响应行 首部字段区           https的建立流程     https建立连接详细 靠签名知道谁是谁，所以，签名一定是私钥。 关于加密算法非对称  RSA  对称  DES  TCP/UDP 与http的关系，TPC/IP协议是传输层协议，主要解决数据如何在网络中传输，而HTTP是应用层协议，主要解决如何包装数据，把IP想像成">
 <meta name="keywords" content="基础">
 <meta property="og:type" content="article">
 <meta property="og:title" content="网络相关">
 <meta property="og:url" content="/2015/07/04/网络相关/index.html">
 <meta property="og:site_name" content="Hanson的博客">
-<meta property="og:description" content="HTTP请求行 首部字段区 实体主体，get没有，post有 响应行 首部字段区           https的建立流程     https建立连接详细 关于加密算法非对称  RSA  对称  DES  TCP/UDP UDP ===================特点与功能 特点:面向报文，既不合并也不拆分    差错检测的思路和策略可以用在微信等IM应用上 TCP =============">
+<meta property="og:description" content="HTTP请求行 首部字段区 实体主体，get没有，post有 响应行 首部字段区           https的建立流程     https建立连接详细 靠签名知道谁是谁，所以，签名一定是私钥。 关于加密算法非对称  RSA  对称  DES  TCP/UDP 与http的关系，TPC/IP协议是传输层协议，主要解决数据如何在网络中传输，而HTTP是应用层协议，主要解决如何包装数据，把IP想像成">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="/images/2018-07-049.10.24.png">
 <meta property="og:image" content="/images/2018-07-049.10.42.png">
@@ -166,10 +166,10 @@
 <meta property="og:image" content="/images/2018-07-046.41.35.png">
 <meta property="og:image" content="/images/2018-07-046.44.10.png">
 <meta property="og:image" content="/images/2018-07-046.42.47.png">
-<meta property="og:updated_time" content="2018-07-09T06:38:03.000Z">
+<meta property="og:updated_time" content="2018-07-09T07:25:35.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="网络相关">
-<meta name="twitter:description" content="HTTP请求行 首部字段区 实体主体，get没有，post有 响应行 首部字段区           https的建立流程     https建立连接详细 关于加密算法非对称  RSA  对称  DES  TCP/UDP UDP ===================特点与功能 特点:面向报文，既不合并也不拆分    差错检测的思路和策略可以用在微信等IM应用上 TCP =============">
+<meta name="twitter:description" content="HTTP请求行 首部字段区 实体主体，get没有，post有 响应行 首部字段区           https的建立流程     https建立连接详细 靠签名知道谁是谁，所以，签名一定是私钥。 关于加密算法非对称  RSA  对称  DES  TCP/UDP 与http的关系，TPC/IP协议是传输层协议，主要解决数据如何在网络中传输，而HTTP是应用层协议，主要解决如何包装数据，把IP想像成">
 <meta name="twitter:image" content="/images/2018-07-049.10.24.png">
 
 
@@ -476,6 +476,7 @@
 <p><img src="/04/网络相关/../../../images/2018-07-049.36.53.png" alt=""></p>
 <p><img src="/04/网络相关/../../../images/2018-07-049.37.39.png" alt=""></p>
 <p><a href="https://blog.csdn.net/u013401853/article/details/52781072" target="_blank" rel="external">https建立连接详细</a></p>
+<p>靠签名知道谁是谁，所以，签名一定是私钥。</p>
 <h4 id="关于加密算法"><a href="#关于加密算法" class="headerlink" title="关于加密算法"></a>关于加密算法</h4><p>非对称</p>
 <ul>
 <li>RSA</li>
@@ -484,7 +485,10 @@
 <ul>
 <li>DES</li>
 </ul>
-<h3 id="TCP-UDP"><a href="#TCP-UDP" class="headerlink" title="TCP/UDP"></a>TCP/UDP</h3><p><img src="/04/网络相关/../../../images/2018-07-049.52.56.png" alt=""></p>
+<h3 id="TCP-UDP"><a href="#TCP-UDP" class="headerlink" title="TCP/UDP"></a>TCP/UDP</h3><blockquote>
+<p>与http的关系，TPC/IP协议是传输层协议，主要解决数据如何在网络中传输，而HTTP是应用层协议，主要解决如何包装数据，把IP想像成一种高速公路，它允许其它协议在上面行驶并找到到其它电脑的出口。TCP和UDP是高速公路上的“卡车”，它们携带的货物就是像HTTP，文件传输协议FTP这样的协议等</p>
+</blockquote>
+<p><img src="/04/网络相关/../../../images/2018-07-049.52.56.png" alt=""></p>
 <h4 id="UDP"><a href="#UDP" class="headerlink" title="UDP ==================="></a>UDP ===================</h4><p>特点与功能</p>
 <p>特点:面向报文，既不合并也不拆分</p>
 <p><img src="/04/网络相关/../../../images/2018-07-0410.51.00.png" alt=""></p>
