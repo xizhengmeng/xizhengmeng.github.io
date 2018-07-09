@@ -166,7 +166,7 @@
 <meta property="og:image" content="/images/2018-07-046.41.35.png">
 <meta property="og:image" content="/images/2018-07-046.44.10.png">
 <meta property="og:image" content="/images/2018-07-046.42.47.png">
-<meta property="og:updated_time" content="2018-07-09T07:25:35.000Z">
+<meta property="og:updated_time" content="2018-07-09T08:15:33.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="网络相关">
 <meta name="twitter:description" content="HTTP请求行 首部字段区 实体主体，get没有，post有 响应行 首部字段区           https的建立流程     https建立连接详细 靠签名知道谁是谁，所以，签名一定是私钥。 关于加密算法非对称  RSA  对称  DES  TCP/UDP 与http的关系，TPC/IP协议是传输层协议，主要解决数据如何在网络中传输，而HTTP是应用层协议，主要解决如何包装数据，把IP想像成">
@@ -546,6 +546,10 @@
 <p><img src="/04/网络相关/../../../images/2018-07-046.07.07.png" alt=""></p>
 <p><img src="/04/网络相关/../../../images/2018-07-046.09.26.png" alt=""></p>
 <p>DNS转发有个问题，就是可能返回一个错误的ip导致跨网访问，就是导致慢</p>
+<blockquote>
+<p>当我们在浏览器输入一个 URL 后，是在什么时候、谁进行的查询？<br>浏览器获得这个请求后，甩给了操作系统，操作系统甩给了网卡，网卡作为真正干活的人把包按照链路层协议送了出去。<br>DNS 发生在 TCP/IP 之前。前面已经提过，到 TCP/IP 协议栈的时候已经是有 IP 地址了。<br>真相就是操作系统进行的 DNS 查询。所以在操作系统的网络设置中，可以进行 DNS 服务器的配置。操作系统也同时管理了 DNS 的缓存。《iOS网络请求优化之DNS映射》中提到：</p>
+<p>像 iOS 系统一般是 24 小时之后会过期，还有进入飞行模式再切回来，开关机，重置网络设置等也会导致 DNS cache 的清除。所以一般情况下用户在第二天打开你的 app 都会经历一次完整的 DNS 解析请求。</p>
+</blockquote>
 <p><img src="/04/网络相关/../../../images/2018-07-046.10.07.png" alt=""></p>
 <p><img src="/04/网络相关/../../../images/2018-07-046.14.36.png" alt=""></p>
 <p><img src="/04/网络相关/../../../images/2018-07-046.24.53.png" alt=""></p>
