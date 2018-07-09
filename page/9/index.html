@@ -2178,7 +2178,7 @@ swap5函数与swap4相似，是一个引用传递，修改的结果直接影响�
 <p>ACK表示响应，</p>
 <p>PSH表示有 DATA数据传输，</p>
 <p>RST表示连接重置</p>
-<h5 id="TCP连接和断开"><a href="#TCP连接和断开" class="headerlink" title="TCP连接和断开"></a>TCP连接和断开</h5><p><img src="/04/网络相关/../images/2018-07-0410.56.57.png" alt=""></p>
+<h5 id="TCP连接和断开"><a href="#TCP连接和断开" class="headerlink" title="TCP连接和断开"></a>TCP连接和断开</h5><p><img src="/04/网络相关/../../../images/2018-07-0410.56.57.png" alt=""></p>
 <p>为什么三次握手？</p>
 <p>假设超时，会触发client的超时重传，新的syn会创建一个新的连接，这个时候服务端会启一个进程来处理这个连接，如果这个时候client的旧的syn到达了，server会给client一个确认，但是在client看来这是一个请求，就不会给ack发送ack确认，那么server就不会启动新进程处理这个，这样就能规避连接异常的问题。</p>
 <p>为啥要四次挥手？</p>
