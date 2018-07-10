@@ -108,17 +108,17 @@
 
 
 
-  <meta name="description" content="1char  const p;char const  pconst char *p 上述三个有什么区别？char  const p; //常量指针，p的值不可以修改char const  p；//指向常量的指针，指向的常量值不可以改const char p； //和char const p 21234567891011121314151617char str1[] = “abc”;char str">
+  <meta name="description" content="1char  const p;char const  pconst char *p">
 <meta property="og:type" content="article">
 <meta property="og:title" content="c&#x2F;c++指针问题汇总">
 <meta property="og:url" content="/2015/07/09/c-c-指针问题汇总/index.html">
 <meta property="og:site_name" content="Hanson的博客">
-<meta property="og:description" content="1char  const p;char const  pconst char *p 上述三个有什么区别？char  const p; //常量指针，p的值不可以修改char const  p；//指向常量的指针，指向的常量值不可以改const char p； //和char const p 21234567891011121314151617char str1[] = “abc”;char str">
+<meta property="og:description" content="1char  const p;char const  pconst char *p">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-07-09T02:33:26.000Z">
+<meta property="og:updated_time" content="2018-07-10T06:09:43.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="c&#x2F;c++指针问题汇总">
-<meta name="twitter:description" content="1char  const p;char const  pconst char *p 上述三个有什么区别？char  const p; //常量指针，p的值不可以修改char const  p；//指向常量的指针，指向的常量值不可以改const char p； //和char const p 21234567891011121314151617char str1[] = “abc”;char str">
+<meta name="twitter:description" content="1char  const p;char const  pconst char *p">
 
 
 
@@ -404,6 +404,7 @@
 
       
         <h3 id="1"><a href="#1" class="headerlink" title="1"></a>1</h3><p>char <em> const p;<br>char const </em> p<br>const char *p</p>
+<a id="more"></a>
 <p>上述三个有什么区别？<br>char <em> const p; //常量指针，p的值不可以修改<br>char const </em> p；//指向常量的指针，指向的常量值不可以改<br>const char <em>p； //和char const </em>p</p>
 <h3 id="2"><a href="#2" class="headerlink" title="2"></a>2</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">char str1[] = “abc”;</div><div class="line">char str2[] = “abc”;</div><div class="line"></div><div class="line">const char str3[] = “abc”;</div><div class="line">const char str4[] = “abc”;</div><div class="line"></div><div class="line">const char *str5 = “abc”;</div><div class="line">const char *str6 = “abc”;</div><div class="line"></div><div class="line">char *str7 = “abc”;</div><div class="line">char *str8 = “abc”;</div><div class="line"></div><div class="line">cout &lt;&lt; ( str1 == str2 ) &lt;&lt; endl;</div><div class="line">cout &lt;&lt; ( str3 == str4 ) &lt;&lt; endl;</div><div class="line">cout &lt;&lt; ( str5 == str6 ) &lt;&lt; endl;</div><div class="line"></div><div class="line">cout &lt;&lt; ( str7 == str8 ) &lt;&lt; endl;</div></pre></td></tr></table></figure>
 <p>打印结果是什么？</p>
@@ -666,7 +667,7 @@ swap5函数与swap4相似，是一个引用传递，修改的结果直接影响�
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">105</span>
+                    <span class="site-state-item-count">106</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>

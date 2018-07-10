@@ -327,6 +327,152 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="/2015/09/25/iOS知识地图/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Hanson">
+      <meta itemprop="description" content="主要做移动端开发，和研发效率提升，会一点python和数据挖掘，现在就职业京东金融">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hanson的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2015/09/25/iOS知识地图/" itemprop="url">
+                  iOS知识地图
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2015-09-25 12:10:15" itemprop="dateCreated datePublished" datetime="2015-09-25T12:10:15+08:00">2015-09-25</time>
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>主要罗列iOS开发中涉及到的基础知识点以及架构和基础的一些方面</p>
+<ul>
+<li>基础</li>
+<li>需求</li>
+<li>质量</li>
+<li>效率</li>
+</ul>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2015/09/25/iOS知识地图/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="/2015/08/10/2015/runtime概述/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1334,154 +1480,14 @@
 
       
         
-          
-            <h3 id="1"><a href="#1" class="headerlink" title="1"></a>1</h3><p>char <em> const p;<br>char const </em> p<br>const char *p</p>
-<p>上述三个有什么区别？<br>char <em> const p; //常量指针，p的值不可以修改<br>char const </em> p；//指向常量的指针，指向的常量值不可以改<br>const char <em>p； //和char const </em>p</p>
-<h3 id="2"><a href="#2" class="headerlink" title="2"></a>2</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">char str1[] = “abc”;</div><div class="line">char str2[] = “abc”;</div><div class="line"></div><div class="line">const char str3[] = “abc”;</div><div class="line">const char str4[] = “abc”;</div><div class="line"></div><div class="line">const char *str5 = “abc”;</div><div class="line">const char *str6 = “abc”;</div><div class="line"></div><div class="line">char *str7 = “abc”;</div><div class="line">char *str8 = “abc”;</div><div class="line"></div><div class="line">cout &lt;&lt; ( str1 == str2 ) &lt;&lt; endl;</div><div class="line">cout &lt;&lt; ( str3 == str4 ) &lt;&lt; endl;</div><div class="line">cout &lt;&lt; ( str5 == str6 ) &lt;&lt; endl;</div><div class="line"></div><div class="line">cout &lt;&lt; ( str7 == str8 ) &lt;&lt; endl;</div></pre></td></tr></table></figure>
-<p>打印结果是什么？</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">解答：结果是：0 0 1 1</div><div class="line">str1,str2,str3,str4是数组变量，它们有各自的内存空间；而str5,str6,str7,str8是指针，它们指向相同的常量区域</div></pre></td></tr></table></figure>
-<p>###3</p>
-<p>以下代码中的两个sizeof用法有问题吗？</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">void UpperCase( char str[] ) // 将 str 中的小写字母转换成大写字母</div><div class="line">&#123;</div><div class="line">for( size_t i=0; i&lt;sizeof(str)/sizeof(str[0]); ++i )</div><div class="line">if( ‘a’&lt;=str[i] &amp;&amp; str[i]&lt;=’z’ )</div><div class="line">str[i] -= (‘a’-&apos;A’ );</div><div class="line">&#125;</div><div class="line"></div><div class="line">char str[] = “aBcDe”;</div><div class="line">cout &lt;&lt; “str字符长度为: ” &lt;&lt; sizeof(str)/sizeof(str[0]) &lt;&lt; endl;</div><div class="line">UpperCase( str );</div><div class="line">cout &lt;&lt; str &lt;&lt; endl;</div></pre></td></tr></table></figure>
-<p>答：函数内的sizeof有问题。<br>根据语法，sizeof如用于数组，只能测出静态数组的大小，无法检测动态分配的或外部数组大小。<br>函数外的str是一个静态定义的数组，因此其大小为6，<br>函数内的str实际只是一个指向字符串的指针，没有任何额外的与数组相关的信息，因此sizeof作用于上只将其当指针看，一个指针为4个字节，因此返回4。</p>
-<h3 id="4"><a href="#4" class="headerlink" title="4"></a>4</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">main()</div><div class="line">&#123;</div><div class="line">int a[5]=&#123;1,2,3,4,5&#125;;</div><div class="line">int *ptr=(int *)(&amp;a+1);</div><div class="line">printf(“%d,%d”,*(a+1),*(ptr-1));</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>输出结果是什么？</p>
-<p>答案：输出：2,5</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">*(a+1）就是a[1]，*(ptr-1)就是a[4],执行结果是2，5</div><div class="line">&amp;a+1不是首地址+1，系统会认为加一个a数组的偏移，是偏移了一个数组的大小（本例是5个int）</div><div class="line">int *ptr=(int *)(&amp;a+1);</div><div class="line">则ptr实际是&amp;(a[5]),也就是a+5</div><div class="line"></div><div class="line">原因如下：</div><div class="line"></div><div class="line">&amp;a是数组指针，其类型为 int (*)[5];</div><div class="line">而指针加1要根据指针类型加上一定的值，不同类型的指针+1之后增加的大小不同。</div><div class="line">a是长度为5的int数组指针，所以要加 5*sizeof(int)</div><div class="line">所以ptr实际是a[5]</div><div class="line">但是prt与(&amp;a+1)类型是不一样的(这点很重要)</div><div class="line">所以prt-1只会减去sizeof(int*)</div><div class="line"></div><div class="line">a,&amp;a的地址是一样的，但意思不一样</div><div class="line">a是数组首地址，也就是a[0]的地址，&amp;a是对象（数组）首地址，</div><div class="line">a+1是数组下一元素的地址，即a[1],&amp;a+1是下一个对象的地址，即a[5].</div></pre></td></tr></table></figure>
-<h3 id="5"><a href="#5" class="headerlink" title="5"></a>5</h3><p>请问以下代码有什么问题：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">int  main()</div><div class="line">&#123;</div><div class="line">char a;</div><div class="line">char *str=&amp;a;</div><div class="line">strcpy(str,”hello”);</div><div class="line">printf(str);</div><div class="line">return 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>答案：没有为str分配内存空间，将会发生异常。问题出在将一个字符串复制进一个字符变量指针所指地址。虽然可以正确输出结果，但因为越界进行内在读写而导致程序崩溃。</p>
-<h3 id="6"><a href="#6" class="headerlink" title="6"></a>6</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">char* s=”AAA”;</div><div class="line">printf(“%s”,s);</div><div class="line">s[0]=’B&apos;;</div><div class="line">printf(“%s”,s);</div></pre></td></tr></table></figure>
-<p>有什么错？</p>
-<p>答案：<br>“AAA”是字符串常量。s是指针，指向这个字符串常量，所以声明s的时候就有问题。<br>cosnt char* s=”AAA”;<br>然后又因为是常量，所以对是s[0]的赋值操作是不合法的。</p>
-<h3 id="7"><a href="#7" class="headerlink" title="7"></a>7</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">int (*s[10])(int) 表示的是什么？</div><div class="line"></div><div class="line">答案：int (*s[10])(int) 函数指针数组，每个指针指向一个int func(int param)的函数。</div></pre></td></tr></table></figure>
-<h3 id="8"><a href="#8" class="headerlink" title="8"></a>8</h3><p>有以下表达式：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">int a=248; b=4;</div><div class="line">int const c=21;</div><div class="line">const int *d=&amp;a;</div><div class="line">int *const e=&amp;b;</div><div class="line">int const *f const =&amp;a;</div></pre></td></tr></table></figure>
-<p>请问下列表达式哪些会被编译器禁止？为什么？<br><em>c=32;d=&b;</em>d=43;e=34;e=&a;f=0x321f;</p>
-<p>答案：<br><em>c 这是个什么东东，禁止
-</em>d 说了是const， 禁止<br>e = &amp;a 说了是const 禁止<br>const *f const =&a; 禁止<br>——————————————</p>
-<h3 id="9"><a href="#9" class="headerlink" title="9"></a>9</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">#include &lt;stdio.h&gt;</div><div class="line">#include &lt;stdlib.h&gt;</div><div class="line"></div><div class="line">void getmemory(char *p)</div><div class="line">&#123; </div><div class="line">p=(char *) malloc(100);</div><div class="line">strcpy(p,”hello world”);</div><div class="line">&#125; </div><div class="line"></div><div class="line">int main( )</div><div class="line">&#123;</div><div class="line">char *str=NULL;</div><div class="line">getmemory(str);</div><div class="line">printf(“%s/n”,str);</div><div class="line">free(str);</div><div class="line">return 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>分析一下这段代码</p>
-<p>答案：程序崩溃，getmemory中的malloc 不能返回动态内存， free（）对str操作很危险</p>
-<p>博主：getmemory中p是形参，是一个指针变量，getmemory(str)调用后，传入的是指针变量保存的对象地址，p=(char <em>) malloc(100)实际上是把申请的动态内存空间的首地址付给p指向的地址（即str指向的地址null），这个是错误的。应该修改成指向指针的指针void getmemory(char **p)，这样malloc返回的地址付给</em>p（即str变量本身）。</p>
-<h3 id="10"><a href="#10" class="headerlink" title="10"></a>10</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">char szstr[10];</div><div class="line">strcpy(szstr,”0123456789″);</div></pre></td></tr></table></figure>
-<p>产生什么结果？为什么？</p>
-<p>答案：长度不一样，会造成非法的OS，字符串最后一个是’\0’所以上边应该是11</p>
-<h3 id="11"><a href="#11" class="headerlink" title="11"></a>11</h3><p>要对绝对地址0×100000赋值，我们可以用(unsigned int*)0×100000 = 1234;<br>那么要是想让程序跳转到绝对地址是0×100000去执行，应该怎么做？</p>
-<p>答案：<em>((void (</em>)( ))0×100000 ) ( );<br>首先要将0×100000强制转换成函数指针,即:<br>(void (<em>)())0×100000<br>然后再调用它:
-</em>((void (<em>)())0×100000)();<br>用typedef可以看得更直观些:<br>typedef void(</em>)() voidFuncPtr;<br>*((voidFuncPtr)0×100000)();<br>——————————————</p>
-<h3 id="12"><a href="#12" class="headerlink" title="12"></a>12</h3><p>分析下面的程序：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">void GetMemory(char **p,int num)</div><div class="line">&#123;                          //p，指向指针的指针，*p，p指向的指针(即str)，**p，最终的对象，str指向的单元</div><div class="line">*p=(char *)malloc(num);  //申请空间首地址付给传入的被p指向的指针，即str</div><div class="line">&#125; </div><div class="line"></div><div class="line">int main()</div><div class="line">&#123;</div><div class="line">char *str=NULL;</div><div class="line">GetMemory(&amp;str,100);   //传入指针变量本身的地址</div><div class="line">strcpy(str,”hello”);</div><div class="line">free(str);</div><div class="line"></div><div class="line">if(str!=NULL)</div><div class="line">&#123;</div><div class="line">strcpy(str,”world”);</div><div class="line">&#125; </div><div class="line"></div><div class="line">printf(“\n str is %s”,str); 软件开发网 www.mscto.com</div><div class="line">getchar();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>问输出结果是什么？</p>
-<p>答案：输出str is world。</p>
-<p>free 只是释放的str指向的内存空间,它本身的值还是存在的.所以free之后，有一个好的习惯就是将str=NULL.<br>此时str指向空间的内存已被回收,如果输出语句之前还存在分配空间的操作的话,这段存储空间是可能被重新分配给其他变量的,<br>尽管这段程序确实是存在大大的问题（上面各位已经说得很清楚了），但是通常会打印出world来。<br>这是因为，进程中的内存管理一般不是由操作系统完成的，而是由库函数自己完成的。</p>
-<p>当你malloc一块内存的时候，管理库向操作系统申请一块空间（可能会比你申请的大一些），然后在这块空间中记录一些管理信息（一般是在你申请的内存 前面一点），并将可用内存的地址返回。但是释放内存的时候，管理库通常都不会将内存还给操作系统，因此你是可以继续访问这块地址的。</p>
-<h3 id="13"><a href="#13" class="headerlink" title="13"></a>13</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">char a[10]；</div><div class="line">strlen(a)为什么等于15？</div><div class="line"></div><div class="line">#include “stdio.h”</div><div class="line">#include “string.h”</div><div class="line"></div><div class="line">void main()</div><div class="line">&#123;</div><div class="line">char aa[10];</div><div class="line">printf(“%d”,strlen(aa));</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>答案：sizeof()和初不初始化，没有关系；<br>strlen()和初始化有关。</p>
-<h3 id="14"><a href="#14" class="headerlink" title="14"></a>14</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">char (*str)[20];/*str是一个数组指针，即指向数组的指针．*/</div><div class="line">char *str[20];/*str是一个指针数组，其元素为指针型数据．*/</div></pre></td></tr></table></figure>
-<h3 id="15"><a href="#15" class="headerlink" title="15"></a>15</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">#include&lt;iostream.h&gt;</div><div class="line">#include &lt;string.h&gt;</div><div class="line">#include &lt;malloc.h&gt;</div><div class="line">#include &lt;stdio.h&gt;</div><div class="line">#include &lt;stdlib.h&gt;</div><div class="line">#include &lt;memory.h&gt;</div><div class="line"></div><div class="line">typedef struct  AA</div><div class="line">&#123;</div><div class="line">int b1:5;</div><div class="line">int b2:2;</div><div class="line">&#125;AA;</div><div class="line"></div><div class="line">void main()</div><div class="line">&#123;</div><div class="line">AA aa;</div><div class="line">char cc[100];</div><div class="line">strcpy(cc,”0123456789abcdefghijklmnopqrstuvwxyz”);</div><div class="line">memcpy(&amp;aa,cc,sizeof(AA));</div><div class="line">cout &lt;&lt; aa.b1 &lt;&lt;endl;</div><div class="line">cout &lt;&lt; aa.b2 &lt;&lt;endl;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>输出结果是多少？</p>
-<p>答案：-16和１</p>
-<p>首先sizeof(AA)的大小为4,b1和b2分别占5bit和2bit.经过strcpy和memcpy后,aa的4个字节所存放的值是: 0,1,2,3的ASC码，即00110000,00110001,00110010,00110011所以，最后一步：显示的是这４个字节的前５位，和 之后的２位分别为：10000,和01，因为int是有正负之分</p>
-<h3 id="16"><a href="#16" class="headerlink" title="16"></a>16</h3><p>试题三：  以下代码有哪些错误或不足之处</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">void GetMemory( char **p, int num )</div><div class="line"></div><div class="line">&#123;</div><div class="line"></div><div class="line">　*p = (char *) malloc( num );</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line"> </div><div class="line"></div><div class="line">void Test( void )</div><div class="line"></div><div class="line">&#123;</div><div class="line"></div><div class="line">　char *str = NULL;</div><div class="line"></div><div class="line">　GetMemory( &amp;str, 100 );</div><div class="line"></div><div class="line">　strcpy( str, &quot;hello&quot; );</div><div class="line"></div><div class="line">　printf( str );</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>解答：</p>
-<p>存在2处问题：</p>
-<p>本题中的Test函数中未对malloc的内存进行释放。</p>
-<p>本题中的GetMemory避免了试题一的问题，传入GetMemory的参数为字符串指针的指针，但是在GetMemory中执行申请内存及赋值语句</p>
-<p><em>p = (char </em>) malloc( num );</p>
-<p>后未判断内存是否申请成功，应加上：</p>
-<p>if ( *p == NULL )</p>
-<p>{</p>
-<p>　…//进行申请内存失败处理</p>
-<p>}</p>
-<h3 id="17"><a href="#17" class="headerlink" title="17"></a>17</h3><p>试题四：找出下面代码的不足或错误之处<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">void Test( void )</div><div class="line"></div><div class="line">&#123;</div><div class="line"></div><div class="line">　char *str = (char *) malloc( 100 );</div><div class="line"></div><div class="line">　strcpy( str, &quot;hello&quot; );</div><div class="line"></div><div class="line">　free( str );</div><div class="line"></div><div class="line">　... //省略的其它语句</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>解答：</p>
-<p>存在2处问题：</p>
-<p>试题四存在与试题三同样的问题，在执行char <em>str = (char </em>) malloc(100);</p>
-<p>后未进行内存是否申请成功的判断；</p>
-<p>另外，在free(str)后未置str为空，导致可能变成一个“野”指针，应加上：</p>
-<p>str = NULL;</p>
-<p>18     判断输出是乱码  还是字符或是字符串  还是表示地址值 ？ 如果是地址值就用0xF1247000代表</p>
-<p>.char类型指针的输出</p>
-<p>  标准库cout输出时，无法判断指针的类型，如下面程序所示：<br>char ch = ‘a’;<br>int num = 1;<br>char <em>pch = &ch;<br>int </em>pnum = &num;<br>std::cout&lt;&lt;pch&lt;&lt;std::endl; //输出：乱码<br>std::cout&lt;&lt;(void<em>)pch&lt;&lt;std::endl;   //输出：0xF1247000<br>std::cout&lt;&lt;pnum&lt;&lt;std::endl;//输出：0xF1247004<br>std::cout&lt;&lt;(void</em>)pnum&lt;&lt;std::endl;   //输出：0xF12470004</p>
-<p>char <em>pch2=”Hello”;<br>std::cout&lt;&lt;pch2&lt;&lt;std::endl;//输出：Hello<br>std::cout&lt;&lt;(void</em>)pch2&lt;&lt;std::endl;//输出：16进制地址</p>
-<p>  对于字符型指针，要用void*进行类型转换后，才能输出其地址，地址以16进制数的格式显示32位地址值。若不进行转换，cout会按照char类型解析指针内容。若是一个字符，没有’\0’结束符，输出乱码；若是字符串，则输出字符串内容。<br>  除了字符指针，其他指针都可以直接用cout语句来输出地址值。无须进行指针类型转换。</p>
-<p>19   指针与引用的区别？</p>
-<p>答案：</p>
-<p>（1）非空区别。在任何情况下都不能使用指向空值的引用。因此如果你使用一个变量并让它指向一个对象，但是该变量在某些时候也可能不指向任何对象，这时你应该把变量声明为指针，因为这样你可以赋空值给该变量。相反，如果变量肯定指向一个对象，例如你的设计不允许变量为空，这时你就可以把变量声明为引用。不存在指向空值的引用这个事实意味着使用引用的代码效率比使用指针要高。</p>
-<p>（2）合法性区别。在使用引用之前不需要测试它的合法性。相反，指针则应该总是被测试，防止其为空。</p>
-<p>（3）可修改区别。指针与引用的另一个重要的区别是指针可以被重新赋值以指向另一个不同对象。但是引用则总是指向在初始化时被指定的对象，以后不能改变，但是指定的对象其内容可以改变。</p>
-<p>思路：   遇到次类型的题目 一定要想想他们的特点是什么 抓住特点进行分析        想想他们的功能是什么   进行比较</p>
-<p>20：</p>
-<p>下面5个函数哪个能成功进行两个数的交换？</p>
-<p>#include<iostream><br>using namespace std;</iostream></p>
-<p>void swap1(int p,int q)<br>{<br>    int temp;<br>    temp=p;<br>    p=q;<br>    q=temp;<br>}</p>
-<p>void swap2(int <em>p,int </em>q)<br>{<br>    int <em>temp;
-    </em>temp=<em>p;
-    </em>p=<em>q;
-    </em>q=*temp;<br>}</p>
-<p>void swap3(int <em>p,int </em>q)<br>{<br>    int *temp;<br>    temp=p;<br>    p=q;<br>    q=temp;<br>}</p>
-<p>void swap4(int <em>p,int </em>q)<br>{<br>    int temp;<br>    temp=<em>p;
-    </em>p=<em>q;
-    </em>q=temp;<br>}</p>
-<p>void swap5(int &amp;p,int &amp;q)<br>{<br>    int temp;<br>    temp=p;<br>    p=q;<br>    q=temp;<br>}</p>
-<p>int main ()<br>{<br>    int a=1,b=2;<br>    //swap1(a,b);<br>    //swap2(&amp;a,&amp;b);<br>    //swap3(&amp;a,&amp;b);<br>    //swap4(&amp;a,&amp;b);<br>    //swap5(a,b);<br>    cout &lt;&lt; “a:”&lt;&lt; a &lt;&lt;endl;<br>    cout &lt;&lt; “b:”&lt;&lt; b &lt;&lt;endl;</p>
-<pre><code>return 0;
-</code></pre><p>}</p>
-<p>解析：这道题考察的是参数传递、值传递、指针传递（地址传递）和引用传递。</p>
-<pre><code>swap1传递的是值的副本，在函数中只是修改了形参p、q（实际是a、b的一个拷贝），p、q的值确实交换了，但是它们是局部变量，不会影响到主函数a和 b 。当函数swap1生命周期结束时，p、q所在的栈也就被删除了。
-
-swap2传递的是一个地址进去，在函数体内的形参*p、*q是指向实际的参数a、b地址的两个指针。
-
-这里要注意：
-
-        int *temp;
-
-        *temp=*p;
-
-是不符合逻辑的，int *temp新建了一个指针（但是没分配内存）。*temp=*p不是指向而是拷贝。把*p所指向的内存的值（也就是a 的值）拷贝到*temp所指向内存里了。但是int *temp不是不分配内存吗？的确不分配，于是系统在拷贝时临时给了一个随机地址，让它存值。分配的随机地址是个“意外”，且函数结束后不回收，造成内存泄漏。
-
-swap3传递的是一个地址，在函数体内的参数*p、*q是指向实际参数a、b地址的两个指针。
-
-这里要注意：
-
-        int *temp;
-
-        temp=p;
-
-int *temp新建了一个指针（但是没分配内存）。temp=p是指向而不是拷贝。temp指向了*p所指向的地址（也就是a ）。而代码：
-
-        int *temp;
-
-        q=temp;
-
-但是函数swap3不能实现两数的交换，这是因为函数体内只是指针的变化，而对地址中的值却没有变化。
-
-swap4可以实现两数的交换，因为它修改的是指针所指向地址中的值。
-
-swap5函数与swap4相似，是一个引用传递，修改的结果直接影响实参。
-</code></pre><p>答案：</p>
-<p>swap4 函数和 swap5 函数。</p>
-<p>21、这个函数有什么问题？该如何修改？</p>
-<p>char *strA()<br>{<br>    charstr[] =”hello world”;<br>    returnstr;<br>}</p>
-<p>解析：这个str里存在的地址是函数strA栈里“hello world”的首地址。函数调用完成，栈帧恢复调用strA之前的状态，临时空间被重置，堆栈“回缩”，strA栈帧不再属于应该访问的范围。这段程序可以正确输出结果，但是这种访问方法违背了函数的栈帧机制。</p>
-<pre><code>但是只要另外一个函数调用的话，你就会发现，这种方式的不合理及危险性。
-
-如果想获得正确的函数，改成下面这样就可以：
-</code></pre><p>char <em>strA()<br>{<br>    char</em>str =”hello world”;<br>    returnstr;<br>}<br>      首先要搞清楚char *str 和 char str[] ：</p>
-<p>1<br>char str[] = “hello world”;<br>是分配一个局部数组。局部数组是局部变量，它所对应的是内存中的栈。局部变量的生命周期结束后该变量不存在了。</p>
-<p>1<br>char *str = “hello world”;</p>
-<p>是指向了常量区的字符串，位于静态存储区，它在程序生命期内恒定不变，所以字符串还在。无论什么时候调用 strA，它返回的始终是同一个“只读”的内存块。</p>
-<pre><code>另外想要修改，也可以这样：
-</code></pre><p>char *strA()<br>{<br>    staticcharstr[] =”hello world”;<br>    returnstr;<br>}<br>      通过static开辟一段静态存贮空间。</p>
-<p>答案：</p>
-<p>因为这个函数返回的是局部变量的地址，当调用这个函数后，这个局部变量str就释放了，所以返回的结果是不确定的且不安全，随时都有被收回的可能。</p>
-<p>22</p>
-<p>int arr[] = {1,2,3,4,5,6,7,8};<br>int <em>p=arr;
-</em>(p++)+=123;<br>printf(“%d,%d\n”, <em>p,</em>(++p));<br>第一行，定义数组arr，元素共八个<br>第二行，定义指针p指向arr数组<br>此时的<em>p还是等于arr数组的第0个元素，也就是1<br>第三行，p++里的++是最后才运算，所以先执行</em>p+=123，也就是arr的第0个元素被赋值为123<br>此时arr变成{123,2,3,4,5,6,7,8} ，然后是p++，此时<em>p已经是等于arr的第1个元素了，也就是2<br>第四行，在执行printf时，括号里的参数是从右往左的顺序进行读取的，也就是说先执行 </em>(++p)，也就是p先加一再指针，指向的是arr第2个元素3，然后在执行*p，还是3<br>最后显示的内容就是<br>3,3</p>
-
-          
+          <h3 id="1"><a href="#1" class="headerlink" title="1"></a>1</h3><p>char <em> const p;<br>char const </em> p<br>const char *p</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2015/07/09/c-c-指针问题汇总/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1614,80 +1620,14 @@ swap5函数与swap4相似，是一个引用传递，修改的结果直接影响�
 
       
         
-          
-            <p><a href="https://www.dooccn.com/cpp/" target="_blank" rel="external">在线运行代码</a></p>
-<p><a href="https://xiaozhuanlan.com/topic/4985160237" target="_blank" rel="external">测试</a></p>
-<p><a href="https://wangmeng.gitbooks.io/ios-note/content/interview_6.html" target="_blank" rel="external">测试1</a></p>
-<p><a href="https://zhuanlan.zhihu.com/p/33695619" target="_blank" rel="external">测试2</a></p>
-<p><a href="https://www.jianshu.com/p/8a54c26a9349" target="_blank" rel="external">测试3</a></p>
-<ul>
-<li>字符串反转</li>
-<li>链表反转</li>
-<li>有序数组合并</li>
-<li>Hash算法</li>
-<li>查找两个子视图</li>
-<li>中位数</li>
-</ul>
-<h3 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h3><h4 id="字符串反转"><a href="#字符串反转" class="headerlink" title="字符串反转"></a>字符串反转</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">string reverseString(string s) &#123;//反转字符串</div><div class="line">    for (int i = 0;i &lt; (s.size() + 1) / 2;i++) &#123;</div><div class="line">        char temp = s[i];</div><div class="line">        s[i] = s[s.size()-i-1];</div><div class="line">        s[s.size()-i-1] = temp;</div><div class="line">    &#125;</div><div class="line">    return s;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h4 id="字符串唯一字符，假设只有小写字母"><a href="#字符串唯一字符，假设只有小写字母" class="headerlink" title="字符串唯一字符，假设只有小写字母"></a>字符串唯一字符，假设只有小写字母</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">int firstUniqChar(string s) &#123;//字符串唯一字符，假设只有小写字母</div><div class="line">    int code[26] = &#123;0&#125;;</div><div class="line">    for (int i = 0;i &lt; s.size();i++) &#123;</div><div class="line">        char letter = s[i];</div><div class="line">        code[letter - &apos;a&apos;] ++;</div><div class="line">        // cout &lt;&lt; code[0] &lt;&lt; &quot;++++&quot; &lt;&lt;  code[letter - &apos;a&apos;] &lt;&lt; &quot;***&quot; &lt;&lt; letter - &apos;a&apos; &lt;&lt; letter &lt;&lt; endl;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    for (int i = 0;i &lt; s.size();i++) &#123;</div><div class="line">        char letter = s[i];</div><div class="line">        // cout &lt;&lt; code[letter - &apos;a&apos;] &lt;&lt; &quot;  code  &quot; &lt;&lt; letter &lt;&lt; endl;</div><div class="line">        if (code[letter - &apos;a&apos;] == 1) &#123;</div><div class="line">            return i;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    return -1;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h4 id="字符串唯一字符，啥字母都有"><a href="#字符串唯一字符，啥字母都有" class="headerlink" title="字符串唯一字符，啥字母都有"></a>字符串唯一字符，啥字母都有</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line">char findFirstChar(char* cha)</div><div class="line">&#123;</div><div class="line">    char result = &apos;\0&apos;;</div><div class="line">    // 定义一个数组 用来存储各个字母出现次数</div><div class="line">    int array[256];</div><div class="line">    // 对数组进行初始化操作</div><div class="line">    for (int i=0; i&lt;256; i++) &#123;</div><div class="line">        array[i] =0;</div><div class="line">    &#125;</div><div class="line">    // 定义一个指针 指向当前字符串头部</div><div class="line">    char* p = cha;</div><div class="line">    // 遍历每个字符</div><div class="line">    while (*p != &apos;\0&apos;) &#123;</div><div class="line">        // 在字母对应存储位置 进行出现次数+1操作</div><div class="line">        array[*(p++)]++;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    // 将P指针重新指向字符串头部</div><div class="line">    p = cha;</div><div class="line">    // 遍历每个字母的出现次数</div><div class="line">    while (*p != &apos;\0&apos;) &#123;</div><div class="line">        // 遇到第一个出现次数为1的字符，打印结果</div><div class="line">        if (array[*p] == 1)</div><div class="line">        &#123;</div><div class="line">            result = *p;</div><div class="line">            break;</div><div class="line">        &#125;</div><div class="line">        // 反之继续向后遍历</div><div class="line">        p++;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    return result;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="链表"><a href="#链表" class="headerlink" title="链表"></a>链表</h3><h4 id="增加节点"><a href="#增加节点" class="headerlink" title="增加节点"></a>增加节点</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">void insertNode(Node *p,int i) &#123; //增加节点</div><div class="line">    Node *node = new Node;</div><div class="line">    p-&gt;next = node;</div><div class="line">    node-&gt;value = i;</div><div class="line">    node-&gt;next = p-&gt;next;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h4 id="删除节点"><a href="#删除节点" class="headerlink" title="删除节点"></a>删除节点</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">void deleteNode(Node *p) &#123; //删除节点，因为不知道上一个节点，所以只能用下一个节点覆盖自己</div><div class="line">    p-&gt;next = p-&gt;next-&gt;next;</div><div class="line">    p-&gt;value = p-&gt;next-&gt;value;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h4 id="寻找中间节点"><a href="#寻找中间节点" class="headerlink" title="寻找中间节点"></a>寻找中间节点</h4><p>用slow和fast指针标记，slow每次走一步，fast每次走两步，当fast到尾节点时，slow就相当于总长度的一半，即在中间节点。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">Node* findMidNode(Node* head)&#123;//找出中间节点</div><div class="line">    Node* slow = head;</div><div class="line">    Node* fast = head;</div><div class="line">    while (fast-&gt;next != 0&amp;&amp;fast-&gt;next-&gt;next!=0) &#123;</div><div class="line">        slow = slow-&gt;next;</div><div class="line">        fast = fast-&gt;next-&gt;next;</div><div class="line">    &#125;</div><div class="line">    return slow;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h4 id="找出倒数第k个节点"><a href="#找出倒数第k个节点" class="headerlink" title="找出倒数第k个节点"></a>找出倒数第k个节点</h4><p>//用slow和fast指针标记,fast指针事先走k步，然后slow和fast同时走，当fast到达末节点时，slow在fast的前k个节点，即为倒数第k个节点。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line">ListNode* FindKthFromTail(ListNode* pListHead,int k)</div><div class="line">&#123;</div><div class="line">    if (pListHead == NULL || k == 0) //防止空的链表  和 k值 等于 0 的情况</div><div class="line">    &#123;</div><div class="line">        return NULL;</div><div class="line">    &#125;</div><div class="line">    ListNode* pAhead = pListHead;</div><div class="line">    ListNode* pBehind = NULL;</div><div class="line">    </div><div class="line">    for (int i = 0; i &lt; k-1; i++)</div><div class="line">    &#123;</div><div class="line">        if (pAhead-&gt;next != NULL)</div><div class="line">        &#123;</div><div class="line">            pAhead = pAhead-&gt;next;</div><div class="line">        &#125;</div><div class="line">        else</div><div class="line">        &#123;</div><div class="line">            return NULL;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    pBehind = pListHead;</div><div class="line">    while(pAhead-&gt;next != NULL)</div><div class="line">    &#123;</div><div class="line">        </div><div class="line">        pAhead  = pAhead-&gt;next;</div><div class="line">        pBehind = pBehind-&gt;next;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    return pBehind;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h4 id="链表反转"><a href="#链表反转" class="headerlink" title="链表反转"></a>链表反转</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">ListNode* reverseLinkedList3(ListNode* head)&#123;</div><div class="line">    if(NULL==head|| NULL==head-&gt;next) return head;    //少于两个节点没有反转的必要。</div><div class="line">    ListNode* p;</div><div class="line">    ListNode* q;</div><div class="line">    ListNode* r;</div><div class="line">    </div><div class="line">    p = head;</div><div class="line">    q = head-&gt;next;</div><div class="line">    head-&gt;next = NULL; //旧的头指针是新的尾指针，next需要指向NULL</div><div class="line">    while(q)&#123;</div><div class="line">        r = q-&gt;next; //先保留下一个step要处理的指针</div><div class="line">        q-&gt;next = p; //然后p q交替工作进行反向</div><div class="line">        p = q;</div><div class="line">        q = r;</div><div class="line">    &#125;</div><div class="line">    head=p; // 最后q必然指向NULL，所以返回了p作为新的头指针</div><div class="line">    return head;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h4 id="有序单链表合并"><a href="#有序单链表合并" class="headerlink" title="有序单链表合并"></a>有序单链表合并</h4><h3 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h3><h4 id="有序数组合并"><a href="#有序数组合并" class="headerlink" title="有序数组合并"></a>有序数组合并</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line">void mergeList(int a[], int aLen, int b[], int bLen, int result[])//有序数组合并</div><div class="line">&#123;</div><div class="line">    int p = 0; // 遍历数组a的指针</div><div class="line">    int q = 0; // 遍历数组b的指针</div><div class="line">    int i = 0; // 记录当前存储位置</div><div class="line">    </div><div class="line">    // 任一数组没有到达边界则进行遍历</div><div class="line">    while (p &lt; aLen &amp;&amp; q &lt; bLen) &#123;</div><div class="line">        // 如果a数组对应位置的值小于b数组对应位置的值</div><div class="line">        if (a[p] &lt;= b[q]) &#123;</div><div class="line">            // 存储a数组的值</div><div class="line">            result[i] = a[p];</div><div class="line">            // 移动a数组的遍历指针</div><div class="line">            p++;</div><div class="line">        &#125;</div><div class="line">        else&#123;</div><div class="line">            // 存储b数组的值</div><div class="line">            result[i] = b[q];</div><div class="line">            // 移动b数组的遍历指针</div><div class="line">            q++;</div><div class="line">        &#125;</div><div class="line">        // 指向合并结果的下一个存储位置</div><div class="line">        i++;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    // 如果a数组有剩余</div><div class="line">    while (p &lt; aLen) &#123;</div><div class="line">        // 将a数组剩余部分拼接到合并结果的后面</div><div class="line">        result[i] = a[p++];</div><div class="line">        i++;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    // 如果b数组有剩余</div><div class="line">    while (q &lt; bLen) &#123;</div><div class="line">        // 将b数组剩余部分拼接到合并结果的后面</div><div class="line">        result[i] = b[q++];</div><div class="line">        i++;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h4 id="无序数组中位数"><a href="#无序数组中位数" class="headerlink" title="无序数组中位数"></a>无序数组中位数</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">//求一个无序数组的中位数</div><div class="line">int PartSort(int a[], int start, int end)</div><div class="line">&#123;</div><div class="line">    int low = start;</div><div class="line">    int high = end;</div><div class="line">    </div><div class="line">    //选取关键字</div><div class="line">    int key = a[end];</div><div class="line">    </div><div class="line">    while (low &lt; high)</div><div class="line">    &#123;</div><div class="line">        //左边找比key大的值</div><div class="line">        while (low &lt; high &amp;&amp; a[low] &lt;= key)</div><div class="line">        &#123;</div><div class="line">            ++low;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        //右边找比key小的值</div><div class="line">        while (low &lt; high &amp;&amp; a[high] &gt;= key)</div><div class="line">        &#123;</div><div class="line">            --high;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        if (low &lt; high)</div><div class="line">        &#123;</div><div class="line">            //找到之后交换左右的值</div><div class="line">            int temp = a[low];</div><div class="line">            a[low] = a[high];</div><div class="line">            a[high] = temp;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    int temp = a[high];</div><div class="line">    a[high] = a[end];</div><div class="line">    a[end] = temp;</div><div class="line">    </div><div class="line">    return low;</div><div class="line">&#125;</div><div class="line"></div><div class="line">int findMedian(int a[], int aLen)</div><div class="line">&#123;</div><div class="line">    int low = 0;</div><div class="line">    int high = aLen - 1;</div><div class="line">    </div><div class="line">    int mid = (aLen - 1) / 2;</div><div class="line">    int div = PartSort(a, low, high);</div><div class="line">    </div><div class="line">    while (div != mid)</div><div class="line">    &#123;</div><div class="line">        if (mid &lt; div)</div><div class="line">        &#123;</div><div class="line">            //左半区间找</div><div class="line">            div = PartSort(a, low, div - 1);</div><div class="line">        &#125;</div><div class="line">        else</div><div class="line">        &#123;</div><div class="line">            //右半区间找</div><div class="line">            div = PartSort(a, div + 1, high);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    //找到了</div><div class="line">    return a[mid];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="大数求和"><a href="#大数求和" class="headerlink" title="大数求和"></a>大数求和</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div></pre></td><td class="code"><pre><div class="line">#include &lt;stdio.h&gt;</div><div class="line">#include &lt;string.h&gt;</div><div class="line">#include &lt;stdlib.h&gt;</div><div class="line"> </div><div class="line">/************************************************************************/</div><div class="line">/* 功能：实现两个超大数相加</div><div class="line">/* 参数：source1 -- 被加数，字符型数组,如12</div><div class="line">/*       source2 -- 加数，字符型数组,</div><div class="line">/*       result  -- 存放和，字符型数组</div><div class="line">/************************************************************************/</div><div class="line">void Add(char *source1, char *source2, char *result)</div><div class="line">&#123;</div><div class="line">	int len1 = strlen(source1);</div><div class="line">	int len2 = strlen(source2);</div><div class="line">	int len = len1 &gt;= len2 ? len1 : len2;</div><div class="line">	int i = len1 - 1, j = len2 - 1, k = 0;</div><div class="line">	char *temp = (char *)malloc(sizeof(char) * (len + 2));</div><div class="line">	char x, y, z;</div><div class="line">	int carryBit = 0;</div><div class="line">    </div><div class="line">	while (i &gt;= 0 || j &gt;= 0)</div><div class="line">	&#123;</div><div class="line">		if (i &lt; 0) x = &apos;0&apos;; </div><div class="line">		else x = source1[i];</div><div class="line"> </div><div class="line">		if (j &lt; 0) y = &apos;0&apos;;</div><div class="line">		else y = source2[j];</div><div class="line"> </div><div class="line">		z = x + y - &apos;0&apos; - &apos;0&apos; + carryBit;</div><div class="line">        temp[k++] = z % 10 + &apos;0&apos;;</div><div class="line">		carryBit = z / 10;</div><div class="line"> </div><div class="line">		i--;</div><div class="line">		j--;</div><div class="line">	&#125;</div><div class="line"> </div><div class="line">	while (carryBit)</div><div class="line">	&#123;</div><div class="line">		temp[k++] = carryBit % 10 + &apos;0&apos;;</div><div class="line">		carryBit /= 10;</div><div class="line">	&#125;</div><div class="line"> </div><div class="line">	for (--k, i = 0; k &gt;= 0; k--, i++)</div><div class="line">	&#123;</div><div class="line">		result[i] = temp[k];</div><div class="line">	&#125;</div><div class="line">	result[i] = &apos;\0&apos;;</div><div class="line"> </div><div class="line">	free(temp);// 释放内存</div><div class="line">&#125;</div><div class="line"> </div><div class="line">int main()</div><div class="line">&#123;</div><div class="line">	char source1[1000];</div><div class="line">	char source2[1000];</div><div class="line">	char result[1100];</div><div class="line"> </div><div class="line">	scanf(&quot;%s%s&quot;, source1, source2);</div><div class="line">	Add(source1, source2, result);</div><div class="line"> </div><div class="line">	printf(&quot;%s\n&quot;, result);</div><div class="line">	return 0;</div></pre></td></tr></table></figure>
-<h3 id="TopK问题"><a href="#TopK问题" class="headerlink" title="TopK问题"></a>TopK问题</h3><p><a href="https://www.cnblogs.com/xudong-bupt/archive/2013/03/20/2971262.html" target="_blank" rel="external">TopK问题最小堆</a></p>
-<p><a href="https://blog.csdn.net/ts173383201/article/details/7839482" target="_blank" rel="external">思路</a></p>
-<h3 id="罗列"><a href="#罗列" class="headerlink" title="罗列"></a>罗列</h3><p>反转链表</p>
-<p>二分查找法</p>
-<p>冒泡排序</p>
-<p>二分法</p>
-<p>数据结构（链表、二叉树、算法时间复杂度、空间复杂度）</p>
-<p>什么是二叉搜索树？时间复杂度是什么？</p>
-<p>采用二叉树链表作为存储结构，每个左节点均小于父节点，每个右节点均大于父节点</p>
-<p>O(log2(n))</p>
-<p>T9算法如何实现, 全拼算法</p>
-<p>最短路径算法</p>
-<p>强连通量算法</p>
-<p>实现连连看算法</p>
-<p>如何实现一个数组每个元素依次向右移动k位。(后头的往前面补) 比如: [1, 2, 3, 4, 5] 挪两位变成[4, 5, 1, 2, 3]</p>
-<p>求两个整数的最大公约数</p>
-<p>微信用户都是双向的好友，a是b的好友，那么b一定是a的。给定一个用户列表，有些用户是好友，有些不是，请判断，这些用户是否可以划分为两组，每组内的用 户，互相都不是好友。如果能，请给出这个划分</p>
-<p>算法题：说 预约会议室，会有n个团队预约当天会议室，时间各不相同，求最少需要几个会议室。比如：1预约的时间是[9-11], 2预约的时间是[10-12], 3预约的时间是[12-14], 此时会议最小个数是2个</p>
-<p>1、就n的阶乘。（这里只是用于小数，大数会越界）</p>
-<p>思路：这里面用递归实现</p>
-<p>#include <stdio.h></stdio.h></p>
-<p>int getNJ(int n) {<br>     || n==) {<br>        ;<br>    }<br>    );<br>}<br>int main() { </p>
-<p>   printf());<br>    ;<br>}<br>运行结果如下：</p>
-<p>2、判断一个字符串是否是ip。</p>
-<p>思路：先将字符串分割到两个数组里面（一个数字数组，一个字符数组），然后判断数字数组内容是否满足ip条件，字符数组里面是否是”.”。这里面主要用了sscanf函数。代码如下：</p>
-<p>#include <stdio.h></stdio.h></p>
-<p>int checkIP(const char *p) {<br>    ];<br>    ];<br>    ],&amp;c[],&amp;n[],&amp;c[],&amp;n[],&amp;c[],&amp;n[],&amp;c[])==) {<br>        int i;<br>        ;i&lt;;i++) {<br>            if(c[i]!=’.’) {<br>                ;<br>            }<br>        }<br>        ;i&lt;;i++) {<br>            ||n[i]&lt;) {<br>                ;<br>            }<br>        }<br>        ;</p>
-<pre><code>}else {
-    ;
-}
-</code></pre><p>}</p>
-<p>int main() {<br>    const char <em>x[] =<br>    {<br>        “132.168.1.1”,<br>        “10.0.0.1.”,<br>        “127.256.0.1”,<br>        “iudfdsfdasfdaf”,<br>        “172.16,2.1”<br>    };<br>    const char </em>m[] =<br>    {<br>        “不是合法的IP地址”,<br>         “是合法的IP地址”<br>    };<br>    ;<br>    ) {<br>        printf(“%s %s\n”,x[i],m[checkIP(x[i])]);<br>        i++;<br>    }<br>    ;<br>    ;<br>}<br>运行结果如下：</p>
-<p>132.168.1.1 是合法的IP地址<br>10.0.0.1. 不是合法的IP地址<br>127.256.0.1 不是合法的IP地址<br>iudfdsfdasfdaf 不是合法的IP地址<br>172.16,2.1 不是合法的IP地址<br>3、二分查找</p>
-<p>思路：二分查找又称折半查找，前提是待查找表为有序表。将查找目标与数组中间的数对比，如果大于中间的数就在中间数和最大数之间查找，如果小于中间数就在小数和中间数之间查找。</p>
-<p>#include <stdio.h></stdio.h></p>
-<p>int bsearchMethod(int arr[],int low,int high,int target) {<br>    while (low<high) {="" ;="" if="" (arr[mid]="">target) {<br>            high = mid-;<br>        }else if(arr[mid]&lt;target){<br>            low = mid+;<br>        }else {<br>            return mid;<br>        }<br>    }<br>    ;<br>}<br>int main(void) {<br>    ,,,,,,,,,,};<br>    printf(,,));<br>    ;<br>}<br>运行结果为：</high)></p>
-<p>查找数在数组第5位<br>其中-1为查找失败</p>
-<p>4、100层楼2个鸡蛋问题？</p>
-<p>5、字符串反转输出问题？</p>
-<p>6、红黑树？</p>
-<p>7、河左边有：狼、羊、白菜，一个人过河，一次只能带走一件东西，怎么做能够保证三物都到河右边?规则（狼吃羊、羊吃白菜）</p>
-<p>答：先把羊带到对面，然后把白菜带到对面，这个时候把羊带走，把狼带回对面，回去再把羊带回对面。</p>
-<p>8、有一张圆形的桌子,两个人轮流往桌子上放硬币,假设两人有无限多的大小相同的硬币且不考虑桌子的大小,规定硬币之间不可以重叠,但可以相互碰着边,谁最后一个放硬币谁就赢,问谁会赢,第一给放硬币的人还是第二个?（更新时间：2016年10月18日）</p>
-<p>答：第一个出的赢，但是第一个首先的做法是：把第一个放在中心，然后当第二个人出的时候，第一个人就对称着放硬币，第一个人就赢了。</p>
-<h4 id="不用中间变量-用两种方法交换A和B的值"><a href="#不用中间变量-用两种方法交换A和B的值" class="headerlink" title="不用中间变量,用两种方法交换A和B的值"></a>不用中间变量,用两种方法交换A和B的值</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">// 1.中间变量</div><div class="line"></div><div class="line">void swap(int a, int b) &#123;</div><div class="line"></div><div class="line">int temp = a;</div><div class="line"></div><div class="line">a = b;</div><div class="line"></div><div class="line">b = temp;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line">// 2.加法</div><div class="line"></div><div class="line">void swap(int a, int b) &#123;</div><div class="line"></div><div class="line">a = a + b;</div><div class="line"></div><div class="line">b = a - b;</div><div class="line"></div><div class="line">a = a - b;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line">// 3.异或（相同为0，不同为1. 可以理解为不进位加法）</div><div class="line"></div><div class="line">void swap(int a, int b) &#123;</div><div class="line"></div><div class="line">a = a ^ b;</div><div class="line"></div><div class="line">b = a ^ b;</div><div class="line"></div><div class="line">a = a ^ b;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h4 id="求最大公约数"><a href="#求最大公约数" class="headerlink" title="求最大公约数"></a>求最大公约数</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">/** 1.直接遍历法 */</div><div class="line"></div><div class="line">int maxCommonDivisor(int a, int b) &#123;</div><div class="line"></div><div class="line">int max = 0;</div><div class="line"></div><div class="line">for (int i = 1; i &lt;=b; i++) &#123;</div><div class="line"></div><div class="line">if (a % i == 0 &amp;&amp; b % i == 0) &#123;</div><div class="line"></div><div class="line">max = i;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line">return max;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line">/** 2.辗转相除法 */</div><div class="line"></div><div class="line">int maxCommonDivisor(int a, int b) &#123;</div><div class="line"></div><div class="line">int r;</div><div class="line"></div><div class="line">while(a % b &gt; 0) &#123;</div><div class="line"></div><div class="line">r = a % b;</div><div class="line"></div><div class="line">a = b;</div><div class="line"></div><div class="line">b = r;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line">return b;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line">// 扩展：最小公倍数 = (a * b)/最大公约数</div></pre></td></tr></table></figure>
-          
+          <p><a href="https://www.dooccn.com/cpp/" target="_blank" rel="external">在线运行代码</a><br></p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2015/07/06/算法题收集/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1820,22 +1760,16 @@ swap5函数与swap4相似，是一个引用传递，修改的结果直接影响�
 
       
         
-          
-            <h3 id="AFNetworking"><a href="#AFNetworking" class="headerlink" title="AFNetworking"></a>AFNetworking</h3><p><img src="/05/第三方库相关/../../../images/2018-07-052.27.05.png" alt=""></p>
+          <h3 id="AFNetworking"><a href="#AFNetworking" class="headerlink" title="AFNetworking"></a>AFNetworking</h3><p><img src="/05/第三方库相关/../../../images/2018-07-052.27.05.png" alt=""></p>
 <p><img src="/05/第三方库相关/../../../images/2018-07-052.28.42.png" alt=""></p>
 <p><img src="/05/第三方库相关/../../../images/2018-07-052.29.42.png" alt=""></p>
-<h3 id="SDWebImage"><a href="#SDWebImage" class="headerlink" title="SDWebImage"></a>SDWebImage</h3><p><img src="/05/第三方库相关/../../../images/2018-07-052.34.09.png" alt=""></p>
-<h3 id="ReactiveCocoa"><a href="#ReactiveCocoa" class="headerlink" title="ReactiveCocoa"></a>ReactiveCocoa</h3><ul>
-<li>信号</li>
-<li>订阅</li>
-</ul>
-<p>RACSignal–&gt;RACStream</p>
-<h3 id="AsyncDisplayKit"><a href="#AsyncDisplayKit" class="headerlink" title="AsyncDisplayKit"></a>AsyncDisplayKit</h3><p>ASNode线程安全，可以放在子线程</p>
-<p>针对ASNode的修改和提交，会对其进行封装并且提交到一个全局容器中，ASKD也在runloop中注册了一个Observer，当Runloop进入休眠前，ASDK执行该loop内提交所有的任务。</p>
-<p><img src="/05/第三方库相关/../../../images/2018-07-052.38.30.png" alt=""></p>
-<p><img src="/05/第三方库相关/../../../images/2018-07-052.39.29.png" alt=""></p>
-
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2015/07/05/第三方库相关/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1968,48 +1902,21 @@ swap5函数与swap4相似，是一个引用传递，修改的结果直接影响�
 
       
         
-          
-            <p><img src="/05/设计模式相关/../../../images/2018-07-059.39.25.png" alt=""></p>
-<h3 id="设计模式"><a href="#设计模式" class="headerlink" title="设计模式"></a>设计模式</h3><p>责任链:响应者链条</p>
-<p><img src="/05/设计模式相关/../../../images/2018-07-059.24.05.png" alt=""></p>
-<h3 id="设计原则"><a href="#设计原则" class="headerlink" title="设计原则"></a>设计原则</h3><h5 id="单一职责"><a href="#单一职责" class="headerlink" title="单一职责:"></a>单一职责:</h5><p>一个类只负责一件事，比如UIView负责事件，CALayer只负责显示</p>
-<h5 id="开闭原则"><a href="#开闭原则" class="headerlink" title="开闭原则:"></a>开闭原则:</h5><p>对修改关闭，对扩展开放</p>
-<p>对属性的定义要小心，以后扩展要尽量不修改类本身</p>
-<h5 id="接口隔离"><a href="#接口隔离" class="headerlink" title="接口隔离:"></a>接口隔离:</h5><p>使用很多专门协议，而不是一个庞大臃肿的协议</p>
-<p>协议中的方法尽量少</p>
-<p>比如tableview的datasource和delegate两种协议</p>
-<h5 id="依赖倒置原则"><a href="#依赖倒置原则" class="headerlink" title="依赖倒置原则:"></a>依赖倒置原则:</h5><p>抽象不应该依赖具体实现，具体实现可以依赖抽象</p>
-<p>所有上层只依赖接口定义，具体里边的实现是不关注的</p>
-<h5 id="里氏替换"><a href="#里氏替换" class="headerlink" title="里氏替换:"></a>里氏替换:</h5><p>父类可以被子类无缝替换，且原有功能不受影响</p>
-<p>比如KVO</p>
-<h5 id="迪米特法则"><a href="#迪米特法则" class="headerlink" title="迪米特法则:"></a>迪米特法则:</h5><p>一个对象应当对其他对象尽可能少的了解</p>
-<p>这样就可以做到高内聚，低耦合</p>
-<h3 id="责任链"><a href="#责任链" class="headerlink" title="责任链"></a>责任链</h3><p>调整nextResponder指向</p>
-<p><img src="/05/设计模式相关/../../../images/2018-07-059.png" alt=""></p>
-<h3 id="桥接模式"><a href="#桥接模式" class="headerlink" title="桥接模式"></a>桥接模式</h3><p>这个是一个特别牛逼的方法，举一个实际的业务场景，比如现在有3种布局样式的cell，然后还有3种插件，现在你要在一个tableview种任意组合这几种情况，如果所有的cell类型都暴露给tableview，那么这个逻辑将很复杂，那么怎么办呢？</p>
-<p>解决办法是定义一个抽象类叫做A，代表cell，再定义一个抽象类B，代表插件，根据网络数据决定实际初始化A的时候初始化具体哪个子类，但是在tableview写代码的时候只需要面对A就好了，将大大将少控制器对cell的各种类型的依赖。</p>
-<p><img src="/05/设计模式相关/../../../images/2018-07-059.51.11.png" alt=""></p>
-<h3 id="适配器"><a href="#适配器" class="headerlink" title="适配器"></a>适配器</h3><p>一个现有类需要适应变化的问题？</p>
-<ul>
-<li>对象适配器</li>
-<li>类适配器</li>
-</ul>
-<p>解决办法是创建一个新类，对原来的类进行一个包装，然后旧对象做为一个成员变量，把你的新逻辑增加到之前的方法调用之前或者之后。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">@implementation CoolTarget</div><div class="line"></div><div class="line">- (void)request</div><div class="line">&#123;</div><div class="line">    // 额外处理</div><div class="line">    </div><div class="line">    [self.target operation];</div><div class="line">    </div><div class="line">    // 额外处理</div><div class="line">&#125;</div><div class="line"></div><div class="line">@end</div></pre></td></tr></table></figure>
-<h3 id="单例模式"><a href="#单例模式" class="headerlink" title="单例模式"></a>单例模式</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line">#import &quot;Mooc.h&quot;</div><div class="line"></div><div class="line">@implementation Mooc</div><div class="line"></div><div class="line">+ (id)sharedInstance</div><div class="line">&#123;</div><div class="line">    // 静态局部变量</div><div class="line">    static Mooc *instance = nil;</div><div class="line">    </div><div class="line">    // 通过dispatch_once方式 确保instance在多线程环境下只被创建一次</div><div class="line">    static dispatch_once_t onceToken;</div><div class="line">    dispatch_once(&amp;onceToken, ^&#123;</div><div class="line">        // 创建实例</div><div class="line">        instance = [[super allocWithZone:NULL] init];</div><div class="line">    &#125;);</div><div class="line">    return instance;</div><div class="line">&#125;</div><div class="line"></div><div class="line">// 重写方法【必不可少】</div><div class="line">+ (id)allocWithZone:(struct _NSZone *)zone&#123;</div><div class="line">    return [self sharedInstance];</div><div class="line">&#125;</div><div class="line"></div><div class="line">// 重写方法【必不可少】</div><div class="line">- (id)copyWithZone:(nullable NSZone *)zone&#123;</div><div class="line">    return self;</div><div class="line">&#125;</div><div class="line"></div><div class="line">@end</div></pre></td></tr></table></figure>
-<p>注意三个点:</p>
-<ul>
-<li>重写allocWithZone</li>
-<li>重写copyWithZone</li>
-<li>要调用super allocWithZone，不用self防止循环调用</li>
-</ul>
-<h3 id="命令模式"><a href="#命令模式" class="headerlink" title="命令模式"></a>命令模式</h3><p>行为参数化</p>
-<p>作用，降低代码重合度</p>
-<p>实际使用场景，转发，评论，赞等，如果没有命令模式，我们需要在每个页面进行相关处理，如果进行了行为参数化，那么就能省下很多东西。</p>
-<p>我们需要两个模块，一个是命令管理者，一个是命令的虚拟类，最后是很多命令的具体子类。</p>
-<p>当我们需要执行一个命令的时候就直接调用这个管理者，然后执行这个命令就好了。</p>
-
-          
+          <p><img src="/05/设计模式相关/../../../images/2018-07-059.39.25.png" alt=""></p>
+<p>1.代理模式</p>
+<p>2.观察者模式</p>
+<p>3.MVC模式</p>
+<p>4.单例模式</p>
+<p>5.策略模式</p>
+<p>6.工厂模式</p>
+<h3 id="设计模式"><a href="#设计模式" class="headerlink" title="设计模式"></a>设计模式</h3><p>责任链:响应者链条<br></p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2015/07/05/设计模式相关/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -2142,334 +2049,14 @@ swap5函数与swap4相似，是一个引用传递，修改的结果直接影响�
 
       
         
-          
-            <h3 id="HTTP"><a href="#HTTP" class="headerlink" title="HTTP"></a>HTTP</h3><p><img src="/04/网络相关/../../../images/2018-07-049.10.24.png" alt=""><br>请求行</p>
-<p>首部字段区</p>
-<p>实体主体，get没有，post有</p>
-<p><img src="/04/网络相关/../../../images/2018-07-049.10.42.png" alt=""><br>响应行</p>
-<p>首部字段区</p>
-<p><img src="/04/网络相关/../../../images/2018-07-049.11.18.png" alt=""></p>
-<p><img src="/04/网络相关/../../../images/2018-07-049.12.38.png" alt=""></p>
-<p><img src="/04/网络相关/../../../images/2018-07-049.13.08.png" alt=""></p>
-<p><img src="/04/网络相关/../../../images/2018-07-049.14.53.png" alt=""></p>
-<p><img src="/04/网络相关/../../../images/2018-07-049.16.57.png" alt=""></p>
-<p><img src="/04/网络相关/../../../images/2018-07-049.22.50.png" alt=""></p>
-<p><img src="/04/网络相关/../../../images/2018-07-049.24.05.png" alt=""></p>
-<p><img src="/04/网络相关/../../../images/2018-07-049.25.13.png" alt=""></p>
-<p><img src="/04/网络相关/../../../images/2018-07-049.26.06.png" alt=""></p>
-<p><img src="/04/网络相关/../../../images/2018-07-04.27.38.png" alt=""></p>
-<p>https的建立流程<br><img src="/04/网络相关/../../../images/2018-07-049.33.19.png" alt=""></p>
-<p><img src="/04/网络相关/../../../images/2018-07-049.34.25.png" alt=""></p>
-<p><img src="/04/网络相关/../../../images/2018-07-049.35.52.png" alt=""></p>
-<p><img src="/04/网络相关/../../../images/2018-07-049.36.53.png" alt=""></p>
-<p><img src="/04/网络相关/../../../images/2018-07-049.37.39.png" alt=""></p>
-<p><a href="https://blog.csdn.net/u013401853/article/details/52781072" target="_blank" rel="external">https建立连接详细</a></p>
-<p>靠签名知道谁是谁，所以，签名一定是私钥。</p>
-<h4 id="关于加密算法"><a href="#关于加密算法" class="headerlink" title="关于加密算法"></a>关于加密算法</h4><p>非对称</p>
-<ul>
-<li>RSA</li>
-</ul>
-<p>对称</p>
-<ul>
-<li>DES</li>
-</ul>
-<h3 id="TCP-UDP"><a href="#TCP-UDP" class="headerlink" title="TCP/UDP"></a>TCP/UDP</h3><blockquote>
-<p>与http的关系，TPC/IP协议是传输层协议，主要解决数据如何在网络中传输，而HTTP是应用层协议，主要解决如何包装数据，把IP想像成一种高速公路，它允许其它协议在上面行驶并找到到其它电脑的出口。TCP和UDP是高速公路上的“卡车”，它们携带的货物就是像HTTP，文件传输协议FTP这样的协议等</p>
-</blockquote>
-<p><img src="/04/网络相关/../../../images/2018-07-049.52.56.png" alt=""></p>
-<h4 id="UDP"><a href="#UDP" class="headerlink" title="UDP ==================="></a>UDP ===================</h4><p>特点与功能</p>
-<p>特点:面向报文，既不合并也不拆分</p>
-<p><img src="/04/网络相关/../../../images/2018-07-0410.51.00.png" alt=""></p>
-<p><img src="/04/网络相关/../../../images/2018-07-0410.51.50.png" alt=""></p>
-<p><img src="/04/网络相关/../../../images/2018-07-0410.52.41.png" alt=""></p>
-<p>差错检测的思路和策略可以用在微信等IM应用上<br><img src="/04/网络相关/../../../images/2018-07-0410.55.39.png" alt=""></p>
-<h4 id="TCP"><a href="#TCP" class="headerlink" title="TCP ======================"></a>TCP ======================</h4><h5 id="TCP中的状态码"><a href="#TCP中的状态码" class="headerlink" title="TCP中的状态码"></a>TCP中的状态码</h5><p>在TCP层，有个FLAGS字段，这个字段有以下几个标识：SYN, FIN, ACK, PSH, RST, URG.</p>
-<p>其中，对于我们日常的分析有用的就是前面的五个字段。</p>
-<p>它们的含义是：</p>
-<p>SYN表示建立连接，</p>
-<p>FIN表示关闭连接，</p>
-<p>ACK表示响应，</p>
-<p>PSH表示有 DATA数据传输，</p>
-<p>RST表示连接重置</p>
-<h5 id="TCP连接和断开"><a href="#TCP连接和断开" class="headerlink" title="TCP连接和断开"></a>TCP连接和断开</h5><p><img src="/04/网络相关/../../../images/2018-07-0410.56.57.png" alt=""></p>
-<p>为什么三次握手？</p>
-<p>假设超时，会触发client的超时重传，新的syn会创建一个新的连接，这个时候服务端会启一个进程来处理这个连接，如果这个时候client的旧的syn到达了，server会给client一个确认，但是在client看来这是一个请求，就不会给ack发送ack确认，那么server就不会启动新进程处理这个，这样就能规避连接异常的问题。</p>
-<p>为啥要四次挥手？</p>
-<p>因为建立的连接是双向通讯的，学名叫做双工，先是client到server的传输关闭，这个时候server到client是可以发送数据的，后边在合适的时间，server再断掉它的连接</p>
-<p>可靠性如何保证？</p>
-<p>超时重传，丢弃，忽略</p>
-<p><img src="/04/网络相关/../../../images/2018-07-0411.03.18.png" alt=""></p>
-<p><img src="/04/网络相关/../../../images/2018-07-0411.05.45.png" alt=""></p>
-<p><img src="/04/网络相关/../../../images/2018-07-0411.06.57.png" alt=""></p>
-<p><img src="/04/网络相关/../../../images/2018-07-0411.07.28.png" alt=""></p>
-<p><img src="/04/网络相关/../../../images/2018-07-0411.08.19.png" alt=""></p>
-<h4 id="面向字节流"><a href="#面向字节流" class="headerlink" title="面向字节流"></a>面向字节流</h4><p>不管发送方给tcp多少数据，tcp会根据实际情况，进行拆分或者合并，进行传输，这里有一个发送缓存和接收缓存的概念</p>
-<p><img src="/04/网络相关/../../../images/2018-07-042.28.17.png" alt=""></p>
-<h4 id="流量控制"><a href="#流量控制" class="headerlink" title="流量控制"></a>流量控制</h4><p>基于滑动窗口协议，这个协议也可以保障按序到达</p>
-<p>每个数据包先加一个tcp头，再加一个ip头。</p>
-<p>TCP并不是每一个报文段都会回复ACK的，可能会对两个报文段发送一个ACK，也可能会对多个报文段发送1个ACK【累计ACK】，比如说发送方有1/2/3 3个报文段，先发送了2,3 两个报文段，但是接收方期望收到1报文段，这个时候2,3报文段就只能放在缓存中等待报文1的空洞被填上，如果报文1，一直不来，报文2/3也将被丢弃，如果报文1来了，那么会发送一个ACK对这3个报文进行一次确认。</p>
-<p>举一个例子来说明一下滑动窗口的原理：</p>
-<ol>
-<li><p>假设32~45 这些数据，是上层Application发送给TCP的，TCP将其分成四个Segment来发往internet</p>
-</li>
-<li><p>seg1 32~34 seg3 35~36 seg3 37~41 seg4 42~45  这四个片段，依次发送出去，此时假设接收端之接收到了seg1 seg2 seg4</p>
-</li>
-<li><p>此时接收端的行为是回复一个ACK包说明已经接收到了32~36的数据，并将seg4进行缓存（保证顺序，产生一个保存seg3 的hole）</p>
-</li>
-<li><p>发送端收到ACK之后，就会将32~36的数据包从发送并没有确认切到发送已经确认，提出窗口，这个时候窗口向右移动</p>
-</li>
-<li><p>假设接收端通告的Window Size仍然不变，此时窗口右移，产生一些新的空位，这些是接收端允许发送的范畴</p>
-</li>
-<li><p>对于丢失的seg3，如果超过一定时间，TCP就会重新传送（重传机制），重传成功会seg3 seg4一块被确认，不成功，seg4也将被丢弃</p>
-</li>
-</ol>
-<p><a href="https://v.youku.com/v_show/id_XNDg1NDUyMDUy.html" target="_blank" rel="external">滑动窗口动画</a></p>
-<p><img src="/04/网络相关/../../../images/2018-07-045.23.09.png" alt=""></p>
-<p><img src="/04/网络相关/../../../images/2018-07-045.34.00.png" alt=""></p>
-<p><img src="/04/网络相关/../../../images/2018-07-045.35.19.png" alt=""></p>
-<p><img src="/04/网络相关/../../../images/2018-07-045.34.34.png" alt=""></p>
-<p><img src="/04/网络相关/../../../images/2018-07-045.38.43.png" alt=""></p>
-<h3 id="DNS"><a href="#DNS" class="headerlink" title="DNS"></a>DNS</h3><p><img src="/04/网络相关/../../../images/2018-07-046.05.42.png" alt=""></p>
-<p><img src="/04/网络相关/../../../images/2018-07-046.06.27.png" alt=""></p>
-<p><img src="/04/网络相关/../../../images/2018-07-046.07.07.png" alt=""></p>
-<p><img src="/04/网络相关/../../../images/2018-07-046.09.26.png" alt=""></p>
-<p>DNS转发有个问题，就是可能返回一个错误的ip导致跨网访问，就是导致慢</p>
-<blockquote>
-<p>当我们在浏览器输入一个 URL 后，是在什么时候、谁进行的查询？<br>浏览器获得这个请求后，甩给了操作系统，操作系统甩给了网卡，网卡作为真正干活的人把包按照链路层协议送了出去。<br>DNS 发生在 TCP/IP 之前。前面已经提过，到 TCP/IP 协议栈的时候已经是有 IP 地址了。<br>真相就是操作系统进行的 DNS 查询。所以在操作系统的网络设置中，可以进行 DNS 服务器的配置。操作系统也同时管理了 DNS 的缓存。《iOS网络请求优化之DNS映射》中提到：</p>
-<p>像 iOS 系统一般是 24 小时之后会过期，还有进入飞行模式再切回来，开关机，重置网络设置等也会导致 DNS cache 的清除。所以一般情况下用户在第二天打开你的 app 都会经历一次完整的 DNS 解析请求。</p>
-</blockquote>
-<p><img src="/04/网络相关/../../../images/2018-07-046.10.07.png" alt=""></p>
-<p><img src="/04/网络相关/../../../images/2018-07-046.14.36.png" alt=""></p>
-<p><img src="/04/网络相关/../../../images/2018-07-046.24.53.png" alt=""></p>
-<p><img src="/04/网络相关/../../../images/2018-07-046.25.41.png" alt=""></p>
-<h3 id="Session-Cookie"><a href="#Session-Cookie" class="headerlink" title="Session/Cookie"></a>Session/Cookie</h3><p><img src="/04/网络相关/../../../images/2018-07-046.38.14.png" alt=""></p>
-<p><img src="/04/网络相关/../../../images/2018-07-046.38.54.png" alt=""></p>
-<p><img src="/04/网络相关/../../../images/2018-07-046.39.43.png" alt=""></p>
-<p><img src="/04/网络相关/../../../images/2018-07-046.41.23.png" alt=""></p>
-<p><img src="/04/网络相关/../../../images/2018-07-046.40.41.png" alt=""></p>
-<p><img src="/04/网络相关/../../../images/2018-07-046.41.35.png" alt=""></p>
-<p><img src="/04/网络相关/../../../images/2018-07-046.44.10.png" alt=""></p>
-<p><img src="/04/网络相关/../../../images/2018-07-046.42.47.png" alt=""></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="/2015/07/02/深入理解block/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Hanson">
-      <meta itemprop="description" content="主要做移动端开发，和研发效率提升，会一点python和数据挖掘，现在就职业京东金融">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hanson的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2015/07/02/深入理解block/" itemprop="url">
-                  深入理解block
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2015-07-02 17:46:19" itemprop="dateCreated datePublished" datetime="2015-07-02T17:46:19+08:00">2015-07-02</time>
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ul>
-<li>block介绍</li>
-<li>截获变量</li>
-<li>__block</li>
-<li>内存管理</li>
-<li>循环引用</li>
-</ul>
-<h3 id="什么是block"><a href="#什么是block" class="headerlink" title="什么是block"></a>什么是block</h3><p>是将函数及其执行上下文封装起来的对象。</p>
-<p>查看编译后的内容<code>clang -rewrite-objc file.m</code><br>查看含有UIKit.h的</p>
-<p><code>clang -x objective-c -rewrite-objc -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk xxxx</code></p>
-<h3 id="什么是block调用"><a href="#什么是block调用" class="headerlink" title="什么是block调用"></a>什么是block调用</h3><p>block调用就是函数调用</p>
-<h3 id="截获变量"><a href="#截获变量" class="headerlink" title="截获变量"></a>截获变量</h3><ul>
-<li>局部变量<ul>
-<li>基本数据类型，截获其值</li>
-<li>对象，连同所有权修饰符一起截获，__weak就是弱引用，没有修饰符就是默认strong，就是强引用</li>
-</ul>
-</li>
-<li>静态局部变量(static)，以指针形式进行截获</li>
-<li>全局变量，不截获</li>
-<li>静态全局变量，不截获</li>
-</ul>
-<p>总结</p>
-<blockquote>
-<p>只有基本数据类型才会直接使用值，如果用__block修饰也就是指针了，其他情况都是指针</p>
-</blockquote>
-<h3 id="block什么时候使用"><a href="#block什么时候使用" class="headerlink" title="__block什么时候使用"></a>__block什么时候使用</h3><p><strong>block 改变存储方式，_block修饰自动变量后，_block的变量也被转化成了一个结构体:</strong>Block_byref_i_0,这个结构体有5个成员变量。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">struct __Block_byref_i_0 &#123;</div><div class="line">  void *__isa;   指针</div><div class="line">__Block_byref_i_0 *__forwarding; 指向自身类型的__forwarding指针</div><div class="line"> int __flags; 标记flag</div><div class="line"> int __size;大小</div><div class="line"> int i; 变量值</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-<p>一般情况下，对被截获变量进行赋值操作需要添加__block修饰符，注意赋值不等于操作</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">__block NSMutableArray *arr = nil;</div><div class="line">void(^Block)(void) = ^&#123;</div><div class="line">    arr = [NSMutableArray array];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>这种没有__block直接会报错</p>
-<h3 id="block的原理是什么？"><a href="#block的原理是什么？" class="headerlink" title="__block的原理是什么？"></a>__block的原理是什么？</h3><p>__block修饰后的int类型会变成结构体，也就是对象。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">__block int muti = 6;</div><div class="line">    int(^newBlock)(int) = ^int(int num) &#123;</div><div class="line">        return muti * num;</div><div class="line">    &#125;;</div><div class="line">    </div><div class="line">    muti = 4;</div><div class="line">    </div><div class="line">    newBlock(2);</div></pre></td></tr></table></figure>
-<p>这个结果是8</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">int muti = 6;</div><div class="line">int(^newBlock)(int) = ^int(int num) &#123;</div><div class="line">    return muti * num;</div><div class="line">&#125;;</div><div class="line"></div><div class="line">muti = 4;</div><div class="line"></div><div class="line">newBlock(2);</div></pre></td></tr></table></figure>
-<p>这个结果是12</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">static int muti = 6;</div><div class="line">int(^newBlock)(int) = ^int(int num) &#123;</div><div class="line">    return muti * num;</div><div class="line">&#125;;</div><div class="line">    </div><div class="line">muti = 4;</div><div class="line">    </div><div class="line">newBlock(2);</div></pre></td></tr></table></figure>
-<p>这个结果也是8</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">NSMutableString *mutable_string = [NSMutableString stringWithString:@&quot;aaa&quot;];</div><div class="line">    void(^mutable_append)(void)=^&#123;</div><div class="line">        [mutable_string appendString:@&quot;ccc&quot;];</div><div class="line">    &#125;;</div><div class="line">    [mutable_string appendString:@&quot;bbb&quot;];</div><div class="line">    mutable_append();</div><div class="line">    NSLog(@&quot;\\n %@&quot;,mutable_string);  //结果：aaabbbccc</div><div class="line">    // 没有__block，但是也没有涉及到直接指针的修改，只是操作而已，因此aaabbbccc</div><div class="line"></div><div class="line">    NSString *string = @&quot;aaa&quot;;</div><div class="line">    NSString*(^append)(void)=^&#123;</div><div class="line">        return [string stringByAppendingString:@&quot;ccc&quot;];</div><div class="line">    &#125;;</div><div class="line">    string = @&quot;bbb&quot;;</div><div class="line">    NSLog(@&quot;\\n %@&quot;,append());  //结果：aaaccc</div><div class="line">    // 没有__block，copy值，截获之后和外部都指向@&quot;aaa&quot;，但是外部string修改了指向为@&quot;bbb&quot;,内部指针还是指向@&quot;aaa&quot;，所以aaaccc</div><div class="line"></div><div class="line">    __block NSString *block_string = @&quot;aaa&quot;;</div><div class="line">    NSString*(^block_append)(void)=^&#123;</div><div class="line">        return [block_string stringByAppendingString:@&quot;ccc&quot;];</div><div class="line">    &#125;;</div><div class="line">    block_string = @&quot;bbb&quot;;</div><div class="line">    NSLog(@&quot;\\n %@&quot;,block_append()); //结果: bbbccc</div><div class="line">    // 有__block，自动转换成新的结构体，string变成其内部属性，block截获的是新结构体的地址，外部block_string重新赋值，也不是简单的赋值，内部转换成`a.__forwarding.a`的代码，可以理解为通过新的结构体改变指针所指向的值，通过__block所形成的新结构体作为载体，之后所有的操作都是操作同一个对象，理解为指针操作，因此，形成一致，打印bbbccc</div><div class="line"></div><div class="line">    __block NSString *name = [NSString stringWithFormat:@&quot;%@&quot;,@&quot;mikejing&quot;];</div><div class="line"></div><div class="line">    NSString *(^addaa)(void) = ^&#123;</div><div class="line">        return [name stringByAppendingString:@&quot;cjj&quot;];</div><div class="line">    &#125;;</div><div class="line">    name = @&quot;MKJ&quot;;</div><div class="line">    NSLog(@&quot;\\n %@&quot;,addaa()); // \n MKJcj</div><div class="line">    // 同上</div><div class="line"></div><div class="line">    char *ch = &quot;b =\n&quot;;</div><div class="line">    void (^block)(void) = ^&#123;</div><div class="line">        printf(&quot;%s&quot;,ch); // b =</div><div class="line">    &#125;;</div><div class="line"></div><div class="line">    ch = &quot;value had changed.b =\n&quot;;</div><div class="line">    block();</div><div class="line">    // 无法修改，上面已经介绍</div></pre></td></tr></table></figure>
-<p>下边这段代码如何使其打印20？</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">int i = 10;</div><div class="line">    </div><div class="line">void (^block)() = ^ &#123;</div><div class="line">    NSLog(@&quot;%d&quot;, i);</div><div class="line">&#125;;</div><div class="line">    </div><div class="line">i = 20;</div><div class="line">    </div><div class="line">block();</div></pre></td></tr></table></figure>
-<p>__block或者static</p>
-<p>这段代码打印什么？</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">int i = 10;</div><div class="line">    </div><div class="line">void (^block)() = ^ &#123;</div><div class="line">    i = 30;</div><div class="line">    NSLog(@&quot;%d&quot;, i);</div><div class="line">&#125;;</div><div class="line">    </div><div class="line">i = 20;</div><div class="line">    </div><div class="line">block();</div></pre></td></tr></table></figure>
-<p>啥都打印不了，直接报错了</p>
-<p>但是改成下边这样就没有问题，或者用static</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">__block int i = 10;</div><div class="line">    </div><div class="line">    void (^block)() = ^ &#123;</div><div class="line">        i = 30;</div><div class="line">        NSLog(@&quot;+++++%d&quot;, i);</div><div class="line">    &#125;;</div><div class="line">    </div><div class="line">    i = 20;</div><div class="line">    </div><div class="line">    block();</div></pre></td></tr></table></figure>
-<p>这段代码有没有问题？答案是没有，这里是修改的内存中的内容，并没有修改内存地址</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">- (void)blockDemo3</div><div class="line">&#123;</div><div class="line">    NSMutableString *strM= [NSMutableString stringWithString:@&quot;hello&quot;];</div><div class="line"></div><div class="line">    void (^block)() = ^ &#123;</div><div class="line">        [strM appendString:@&quot;hehe&quot;];</div><div class="line">    &#125;;</div><div class="line"></div><div class="line">    block();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>这样写有没有问题？这样写直接就报错了，没有__block修饰不允许修改指针地址。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"> NSMutableString *strM= [NSMutableString stringWithString:@&quot;hello&quot;];</div><div class="line">    </div><div class="line">void (^block)() = ^ &#123;</div><div class="line">    strM = @&quot;hehe&quot;;</div><div class="line">&#125;;</div><div class="line">    </div><div class="line">block();</div></pre></td></tr></table></figure></p>
-<h3 id="block内存管理"><a href="#block内存管理" class="headerlink" title="block内存管理"></a>block内存管理</h3><p><img src="/02/深入理解block/../../../images/2018-07-029.26.24.png" alt=""></p>
-<p>&gt;</p>
-<blockquote>
-<ul>
-<li>如果block实现中没有访问任何”外部”变量(包括局部和全局), 该block为GlobalBlock</li>
-<li>如果block实现中访问了任何”外部”变量(包括局部和全局), 该block为StackBlock</li>
-<li>对StackBlock进行拷贝(copy/Block_copy), 该block为MallocBlock</li>
-</ul>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">__block NSMutableString *strM= [NSMutableString stringWithString:@&quot;hello&quot;];</div><div class="line">    </div><div class="line">void (^block)() = ^&#123;</div><div class="line">    strM = @&quot;hehe&quot;;</div><div class="line">&#125;;</div><div class="line">    </div><div class="line">block();</div><div class="line">    </div><div class="line">NSLog(@&quot;%@&quot;,^&#123;&#125;);</div><div class="line">NSLog(@&quot;%@&quot;, ^&#123;strM = @&quot;123&quot;;&#125;);</div><div class="line">NSLog(@&quot;%@&quot;,block);</div></pre></td></tr></table></figure>
-<p>2018-07-03 10:02:20.760734+0800 xiancheng[77686:36486980] <__nsglobalblock__: 0x104050138=""><br>2018-07-03 10:02:20.763747+0800 xiancheng[77686:36486980] <__nsstackblock__: 0x7fff5bbb0b88=""><br>2018-07-03 10:02:20.764553+0800 xiancheng[77686:36486980] <__nsmallocblock__: 0x608000058e70=""></__nsmallocblock__:></__nsstackblock__:></__nsglobalblock__:></p>
-<p><img src="/02/深入理解block/../../../images/2018-07-029.26.30.png" alt=""></p>
-<p><img src="/02/深入理解block/../../../images/2018-07-029.26.47.png" alt=""></p>
-<p><img src="/02/深入理解block/../../../images/2018-07-029.26.58.png" alt=""><br>这个是会有内存泄漏的，栈上的会释放，但是堆上的不会</p>
-<p><img src="/02/深入理解block/../../../images/2018-07-029.27.17.png" alt=""></p>
-<p><img src="/02/深入理解block/../../../images/2018-07-029.27.28.png" alt=""></p>
-<h3 id="循环引用"><a href="#循环引用" class="headerlink" title="循环引用"></a>循环引用</h3><h4 id="weakSelf-StrongSelf-的使用"><a href="#weakSelf-StrongSelf-的使用" class="headerlink" title="weakSelf StrongSelf 的使用"></a>weakSelf StrongSelf 的使用</h4><p>解决循环应用的问题一定要分析清楚哪里出现了循环引用，只需要把其中一环加上weakSelf这类似的宏，就可以解决循环引用。_weak的实现原理，在原对象释放之后，_weak对象就会变成null，防止野指针。所以就输出了null了。</p>
-<p>那么我们怎么才能在weakSelf之后，block里面还能继续使用weakSelf之后的对象呢？</p>
-<p>究其根本原因就是weakSelf之后，无法控制什么时候会被释放，为了保证在block内不会被释放，需要添加_strong。</p>
-<p>在block里面使用的_strong修饰的weakSelf是为了在函数生命周期中防止self提前释放。strongSelf是一个自动变量当block执行完毕就会释放自动变量strongSelf不会对self进行一直进行强引用。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"> __weak typeof(student) weakSelf = student;</div><div class="line"></div><div class="line">student.study = ^&#123;</div><div class="line">    __strong typeof(student) strongSelf = weakSelf;</div><div class="line">    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^&#123;</div><div class="line">        NSLog(@&quot;my name is = %@&quot;,strongSelf.name);</div><div class="line">    &#125;);</div><div class="line"></div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-<p>这里有一个问题，看上去最终也是通过__storng来抢引用self的，那么为什么不会引起循环引用呢？其实这里也是会造成循环引用，而且必须是一个循环引用才可以，但是这个循环引用不是永久的，是在一个时间段内，这个时间段就是在block执行的时候。</p>
-<blockquote>
-<p>要有一个概念，block内的代码只有在执行的时候才会生效，但是变量捕获却是在编译的时候就会生效，所以我们捕获了一个weakself，但是在运行的时候对这个self做了一次retain，这就意味着在block运行的时候self绝对不会释放，但是block一旦执行完毕，里边的变量就会被释放，这个时候self就跟我没有关系了，该释放就释放。</p>
-<p>如果我们直接引用self，那么这个是永久的，不管你block是否执行，这个引用都是永久存在的</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">[UIView animateWithDuration:0.2 animations:^&#123;</div><div class="line">    self.alpha = 1;</div><div class="line">&#125;];</div></pre></td></tr></table></figure>
-<p>这个情况直接使用self是没有问题的，因为引用block的是animation内的某个对象，当动画执行结束之后block就会被释放，self也会被释放。    </p>
-<h4 id="如果只使用成员变量呢？"><a href="#如果只使用成员变量呢？" class="headerlink" title="如果只使用成员变量呢？"></a>如果只使用成员变量呢？</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div></pre></td><td class="code"><pre><div class="line">_block = ^NSString *(NSString *num) &#123;</div><div class="line">        return [NSString stringWithFormat:@&quot;%@&quot;, _arr[0]];</div><div class="line">    &#125;;</div><div class="line"></div><div class="line">static NSString * __ViewController__viewDidLoad_block_func_0(struct __ViewController__viewDidLoad_block_impl_0 *__cself, NSString *num) &#123;</div><div class="line">  ViewController *self = __cself-&gt;self; // bound by copy</div><div class="line"></div><div class="line">        return ((NSString *(*)(id, SEL, NSString *, ...))(void *)objc_msgSend)((id)objc_getClass(&quot;NSString&quot;), sel_registerName(&quot;stringWithFormat:&quot;), (NSString *)&amp;__NSConstantStringImpl__var_folders_h6_b8d2vwjj7hz3kdq9kpxts5j00000gq_T_ViewController_ed107b_mi_1, </div><div class="line">        ((id (*)(id, SEL, NSUInteger))(void *)objc_msgSend)((id)(*(NSMutableArray **)((char *)self + OBJC_IVAR_$_ViewController$_arr)), sel_registerName(&quot;objectAtIndexedSubscript:&quot;), (NSUInteger)0));</div><div class="line"></div><div class="line">&#125;</div><div class="line">//这种情况是捕获self的</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"> _block = ^NSString *(NSString *num) &#123;</div><div class="line">        return [NSString stringWithFormat:@&quot;%@&quot;, self.arr[0]];</div><div class="line">    &#125;;</div><div class="line">   </div><div class="line">    static NSString * __ViewController__viewDidLoad_block_func_0(struct __ViewController__viewDidLoad_block_impl_0 *__cself, NSString *num) &#123;</div><div class="line">  ViewController *self = __cself-&gt;self; // bound by copy</div><div class="line"></div><div class="line">        return ((NSString *(*)(id, SEL, NSString *, ...))(void *)objc_msgSend)((id)objc_getClass(&quot;NSString&quot;), sel_registerName(&quot;stringWithFormat:&quot;), (NSString *)&amp;__NSConstantStringImpl__var_folders_h6_b8d2vwjj7hz3kdq9kpxts5j00000gq_T_ViewController_5b51e6_mi_1, </div><div class="line">        ((id (*)(id, SEL, NSUInteger))(void *)objc_msgSend)((id)((NSMutableArray *(*)(id, SEL))(void *)objc_msgSend)((id)self, sel_registerName(&quot;arr&quot;)), sel_registerName(&quot;objectAtIndexedSubscript:&quot;), (NSUInteger)0));</div><div class="line">&#125;</div><div class="line">//这种情况更是捕获self</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line">_block = ^NSString *(NSString *num) &#123;</div><div class="line">        return @&quot;afdasf&quot;;</div><div class="line">    &#125;;</div><div class="line">    static NSString * __ViewController__viewDidLoad_block_func_0(struct __ViewController__viewDidLoad_block_impl_0 *__cself, NSString *num) &#123;</div><div class="line"></div><div class="line">        return (NSString *)&amp;__NSConstantStringImpl__var_folders_h6_b8d2vwjj7hz3kdq9kpxts5j00000gq_T_ViewController_599c3a_mi_1;</div><div class="line">    &#125;</div><div class="line">//啥都不捕获</div><div class="line"></div><div class="line">_arr = [NSMutableArray arrayWithObject:@&quot;123&quot;];</div><div class="line">    </div><div class="line">    </div><div class="line">    __unsafe_unretained NSArray * weakArr = _arr;</div><div class="line">    _block = ^NSString *(NSString *num) &#123;</div><div class="line">        return [NSString stringWithFormat:@&quot;%@&quot;, weakArr[0]];</div><div class="line">    &#125;;</div><div class="line">    </div><div class="line"></div><div class="line">static NSString * __ViewController__viewDidLoad_block_func_0(struct __ViewController__viewDidLoad_block_impl_0 *__cself, NSString *num) &#123;</div><div class="line">  NSArray *weakArr = __cself-&gt;weakArr; // bound by copy</div><div class="line"></div><div class="line">        return ((NSString *(*)(id, SEL, NSString *, ...))(void *)objc_msgSend)((id)objc_getClass(&quot;NSString&quot;), sel_registerName(&quot;stringWithFormat:&quot;), (NSString *)&amp;__NSConstantStringImpl__var_folders_h6_b8d2vwjj7hz3kdq9kpxts5j00000gq_T_ViewController_cba29f_mi_1, ((id (*)(id, SEL, NSUInteger))(void *)objc_msgSend)((id)weakArr, sel_registerName(&quot;objectAtIndexedSubscript:&quot;), (NSUInteger)0));</div><div class="line">    &#125;    </div><div class="line">//只是捕获weak变量</div></pre></td></tr></table></figure>
-<p>说明一下_arr实际上是self-&gt;_arr，也是需要依赖self才能访问的，即使在内部，属性和成员变量的访问都是需要依赖对象。再从runtime角度看一下，当我调用一个方法的时候，经过msg_send函数转发，这里的参数只有self，和SEL以及参数，没有self的成员变量，所以只能依靠self去获取，这样的话无论如何都要穿入self才行。</p>
-<h4 id="block在MRC和ARC下的区别"><a href="#block在MRC和ARC下的区别" class="headerlink" title="__block在MRC和ARC下的区别"></a>__block在MRC和ARC下的区别</h4><p>下边这种写法使block持有了blockSelf这个对象，这个强引用在，解决的办法是破环，使用完之后释放blockSelf，这个方案的弊端是，如果这个block不调用，那么这个环就一直存在。</p>
-<p>我们经常会听说如何解决block的循环引用？一般都会说用<strong>weak和</strong>block，那么<strong>block实现解除循环引用的本质就是下边这段代码，使用完了之后可以将这个引用设置为nil，其他的做法就不可以，因为不用</strong>block修饰根本就不能更改指针指向。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">__block typeof(self) blockSelf = self;</div><div class="line">    </div><div class="line">_block = ^NSString *(NSString *num) &#123;</div><div class="line">    NSLog(@&quot;%@&quot;, blockSelf.arr[0]);</div><div class="line">//    blockSelf = nil;</div><div class="line">    return @&quot;123&quot;;</div><div class="line">&#125;;</div><div class="line">    </div><div class="line">=========================================</div><div class="line"></div><div class="line">static NSString * __ViewController__viewDidLoad_block_func_0(struct __ViewController__viewDidLoad_block_impl_0 *__cself, NSString *num) &#123;</div><div class="line">__Block_byref_blockSelf_0 *blockSelf = __cself-&gt;blockSelf; // bound by ref</div><div class="line"></div><div class="line">    NSLog((NSString *)&amp;__NSConstantStringImpl__var_folders_h6_b8d2vwjj7hz3kdq9kpxts5j00000gq_T_ViewController_614b65_mi_0, ((id (*)(id, SEL, NSUInteger))(void *)objc_msgSend)((id)((NSMutableArray *(*)(id, SEL))(void *)objc_msgSend)((id)(blockSelf-&gt;__forwarding-&gt;blockSelf), sel_registerName(&quot;arr&quot;)), sel_registerName(&quot;objectAtIndexedSubscript:&quot;), (NSUInteger)0));</div><div class="line">    return (NSString *)&amp;__NSConstantStringImpl__var_folders_h6_b8d2vwjj7hz3kdq9kpxts5j00000gq_T_ViewController_614b65_mi_1;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p><img src="/02/深入理解block/../../../images/2018-07-033.03.09.png" alt=""></p>
-
-          
+          <h3 id="HTTP"><a href="#HTTP" class="headerlink" title="HTTP"></a>HTTP</h3><p><img src="/04/网络相关/../../../images/2018-07-049.10.24.png" alt=""><br></p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2015/07/04/网络相关/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -2553,7 +2140,7 @@ swap5函数与swap4相似，是一个引用传递，修改的结果直接影响�
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">105</span>
+                    <span class="site-state-item-count">106</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
