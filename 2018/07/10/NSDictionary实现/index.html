@@ -108,17 +108,17 @@
 
 
 
-  <meta name="description" content="原文链接 NSDictionary 内部结构、实现原理 不知道大家有没有思考过NSDictionary和NSArray内部是怎么实现的，那么今天就深挖一下NSDictionary&amp;amp; NSArray的 内部结构。 首先咱们了解一下这几个概念：哈希表、时间复杂度、链表 看了上面的文章，估计大家都懵逼了。。。好吧，正文来了 NSDictionaryNSDictionary（字典）是使用 哈希表来">
+  <meta name="description" content="原文链接 NSDictionary 内部结构、实现原理 不知道大家有没有思考过NSDictionary和NSArray内部是怎么实现的，那么今天就深挖一下NSDictionary&amp;amp; NSArray的 内部结构。 首先咱们了解一下这几个概念：哈希表、时间复杂度、链表">
 <meta property="og:type" content="article">
 <meta property="og:title" content="NSDictionary实现(转)">
 <meta property="og:url" content="/2018/07/10/NSDictionary实现/index.html">
 <meta property="og:site_name" content="Hanson的博客">
-<meta property="og:description" content="原文链接 NSDictionary 内部结构、实现原理 不知道大家有没有思考过NSDictionary和NSArray内部是怎么实现的，那么今天就深挖一下NSDictionary&amp;amp; NSArray的 内部结构。 首先咱们了解一下这几个概念：哈希表、时间复杂度、链表 看了上面的文章，估计大家都懵逼了。。。好吧，正文来了 NSDictionaryNSDictionary（字典）是使用 哈希表来">
+<meta property="og:description" content="原文链接 NSDictionary 内部结构、实现原理 不知道大家有没有思考过NSDictionary和NSArray内部是怎么实现的，那么今天就深挖一下NSDictionary&amp;amp; NSArray的 内部结构。 首先咱们了解一下这几个概念：哈希表、时间复杂度、链表">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-07-10T08:55:16.000Z">
+<meta property="og:updated_time" content="2018-07-10T08:57:29.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="NSDictionary实现(转)">
-<meta name="twitter:description" content="原文链接 NSDictionary 内部结构、实现原理 不知道大家有没有思考过NSDictionary和NSArray内部是怎么实现的，那么今天就深挖一下NSDictionary&amp;amp; NSArray的 内部结构。 首先咱们了解一下这几个概念：哈希表、时间复杂度、链表 看了上面的文章，估计大家都懵逼了。。。好吧，正文来了 NSDictionaryNSDictionary（字典）是使用 哈希表来">
+<meta name="twitter:description" content="原文链接 NSDictionary 内部结构、实现原理 不知道大家有没有思考过NSDictionary和NSArray内部是怎么实现的，那么今天就深挖一下NSDictionary&amp;amp; NSArray的 内部结构。 首先咱们了解一下这几个概念：哈希表、时间复杂度、链表">
 
 
 
@@ -406,8 +406,7 @@
         <p><a href="https://www.jianshu.com/p/d4b5542740d5" target="_blank" rel="external">原文链接</a></p>
 <p>NSDictionary 内部结构、实现原理</p>
 <p>不知道大家有没有思考过NSDictionary和NSArray内部是怎么实现的，那么今天就深挖一下NSDictionary&amp; NSArray的 内部结构。</p>
-<p>首先咱们了解一下这几个概念：哈希表、时间复杂度、链表</p>
-<p>看了上面的文章，估计大家都懵逼了。。。好吧，正文来了</p>
+<p>首先咱们了解一下这几个概念：哈希表、时间复杂度、链表<br><a id="more"></a><br>看了上面的文章，估计大家都懵逼了。。。好吧，正文来了</p>
 <p>NSDictionary<br>NSDictionary（字典）是使用 哈希表来实现key和value之间的映射和存储的， hash函数设计的好坏影响着数据的查找访问效率。数据在hash表中分布的越均匀，其访问效率越高。而在Objective-C中，通常都是利用NSString 来作为键值，其内部使用的hash函数也是通过使用 NSString对象作为键值来保证数据的各个节点在hash表中均匀分布。</p>
 <p><code>- (void)setObject:(id)anObject forKey:(id &lt;NSCopying&gt;)aKey;</code><br>NSDictionary中的key是唯一的，key可以是遵循NSCopying 协议和重载- (NSUInteger)hash;、- (BOOL)isEqual:(id)object;方法的任何对象。也就是说在NSDictionary内部，会对 aKey 对象 copy 一份新的。而 anObject 对象在其内部是作为强引用（retain或strong)。</p>
 <p>hash 方法是用来计算该对象的 hash 值，最终的 hash 值决定了该对象在 hash 表中存储的位置。所以同样，如果想重写该方法，我们尽量设计一个能让数据分布均匀的 hash 函数。<br>�isEqual : 方法是为了通过 hash 值来找到 对象 在hash �表中的位置。<br>在调用setObject: forKey: 后，内部会去调用 � key 对象的 hash 方法确定 object 在hash表内的入口位置，然后会调用 isEqual : 来确定该值是否已经存在于 NSDictionary中。<br>注：关于hash，isEqual :可以看看这篇文章 iOS开发 之 不要告诉我你真的懂isEqual与hash!</p>
