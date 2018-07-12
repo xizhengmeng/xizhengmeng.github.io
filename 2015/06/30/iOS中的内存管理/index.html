@@ -143,7 +143,7 @@
 <meta property="og:image" content="/images/2018-07-024.53.40.png">
 <meta property="og:image" content="/images/2018-07-025.29.27.png">
 <meta property="og:image" content="/images/2018-07-025.33.14.png">
-<meta property="og:updated_time" content="2018-07-11T14:03:14.000Z">
+<meta property="og:updated_time" content="2018-07-12T04:53:27.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS中的内存管理">
 <meta name="twitter:description" content="内存布局 内存管理方案 内存布局 MRC/ARC 引用计数 弱引用 自动释放池 循环引用  内存布局 栈(stack)方法调用都是在栈区，栈向下增长， 堆(heap)alloc的数据都是在堆区间，还有copy过的block 代码段(text)内存管理方案strong实现探究 weak实现探究 不同场景，不同方案  小数据 TaggedPointer(NSNumber) NONPOINTER_IS">
@@ -557,6 +557,38 @@
 <p>即使对象不引用Timer，也没用，因为Runloop会引用Timer，Timer的taget是对象，依然会增加对其的引用，当然如果timer只执行一次，我们可以断掉runloop的引用，但是如果是多次的timer咋办呢？</p>
 <p>解决方案：<br>增加中间对象</p>
 <p><img src="/30/iOS中的内存管理/../../../images/2018-07-025.33.14.png" alt=""></p>
+<h3 id="在内存管理上能够优化的点"><a href="#在内存管理上能够优化的点" class="headerlink" title="在内存管理上能够优化的点"></a>在内存管理上能够优化的点</h3><h4 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h4><p>   1.用ARC去管理内存（Use ARC to Manage Memory）</p>
+<p>   2.适当的地方使用reuseIdentifier（Use a reuseIdentifier Where Appropriate）</p>
+<p>   3.尽可能设置视图为不透明（Set View as Opaque When Possible）</p>
+<p>   4.避免臃肿的XIBs文件（Avoid Fat XiBs）</p>
+<p>   5.不要阻塞主进程（Don’t Block the Main Thread）</p>
+<p>   6.调整图像视图中的图像尺寸（Size Images to Image Views）</p>
+<p>   7.选择正确集合（Choose the Correct Collection）</p>
+<p>   8.启用Gzip压缩（Enable GZIP Compression）</p>
+<h4 id="中级"><a href="#中级" class="headerlink" title="中级"></a>中级</h4><p>   9.重用和延迟加载视图（Reuse and Lazy Load Views）</p>
+<p>   10.缓存，缓存，缓存（Cache,Cache,Cache）</p>
+<p>   11.考虑绘图（Consider Drawing）</p>
+<p>   12.处理内存警告（Handle Memory Warnings）</p>
+<p>   13.重用大开销对象（Reuse Expensive Objects）</p>
+<p>   14.使用精灵表（Use Sprite Sheets ）</p>
+<p>   15.避免重复处理数据（Avoid Re-Processing Data）</p>
+<p>   16.选择正确的数据格式（Choose the Right Data Format）</p>
+<p>   17.适当的设置背景图片（Set  Background Images Appropriately）</p>
+<p>   18.减少你的网络占用（Reduce Your Web Footprint）  </p>
+<p>   19.设置阴影路径（Set the Shadow Path ）</p>
+<p>   20.你的表格视图Optimize Your Table Views）</p>
+<p>   21.选择正确的数据存储方式（Choose Correct Data Storage Option）</p>
+<h4 id="高级"><a href="#高级" class="headerlink" title="高级"></a>高级</h4><p>   22.加速启动时间（Speed up Launch Time ）</p>
+<p>   23.使用自动释放池（Use AutoRelease Pool）</p>
+<p>   24.缓存图像（Cache Images-Or not ）</p>
+<p>   25.尽可能避免日期格式化器（Avoid Date Formatters Where Possible）</p>
+<h3 id="举例"><a href="#举例" class="headerlink" title="举例"></a>举例</h3><h4 id="图片残留"><a href="#图片残留" class="headerlink" title="图片残留"></a>图片残留</h4><p>instrument调试后，发现没被释放的全是imageIO，差不多就知道了，把读图的方式，从[UIImage imageNamed:@””],改成imageWithContentsOfFile，就可以了。<br>2.png</p>
+<p>问题原因：</p>
+<ul>
+<li>imageNamed读取图片的方法，会缓存在内存中，所以较大的图片，还是用imageWithContentsOfFile，比如说引导页背景(图片全屏, 有时候运行APP会显示, 有时候根本就用不到).</li>
+<li>TIPs1：.xcassets里的图片无法用imageWithContentsOfFile读取；</li>
+<li>TIPs2：imageWithContentsOfFile读取图片需要加文件后缀名如png，jpg等；</li>
+</ul>
 
       
     </div>
@@ -681,7 +713,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">108</span>
+                    <span class="site-state-item-count">109</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -809,7 +841,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#内存布局"><span class="nav-number">1.</span> <span class="nav-text">内存布局</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#栈-stack"><span class="nav-number">1.0.1.</span> <span class="nav-text">栈(stack)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#堆-heap"><span class="nav-number">1.0.2.</span> <span class="nav-text">堆(heap)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#代码段-text"><span class="nav-number">1.0.3.</span> <span class="nav-text">代码段(text)</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#内存管理方案"><span class="nav-number">2.</span> <span class="nav-text">内存管理方案</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#TaggedPointer与引用计数"><span class="nav-number">2.1.</span> <span class="nav-text">TaggedPointer与引用计数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#NONPOINTER-ISA与引用计数。"><span class="nav-number">2.2.</span> <span class="nav-text">NONPOINTER-ISA与引用计数。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#散列表"><span class="nav-number">2.3.</span> <span class="nav-text">散列表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#散列式数据结构"><span class="nav-number">2.4.</span> <span class="nav-text">散列式数据结构</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#自旋锁"><span class="nav-number">2.4.1.</span> <span class="nav-text">自旋锁</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#RedcountMap-引用计数"><span class="nav-number">2.4.2.</span> <span class="nav-text">RedcountMap(引用计数)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#弱引用表"><span class="nav-number">2.4.3.</span> <span class="nav-text">弱引用表</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MRC和ARC"><span class="nav-number">3.</span> <span class="nav-text">MRC和ARC</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#dealloc的实现"><span class="nav-number">3.0.1.</span> <span class="nav-text">dealloc的实现</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#弱引用相关"><span class="nav-number">3.1.</span> <span class="nav-text">弱引用相关</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#weak-clear-no-lock的实现"><span class="nav-number">3.1.1.</span> <span class="nav-text">weak_clear_no_lock的实现</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自动释放池"><span class="nav-number">4.</span> <span class="nav-text">自动释放池</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#数据结构"><span class="nav-number">4.1.</span> <span class="nav-text">数据结构</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#循环引用"><span class="nav-number">5.</span> <span class="nav-text">循环引用</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#block注意"><span class="nav-number">5.0.1.</span> <span class="nav-text">__block注意</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#NSTimer的循环引用"><span class="nav-number">5.1.</span> <span class="nav-text">NSTimer的循环引用</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#内存布局"><span class="nav-number">1.</span> <span class="nav-text">内存布局</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#栈-stack"><span class="nav-number">1.0.1.</span> <span class="nav-text">栈(stack)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#堆-heap"><span class="nav-number">1.0.2.</span> <span class="nav-text">堆(heap)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#代码段-text"><span class="nav-number">1.0.3.</span> <span class="nav-text">代码段(text)</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#内存管理方案"><span class="nav-number">2.</span> <span class="nav-text">内存管理方案</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#TaggedPointer与引用计数"><span class="nav-number">2.1.</span> <span class="nav-text">TaggedPointer与引用计数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#NONPOINTER-ISA与引用计数。"><span class="nav-number">2.2.</span> <span class="nav-text">NONPOINTER-ISA与引用计数。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#散列表"><span class="nav-number">2.3.</span> <span class="nav-text">散列表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#散列式数据结构"><span class="nav-number">2.4.</span> <span class="nav-text">散列式数据结构</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#自旋锁"><span class="nav-number">2.4.1.</span> <span class="nav-text">自旋锁</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#RedcountMap-引用计数"><span class="nav-number">2.4.2.</span> <span class="nav-text">RedcountMap(引用计数)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#弱引用表"><span class="nav-number">2.4.3.</span> <span class="nav-text">弱引用表</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MRC和ARC"><span class="nav-number">3.</span> <span class="nav-text">MRC和ARC</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#dealloc的实现"><span class="nav-number">3.0.1.</span> <span class="nav-text">dealloc的实现</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#弱引用相关"><span class="nav-number">3.1.</span> <span class="nav-text">弱引用相关</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#weak-clear-no-lock的实现"><span class="nav-number">3.1.1.</span> <span class="nav-text">weak_clear_no_lock的实现</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自动释放池"><span class="nav-number">4.</span> <span class="nav-text">自动释放池</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#数据结构"><span class="nav-number">4.1.</span> <span class="nav-text">数据结构</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#循环引用"><span class="nav-number">5.</span> <span class="nav-text">循环引用</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#block注意"><span class="nav-number">5.0.1.</span> <span class="nav-text">__block注意</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#NSTimer的循环引用"><span class="nav-number">5.1.</span> <span class="nav-text">NSTimer的循环引用</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#在内存管理上能够优化的点"><span class="nav-number">6.</span> <span class="nav-text">在内存管理上能够优化的点</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#基础"><span class="nav-number">6.1.</span> <span class="nav-text">基础</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#中级"><span class="nav-number">6.2.</span> <span class="nav-text">中级</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#高级"><span class="nav-number">6.3.</span> <span class="nav-text">高级</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#举例"><span class="nav-number">7.</span> <span class="nav-text">举例</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#图片残留"><span class="nav-number">7.1.</span> <span class="nav-text">图片残留</span></a></li></ol></li></ol></div>
             
 
           </div>
