@@ -143,7 +143,7 @@
 <meta property="og:image" content="/images/2018-07-024.53.40.png">
 <meta property="og:image" content="/images/2018-07-025.29.27.png">
 <meta property="og:image" content="/images/2018-07-025.33.14.png">
-<meta property="og:updated_time" content="2018-07-13T02:10:35.000Z">
+<meta property="og:updated_time" content="2018-07-13T02:14:46.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS中的内存管理">
 <meta name="twitter:description" content="内存布局 内存管理方案 内存布局 MRC/ARC 引用计数 弱引用 自动释放池 循环引用  内存布局 栈(stack)方法调用都是在栈区，栈向下增长， 堆(heap)alloc的数据都是在堆区间，还有copy过的block 代码段(text)内存管理方案strong实现探究 weak实现探究 不同场景，不同方案  小数据 TaggedPointer(NSNumber) NONPOINTER_IS">
@@ -607,8 +607,8 @@
 <li>方法 <code>- (BOOL)isEqual:(id)anotherInstance</code></li>
 </ol>
 <p>它们的区别在于：<br>方式一，是依据实例的内存地址来进行比较的。如果实例的内存地址相等，说明实例们是指向同一片内存区间，则肯定是相同的。<br>方式二，则比较的是实例的可读属性<code>hash</code>。如果两实例的<code>hash</code>属性值相等，则认为这两个实例是相等的，<code>- (BOOL)isEqual:</code>返回真。  </p>
-<h3 id="autoreleasepool使用场景"><a href="#autoreleasepool使用场景" class="headerlink" title="autoreleasepool使用场景"></a>autoreleasepool使用场景</h3><p>我<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">NSArray *urls = &lt;# An array of file URLs #&gt;;</div><div class="line"></div><div class="line">for(NSURL *url in urls) &#123;</div><div class="line"></div><div class="line">@autoreleasepool &#123;</div><div class="line"></div><div class="line">NSError *error;</div><div class="line"></div><div class="line">NSString *fileContents = [NSString stringWithContentsOfURL:url encoding:NSUTF8StringEncoding error:&amp;error];</div><div class="line"></div><div class="line">/* Process the string, creating and autoreleasing more objects. */</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-
+<h3 id="autoreleasepool使用场景"><a href="#autoreleasepool使用场景" class="headerlink" title="autoreleasepool使用场景"></a>autoreleasepool使用场景</h3><p>我们读取一个文件，然后取其中某些内容，并且循环来做，就会导致文件数据在内存中堆积。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">NSArray *urls = &lt;# An array of file URLs #&gt;;</div><div class="line"></div><div class="line">for(NSURL *url in urls) &#123;</div><div class="line"></div><div class="line">@autoreleasepool &#123;</div><div class="line"></div><div class="line">NSError *error;</div><div class="line"></div><div class="line">NSString *fileContents = [NSString stringWithContentsOfURL:url encoding:NSUTF8StringEncoding error:&amp;error];</div><div class="line"></div><div class="line">/* Process the string, creating and autoreleasing more objects. */</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
       
     </div>
 
