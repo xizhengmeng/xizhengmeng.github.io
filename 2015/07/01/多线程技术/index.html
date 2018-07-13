@@ -123,7 +123,7 @@
 <meta property="og:image" content="/images/2018-07-034.59.40.png">
 <meta property="og:image" content="/images/2018-07-035.07.23.png">
 <meta property="og:image" content="/images/2018-07-035.08.09.png">
-<meta property="og:updated_time" content="2018-07-11T13:20:59.000Z">
+<meta property="og:updated_time" content="2018-07-13T00:57:46.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="多线程技术">
 <meta name="twitter:description" content="总结 并发执行的本质是多线程，不是多队列  开不开线程，取决于执行任务的函数，同步不开，异步开。  开几条线程，取决于队列，串行开一条，并发开多条(异步)  主队列：  专门用来在主线程上调度任务的”队列”，主队列不能在其他线程中调度任务！  如果主线程上当前正在有执行的任务，主队列暂时不会调度任务的执行！主队列同步任务，会造成死锁。原因是循环等待  同步任务可以队列调度多个异步任务前，指定一个同">
@@ -527,6 +527,13 @@
 <p>下边这个输出啥？<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">dispatch_queue_t gloabl = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0);</div><div class="line">    dispatch_async(gloabl, ^&#123;</div><div class="line">        NSLog(@&quot;123&quot;);</div><div class="line">        NSLog(@&quot;%@&quot;,[NSThread currentThread]);</div><div class="line">        [self performSelector:@selector(dosomething) withObject:nil afterDelay:0];</div><div class="line">    &#125;);</div></pre></td></tr></table></figure></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">123</div><div class="line">&lt;NSThread: 0x60400027a800&gt;&#123;number = 3, name = (null)&#125;</div></pre></td></tr></table></figure>
 <p>为啥没有dosomething？因为performselector需要timer添加到runloop，但是直接开线程是没有runloop的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">dispatch_queue_t queue = dispatch_queue_create(&quot;com.demo.serialQueue&quot;, DISPATCH_QUEUE_SERIAL);</div><div class="line">NSLog(@&quot;1&quot;); // 任务1</div><div class="line">dispatch_async(queue, ^&#123;</div><div class="line">    NSLog(@&quot;2&quot;); // 任务2</div><div class="line">    dispatch_sync(queue, ^&#123;  </div><div class="line">        NSLog(@&quot;3&quot;); // 任务3</div><div class="line">    &#125;);</div><div class="line">    NSLog(@&quot;4&quot;); // 任务4</div><div class="line">&#125;);</div><div class="line">NSLog(@&quot;5&quot;); // 任务5</div></pre></td></tr></table></figure>
+<p>这个输出啥呢？</p>
+<p>1,5,2(5，2顺序不一定)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">NSLog(@&quot;1&quot;); // 任务1</div><div class="line">dispatch_async(dispatch_get_global_queue(0, 0), ^&#123;</div><div class="line">    NSLog(@&quot;2&quot;); // 任务2</div><div class="line">    dispatch_sync(dispatch_get_main_queue(), ^&#123;</div><div class="line">        NSLog(@&quot;3&quot;); // 任务3</div><div class="line">    &#125;);</div><div class="line">    NSLog(@&quot;4&quot;); // 任务4</div><div class="line">&#125;);</div><div class="line">NSLog(@&quot;5&quot;); // 任务5</div></pre></td></tr></table></figure>
+<p>这个输出1,5,2,3,4，之所以不堵塞，是因为这2后边的都执行在别的队列上，然后回到主队列打印一个3，然后再回来，啥都不耽误</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">dispatch_async(dispatch_get_global_queue(0, 0), ^&#123;</div><div class="line">    NSLog(@&quot;1&quot;); // 任务1</div><div class="line">    dispatch_sync(dispatch_get_main_queue(), ^&#123;</div><div class="line">        NSLog(@&quot;2&quot;); // 任务2</div><div class="line">    &#125;);</div><div class="line">    NSLog(@&quot;3&quot;); // 任务3</div><div class="line">&#125;);</div><div class="line">NSLog(@&quot;4&quot;); // 任务4</div><div class="line">while (1) &#123;</div><div class="line">&#125;</div><div class="line">NSLog(@&quot;5&quot;); // 任务5</div></pre></td></tr></table></figure>
+<p>那么这个呢？打印4，1，顺序不一定</p>
 <h4 id="多读单写的实现"><a href="#多读单写的实现" class="headerlink" title="多读单写的实现"></a>多读单写的实现</h4><p>异步栅栏<br><code>dispatch_barrier_async(&lt;#dispatch_queue_t  _Nonnull queue#&gt;, &lt;#^(void)block#&gt;)</code></p>
 <h5 id="dispatch-barrier-async"><a href="#dispatch-barrier-async" class="headerlink" title="dispatch_barrier_async"></a><code>dispatch_barrier_async</code></h5><p><a href="https://blog.csdn.net/u013046795/article/details/47057585" target="_blank" rel="external">sync与async区别</a></p>
 <blockquote>
@@ -714,7 +721,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">109</span>
+                    <span class="site-state-item-count">106</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>

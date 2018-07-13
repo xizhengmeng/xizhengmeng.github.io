@@ -123,7 +123,7 @@
 <meta property="og:image" content="/images/2018-07-029.27.17.png">
 <meta property="og:image" content="/images/2018-07-029.27.28.png">
 <meta property="og:image" content="/images/2018-07-033.03.09.png">
-<meta property="og:updated_time" content="2018-07-10T06:07:48.000Z">
+<meta property="og:updated_time" content="2018-07-13T02:08:54.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="深入理解block">
 <meta name="twitter:description" content="block介绍 截获变量 __block 内存管理 循环引用">
@@ -497,6 +497,8 @@
 <p>我们经常会听说如何解决block的循环引用？一般都会说用<strong>weak和</strong>block，那么<strong>block实现解除循环引用的本质就是下边这段代码，使用完了之后可以将这个引用设置为nil，其他的做法就不可以，因为不用</strong>block修饰根本就不能更改指针指向。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">__block typeof(self) blockSelf = self;</div><div class="line">    </div><div class="line">_block = ^NSString *(NSString *num) &#123;</div><div class="line">    NSLog(@&quot;%@&quot;, blockSelf.arr[0]);</div><div class="line">//    blockSelf = nil;</div><div class="line">    return @&quot;123&quot;;</div><div class="line">&#125;;</div><div class="line">    </div><div class="line">=========================================</div><div class="line"></div><div class="line">static NSString * __ViewController__viewDidLoad_block_func_0(struct __ViewController__viewDidLoad_block_impl_0 *__cself, NSString *num) &#123;</div><div class="line">__Block_byref_blockSelf_0 *blockSelf = __cself-&gt;blockSelf; // bound by ref</div><div class="line"></div><div class="line">    NSLog((NSString *)&amp;__NSConstantStringImpl__var_folders_h6_b8d2vwjj7hz3kdq9kpxts5j00000gq_T_ViewController_614b65_mi_0, ((id (*)(id, SEL, NSUInteger))(void *)objc_msgSend)((id)((NSMutableArray *(*)(id, SEL))(void *)objc_msgSend)((id)(blockSelf-&gt;__forwarding-&gt;blockSelf), sel_registerName(&quot;arr&quot;)), sel_registerName(&quot;objectAtIndexedSubscript:&quot;), (NSUInteger)0));</div><div class="line">    return (NSString *)&amp;__NSConstantStringImpl__var_folders_h6_b8d2vwjj7hz3kdq9kpxts5j00000gq_T_ViewController_614b65_mi_1;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p><img src="/02/深入理解block/../../../images/2018-07-033.03.09.png" alt=""></p>
+<h3 id="block和代理如何选择使用"><a href="#block和代理如何选择使用" class="headerlink" title="block和代理如何选择使用"></a>block和代理如何选择使用</h3><p>delegate更轻量，但是写起来麻烦，block用起来写起来很简单，但是运行起来消耗大。</p>
+<p>优先使用block。<br>如果回调的状态很多，多于三个使用代理。<br>如果回调的很频繁，次数很多，像UITableview，每次初始化、滑动、点击都会回调，使用代理。<br>又或者说， delegate 的回调更多的面向过程，而 block 则是面向结果的。如果你需要得到一条多步进程的通知，你应该使用 delegation，如果你需要一个最终的结果你应该使用delegate</p>
 
       
     </div>
@@ -621,7 +623,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">109</span>
+                    <span class="site-state-item-count">106</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -749,7 +751,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是block"><span class="nav-number">1.</span> <span class="nav-text">什么是block</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是block调用"><span class="nav-number">2.</span> <span class="nav-text">什么是block调用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#截获变量"><span class="nav-number">3.</span> <span class="nav-text">截获变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#block什么时候使用"><span class="nav-number">4.</span> <span class="nav-text">__block什么时候使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#block的原理是什么？"><span class="nav-number">5.</span> <span class="nav-text">__block的原理是什么？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#block内存管理"><span class="nav-number">6.</span> <span class="nav-text">block内存管理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#循环引用"><span class="nav-number">7.</span> <span class="nav-text">循环引用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#weakSelf-StrongSelf-的使用"><span class="nav-number">7.1.</span> <span class="nav-text">weakSelf StrongSelf 的使用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#如果只使用成员变量呢？"><span class="nav-number">7.2.</span> <span class="nav-text">如果只使用成员变量呢？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#block在MRC和ARC下的区别"><span class="nav-number">7.3.</span> <span class="nav-text">__block在MRC和ARC下的区别</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是block"><span class="nav-number">1.</span> <span class="nav-text">什么是block</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是block调用"><span class="nav-number">2.</span> <span class="nav-text">什么是block调用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#截获变量"><span class="nav-number">3.</span> <span class="nav-text">截获变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#block什么时候使用"><span class="nav-number">4.</span> <span class="nav-text">__block什么时候使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#block的原理是什么？"><span class="nav-number">5.</span> <span class="nav-text">__block的原理是什么？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#block内存管理"><span class="nav-number">6.</span> <span class="nav-text">block内存管理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#循环引用"><span class="nav-number">7.</span> <span class="nav-text">循环引用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#weakSelf-StrongSelf-的使用"><span class="nav-number">7.1.</span> <span class="nav-text">weakSelf StrongSelf 的使用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#如果只使用成员变量呢？"><span class="nav-number">7.2.</span> <span class="nav-text">如果只使用成员变量呢？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#block在MRC和ARC下的区别"><span class="nav-number">7.3.</span> <span class="nav-text">__block在MRC和ARC下的区别</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#block和代理如何选择使用"><span class="nav-number">8.</span> <span class="nav-text">block和代理如何选择使用</span></a></li></ol></div>
             
 
           </div>
