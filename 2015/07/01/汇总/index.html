@@ -148,7 +148,7 @@
 <meta property="og:image" content="/images/2018-07-0212.43.03.png">
 <meta property="og:image" content="/images/2018-07-0212.43.41.png">
 <meta property="og:image" content="/images/%202018-07-02%202.11.14.png">
-<meta property="og:updated_time" content="2018-07-13T02:53:56.000Z">
+<meta property="og:updated_time" content="2018-07-16T10:39:45.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="汇总">
 <meta name="twitter:description" content="UI视图相关UIViewController生命周期当一个视图控制器被创建，并在屏幕上显示的时候。 代码的执行顺序 1、 alloc                                   创建对象，分配空间 2、init (initWithNibName) 初始化对象，初始化数据 3、loadView                          从nib载入视图 ，通常这一步不">
@@ -458,6 +458,11 @@
 <p><img src="/01/汇总/../../../images/2018-07-01 9.57.35.png" alt=""></p>
 <p><img src="/01/汇总/../../../images/2018-07-01 10.01.52.png" alt=""></p>
 <p>如何实现一个正方形，只有中间圆形响应事件呢？<br>重写<code>- (BOOL)pointInside:(CGPoint)point withEvent:(UIEvent *)event</code></p>
+<p>问题，如何让一个在父视图外的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">- (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event &#123;</div><div class="line">    UIView *view = [super hitTest:point withEvent:event];</div><div class="line">    if (view == nil) &#123;</div><div class="line">        CGPoint yellowPoint = [self convertPoint:point toView:self.testBtn];</div><div class="line">        if ([self.testBtn pointInside:yellowPoint withEvent:event]) &#123;</div><div class="line">            view = self.testBtn;</div><div class="line">        &#125;</div><div class="line">//        self.testBtn.istarget = YES;</div><div class="line">    &#125;</div><div class="line">    return view;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>说明当，第一个view返回nil的时候，说明点击不在这个view上，那么下一步判断，点击在不在子控件，testBtn上，注意这里要先转化坐标系，如果在的话那就直接返回这个testBtn</p>
+<p><code>问题？怎么找到一个view所以依赖的第一个控制器？</code></p>
+<p>答案:响应者链条</p>
 <h4 id="cpu"><a href="#cpu" class="headerlink" title="cpu"></a>cpu</h4><p>cpu负责 <code>布局和文本计算，绘制，图片编解码，提交位图</code></p>
 <h4 id="卡顿和掉帧的根本原因"><a href="#卡顿和掉帧的根本原因" class="headerlink" title="卡顿和掉帧的根本原因"></a>卡顿和掉帧的根本原因</h4><h4 id="滑动优化"><a href="#滑动优化" class="headerlink" title="滑动优化"></a>滑动优化</h4><p>CPU</p>
 <ul>
@@ -518,6 +523,9 @@
 <p>最后编译的分类的方法，最先被搜索到，同时在宿主之前，这也就是我们怎么替换宿主的方法的原理</p>
 <p>最终分类中的方法是拼接到宿主类中得以被调用的，这也就是为什么分类是运行时决议，这个时候注意，在类的方法列表中我们是正向遍历的，但是拼接的时候是反向遍历拼接的，那么为什么分类可以覆盖宿主方法呢，是因为在进行拼接的时候会讲宿主方法挪到分类方法的后边。</p>
 <p><img src="/01/汇总/../../../images/2018-07-0112.00.34.png" alt=""></p>
+<p>注意:<br>分类中可以直接访问主类中的属性。</p>
+<p>但是如果分类中要定义属性那么只能依赖runtime。</p>
+<p>但是分类中可以直接添加一个属性，不过它只是一个声明，假如我把主类的属性生命在.m中，这个时候我就可以在分类中再定义一次，这样就可以直接用。</p>
 <h4 id="分类中都能添加什么内容"><a href="#分类中都能添加什么内容" class="headerlink" title="分类中都能添加什么内容"></a>分类中都能添加什么内容</h4><ul>
 <li>实例方法</li>
 <li>类方法</li>
