@@ -1,0 +1,1430 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.3.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.3.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '6.3.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="OC语言基础关于SEL的理解1234567NSLog(@&amp;quot;%d&amp;quot;, @selector(testView));NSLog(@&amp;quot;%d&amp;quot;, @selector(testView1));    NSLog(@&amp;quot;%d&amp;quot;, NSSelectorFromString(@&amp;quot;testView&amp;quot;));    NSLog(@&amp;quot;%">
+<meta name="keywords" content="iOS基础">
+<meta property="og:type" content="article">
+<meta property="og:title" content="OC语言基础&#x2F;runtime">
+<meta property="og:url" content="/2015/07/17/2015/OC语言基础:runtime/index.html">
+<meta property="og:site_name" content="Hanson的博客">
+<meta property="og:description" content="OC语言基础关于SEL的理解1234567NSLog(@&amp;quot;%d&amp;quot;, @selector(testView));NSLog(@&amp;quot;%d&amp;quot;, @selector(testView1));    NSLog(@&amp;quot;%d&amp;quot;, NSSelectorFromString(@&amp;quot;testView&amp;quot;));    NSLog(@&amp;quot;%">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="/images/2018-07-0112.00.34.png">
+<meta property="og:image" content="/images/2018-07-01%2010.34.59.png">
+<meta property="og:image" content="/images/2018-07-0112.07.40.png">
+<meta property="og:image" content="/images/2018-07-01%2012.12.50.png">
+<meta property="og:image" content="/images/2018-07-0112.27.51.png">
+<meta property="og:image" content="/images/2018-07-01%207.07.35.png">
+<meta property="og:image" content="/images/2018-07-01%207.12.03.png">
+<meta property="og:image" content="/images/2018-07-01%207.22.32.png">
+<meta property="og:image" content="/images/2018-07-01%207.46.27.png">
+<meta property="og:image" content="/images/2018-07-02%2010.43.54.png">
+<meta property="og:image" content="/images/2018-07-02%2011.13.08.png">
+<meta property="og:image" content="/images/2018-07-02%2011.15.07.png">
+<meta property="og:image" content="/images/2018-07-02%2011.21.25.png">
+<meta property="og:image" content="/images/%202018-07-02%2011.26.53.png">
+<meta property="og:image" content="/images/2018-07-02%2011.40.12.png">
+<meta property="og:image" content="/images/%202018-07-02%2011.36.39.png">
+<meta property="og:image" content="/images/%202018-07-02%2011.32.44.png">
+<meta property="og:image" content="/images/%202018-07-02%2011.47.06.png">
+<meta property="og:image" content="/images/2018-07-02%2012.03.52.png">
+<meta property="og:image" content="/images/2018-07-0212.39.22.png">
+<meta property="og:image" content="/images/2018-07-0212.41.50.png">
+<meta property="og:image" content="/images/2018-07-0212.43.03.png">
+<meta property="og:image" content="/images/2018-07-0212.43.41.png">
+<meta property="og:image" content="/images/%202018-07-02%202.11.14.png">
+<meta property="og:updated_time" content="2018-07-17T03:54:58.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="OC语言基础&#x2F;runtime">
+<meta name="twitter:description" content="OC语言基础关于SEL的理解1234567NSLog(@&amp;quot;%d&amp;quot;, @selector(testView));NSLog(@&amp;quot;%d&amp;quot;, @selector(testView1));    NSLog(@&amp;quot;%d&amp;quot;, NSSelectorFromString(@&amp;quot;testView&amp;quot;));    NSLog(@&amp;quot;%">
+<meta name="twitter:image" content="/images/2018-07-0112.00.34.png">
+
+
+
+
+
+
+  <link rel="canonical" href="/2015/07/17/2015/OC语言基础:runtime/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>OC语言基础/runtime | Hanson的博客</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hanson的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="/2015/07/17/2015/OC语言基础:runtime/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Hanson">
+      <meta itemprop="description" content="主要做移动端开发，和研发效率提升，会一点python和数据挖掘，现在就职业京东金融">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hanson的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">OC语言基础/runtime
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2015-07-17 11:40:22" itemprop="dateCreated datePublished" datetime="2015-07-17T11:40:22+08:00">2015-07-17</time>
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="OC语言基础"><a href="#OC语言基础" class="headerlink" title="OC语言基础"></a>OC语言基础</h3><h4 id="关于SEL的理解"><a href="#关于SEL的理解" class="headerlink" title="关于SEL的理解"></a>关于SEL的理解</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">NSLog(@&quot;%d&quot;, @selector(testView));</div><div class="line">NSLog(@&quot;%d&quot;, @selector(testView1));</div><div class="line">    </div><div class="line">NSLog(@&quot;%d&quot;, NSSelectorFromString(@&quot;testView&quot;));</div><div class="line">    </div><div class="line">NSLog(@&quot;%p&quot;,@&quot;testView&quot;);</div></pre></td></tr></table></figure>
+<p>输出</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">2018-07-10 17:28:37.378285+0800 Ceshi[18642:3374809] 165034347</div><div class="line">2018-07-10 17:28:37.378342+0800 Ceshi[18642:3374809] 165034410</div><div class="line">2018-07-10 17:28:37.378411+0800 Ceshi[18642:3374809] 165034347</div><div class="line">2018-07-10 17:28:37.378494+0800 Ceshi[18642:3374809] 0x109d65128</div></pre></td></tr></table></figure>
+<p>这里是一个数字到字符串的映射关系，但也不是简单的地址的映射</p>
+<h4 id="self与super"><a href="#self与super" class="headerlink" title="self与super"></a>self与super</h4><p><a href="https://blog.csdn.net/shihuboke/article/details/78967824" target="_blank" rel="external">self/super</a></p>
+<p>objc_msgSend(id,sel)</p>
+<p>objc_msgSendSuper(struct,sel)</p>
+<h4 id="分类做哪些事"><a href="#分类做哪些事" class="headerlink" title="分类做哪些事"></a>分类做哪些事</h4><ul>
+<li>声明私有方法</li>
+<li>分解庞大的类文件</li>
+<li>把framework私有方法公开</li>
+</ul>
+<h4 id="分类特点"><a href="#分类特点" class="headerlink" title="分类特点"></a>分类特点</h4><ul>
+<li>运行时决议(编译时，分类和宿主没有一毛钱关系)</li>
+<li>可以为系统添加分类</li>
+</ul>
+<p>最后编译的分类的方法，最先被搜索到，同时在宿主之前，这也就是我们怎么替换宿主的方法的原理</p>
+<p>最终分类中的方法是拼接到宿主类中得以被调用的，这也就是为什么分类是运行时决议，这个时候注意，在类的方法列表中我们是正向遍历的，但是拼接的时候是反向遍历拼接的，那么为什么分类可以覆盖宿主方法呢，是因为在进行拼接的时候会讲宿主方法挪到分类方法的后边。</p>
+<p><img src="/17/2015/OC语言基础:runtime/../../../images/2018-07-0112.00.34.png" alt=""></p>
+<p>注意:<br>分类中可以直接访问主类中的属性。</p>
+<p>但是如果分类中要单独定义属性那么只能依赖runtime，其实主要是成员变量的添加。</p>
+<p>但是分类中可以直接添加一个属性，不过它只是一个声明，假如我把主类的属性声明在.m中，这个时候我就可以在分类中再定义一次，这样就可以直接用，这里要注意的是如果我们声明一个扩展是不能被分类所使用的。</p>
+<h4 id="分类中都能添加什么内容"><a href="#分类中都能添加什么内容" class="headerlink" title="分类中都能添加什么内容"></a>分类中都能添加什么内容</h4><ul>
+<li>实例方法</li>
+<li>类方法</li>
+<li>协议</li>
+<li>属性(定义了一个属性，只声明set和get方法，并没有添加实例变量，变量需要通过关联对象)</li>
+</ul>
+<h4 id="分类数据结构"><a href="#分类数据结构" class="headerlink" title="分类数据结构"></a>分类数据结构</h4><p><img src="/17/2015/OC语言基础:runtime/../../../images/2018-07-01 10.34.59.png" alt=""></p>
+<h4 id="关联对象"><a href="#关联对象" class="headerlink" title="关联对象"></a>关联对象</h4><p>关联对象是否被添加到了宿主类？</p>
+<p>关联对象本质</p>
+<p><img src="/17/2015/OC语言基础:runtime/../../../images/2018-07-0112.07.40.png" alt=""></p>
+<p>策略:retain或者copy</p>
+<p><img src="/17/2015/OC语言基础:runtime/../../../images/2018-07-01 12.12.50.png" alt=""></p>
+<h4 id="用扩展来做什么"><a href="#用扩展来做什么" class="headerlink" title="用扩展来做什么"></a>用扩展来做什么</h4><ul>
+<li>声明私有属性</li>
+<li>声明私有方法</li>
+<li>声明私有变量</li>
+<li>声明私有属性</li>
+</ul>
+<h4 id="扩展和分类的区别"><a href="#扩展和分类的区别" class="headerlink" title="扩展和分类的区别"></a>扩展和分类的区别</h4><ul>
+<li>这个是编译的时候决议</li>
+<li>不能为系统类添加扩展</li>
+<li>只是以声明的形式存在</li>
+</ul>
+<h4 id="代理"><a href="#代理" class="headerlink" title="代理"></a>代理</h4><ul>
+<li>代理是一种设计模式</li>
+<li>与通知的区别是代理一对一，通知一对多</li>
+<li>委托方以weak声明，防止循环引用，代理方用strong声明</li>
+</ul>
+<h4 id="通知"><a href="#通知" class="headerlink" title="通知"></a>通知</h4><ul>
+<li>用观察者设计模式实现的</li>
+<li>一对多</li>
+</ul>
+<p><img src="/17/2015/OC语言基础:runtime/../../../images/2018-07-0112.27.51.png" alt=""></p>
+<p>observer中包含观察者对象，和回调的方法</p>
+<h4 id="KVO"><a href="#KVO" class="headerlink" title="KVO"></a>KVO</h4><p>key-value-observing</p>
+<p>观察者模式的实现</p>
+<p>使用isa混写技术来实现kvo</p>
+<p><img src="/17/2015/OC语言基础:runtime/../../../images/2018-07-01 7.07.35.png" alt=""></p>
+<p><img src="/17/2015/OC语言基础:runtime/../../../images/2018-07-01 7.12.03.png" alt=""></p>
+<p>通过kvc设置value，kvo能否生效？可以，因为调用了setter方法<br>那么通过成员变量直接赋值能否生效？不能，没有调用setter方法</p>
+<p>手动kvo是什么？</p>
+<p>kvo能否使用成员变量作为k？可以的，在底层会为其创建setter方法，在其他地方调用或者进行kvc的时候就会调用</p>
+<p><a href="https://www.cnblogs.com/wengzilin/p/4346775.html" target="_blank" rel="external">kvo使用中的坑</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">-(void)printInfo</div><div class="line">&#123;</div><div class="line">    NSLog(@&quot;isa:%@, supper class:%@&quot;, NSStringFromClass(object_getClass(self)),</div><div class="line">          class_getSuperclass(object_getClass(self)));</div></pre></td></tr></table></figure>
+<p>当keyPath是成员变量的时候，确实会调用成功，但是具体的方式却并不是重写set方法，具体是啥有待探究。</p>
+<p><code>willChangeValueForKey:</code></p>
+<h4 id="KVC"><a href="#KVC" class="headerlink" title="KVC"></a>KVC</h4><p>key-value-coding</p>
+<p>是否破坏面向对象编程思想？是的</p>
+<p>valueForKey:</p>
+<p><img src="/17/2015/OC语言基础:runtime/../../../images/2018-07-01 7.22.32.png" alt=""></p>
+<p>有没有get方法，有的话直接返回，如果没有的话，那么去看看有没有相同或者相似的变量存在？这里有一个方法可以禁止这个流程。</p>
+<p>Accessor Method:</p>
+<ul>
+<li>getKey</li>
+<li>key</li>
+<li>isKey</li>
+</ul>
+<p>Instance Var:</p>
+<ul>
+<li>_key</li>
+<li>_isKey</li>
+<li>key</li>
+<li>isKey</li>
+</ul>
+<p>setvalueForKey一样的流程和道理</p>
+<p><a href="https://www.cnblogs.com/panda1024/p/6014399.html" target="_blank" rel="external">kvc集合运算符</a></p>
+<h5 id="KVC集合运算符号如何使用"><a href="#KVC集合运算符号如何使用" class="headerlink" title="KVC集合运算符号如何使用"></a>KVC集合运算符号如何使用</h5><ul>
+<li>必须用在集合对象上活着普通对象的集合属性上</li>
+<li>鸡蛋集合运算符号有@avg,@count,@max,@min,@sum</li>
+<li>格式@”@sum.age”或者@”集合属性.@max.age”</li>
+</ul>
+<h4 id="属性关键字"><a href="#属性关键字" class="headerlink" title="属性关键字"></a>属性关键字</h4><p>读写 readonly,readwrite</p>
+<p>原子性 atomic,nonatomic</p>
+<p>引用计数</p>
+<ul>
+<li>retain/strong</li>
+<li>assign/unsafe_unretained</li>
+<li>weak</li>
+<li>copy</li>
+</ul>
+<p>assign/weak区别</p>
+<ul>
+<li>assign可以修饰int，bool，也可以修饰对象，weak只能修饰对象</li>
+<li>assign修饰的对象被释放后，会导致悬垂指针，weak指针会被置为nil</li>
+<li>都不改变引用计数</li>
+</ul>
+<p><code>@property (copy) NSMutableArray *arr;</code>这样声明有啥问题？经过copy修饰都是不可变对象，这是一个深拷贝，只有copy修饰不可变对象才是浅拷贝</p>
+<p>浅拷贝增加对象的引用计数，因为多了一个指针指向，深拷贝是产生了一个内存空间，不会影响引用计数。</p>
+<p>深拷贝vs浅拷贝区别:</p>
+<blockquote>
+<p>是否开辟新地址，是否影响引用计数</p>
+</blockquote>
+<h4 id="atomic实现"><a href="#atomic实现" class="headerlink" title="atomic实现"></a>atomic实现</h4><p>在 objc4-723 的 Objective-C runtime 实现中，property 的 atomic 是采用 spinlock_t 也就是俗称的自旋锁实现的。具体代码可以看 objc_accessors.mm，// getter</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">id objc_getProperty(id self, SEL _cmd, ptrdiff_t offset, BOOL atomic) &#123;</div><div class="line">    // ...</div><div class="line">    if (!atomic) return *slot;</div><div class="line"></div><div class="line">    // Atomic retain release world</div><div class="line">    spinlock_t&amp; slotlock = PropertyLocks[slot];</div><div class="line">    slotlock.lock();</div><div class="line">    id value = objc_retain(*slot);</div><div class="line">    slotlock.unlock();</div><div class="line">    // ...</div><div class="line">&#125;</div><div class="line"></div><div class="line">// setter</div><div class="line">static inline void reallySetProperty(id self, SEL _cmd, id newValue, ptrdiff_t offset, bool atomic, bool copy, bool mutableCopy)</div><div class="line">&#123;</div><div class="line">    // ...</div><div class="line">    if (!atomic) &#123;</div><div class="line">        oldValue = *slot;</div><div class="line">        *slot = newValue;</div><div class="line">    &#125; else &#123;</div><div class="line">        spinlock_t&amp; slotlock = PropertyLocks[slot];</div><div class="line">        slotlock.lock();</div><div class="line">        oldValue = *slot;</div><div class="line">        *slot = newValue;        </div><div class="line">        slotlock.unlock();</div><div class="line">    &#125;</div><div class="line">    // ...</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="面试题"><a href="#面试题" class="headerlink" title="面试题"></a>面试题</h4><p><img src="/17/2015/OC语言基础:runtime/../../../images/2018-07-01 7.46.27.png" alt=""></p>
+<h3 id="NSCopying协议实现"><a href="#NSCopying协议实现" class="headerlink" title="NSCopying协议实现"></a>NSCopying协议实现</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line">#import &quot;KaoBei.h&quot;</div><div class="line"></div><div class="line">@implementation KaoBei</div><div class="line"></div><div class="line">- (id)init &#123;</div><div class="line">    self = [super init];</div><div class="line">    if (self) &#123;</div><div class="line">    &#125;</div><div class="line">    return self;</div><div class="line">&#125;</div><div class="line">- (id)copyWithZone:(NSZone *)zone &#123;</div><div class="line">    KaoBei *instance = [[KaoBei alloc] init];</div><div class="line">    if (instance) &#123;</div><div class="line">        instance.chanPInName = self.chanPInName;</div><div class="line">        instance.icon = [self.icon copyWithZone:zone];</div><div class="line">        instance.isParent = [self.isParent copyWithZone:zone];</div><div class="line">        instance.theSelected = [self.theSelected copyWithZone:zone];</div><div class="line">        instance.ids = [self.ids copyWithZone:zone];</div><div class="line">        instance.name = [self.name copyWithZone:zone];</div><div class="line">        instance.imageUrlStr = [self.imageUrlStr copyWithZone:zone];</div><div class="line">    &#125;</div><div class="line">    return instance;</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (id)mutableCopyWithZone:(NSZone *)zone &#123;</div><div class="line">    KaoBei *instance = [[KaoBei alloc] init];</div><div class="line">    if (instance) &#123;</div><div class="line">        instance.chanPInName = self.chanPInName;</div><div class="line">        instance.icon = [self.icon copyWithZone:zone];</div><div class="line">        instance.isParent = [self.isParent copyWithZone:zone];</div><div class="line">        instance.theSelected = [self.theSelected copyWithZone:zone];</div><div class="line">        instance.ids = [self.ids copyWithZone:zone];</div><div class="line">        instance.name = [self.name copyWithZone:zone];</div><div class="line">        instance.imageUrlStr = [self.imageUrlStr copyWithZone:zone];</div><div class="line">    &#125;</div><div class="line">    return instance;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="instancetype和id的异同"><a href="#instancetype和id的异同" class="headerlink" title="instancetype和id的异同"></a>instancetype和id的异同</h4><h5 id="1、相同点"><a href="#1、相同点" class="headerlink" title="1、相同点"></a>1、相同点</h5><p>都可以作为方法的返回类型</p>
+<h5 id="2、不同点"><a href="#2、不同点" class="headerlink" title="2、不同点"></a>2、不同点</h5><p>①instancetype可以返回和方法所在类相同类型的对象，id只能返回未知类型的对象；</p>
+<p>②instancetype只能作为返回值，不能像id那样作为参数，比如下面的写法：</p>
+<p>[objc] view plaincopy在CODE上查看代码片派生到我的代码片</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">//err,expected a type  </div><div class="line">- (void)setValue:(instancetype)value  </div><div class="line">&#123;  </div><div class="line">    //do something  </div><div class="line">&#125;  </div><div class="line">就是错的，应该写成：</div><div class="line">[objc] view plaincopy在CODE上查看代码片派生到我的代码片</div><div class="line"></div><div class="line">- (void)setValue:(id)value  </div><div class="line">&#123;  </div><div class="line">    //do something  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="runtime-重点"><a href="#runtime-重点" class="headerlink" title="runtime(重点)"></a>runtime(重点)</h3><p>先了解这四种结构:</p>
+<ul>
+<li>objc_object</li>
+<li>objc_class</li>
+<li>isa指针</li>
+<li>method_t</li>
+</ul>
+<h4 id="objc-object"><a href="#objc-object" class="headerlink" title="objc_object"></a>objc_object</h4><p>id == objc_object</p>
+<p>包括</p>
+<p>isa_t isa相关操作</p>
+<p>弱引用相关</p>
+<p>关联对象相关</p>
+<p>内存管理相关</p>
+<h4 id="objc-class"><a href="#objc-class" class="headerlink" title="objc_class"></a>objc_class</h4><p>Class == objc_class 继承自objc_objct</p>
+<p>包括</p>
+<p>Class superClass</p>
+<p>cache_t cache   方法缓存</p>
+<p>class_data_bits_t bits 变量，属性和方法都在这</p>
+<h5 id="关于Class"><a href="#关于Class" class="headerlink" title="关于Class"></a>关于Class</h5><p><img src="/17/2015/OC语言基础:runtime/../../../images/2018-07-02 10.43.54.png" alt=""><br>说明:当我们调用实例方法，实际是通过isa去Class对象中查找的，当我们调用类方法，实际是通过类对象的isa去元类中查找的。</p>
+<h5 id="关于cache-t"><a href="#关于cache-t" class="headerlink" title="关于cache_t"></a>关于cache_t</h5><p><img src="/17/2015/OC语言基础:runtime/../../../images/2018-07-02 11.13.08.png" alt=""></p>
+<p><img src="/17/2015/OC语言基础:runtime/../../../images/2018-07-02 11.15.07.png" alt=""><br>说明cache_t是一个数组，然后里边每个元素里都有一个key，也即是SEL，还有一个IMP，当我们传入一个SEL的时候，通过hash算法获取这个对象的索引，然后快速的获取到这个bucket_t，然后获取IMP进行调用</p>
+<h5 id="关于class-data-bits-t"><a href="#关于class-data-bits-t" class="headerlink" title="关于class_data_bits_t"></a>关于class_data_bits_t</h5><p>这个是对class_rw_t的封装</p>
+<p><img src="/17/2015/OC语言基础:runtime/../../../images/2018-07-02 11.21.25.png" alt=""></p>
+<p>methods里边每一个元素又是一个数组，然后每个数组代表的是一个分类中的添加的所有的方法，最终都会被汇总到这里，进行方法查找的时候就是在这里进行的查找，遍历methods，从前到后，现在第一个数组里查找，再到第二个数组里查找，以此类推</p>
+<p>分类中添加的东西都在上边这个结构中，class_rw_t，宿体本身的内容在下边这个结构当中</p>
+<p><img src="/17/2015/OC语言基础:runtime/../../../images/ 2018-07-02 11.26.53.png" alt=""></p>
+<h5 id="method-t"><a href="#method-t" class="headerlink" title="method_t"></a>method_t</h5><p><img src="/17/2015/OC语言基础:runtime/../../../images/2018-07-02 11.40.12.png" alt=""><br><img src="/17/2015/OC语言基础:runtime/../../../images/ 2018-07-02 11.36.39.png" alt=""></p>
+<p>一个函数只有一个返回值，多个参数，这里是类型的表示</p>
+<h5 id="总体结构图"><a href="#总体结构图" class="headerlink" title="总体结构图"></a>总体结构图</h5><p><img src="/17/2015/OC语言基础:runtime/../../../images/ 2018-07-02 11.32.44.png" alt=""></p>
+<h5 id="动态添加方法和分类有啥关系？"><a href="#动态添加方法和分类有啥关系？" class="headerlink" title="动态添加方法和分类有啥关系？"></a>动态添加方法和分类有啥关系？</h5><p>他们走的是同一套逻辑，都是将方法加在了可变数组那里，我们本身的类里边的内容是不可变的，具体逻辑如下图</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line">static IMP </div><div class="line">addMethod(Class cls, SEL name, IMP imp, const char *types, bool replace)</div><div class="line">&#123;</div><div class="line">    IMP result = nil;</div><div class="line"></div><div class="line">    runtimeLock.assertWriting();</div><div class="line"></div><div class="line">    assert(types);</div><div class="line">    assert(cls-&gt;isRealized());</div><div class="line"></div><div class="line">    method_t *m;</div><div class="line">    if ((m = getMethodNoSuper_nolock(cls, name))) &#123;</div><div class="line">        // already exists</div><div class="line">        if (!replace) &#123;</div><div class="line">            result = m-&gt;imp;</div><div class="line">        &#125; else &#123;</div><div class="line">            result = _method_setImplementation(cls, m, imp);</div><div class="line">        &#125;</div><div class="line">    &#125; else &#123;</div><div class="line">        // fixme optimize</div><div class="line">        method_list_t *newlist;</div><div class="line">        newlist = (method_list_t *)calloc(sizeof(*newlist), 1);</div><div class="line">        newlist-&gt;entsizeAndFlags = </div><div class="line">            (uint32_t)sizeof(method_t) | fixed_up_method_list;</div><div class="line">        newlist-&gt;count = 1;</div><div class="line">        newlist-&gt;first.name = name;</div><div class="line">        newlist-&gt;first.types = strdup(types);</div><div class="line">        if (!ignoreSelector(name)) &#123;</div><div class="line">            newlist-&gt;first.imp = imp;</div><div class="line">        &#125; else &#123;</div><div class="line">            newlist-&gt;first.imp = (IMP)&amp;_objc_ignored_method;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        prepareMethodLists(cls, &amp;newlist, 1, NO, NO);</div><div class="line">        cls-&gt;data()-&gt;methods.attachLists(&amp;newlist, 1);//这是最核心的一句，将newlist给了data的methods，这是那个存放分类方法的二维数组</div><div class="line">        flushCaches(cls);</div><div class="line"></div><div class="line">        result = nil;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    return result;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>那么问题来了，addIvars是咋实现的，因为可变的对象中没有ivars，这里要体现苹果的变通了，直接将不可变的变成可变的..</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div></pre></td><td class="code"><pre><div class="line">BOOL </div><div class="line">class_addIvar(Class cls, const char *name, size_t size, </div><div class="line">              uint8_t alignment, const char *type)</div><div class="line">&#123;</div><div class="line">    if (!cls) return NO;</div><div class="line"></div><div class="line">    if (!type) type = &quot;&quot;;</div><div class="line">    if (name  &amp;&amp;  0 == strcmp(name, &quot;&quot;)) name = nil;</div><div class="line"></div><div class="line">    rwlock_writer_t lock(runtimeLock);</div><div class="line"></div><div class="line">    assert(cls-&gt;isRealized());</div><div class="line"></div><div class="line">    // No class variables</div><div class="line">    if (cls-&gt;isMetaClass()) &#123;</div><div class="line">        return NO;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    // Can only add ivars to in-construction classes.</div><div class="line">    if (!(cls-&gt;data()-&gt;flags &amp; RW_CONSTRUCTING)) &#123;</div><div class="line">        return NO;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    // Check for existing ivar with this name, unless it&apos;s anonymous.</div><div class="line">    // Check for too-big ivar.</div><div class="line">    // fixme check for superclass ivar too?</div><div class="line">    if ((name  &amp;&amp;  getIvar(cls, name))  ||  size &gt; UINT32_MAX) &#123;</div><div class="line">        return NO;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    class_ro_t *ro_w = make_ro_writeable(cls-&gt;data());//我想把ro变成可变再说...</div><div class="line"></div><div class="line">    // fixme allocate less memory here</div><div class="line">    </div><div class="line">    ivar_list_t *oldlist, *newlist;</div><div class="line">    if ((oldlist = (ivar_list_t *)cls-&gt;data()-&gt;ro-&gt;ivars)) &#123;</div><div class="line">        size_t oldsize = oldlist-&gt;byteSize();</div><div class="line">        newlist = (ivar_list_t *)calloc(oldsize + oldlist-&gt;entsize(), 1);</div><div class="line">        memcpy(newlist, oldlist, oldsize);</div><div class="line">        free(oldlist);</div><div class="line">    &#125; else &#123;</div><div class="line">        newlist = (ivar_list_t *)calloc(sizeof(ivar_list_t), 1);</div><div class="line">        newlist-&gt;entsizeAndFlags = (uint32_t)sizeof(ivar_t);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    uint32_t offset = cls-&gt;unalignedInstanceSize();</div><div class="line">    uint32_t alignMask = (1&lt;&lt;alignment)-1;</div><div class="line">    offset = (offset + alignMask) &amp; ~alignMask;</div><div class="line"></div><div class="line">    ivar_t&amp; ivar = newlist-&gt;get(newlist-&gt;count++);</div><div class="line">#if __x86_64__</div><div class="line">    // Deliberately over-allocate the ivar offset variable. </div><div class="line">    // Use calloc() to clear all 64 bits. See the note in struct ivar_t.</div><div class="line">    ivar.offset = (int32_t *)(int64_t *)calloc(sizeof(int64_t), 1);</div><div class="line">#else</div><div class="line">    ivar.offset = (int32_t *)malloc(sizeof(int32_t));</div><div class="line">#endif</div><div class="line">    *ivar.offset = offset;</div><div class="line">    ivar.name = name ? strdup(name) : nil;</div><div class="line">    ivar.type = strdup(type);</div><div class="line">    ivar.alignment_raw = alignment;</div><div class="line">    ivar.size = (uint32_t)size;</div><div class="line"></div><div class="line">    ro_w-&gt;ivars = newlist;</div><div class="line">    cls-&gt;setInstanceSize((uint32_t)(offset + size));</div><div class="line"></div><div class="line">    // Ivar layout updated in registerClass.</div><div class="line"></div><div class="line">    return YES;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="对象，类对象，元类对象"><a href="#对象，类对象，元类对象" class="headerlink" title="对象，类对象，元类对象"></a>对象，类对象，元类对象</h4><p>方法调用的时候的查找路径图</p>
+<p><img src="/17/2015/OC语言基础:runtime/../../../images/ 2018-07-02 11.47.06.png" alt=""></p>
+<p>根元类对象的superclass指向了NSObject，那么就意味着一个调用一个类方法，如果NSObject中有同名的实例方法，那么这个时候会执行这个实例方法，而不会发生崩溃</p>
+<h4 id="实际例子"><a href="#实际例子" class="headerlink" title="实际例子"></a>实际例子</h4><p><img src="/17/2015/OC语言基础:runtime/../../../images/2018-07-02 12.03.52.png" alt=""></p>
+<p>这个题目的结果两个都打印，Phone，这里要理解调用super的意思是说，跳过self这个类，直接从super这个类对象来查找，但是消息的接受者仍然是self，所以这里都打印Phone</p>
+<h4 id="查找过程"><a href="#查找过程" class="headerlink" title="查找过程"></a>查找过程</h4><ul>
+<li>缓存查找</li>
+<li>当前类查找</li>
+</ul>
+<p><img src="/17/2015/OC语言基础:runtime/../../../images/2018-07-0212.39.22.png" alt=""><br>关键点在于通过hash查找，找到对应的bucket_t</p>
+<p>当前类查找</p>
+<p><img src="/17/2015/OC语言基础:runtime/../../../images/2018-07-0212.41.50.png" alt=""></p>
+<p>父类逐级查找<br><img src="/17/2015/OC语言基础:runtime/../../../images/2018-07-0212.43.03.png" alt=""></p>
+<p>总流程</p>
+<p><img src="/17/2015/OC语言基础:runtime/../../../images/2018-07-0212.43.41.png" alt=""></p>
+<h4 id="消息转发流程"><a href="#消息转发流程" class="headerlink" title="消息转发流程"></a>消息转发流程</h4><p><img src="/17/2015/OC语言基础:runtime/../../../images/ 2018-07-02 2.11.14.png" alt=""></p>
+<p>一个应用就是用来实现多重代理<br><a href="http://www.cocoachina.com/ios/20151208/14595.html" target="_blank" rel="external">多重代理</a></p>
+<p>NSPointerArray防止循环引用</p>
+<p>再一个应用就是实现@dynamic的属性</p>
+<h4 id="方法交换"><a href="#方法交换" class="headerlink" title="方法交换"></a>方法交换</h4><h4 id="动态添加方法"><a href="#动态添加方法" class="headerlink" title="动态添加方法"></a>动态添加方法</h4><p>performSeletor:</p>
+<h4 id="动态方法解析"><a href="#动态方法解析" class="headerlink" title="动态方法解析"></a>动态方法解析</h4><p>@dynamic</p>
+<ul>
+<li>动态运行时语言将函数决议推迟到运行时</li>
+<li>编译语言编译时决议，无法修改</li>
+</ul>
+<p>[obj foo]和obj_msgSend()函数关系？<br>runtime图和通过Selector找到对应的IMP地址的？</p>
+<h4 id="能否向编译后的类中添加实例变量？不能，为啥？"><a href="#能否向编译后的类中添加实例变量？不能，为啥？" class="headerlink" title="能否向编译后的类中添加实例变量？不能，为啥？"></a>能否向编译后的类中添加实例变量？不能，为啥？</h4><blockquote>
+<p>答：从runtime实现原理来说，本来是可以的，但是苹果做了禁止，就像下边这样通过flag去标记这个类是已经建设完成了，还是正在建设中，编译完成的就是建设完成的，动态添加的就是正在建设中</p>
+</blockquote>
+<p>class_addIvar实现</p>
+<pre><code>// Can only add ivars to in-construction classes.
+    if (!(cls-&gt;data()-&gt;flags &amp; RW_CONSTRUCTING)) {
+        return NO;
+    }
+</code></pre><h4 id="谈谈load和initialize的区别"><a href="#谈谈load和initialize的区别" class="headerlink" title="谈谈load和initialize的区别"></a>谈谈load和initialize的区别</h4><ul>
+<li>程序运行后立即执行vs类的方法第一次被调用执行</li>
+<li>不会沿用父类方法vs会沿用父类方法</li>
+<li>分类中如果有定义，全部执行但后于类中的，也就是先执行类本身中的vs覆盖类中的方法，只执行一个</li>
+</ul>
+<h3 id="app启动流程"><a href="#app启动流程" class="headerlink" title="app启动流程"></a>app启动流程</h3><p><a href="https://techblog.toutiao.com/2017/01/17/iosspeed/" target="_blank" rel="external">头条启动优化</a></p>
+<p>可以简单分为main之前喝main之后</p>
+<h4 id="main之前"><a href="#main之前" class="headerlink" title="main之前"></a>main之前</h4><ul>
+<li>load dylibs image 读取库镜像文件，减少系统依赖，合并自己的</li>
+<li>Rebase image  </li>
+<li>Bind image  减少Objc类数量， 减少selector数量，减少c++虚函数</li>
+<li>Objc setup  类，分类，SEL注册</li>
+<li>initializers</li>
+</ul>
+<h4 id="main之后"><a href="#main之后" class="headerlink" title="main之后"></a>main之后</h4><p>main()调用之后的加载时间</p>
+<p>在main()被调用之后，App的主要工作就是初始化必要的服务，显示首页内容等。而我们的优化也是围绕如何能够快速展现首页来开展。 App通常在AppDelegate类中的<code>- (BOOL)Application:(UIApplication *)Application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions</code>方法中创建首页需要展示的view，然后在当前runloop的末尾，主动调用CA::Transaction::commit完成视图的渲染。<br>而视图的渲染主要涉及三个阶段：</p>
+<p>准备阶段 这里主要是图片的解码<br>布局阶段 首页所有UIView的- (void)layoutSubViews()运行<br>绘制阶段 首页所有UIView的- (void)drawRect:(CGRect)rect运行<br>再加上启动之后必要服务的启动、必要数据的创建和读取，这些就是我们可以尝试优化的地方<br>因此，对于main()函数调用之前我们可以优化的点有：</p>
+<p>不使用xib，直接视用代码加载首页视图<br>NSUserDefaults实际上是在Library文件夹下会生产一个plist文件，如果文件太大的话一次能读取到内存中可能很耗时，这个影响需要评估，如果耗时很大的话需要拆分(需考虑老版本覆盖安装兼容问题)<br>每次用NSLog方式打印会隐式的创建一个Calendar，因此需要删减启动时各业务方打的log，或者仅仅针对内测版输出log<br>梳理应用启动时发送的所有网络请求，是否可以统一在异步线程请求</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/iOS基础/" rel="tag"># iOS基础</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/07/12/2015/app生命周期/" rel="next" title="app生命周期">
+                <i class="fa fa-chevron-left"></i> app生命周期
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/07/17/2015/转-音视频基础概念汇总/" rel="prev" title="(转)音视频基础概念汇总">
+                (转)音视频基础概念汇总 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zNjcxNi8xMzI1MQ=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Hanson</p>
+              <p class="site-description motion-element" itemprop="description">主要做移动端开发，和研发效率提升，会一点python和数据挖掘，现在就职业京东金融</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">110</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">3</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">30</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#OC语言基础"><span class="nav-number">1.</span> <span class="nav-text">OC语言基础</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#关于SEL的理解"><span class="nav-number">1.1.</span> <span class="nav-text">关于SEL的理解</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#self与super"><span class="nav-number">1.2.</span> <span class="nav-text">self与super</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#分类做哪些事"><span class="nav-number">1.3.</span> <span class="nav-text">分类做哪些事</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#分类特点"><span class="nav-number">1.4.</span> <span class="nav-text">分类特点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#分类中都能添加什么内容"><span class="nav-number">1.5.</span> <span class="nav-text">分类中都能添加什么内容</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#分类数据结构"><span class="nav-number">1.6.</span> <span class="nav-text">分类数据结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#关联对象"><span class="nav-number">1.7.</span> <span class="nav-text">关联对象</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#用扩展来做什么"><span class="nav-number">1.8.</span> <span class="nav-text">用扩展来做什么</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#扩展和分类的区别"><span class="nav-number">1.9.</span> <span class="nav-text">扩展和分类的区别</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#代理"><span class="nav-number">1.10.</span> <span class="nav-text">代理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#通知"><span class="nav-number">1.11.</span> <span class="nav-text">通知</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#KVO"><span class="nav-number">1.12.</span> <span class="nav-text">KVO</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#KVC"><span class="nav-number">1.13.</span> <span class="nav-text">KVC</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#KVC集合运算符号如何使用"><span class="nav-number">1.13.1.</span> <span class="nav-text">KVC集合运算符号如何使用</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#属性关键字"><span class="nav-number">1.14.</span> <span class="nav-text">属性关键字</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#atomic实现"><span class="nav-number">1.15.</span> <span class="nav-text">atomic实现</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#面试题"><span class="nav-number">1.16.</span> <span class="nav-text">面试题</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#NSCopying协议实现"><span class="nav-number">2.</span> <span class="nav-text">NSCopying协议实现</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#instancetype和id的异同"><span class="nav-number">2.1.</span> <span class="nav-text">instancetype和id的异同</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1、相同点"><span class="nav-number">2.1.1.</span> <span class="nav-text">1、相同点</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2、不同点"><span class="nav-number">2.1.2.</span> <span class="nav-text">2、不同点</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#runtime-重点"><span class="nav-number">3.</span> <span class="nav-text">runtime(重点)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#objc-object"><span class="nav-number">3.1.</span> <span class="nav-text">objc_object</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#objc-class"><span class="nav-number">3.2.</span> <span class="nav-text">objc_class</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#关于Class"><span class="nav-number">3.2.1.</span> <span class="nav-text">关于Class</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#关于cache-t"><span class="nav-number">3.2.2.</span> <span class="nav-text">关于cache_t</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#关于class-data-bits-t"><span class="nav-number">3.2.3.</span> <span class="nav-text">关于class_data_bits_t</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#method-t"><span class="nav-number">3.2.4.</span> <span class="nav-text">method_t</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#总体结构图"><span class="nav-number">3.2.5.</span> <span class="nav-text">总体结构图</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#动态添加方法和分类有啥关系？"><span class="nav-number">3.2.6.</span> <span class="nav-text">动态添加方法和分类有啥关系？</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#对象，类对象，元类对象"><span class="nav-number">3.3.</span> <span class="nav-text">对象，类对象，元类对象</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实际例子"><span class="nav-number">3.4.</span> <span class="nav-text">实际例子</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查找过程"><span class="nav-number">3.5.</span> <span class="nav-text">查找过程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#消息转发流程"><span class="nav-number">3.6.</span> <span class="nav-text">消息转发流程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#方法交换"><span class="nav-number">3.7.</span> <span class="nav-text">方法交换</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#动态添加方法"><span class="nav-number">3.8.</span> <span class="nav-text">动态添加方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#动态方法解析"><span class="nav-number">3.9.</span> <span class="nav-text">动态方法解析</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#能否向编译后的类中添加实例变量？不能，为啥？"><span class="nav-number">3.10.</span> <span class="nav-text">能否向编译后的类中添加实例变量？不能，为啥？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#谈谈load和initialize的区别"><span class="nav-number">3.11.</span> <span class="nav-text">谈谈load和initialize的区别</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#app启动流程"><span class="nav-number">4.</span> <span class="nav-text">app启动流程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#main之前"><span class="nav-number">4.1.</span> <span class="nav-text">main之前</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#main之后"><span class="nav-number">4.2.</span> <span class="nav-text">main之后</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Hanson</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.3.9</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Pisces</a> v6.3.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.3.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script>
+
+
+
+  
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

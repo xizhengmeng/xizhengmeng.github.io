@@ -1,0 +1,1336 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.3.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.3.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.3.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.3.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '6.3.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="1char  const p;char const  pconst char *p">
+<meta property="og:type" content="article">
+<meta property="og:title" content="c&#x2F;c++指针问题汇总">
+<meta property="og:url" content="/2015/07/09/2015/c-c-指针问题汇总/index.html">
+<meta property="og:site_name" content="Hanson的博客">
+<meta property="og:description" content="1char  const p;char const  pconst char *p">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-07-10T06:09:43.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="c&#x2F;c++指针问题汇总">
+<meta name="twitter:description" content="1char  const p;char const  pconst char *p">
+
+
+
+
+
+
+  <link rel="canonical" href="/2015/07/09/2015/c-c-指针问题汇总/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>c/c++指针问题汇总 | Hanson的博客</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hanson的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+    <a href="/categories/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="/2015/07/09/2015/c-c-指针问题汇总/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Hanson">
+      <meta itemprop="description" content="主要做移动端开发，和研发效率提升，会一点python和数据挖掘，现在就职业京东金融">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hanson的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">c/c++指针问题汇总
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2015-07-09 10:26:01" itemprop="dateCreated datePublished" datetime="2015-07-09T10:26:01+08:00">2015-07-09</time>
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="1"><a href="#1" class="headerlink" title="1"></a>1</h3><p>char <em> const p;<br>char const </em> p<br>const char *p</p>
+<a id="more"></a>
+<p>上述三个有什么区别？<br>char <em> const p; //常量指针，p的值不可以修改<br>char const </em> p；//指向常量的指针，指向的常量值不可以改<br>const char <em>p； //和char const </em>p</p>
+<h3 id="2"><a href="#2" class="headerlink" title="2"></a>2</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">char str1[] = “abc”;</div><div class="line">char str2[] = “abc”;</div><div class="line"></div><div class="line">const char str3[] = “abc”;</div><div class="line">const char str4[] = “abc”;</div><div class="line"></div><div class="line">const char *str5 = “abc”;</div><div class="line">const char *str6 = “abc”;</div><div class="line"></div><div class="line">char *str7 = “abc”;</div><div class="line">char *str8 = “abc”;</div><div class="line"></div><div class="line">cout &lt;&lt; ( str1 == str2 ) &lt;&lt; endl;</div><div class="line">cout &lt;&lt; ( str3 == str4 ) &lt;&lt; endl;</div><div class="line">cout &lt;&lt; ( str5 == str6 ) &lt;&lt; endl;</div><div class="line"></div><div class="line">cout &lt;&lt; ( str7 == str8 ) &lt;&lt; endl;</div></pre></td></tr></table></figure>
+<p>打印结果是什么？</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">解答：结果是：0 0 1 1</div><div class="line">str1,str2,str3,str4是数组变量，它们有各自的内存空间；而str5,str6,str7,str8是指针，它们指向相同的常量区域</div></pre></td></tr></table></figure>
+<p>###3</p>
+<p>以下代码中的两个sizeof用法有问题吗？</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">void UpperCase( char str[] ) // 将 str 中的小写字母转换成大写字母</div><div class="line">&#123;</div><div class="line">for( size_t i=0; i&lt;sizeof(str)/sizeof(str[0]); ++i )</div><div class="line">if( ‘a’&lt;=str[i] &amp;&amp; str[i]&lt;=’z’ )</div><div class="line">str[i] -= (‘a’-&apos;A’ );</div><div class="line">&#125;</div><div class="line"></div><div class="line">char str[] = “aBcDe”;</div><div class="line">cout &lt;&lt; “str字符长度为: ” &lt;&lt; sizeof(str)/sizeof(str[0]) &lt;&lt; endl;</div><div class="line">UpperCase( str );</div><div class="line">cout &lt;&lt; str &lt;&lt; endl;</div></pre></td></tr></table></figure>
+<p>答：函数内的sizeof有问题。<br>根据语法，sizeof如用于数组，只能测出静态数组的大小，无法检测动态分配的或外部数组大小。<br>函数外的str是一个静态定义的数组，因此其大小为6，<br>函数内的str实际只是一个指向字符串的指针，没有任何额外的与数组相关的信息，因此sizeof作用于上只将其当指针看，一个指针为4个字节，因此返回4。</p>
+<h3 id="4"><a href="#4" class="headerlink" title="4"></a>4</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">main()</div><div class="line">&#123;</div><div class="line">int a[5]=&#123;1,2,3,4,5&#125;;</div><div class="line">int *ptr=(int *)(&amp;a+1);</div><div class="line">printf(“%d,%d”,*(a+1),*(ptr-1));</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>输出结果是什么？</p>
+<p>答案：输出：2,5</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">*(a+1）就是a[1]，*(ptr-1)就是a[4],执行结果是2，5</div><div class="line">&amp;a+1不是首地址+1，系统会认为加一个a数组的偏移，是偏移了一个数组的大小（本例是5个int）</div><div class="line">int *ptr=(int *)(&amp;a+1);</div><div class="line">则ptr实际是&amp;(a[5]),也就是a+5</div><div class="line"></div><div class="line">原因如下：</div><div class="line"></div><div class="line">&amp;a是数组指针，其类型为 int (*)[5];</div><div class="line">而指针加1要根据指针类型加上一定的值，不同类型的指针+1之后增加的大小不同。</div><div class="line">a是长度为5的int数组指针，所以要加 5*sizeof(int)</div><div class="line">所以ptr实际是a[5]</div><div class="line">但是prt与(&amp;a+1)类型是不一样的(这点很重要)</div><div class="line">所以prt-1只会减去sizeof(int*)</div><div class="line"></div><div class="line">a,&amp;a的地址是一样的，但意思不一样</div><div class="line">a是数组首地址，也就是a[0]的地址，&amp;a是对象（数组）首地址，</div><div class="line">a+1是数组下一元素的地址，即a[1],&amp;a+1是下一个对象的地址，即a[5].</div></pre></td></tr></table></figure>
+<h3 id="5"><a href="#5" class="headerlink" title="5"></a>5</h3><p>请问以下代码有什么问题：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">int  main()</div><div class="line">&#123;</div><div class="line">char a;</div><div class="line">char *str=&amp;a;</div><div class="line">strcpy(str,”hello”);</div><div class="line">printf(str);</div><div class="line">return 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>答案：没有为str分配内存空间，将会发生异常。问题出在将一个字符串复制进一个字符变量指针所指地址。虽然可以正确输出结果，但因为越界进行内在读写而导致程序崩溃。</p>
+<h3 id="6"><a href="#6" class="headerlink" title="6"></a>6</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">char* s=”AAA”;</div><div class="line">printf(“%s”,s);</div><div class="line">s[0]=’B&apos;;</div><div class="line">printf(“%s”,s);</div></pre></td></tr></table></figure>
+<p>有什么错？</p>
+<p>答案：<br>“AAA”是字符串常量。s是指针，指向这个字符串常量，所以声明s的时候就有问题。<br>cosnt char* s=”AAA”;<br>然后又因为是常量，所以对是s[0]的赋值操作是不合法的。</p>
+<h3 id="7"><a href="#7" class="headerlink" title="7"></a>7</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">int (*s[10])(int) 表示的是什么？</div><div class="line"></div><div class="line">答案：int (*s[10])(int) 函数指针数组，每个指针指向一个int func(int param)的函数。</div></pre></td></tr></table></figure>
+<h3 id="8"><a href="#8" class="headerlink" title="8"></a>8</h3><p>有以下表达式：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">int a=248; b=4;</div><div class="line">int const c=21;</div><div class="line">const int *d=&amp;a;</div><div class="line">int *const e=&amp;b;</div><div class="line">int const *f const =&amp;a;</div></pre></td></tr></table></figure>
+<p>请问下列表达式哪些会被编译器禁止？为什么？<br><em>c=32;d=&b;</em>d=43;e=34;e=&a;f=0x321f;</p>
+<p>答案：<br><em>c 这是个什么东东，禁止
+</em>d 说了是const， 禁止<br>e = &amp;a 说了是const 禁止<br>const *f const =&a; 禁止<br>——————————————</p>
+<h3 id="9"><a href="#9" class="headerlink" title="9"></a>9</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">#include &lt;stdio.h&gt;</div><div class="line">#include &lt;stdlib.h&gt;</div><div class="line"></div><div class="line">void getmemory(char *p)</div><div class="line">&#123; </div><div class="line">p=(char *) malloc(100);</div><div class="line">strcpy(p,”hello world”);</div><div class="line">&#125; </div><div class="line"></div><div class="line">int main( )</div><div class="line">&#123;</div><div class="line">char *str=NULL;</div><div class="line">getmemory(str);</div><div class="line">printf(“%s/n”,str);</div><div class="line">free(str);</div><div class="line">return 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>分析一下这段代码</p>
+<p>答案：程序崩溃，getmemory中的malloc 不能返回动态内存， free（）对str操作很危险</p>
+<p>博主：getmemory中p是形参，是一个指针变量，getmemory(str)调用后，传入的是指针变量保存的对象地址，p=(char <em>) malloc(100)实际上是把申请的动态内存空间的首地址付给p指向的地址（即str指向的地址null），这个是错误的。应该修改成指向指针的指针void getmemory(char **p)，这样malloc返回的地址付给</em>p（即str变量本身）。</p>
+<h3 id="10"><a href="#10" class="headerlink" title="10"></a>10</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">char szstr[10];</div><div class="line">strcpy(szstr,”0123456789″);</div></pre></td></tr></table></figure>
+<p>产生什么结果？为什么？</p>
+<p>答案：长度不一样，会造成非法的OS，字符串最后一个是’\0’所以上边应该是11</p>
+<h3 id="11"><a href="#11" class="headerlink" title="11"></a>11</h3><p>要对绝对地址0×100000赋值，我们可以用(unsigned int*)0×100000 = 1234;<br>那么要是想让程序跳转到绝对地址是0×100000去执行，应该怎么做？</p>
+<p>答案：<em>((void (</em>)( ))0×100000 ) ( );<br>首先要将0×100000强制转换成函数指针,即:<br>(void (<em>)())0×100000<br>然后再调用它:
+</em>((void (<em>)())0×100000)();<br>用typedef可以看得更直观些:<br>typedef void(</em>)() voidFuncPtr;<br>*((voidFuncPtr)0×100000)();<br>——————————————</p>
+<h3 id="12"><a href="#12" class="headerlink" title="12"></a>12</h3><p>分析下面的程序：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">void GetMemory(char **p,int num)</div><div class="line">&#123;                          //p，指向指针的指针，*p，p指向的指针(即str)，**p，最终的对象，str指向的单元</div><div class="line">*p=(char *)malloc(num);  //申请空间首地址付给传入的被p指向的指针，即str</div><div class="line">&#125; </div><div class="line"></div><div class="line">int main()</div><div class="line">&#123;</div><div class="line">char *str=NULL;</div><div class="line">GetMemory(&amp;str,100);   //传入指针变量本身的地址</div><div class="line">strcpy(str,”hello”);</div><div class="line">free(str);</div><div class="line"></div><div class="line">if(str!=NULL)</div><div class="line">&#123;</div><div class="line">strcpy(str,”world”);</div><div class="line">&#125; </div><div class="line"></div><div class="line">printf(“\n str is %s”,str); 软件开发网 www.mscto.com</div><div class="line">getchar();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>问输出结果是什么？</p>
+<p>答案：输出str is world。</p>
+<p>free 只是释放的str指向的内存空间,它本身的值还是存在的.所以free之后，有一个好的习惯就是将str=NULL.<br>此时str指向空间的内存已被回收,如果输出语句之前还存在分配空间的操作的话,这段存储空间是可能被重新分配给其他变量的,<br>尽管这段程序确实是存在大大的问题（上面各位已经说得很清楚了），但是通常会打印出world来。<br>这是因为，进程中的内存管理一般不是由操作系统完成的，而是由库函数自己完成的。</p>
+<p>当你malloc一块内存的时候，管理库向操作系统申请一块空间（可能会比你申请的大一些），然后在这块空间中记录一些管理信息（一般是在你申请的内存 前面一点），并将可用内存的地址返回。但是释放内存的时候，管理库通常都不会将内存还给操作系统，因此你是可以继续访问这块地址的。</p>
+<h3 id="13"><a href="#13" class="headerlink" title="13"></a>13</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">char a[10]；</div><div class="line">strlen(a)为什么等于15？</div><div class="line"></div><div class="line">#include “stdio.h”</div><div class="line">#include “string.h”</div><div class="line"></div><div class="line">void main()</div><div class="line">&#123;</div><div class="line">char aa[10];</div><div class="line">printf(“%d”,strlen(aa));</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>答案：sizeof()和初不初始化，没有关系；<br>strlen()和初始化有关。</p>
+<h3 id="14"><a href="#14" class="headerlink" title="14"></a>14</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">char (*str)[20];/*str是一个数组指针，即指向数组的指针．*/</div><div class="line">char *str[20];/*str是一个指针数组，其元素为指针型数据．*/</div></pre></td></tr></table></figure>
+<h3 id="15"><a href="#15" class="headerlink" title="15"></a>15</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">#include&lt;iostream.h&gt;</div><div class="line">#include &lt;string.h&gt;</div><div class="line">#include &lt;malloc.h&gt;</div><div class="line">#include &lt;stdio.h&gt;</div><div class="line">#include &lt;stdlib.h&gt;</div><div class="line">#include &lt;memory.h&gt;</div><div class="line"></div><div class="line">typedef struct  AA</div><div class="line">&#123;</div><div class="line">int b1:5;</div><div class="line">int b2:2;</div><div class="line">&#125;AA;</div><div class="line"></div><div class="line">void main()</div><div class="line">&#123;</div><div class="line">AA aa;</div><div class="line">char cc[100];</div><div class="line">strcpy(cc,”0123456789abcdefghijklmnopqrstuvwxyz”);</div><div class="line">memcpy(&amp;aa,cc,sizeof(AA));</div><div class="line">cout &lt;&lt; aa.b1 &lt;&lt;endl;</div><div class="line">cout &lt;&lt; aa.b2 &lt;&lt;endl;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>输出结果是多少？</p>
+<p>答案：-16和１</p>
+<p>首先sizeof(AA)的大小为4,b1和b2分别占5bit和2bit.经过strcpy和memcpy后,aa的4个字节所存放的值是: 0,1,2,3的ASC码，即00110000,00110001,00110010,00110011所以，最后一步：显示的是这４个字节的前５位，和 之后的２位分别为：10000,和01，因为int是有正负之分</p>
+<h3 id="16"><a href="#16" class="headerlink" title="16"></a>16</h3><p>试题三：  以下代码有哪些错误或不足之处</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">void GetMemory( char **p, int num )</div><div class="line"></div><div class="line">&#123;</div><div class="line"></div><div class="line">　*p = (char *) malloc( num );</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line"> </div><div class="line"></div><div class="line">void Test( void )</div><div class="line"></div><div class="line">&#123;</div><div class="line"></div><div class="line">　char *str = NULL;</div><div class="line"></div><div class="line">　GetMemory( &amp;str, 100 );</div><div class="line"></div><div class="line">　strcpy( str, &quot;hello&quot; );</div><div class="line"></div><div class="line">　printf( str );</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>解答：</p>
+<p>存在2处问题：</p>
+<p>本题中的Test函数中未对malloc的内存进行释放。</p>
+<p>本题中的GetMemory避免了试题一的问题，传入GetMemory的参数为字符串指针的指针，但是在GetMemory中执行申请内存及赋值语句</p>
+<p><em>p = (char </em>) malloc( num );</p>
+<p>后未判断内存是否申请成功，应加上：</p>
+<p>if ( *p == NULL )</p>
+<p>{</p>
+<p>　…//进行申请内存失败处理</p>
+<p>}</p>
+<h3 id="17"><a href="#17" class="headerlink" title="17"></a>17</h3><p>试题四：找出下面代码的不足或错误之处<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">void Test( void )</div><div class="line"></div><div class="line">&#123;</div><div class="line"></div><div class="line">　char *str = (char *) malloc( 100 );</div><div class="line"></div><div class="line">　strcpy( str, &quot;hello&quot; );</div><div class="line"></div><div class="line">　free( str );</div><div class="line"></div><div class="line">　... //省略的其它语句</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>解答：</p>
+<p>存在2处问题：</p>
+<p>试题四存在与试题三同样的问题，在执行char <em>str = (char </em>) malloc(100);</p>
+<p>后未进行内存是否申请成功的判断；</p>
+<p>另外，在free(str)后未置str为空，导致可能变成一个“野”指针，应加上：</p>
+<p>str = NULL;</p>
+<p>18     判断输出是乱码  还是字符或是字符串  还是表示地址值 ？ 如果是地址值就用0xF1247000代表</p>
+<p>.char类型指针的输出</p>
+<p>  标准库cout输出时，无法判断指针的类型，如下面程序所示：<br>char ch = ‘a’;<br>int num = 1;<br>char <em>pch = &ch;<br>int </em>pnum = &num;<br>std::cout&lt;&lt;pch&lt;&lt;std::endl; //输出：乱码<br>std::cout&lt;&lt;(void<em>)pch&lt;&lt;std::endl;   //输出：0xF1247000<br>std::cout&lt;&lt;pnum&lt;&lt;std::endl;//输出：0xF1247004<br>std::cout&lt;&lt;(void</em>)pnum&lt;&lt;std::endl;   //输出：0xF12470004</p>
+<p>char <em>pch2=”Hello”;<br>std::cout&lt;&lt;pch2&lt;&lt;std::endl;//输出：Hello<br>std::cout&lt;&lt;(void</em>)pch2&lt;&lt;std::endl;//输出：16进制地址</p>
+<p>  对于字符型指针，要用void*进行类型转换后，才能输出其地址，地址以16进制数的格式显示32位地址值。若不进行转换，cout会按照char类型解析指针内容。若是一个字符，没有’\0’结束符，输出乱码；若是字符串，则输出字符串内容。<br>  除了字符指针，其他指针都可以直接用cout语句来输出地址值。无须进行指针类型转换。</p>
+<p>19   指针与引用的区别？</p>
+<p>答案：</p>
+<p>（1）非空区别。在任何情况下都不能使用指向空值的引用。因此如果你使用一个变量并让它指向一个对象，但是该变量在某些时候也可能不指向任何对象，这时你应该把变量声明为指针，因为这样你可以赋空值给该变量。相反，如果变量肯定指向一个对象，例如你的设计不允许变量为空，这时你就可以把变量声明为引用。不存在指向空值的引用这个事实意味着使用引用的代码效率比使用指针要高。</p>
+<p>（2）合法性区别。在使用引用之前不需要测试它的合法性。相反，指针则应该总是被测试，防止其为空。</p>
+<p>（3）可修改区别。指针与引用的另一个重要的区别是指针可以被重新赋值以指向另一个不同对象。但是引用则总是指向在初始化时被指定的对象，以后不能改变，但是指定的对象其内容可以改变。</p>
+<p>思路：   遇到次类型的题目 一定要想想他们的特点是什么 抓住特点进行分析        想想他们的功能是什么   进行比较</p>
+<p>20：</p>
+<p>下面5个函数哪个能成功进行两个数的交换？</p>
+<p>#include<iostream><br>using namespace std;</iostream></p>
+<p>void swap1(int p,int q)<br>{<br>    int temp;<br>    temp=p;<br>    p=q;<br>    q=temp;<br>}</p>
+<p>void swap2(int <em>p,int </em>q)<br>{<br>    int <em>temp;
+    </em>temp=<em>p;
+    </em>p=<em>q;
+    </em>q=*temp;<br>}</p>
+<p>void swap3(int <em>p,int </em>q)<br>{<br>    int *temp;<br>    temp=p;<br>    p=q;<br>    q=temp;<br>}</p>
+<p>void swap4(int <em>p,int </em>q)<br>{<br>    int temp;<br>    temp=<em>p;
+    </em>p=<em>q;
+    </em>q=temp;<br>}</p>
+<p>void swap5(int &amp;p,int &amp;q)<br>{<br>    int temp;<br>    temp=p;<br>    p=q;<br>    q=temp;<br>}</p>
+<p>int main ()<br>{<br>    int a=1,b=2;<br>    //swap1(a,b);<br>    //swap2(&amp;a,&amp;b);<br>    //swap3(&amp;a,&amp;b);<br>    //swap4(&amp;a,&amp;b);<br>    //swap5(a,b);<br>    cout &lt;&lt; “a:”&lt;&lt; a &lt;&lt;endl;<br>    cout &lt;&lt; “b:”&lt;&lt; b &lt;&lt;endl;</p>
+<pre><code>return 0;
+</code></pre><p>}</p>
+<p>解析：这道题考察的是参数传递、值传递、指针传递（地址传递）和引用传递。</p>
+<pre><code>swap1传递的是值的副本，在函数中只是修改了形参p、q（实际是a、b的一个拷贝），p、q的值确实交换了，但是它们是局部变量，不会影响到主函数a和 b 。当函数swap1生命周期结束时，p、q所在的栈也就被删除了。
+
+swap2传递的是一个地址进去，在函数体内的形参*p、*q是指向实际的参数a、b地址的两个指针。
+
+这里要注意：
+
+        int *temp;
+
+        *temp=*p;
+
+是不符合逻辑的，int *temp新建了一个指针（但是没分配内存）。*temp=*p不是指向而是拷贝。把*p所指向的内存的值（也就是a 的值）拷贝到*temp所指向内存里了。但是int *temp不是不分配内存吗？的确不分配，于是系统在拷贝时临时给了一个随机地址，让它存值。分配的随机地址是个“意外”，且函数结束后不回收，造成内存泄漏。
+
+swap3传递的是一个地址，在函数体内的参数*p、*q是指向实际参数a、b地址的两个指针。
+
+这里要注意：
+
+        int *temp;
+
+        temp=p;
+
+int *temp新建了一个指针（但是没分配内存）。temp=p是指向而不是拷贝。temp指向了*p所指向的地址（也就是a ）。而代码：
+
+        int *temp;
+
+        q=temp;
+
+但是函数swap3不能实现两数的交换，这是因为函数体内只是指针的变化，而对地址中的值却没有变化。
+
+swap4可以实现两数的交换，因为它修改的是指针所指向地址中的值。
+
+swap5函数与swap4相似，是一个引用传递，修改的结果直接影响实参。
+</code></pre><p>答案：</p>
+<p>swap4 函数和 swap5 函数。</p>
+<p>21、这个函数有什么问题？该如何修改？</p>
+<p>char *strA()<br>{<br>    charstr[] =”hello world”;<br>    returnstr;<br>}</p>
+<p>解析：这个str里存在的地址是函数strA栈里“hello world”的首地址。函数调用完成，栈帧恢复调用strA之前的状态，临时空间被重置，堆栈“回缩”，strA栈帧不再属于应该访问的范围。这段程序可以正确输出结果，但是这种访问方法违背了函数的栈帧机制。</p>
+<pre><code>但是只要另外一个函数调用的话，你就会发现，这种方式的不合理及危险性。
+
+如果想获得正确的函数，改成下面这样就可以：
+</code></pre><p>char <em>strA()<br>{<br>    char</em>str =”hello world”;<br>    returnstr;<br>}<br>      首先要搞清楚char *str 和 char str[] ：</p>
+<p>1<br>char str[] = “hello world”;<br>是分配一个局部数组。局部数组是局部变量，它所对应的是内存中的栈。局部变量的生命周期结束后该变量不存在了。</p>
+<p>1<br>char *str = “hello world”;</p>
+<p>是指向了常量区的字符串，位于静态存储区，它在程序生命期内恒定不变，所以字符串还在。无论什么时候调用 strA，它返回的始终是同一个“只读”的内存块。</p>
+<pre><code>另外想要修改，也可以这样：
+</code></pre><p>char *strA()<br>{<br>    staticcharstr[] =”hello world”;<br>    returnstr;<br>}<br>      通过static开辟一段静态存贮空间。</p>
+<p>答案：</p>
+<p>因为这个函数返回的是局部变量的地址，当调用这个函数后，这个局部变量str就释放了，所以返回的结果是不确定的且不安全，随时都有被收回的可能。</p>
+<p>22</p>
+<p>int arr[] = {1,2,3,4,5,6,7,8};<br>int <em>p=arr;
+</em>(p++)+=123;<br>printf(“%d,%d\n”, <em>p,</em>(++p));<br>第一行，定义数组arr，元素共八个<br>第二行，定义指针p指向arr数组<br>此时的<em>p还是等于arr数组的第0个元素，也就是1<br>第三行，p++里的++是最后才运算，所以先执行</em>p+=123，也就是arr的第0个元素被赋值为123<br>此时arr变成{123,2,3,4,5,6,7,8} ，然后是p++，此时<em>p已经是等于arr的第1个元素了，也就是2<br>第四行，在执行printf时，括号里的参数是从右往左的顺序进行读取的，也就是说先执行 </em>(++p)，也就是p先加一再指针，指向的是arr第2个元素3，然后在执行*p，还是3<br>最后显示的内容就是<br>3,3</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/07/06/2015/算法题收集/" rel="next" title="算法题收集">
+                <i class="fa fa-chevron-left"></i> 算法题收集
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/07/12/2015/app生命周期/" rel="prev" title="app生命周期">
+                app生命周期 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zNjcxNi8xMzI1MQ=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Hanson</p>
+              <p class="site-description motion-element" itemprop="description">主要做移动端开发，和研发效率提升，会一点python和数据挖掘，现在就职业京东金融</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">110</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">3</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">30</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1"><span class="nav-number">1.</span> <span class="nav-text">1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2"><span class="nav-number">2.</span> <span class="nav-text">2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4"><span class="nav-number">3.</span> <span class="nav-text">4</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5"><span class="nav-number">4.</span> <span class="nav-text">5</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6"><span class="nav-number">5.</span> <span class="nav-text">6</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7"><span class="nav-number">6.</span> <span class="nav-text">7</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8"><span class="nav-number">7.</span> <span class="nav-text">8</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9"><span class="nav-number">8.</span> <span class="nav-text">9</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10"><span class="nav-number">9.</span> <span class="nav-text">10</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11"><span class="nav-number">10.</span> <span class="nav-text">11</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#12"><span class="nav-number">11.</span> <span class="nav-text">12</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#13"><span class="nav-number">12.</span> <span class="nav-text">13</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#14"><span class="nav-number">13.</span> <span class="nav-text">14</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#15"><span class="nav-number">14.</span> <span class="nav-text">15</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#16"><span class="nav-number">15.</span> <span class="nav-text">16</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#17"><span class="nav-number">16.</span> <span class="nav-text">17</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Hanson</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.3.9</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/theme-next/hexo-theme-next">NexT.Pisces</a> v6.3.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.3.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.3.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.3.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.3.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.3.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.3.0"></script>
+
+
+
+  
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
