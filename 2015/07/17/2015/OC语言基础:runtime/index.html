@@ -140,7 +140,7 @@
 <meta property="og:image" content="/images/2018-07-0212.43.03.png">
 <meta property="og:image" content="/images/2018-07-0212.43.41.png">
 <meta property="og:image" content="/images/%202018-07-02%202.11.14.png">
-<meta property="og:updated_time" content="2018-07-17T03:54:58.000Z">
+<meta property="og:updated_time" content="2018-07-17T07:00:59.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="OC语言基础&#x2F;runtime">
 <meta name="twitter:description" content="OC语言基础关于SEL的理解1234567NSLog(@&amp;quot;%d&amp;quot;, @selector(testView));NSLog(@&amp;quot;%d&amp;quot;, @selector(testView1));    NSLog(@&amp;quot;%d&amp;quot;, NSSelectorFromString(@&amp;quot;testView&amp;quot;));    NSLog(@&amp;quot;%">
@@ -543,6 +543,7 @@
 <blockquote>
 <p>是否开辟新地址，是否影响引用计数</p>
 </blockquote>
+<p>对于可变对象(NSMutableArray/NSMutableDictionay/NSMutableString)这些到底是使用strong还是copy，要看具体场景，比如说A控制跳转到B控制器，传入了一个string，我们里边要单独使用，这个时候就最好使用copy，外边改变不影响里边，里边改变也不影响外边，当然如果本身就是NSString类型就无所谓了，因为这块地址本身就不能改变了，如果传入的是NSMutableString你就不好去控制实际的情况了。但是如果我本身就需要两边数据进行同步，那么肯定我就要用strong来修饰了。</p>
 <h4 id="atomic实现"><a href="#atomic实现" class="headerlink" title="atomic实现"></a>atomic实现</h4><p>在 objc4-723 的 Objective-C runtime 实现中，property 的 atomic 是采用 spinlock_t 也就是俗称的自旋锁实现的。具体代码可以看 objc_accessors.mm，// getter</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">id objc_getProperty(id self, SEL _cmd, ptrdiff_t offset, BOOL atomic) &#123;</div><div class="line">    // ...</div><div class="line">    if (!atomic) return *slot;</div><div class="line"></div><div class="line">    // Atomic retain release world</div><div class="line">    spinlock_t&amp; slotlock = PropertyLocks[slot];</div><div class="line">    slotlock.lock();</div><div class="line">    id value = objc_retain(*slot);</div><div class="line">    slotlock.unlock();</div><div class="line">    // ...</div><div class="line">&#125;</div><div class="line"></div><div class="line">// setter</div><div class="line">static inline void reallySetProperty(id self, SEL _cmd, id newValue, ptrdiff_t offset, bool atomic, bool copy, bool mutableCopy)</div><div class="line">&#123;</div><div class="line">    // ...</div><div class="line">    if (!atomic) &#123;</div><div class="line">        oldValue = *slot;</div><div class="line">        *slot = newValue;</div><div class="line">    &#125; else &#123;</div><div class="line">        spinlock_t&amp; slotlock = PropertyLocks[slot];</div><div class="line">        slotlock.lock();</div><div class="line">        oldValue = *slot;</div><div class="line">        *slot = newValue;        </div><div class="line">        slotlock.unlock();</div><div class="line">    &#125;</div><div class="line">    // ...</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h4 id="面试题"><a href="#面试题" class="headerlink" title="面试题"></a>面试题</h4><p><img src="/17/2015/OC语言基础:runtime/../../../images/2018-07-01 7.46.27.png" alt=""></p>
@@ -761,7 +762,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">110</span>
+                    <span class="site-state-item-count">111</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -853,7 +854,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">30</span>
+                      
+                    
+                    <span class="site-state-item-count">31</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
