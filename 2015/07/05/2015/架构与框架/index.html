@@ -138,7 +138,7 @@
 <meta property="og:image" content="/images/2018-07-052.07.43.png">
 <meta property="og:image" content="/images/2018-07-052.21.55.png">
 <meta property="og:image" content="/images/2018-07-052.22.57.png">
-<meta property="og:updated_time" content="2018-07-18T06:33:55.000Z">
+<meta property="og:updated_time" content="2018-07-20T02:44:07.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="架构与框架">
 <meta name="twitter:description" content="图片缓存">
@@ -466,6 +466,7 @@
 <p><img src="/05/2015/架构与框架/../../../images/2018-07-0512.50.13.png" alt=""></p>
 <p><img src="/05/2015/架构与框架/../../../images/2018-07-0512.50.23.png" alt=""></p>
 <p><img src="/05/2015/架构与框架/../../../images/2018-07-052.04.54.png" alt=""></p>
+<p>UI数据中所有的成员变量，对应一个UI控件，比如Label的frame和value，或者Image的图像数据和大小。</p>
 <p><img src="/05/2015/架构与框架/../../../images/2018-07-052.05.31.png" alt=""></p>
 <p><img src="/05/2015/架构与框架/../../../images/2018-07-052.07.43.png" alt=""></p>
 <p>MVVM的架构思想</p>
@@ -478,6 +479,9 @@
 <li>依赖注入</li>
 </ul>
 <p><img src="/05/2015/架构与框架/../../../images/2018-07-052.22.57.png" alt=""></p>
+<h4 id="架构的理解"><a href="#架构的理解" class="headerlink" title="架构的理解"></a>架构的理解</h4><p>我们之所以需要一个架构，本质来讲就是为了解耦，小的来讲是不同的类的交互，大的方面是模块与模块之间的交互。</p>
+<p>我们可以通过Delegate和Notificatioin来进行解耦，本质来讲就是A可以不知道B的存在，就可以让B做事情，我只要让我的代理去做事情就可以了，我的代理可以是任何人，这种情况是B知道A存在，但是A不知道B存在，A不需要引用B。</p>
+<p>另外一种就是通知，这个就厉害了，可以做到，A和B互相不知道彼此的存在，都统统只要依赖中间的NSNotificationCenter就好了。</p>
 
       
     </div>
@@ -732,7 +736,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#图片缓存"><span class="nav-number">1.</span> <span class="nav-text">图片缓存</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#内存设计的问题？"><span class="nav-number">1.1.</span> <span class="nav-text">内存设计的问题？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#淘汰策略"><span class="nav-number">1.2.</span> <span class="nav-text">淘汰策略</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#磁盘设计方案考虑"><span class="nav-number">1.3.</span> <span class="nav-text">磁盘设计方案考虑</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#网络部分的设计需要考虑哪些？"><span class="nav-number">1.4.</span> <span class="nav-text">网络部分的设计需要考虑哪些？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#不同格式的图片，解码采用什么方式来做？"><span class="nav-number">1.5.</span> <span class="nav-text">不同格式的图片，解码采用什么方式来做？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#哪个阶段做图片解码？"><span class="nav-number">1.6.</span> <span class="nav-text">哪个阶段做图片解码？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#线程处理"><span class="nav-number">1.7.</span> <span class="nav-text">线程处理</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#时长统计框架"><span class="nav-number">2.</span> <span class="nav-text">时长统计框架</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#复杂页面设计"><span class="nav-number">3.</span> <span class="nav-text">复杂页面设计</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#整体架构"><span class="nav-number">4.</span> <span class="nav-text">整体架构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#客户端解耦"><span class="nav-number">4.1.</span> <span class="nav-text">客户端解耦</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#图片缓存"><span class="nav-number">1.</span> <span class="nav-text">图片缓存</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#内存设计的问题？"><span class="nav-number">1.1.</span> <span class="nav-text">内存设计的问题？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#淘汰策略"><span class="nav-number">1.2.</span> <span class="nav-text">淘汰策略</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#磁盘设计方案考虑"><span class="nav-number">1.3.</span> <span class="nav-text">磁盘设计方案考虑</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#网络部分的设计需要考虑哪些？"><span class="nav-number">1.4.</span> <span class="nav-text">网络部分的设计需要考虑哪些？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#不同格式的图片，解码采用什么方式来做？"><span class="nav-number">1.5.</span> <span class="nav-text">不同格式的图片，解码采用什么方式来做？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#哪个阶段做图片解码？"><span class="nav-number">1.6.</span> <span class="nav-text">哪个阶段做图片解码？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#线程处理"><span class="nav-number">1.7.</span> <span class="nav-text">线程处理</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#时长统计框架"><span class="nav-number">2.</span> <span class="nav-text">时长统计框架</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#复杂页面设计"><span class="nav-number">3.</span> <span class="nav-text">复杂页面设计</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#整体架构"><span class="nav-number">4.</span> <span class="nav-text">整体架构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#客户端解耦"><span class="nav-number">4.1.</span> <span class="nav-text">客户端解耦</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#架构的理解"><span class="nav-number">4.2.</span> <span class="nav-text">架构的理解</span></a></li></ol></li></ol></div>
             
 
           </div>
