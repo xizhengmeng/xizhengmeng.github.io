@@ -642,7 +642,8 @@
 <p><a href="https://www.cnblogs.com/wengzilin/p/4346775.html" target="_blank" rel="external">kvo使用中的坑</a></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">-(void)printInfo</div><div class="line">&#123;</div><div class="line">    NSLog(@&quot;isa:%@, supper class:%@&quot;, NSStringFromClass(object_getClass(self)),</div><div class="line">          class_getSuperclass(object_getClass(self)));</div></pre></td></tr></table></figure>
 <p>当keyPath是成员变量的时候，确实会调用成功，但是具体的方式却并不是重写set方法，具体是啥有待探究。</p>
-<p><code>willChangeValueForKey:</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">- (void)viewDidLoad</div><div class="line">&#123;</div><div class="line">    [super viewDidLoad];</div><div class="line">    // “手动触发self.now的KVO”，必写。</div><div class="line">    [self willChangeValueForKey:@&quot;now&quot;];</div><div class="line">    // “手动触发self.now的KVO”，必写。</div><div class="line">    [self didChangeValueForKey:@&quot;now&quot;];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>KVO和通知一样，都是同步操作，所以使用的时候要注意</p>
 <h4 id="KVC"><a href="#KVC" class="headerlink" title="KVC"></a>KVC</h4><p>key-value-coding</p>
 <p>是否破坏面向对象编程思想？是的</p>
 <p>valueForKey:</p>
@@ -2007,7 +2008,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">115</span>
+                    <span class="site-state-item-count">114</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>

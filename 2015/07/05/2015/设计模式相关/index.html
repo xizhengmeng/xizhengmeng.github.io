@@ -119,7 +119,7 @@
 <meta property="og:image" content="/images/2018-07-059.24.05.png">
 <meta property="og:image" content="/images/2018-07-059.png">
 <meta property="og:image" content="/images/2018-07-059.51.11.png">
-<meta property="og:updated_time" content="2018-07-10T08:51:50.000Z">
+<meta property="og:updated_time" content="2018-07-26T04:29:27.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="设计模式相关">
 <meta name="twitter:description" content="1.代理模式 2.观察者模式 3.MVC模式 4.单例模式 5.策略模式 6.工厂模式 设计模式责任链:响应者链条">
@@ -447,6 +447,40 @@
 <li>重写copyWithZone</li>
 <li>要调用super allocWithZone，不用self防止循环调用</li>
 </ul>
+<h4 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h4><p>两个要点，全局和只有一次初始化机会</p>
+<ul>
+<li>系统内存中只存在一个对象，因此可以 节约系统资源，当 需要频繁创建和销毁的对象时单例模式无疑可以提高系统的性能</li>
+<li>避免对共享资源的多重占用</li>
+<li>在单例模式中，活动的单例只有一个实例，对单例类的所有实例化得到的都是相同的一个实例。这样就 防止其它对象对自己的实例化，确保所有的对象都访问一个实例</li>
+<li>状态可以得到全局保留</li>
+<li>全局变量，确实也可以提供全局访问，但是并不能保证全局唯一实例，我仍然可以实例另外一个能力，且编程规范不建议大量使用全局变量。</li>
+<li>可以用来提供一个中间转发的实现，比如NSNotificationCenter。</li>
+<li>对全局资源的分配和管理，比如打印机有很多台，用一个单例去管理，哪个任务调度到哪个打印机去打印，或者多线程的管理，都是这个道理，中间协调的功能。</li>
+</ul>
+<h4 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h4><ul>
+<li>容易被滥用，单例类的职责过重，在一定程度上违背了“单一职责原则”</li>
+<li>不适用于变化的对象，如果同一类型的对象总是要在不同的用例场景发生变化，单例就会引起数据的错误，不能保存彼此的状态</li>
+</ul>
+<h4 id="适用场景"><a href="#适用场景" class="headerlink" title="适用场景"></a>适用场景</h4><ul>
+<li>1.需要频繁实例化然后销毁的对象。 </li>
+<li>2.创建对象时耗时过多或者耗资源过多，但又经常用到的对象。 </li>
+<li>3.有状态的工具类对象。 </li>
+<li>4.频繁访问数据库或文件的对象。</li>
+</ul>
+<h4 id="实际使用场景"><a href="#实际使用场景" class="headerlink" title="实际使用场景"></a>实际使用场景</h4><ul>
+<li>外部资源：每台计算机有若干个打印机，但只能有一个PrinterSpooler，以避免两个打印作业同时输出到打印机。内部资源：大多数软件都有一个（或多个）属性文件存放系统配置，这样的系统应该有一个对象管理这些属性文件 </li>
+<li>Windows的Task Manager（任务管理器）就是很典型的单例模式（这个很熟悉吧），想想看，是不是呢，你能打开两个windows task manager吗？ 不信你自己试试看哦~ </li>
+</ul>
+<ol>
+<li>windows的Recycle Bin（回收站）也是典型的单例应用。在整个系统运行过程中，回收站一直维护着仅有的一个实例。 </li>
+<li>网站的计数器，一般也是采用单例模式实现，否则难以同步。 </li>
+<li>应用程序的日志应用，一般都何用单例模式实现，这一般是由于共享的日志文件一直处于打开状态，因为只能有一个实例去操作，否则内容不好追加。 </li>
+<li>Web应用的配置对象的读取，一般也应用单例模式，这个是由于配置文件是共享的资源。 </li>
+<li>数据库连接池的设计一般也是采用单例模式，因为数据库连接是一种数据库资源。数据库软件系统中使用数据库连接池，主要是节省打开或者关闭数据库连接所引起的效率损耗，这种效率上的损耗还是非常昂贵的，因为何用单例模式来维护，就可以大大降低这种损耗。 </li>
+<li>多线程的线程池的设计一般也是采用单例模式，这是由于线程池要方便对池中的线程进行控制。 </li>
+<li>操作系统的文件系统，也是大的单例模式实现的具体例子，一个操作系统只能有一个文件系统。 </li>
+<li>HttpApplication 也是单位例的典型应用。熟悉ASP.Net(IIS)的整个请求生命周期的人应该知道HttpApplication也是单例模式，所有的HttpModule都共享一个HttpApplication实例. </li>
+</ol>
 <h3 id="命令模式"><a href="#命令模式" class="headerlink" title="命令模式"></a>命令模式</h3><p>行为参数化</p>
 <p>作用，降低代码重合度</p>
 <p>实际使用场景，转发，评论，赞等，如果没有命令模式，我们需要在每个页面进行相关处理，如果进行了行为参数化，那么就能省下很多东西。</p>
@@ -570,7 +604,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">115</span>
+                    <span class="site-state-item-count">114</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -700,7 +734,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#设计模式"><span class="nav-number">1.</span> <span class="nav-text">设计模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#设计原则"><span class="nav-number">2.</span> <span class="nav-text">设计原则</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#单一职责"><span class="nav-number">2.0.1.</span> <span class="nav-text">单一职责:</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#开闭原则"><span class="nav-number">2.0.2.</span> <span class="nav-text">开闭原则:</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#接口隔离"><span class="nav-number">2.0.3.</span> <span class="nav-text">接口隔离:</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#依赖倒置原则"><span class="nav-number">2.0.4.</span> <span class="nav-text">依赖倒置原则:</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#里氏替换"><span class="nav-number">2.0.5.</span> <span class="nav-text">里氏替换:</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#迪米特法则"><span class="nav-number">2.0.6.</span> <span class="nav-text">迪米特法则:</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#责任链"><span class="nav-number">3.</span> <span class="nav-text">责任链</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#桥接模式"><span class="nav-number">4.</span> <span class="nav-text">桥接模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#适配器"><span class="nav-number">5.</span> <span class="nav-text">适配器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#单例模式"><span class="nav-number">6.</span> <span class="nav-text">单例模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#命令模式"><span class="nav-number">7.</span> <span class="nav-text">命令模式</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#设计模式"><span class="nav-number">1.</span> <span class="nav-text">设计模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#设计原则"><span class="nav-number">2.</span> <span class="nav-text">设计原则</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#单一职责"><span class="nav-number">2.0.1.</span> <span class="nav-text">单一职责:</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#开闭原则"><span class="nav-number">2.0.2.</span> <span class="nav-text">开闭原则:</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#接口隔离"><span class="nav-number">2.0.3.</span> <span class="nav-text">接口隔离:</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#依赖倒置原则"><span class="nav-number">2.0.4.</span> <span class="nav-text">依赖倒置原则:</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#里氏替换"><span class="nav-number">2.0.5.</span> <span class="nav-text">里氏替换:</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#迪米特法则"><span class="nav-number">2.0.6.</span> <span class="nav-text">迪米特法则:</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#责任链"><span class="nav-number">3.</span> <span class="nav-text">责任链</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#桥接模式"><span class="nav-number">4.</span> <span class="nav-text">桥接模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#适配器"><span class="nav-number">5.</span> <span class="nav-text">适配器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#单例模式"><span class="nav-number">6.</span> <span class="nav-text">单例模式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#优点"><span class="nav-number">6.1.</span> <span class="nav-text">优点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#缺点"><span class="nav-number">6.2.</span> <span class="nav-text">缺点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#适用场景"><span class="nav-number">6.3.</span> <span class="nav-text">适用场景</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实际使用场景"><span class="nav-number">6.4.</span> <span class="nav-text">实际使用场景</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#命令模式"><span class="nav-number">7.</span> <span class="nav-text">命令模式</span></a></li></ol></div>
             
 
           </div>
