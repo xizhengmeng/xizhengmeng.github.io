@@ -108,21 +108,21 @@
 
 
 
-  <meta name="description" content="1.代理模式 2.观察者模式 3.MVC模式 4.单例模式 5.策略模式 6.工厂模式 设计模式责任链:响应者链条">
+  <meta name="description" content="1.代理模式 2.观察者模式 3.MVC模式 4.单例模式 5.策略模式 6.工厂模式 7.适配器 8.命令模式 9.桥接 设计模式责任链:响应者链条">
 <meta property="og:type" content="article">
 <meta property="og:title" content="设计模式相关">
 <meta property="og:url" content="/2015/07/05/2015/设计模式相关/index.html">
 <meta property="og:site_name" content="Hanson的博客">
-<meta property="og:description" content="1.代理模式 2.观察者模式 3.MVC模式 4.单例模式 5.策略模式 6.工厂模式 设计模式责任链:响应者链条">
+<meta property="og:description" content="1.代理模式 2.观察者模式 3.MVC模式 4.单例模式 5.策略模式 6.工厂模式 7.适配器 8.命令模式 9.桥接 设计模式责任链:响应者链条">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="/images/2018-07-059.39.25.png">
 <meta property="og:image" content="/images/2018-07-059.24.05.png">
 <meta property="og:image" content="/images/2018-07-059.png">
 <meta property="og:image" content="/images/2018-07-059.51.11.png">
-<meta property="og:updated_time" content="2018-07-26T04:33:04.000Z">
+<meta property="og:updated_time" content="2018-07-30T06:40:06.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="设计模式相关">
-<meta name="twitter:description" content="1.代理模式 2.观察者模式 3.MVC模式 4.单例模式 5.策略模式 6.工厂模式 设计模式责任链:响应者链条">
+<meta name="twitter:description" content="1.代理模式 2.观察者模式 3.MVC模式 4.单例模式 5.策略模式 6.工厂模式 7.适配器 8.命令模式 9.桥接 设计模式责任链:响应者链条">
 <meta name="twitter:image" content="/images/2018-07-059.39.25.png">
 
 
@@ -415,6 +415,9 @@
 <p>4.单例模式</p>
 <p>5.策略模式</p>
 <p>6.工厂模式</p>
+<p>7.适配器</p>
+<p>8.<a href="https://www.cnblogs.com/goodboy-heyang/p/5037786.html" target="_blank" rel="external">命令模式</a></p>
+<p>9.桥接</p>
 <h3 id="设计模式"><a href="#设计模式" class="headerlink" title="设计模式"></a>设计模式</h3><p>责任链:响应者链条<br><a id="more"></a><br><img src="/05/2015/设计模式相关/../../../images/2018-07-059.24.05.png" alt=""></p>
 <h3 id="设计原则"><a href="#设计原则" class="headerlink" title="设计原则"></a>设计原则</h3><h5 id="单一职责"><a href="#单一职责" class="headerlink" title="单一职责:"></a>单一职责:</h5><p>一个类只负责一件事，比如UIView负责事件，CALayer只负责显示</p>
 <h5 id="开闭原则"><a href="#开闭原则" class="headerlink" title="开闭原则:"></a>开闭原则:</h5><p>对修改关闭，对扩展开放</p>
@@ -486,6 +489,9 @@
 <p>实际使用场景，转发，评论，赞等，如果没有命令模式，我们需要在每个页面进行相关处理，如果进行了行为参数化，那么就能省下很多东西。</p>
 <p>我们需要两个模块，一个是命令管理者，一个是命令的虚拟类，最后是很多命令的具体子类。</p>
 <p>当我们需要执行一个命令的时候就直接调用这个管理者，然后执行这个命令就好了。</p>
+<blockquote>
+<p>命令对象封装了如何对目标执行指令的信息，因此客户端或调用者不必了解目标的任何细节，却仍可以对他执行任何已有的操作。通过把请求封装成对象，客 户端可 以把它参数化并置入队列或日志中，也能够支持可撤销操作。命令对象将一个或多个动作绑定到特定的接收器。命令模式消除了作为对象的动作和执行它的接收器之 间的绑定</p>
+</blockquote>
 
       
     </div>
