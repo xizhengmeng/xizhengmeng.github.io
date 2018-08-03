@@ -548,62 +548,7 @@
 
       
         
-          <h3 id="先来思考一些问题"><a href="#先来思考一些问题" class="headerlink" title="先来思考一些问题"></a>先来思考一些问题</h3><h4 id="如何做到各业务单独开发，单独测试？"><a href="#如何做到各业务单独开发，单独测试？" class="headerlink" title="如何做到各业务单独开发，单独测试？"></a>如何做到各业务单独开发，单独测试？</h4><h4 id="如何加快测试包编译速度"><a href="#如何加快测试包编译速度" class="headerlink" title="如何加快测试包编译速度"></a>如何加快测试包编译速度</h4><h4 id="如何做到不同业务代码安全"><a href="#如何做到不同业务代码安全" class="headerlink" title="如何做到不同业务代码安全"></a>如何做到不同业务代码安全</h4><h4 id="如何在客户端实现千人千面，同一个按钮跳转不同的页面？"><a href="#如何在客户端实现千人千面，同一个按钮跳转不同的页面？" class="headerlink" title="如何在客户端实现千人千面，同一个按钮跳转不同的页面？"></a>如何在客户端实现千人千面，同一个按钮跳转不同的页面？</h4><h4 id="如果App出现bug了，如何不用JSPatch，就能做到简单的热修复功能？"><a href="#如果App出现bug了，如何不用JSPatch，就能做到简单的热修复功能？" class="headerlink" title="如果App出现bug了，如何不用JSPatch，就能做到简单的热修复功能？"></a>如果App出现bug了，如何不用JSPatch，就能做到简单的热修复功能？</h4><p>比如App上线突然遇到了紧急bug，能否把页面动态降级成H5，ReactNative，Weex？或者是直接换成一个本地的错误界面？</p>
-<h4 id="如何在每个组件间调用和页面跳转时都进行埋点统计？每个跳转的地方都手写代码埋点？利用Runtime-AOP-？"><a href="#如何在每个组件间调用和页面跳转时都进行埋点统计？每个跳转的地方都手写代码埋点？利用Runtime-AOP-？" class="headerlink" title="如何在每个组件间调用和页面跳转时都进行埋点统计？每个跳转的地方都手写代码埋点？利用Runtime AOP ？"></a>如何在每个组件间调用和页面跳转时都进行埋点统计？每个跳转的地方都手写代码埋点？利用Runtime AOP ？</h4><h4 id="如何在App任何界面都可以调用同一个界面或者同一个组件？只能在AppDelegate里面注册单例来实现？"><a href="#如何在App任何界面都可以调用同一个界面或者同一个组件？只能在AppDelegate里面注册单例来实现？" class="headerlink" title="如何在App任何界面都可以调用同一个界面或者同一个组件？只能在AppDelegate里面注册单例来实现？"></a>如何在App任何界面都可以调用同一个界面或者同一个组件？只能在AppDelegate里面注册单例来实现？</h4><p>比如App出现问题了，用户可能在任何界面，如何随时随地的让用户强制登出？或者强制都跳转到同一个本地的error界面？或者跳转到相应的H5，ReactNative，Weex界面？如何让用户在任何界面，随时随地的弹出一个View ？</p>
-<blockquote>
-<p>以上问题都可以通过一个跳转中心来完成</p>
-</blockquote>
-<h3 id="关于解偶"><a href="#关于解偶" class="headerlink" title="关于解偶"></a>关于解偶</h3><p><a href="https://blog.csdn.net/kelvinflying/article/details/75597287" target="_blank" rel="external">组件化的几种方案</a></p>
-<p>计算机中所有的问题都可以用增加一层来解决。</p>
-<p>先说解耦的最高层次是互相不知道。本质上我们是要试图构建信息孤岛，这样就带来两个问题，就是</p>
-<p><code>class-protocol</code></p>
-<ul>
-<li>相互跳转的解耦</li>
-<li>相互调用的解耦</li>
-</ul>
-<p>之后将带来三个问题：</p>
-<ul>
-<li>整app生命周期同步</li>
-<li>模块间的微弱通信</li>
-<li>公共数据同步</li>
-</ul>
-<p>根据单一职责，跳转和通信是两个问题，所以分开来处理</p>
-<h4 id="页面间跳转"><a href="#页面间跳转" class="headerlink" title="页面间跳转"></a>页面间跳转</h4><p>这里要实现一个跳转中心，具体来说做三个事情</p>
-<ul>
-<li>跳转h5／RN／原生</li>
-<li>是否需要登录的校验，无论哪个页面强制跳转登录页</li>
-<li>是否需要控制器对象(可能需要返回使用，比如3Dtouch)</li>
-<li>跳转逻辑选择</li>
-</ul>
-<p>下边这段代码展示了跳转逻辑的核心，通过拼接字符串制造SEL，然后进行方法寻找，那么某个模块内实现跳转中心的分类，然后在分类中添加方法</p>
-<p>跳转中心实现</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">//+ (BOOL)nativeView:(JumpEntity *)jumpEntity &#123;</div><div class="line">//    NSParameterAssert(clickEntity != nil);</div><div class="line">//    BOOL isclicked = NO;</div><div class="line">//    NSString *methodString = [NSString stringWithFormat:@&quot;%@&quot;,@(jumpEntity.jumpNavi)];</div><div class="line">//    SEL selector = MTLSelectorWithCapitalizedKeyPattern(&quot;enter&quot;,methodString,&quot;NativeView:&quot;);</div><div class="line">//    if ([self respondsToSelector:selector]) &#123;</div><div class="line">//        NSMethodSignature *singnature = [self methodSignatureForSelector:selector];</div><div class="line">//        NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:singnature];</div><div class="line">//        invocation.target = self;</div><div class="line">//        invocation.selector = selector;</div><div class="line">//        [invocation setArgument:&amp;clickEntity atIndex:2];</div><div class="line">//        [invocation invoke];</div><div class="line">//        isclicked = YES;</div><div class="line">//    &#125;</div><div class="line">//    return isclicked;</div><div class="line">//&#125;</div></pre></td></tr></table></figure>
-<p>模块中的代码实现</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">@implementation JumpCenter (Test1)</div><div class="line"></div><div class="line">+(void)jrJumpTo1NativeView:(ClickEntity*)clickEntity</div><div class="line">&#123;</div><div class="line">    UIVIewController *vc = [[UIVIewController alloc] init];</div><div class="line">    [JRJumpCenter clickToView:vc withClick:clickEntity];//JRJumpCenter下沉到pod</div><div class="line">    </div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>这样一来，上边的问题就都解决了。</p>
-<h4 id="模块与模块之间的通信？"><a href="#模块与模块之间的通信？" class="headerlink" title="模块与模块之间的通信？"></a>模块与模块之间的通信？</h4><p>通知通过实现一个全局的中间层，可以很好的实现解耦，但是无法方便的实现双向通信。那我们能不能借鉴通知的思路，在这个中间层的基础上，实现一个通信通道？</p>
-<p>要解决两个问题</p>
-<ul>
-<li>怎么找到这个对象？</li>
-<li>怎么找到这个方法？</li>
-</ul>
-<p>用router的方式</p>
-<ul>
-<li>如果大家都用到我就下沉到pod，比如说跳转中心这种</li>
-</ul>
-<p>采用协议的方式的问题？</p>
-<ul>
-<li>要使用delegate？</li>
-<li>那么如果多个对象实现了这个delegate怎么办？或者都设置为delegate，前边的岂不是会失效？</li>
-<li>中间层怎么声明这些协议？定义不同的delegate？</li>
-</ul>
-<h4 id="为什么不采用openUrl这种方式？"><a href="#为什么不采用openUrl这种方式？" class="headerlink" title="为什么不采用openUrl这种方式？"></a>为什么不采用openUrl这种方式？</h4><ul>
-<li>传参限制，不能传递对象，如果是一个字典还需要进行转换</li>
-<li>编码过程没有编译器参与，可靠性下降</li>
-</ul>
-<h3 id="pod基本使用"><a href="#pod基本使用" class="headerlink" title="pod基本使用"></a>pod基本使用</h3><p><a href="https://cnbin.github.io/blog/2015/09/19/cocoapods-de-%5B%3F%5D-xie-shi-yong/" target="_blank" rel="external">转:cocoapod基本使用</a></p>
-<h4 id="指定源"><a href="#指定源" class="headerlink" title="指定源"></a>指定源</h4><p>CocoaPods支持私有 Spec 仓库的，我们可以建立自己的源，也可以使用非官方的源，只要是符合规定的都可以指定。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">source &apos;https://github.com/artsy/Specs.git&apos;  </div><div class="line">source &apos;https://github.com/CocoaPods/Specs.git&apos;</div></pre></td></tr></table></figure>
+          <h3 id="先来思考一些问题"><a href="#先来思考一些问题" class="headerlink" title="先来思考一些问题"></a>先来思考一些问题</h3><h4 id="如何做到各业务单独开发，单独测试？"><a href="#如何做到各业务单独开发，单独测试？" class="headerlink" title="如何做到各业务单独开发，单独测试？"></a>如何做到各业务单独开发，单独测试？</h4><h4 id="如何加快测试包编译速度"><a href="#如何加快测试包编译速度" class="headerlink" title="如何加快测试包编译速度"></a>如何加快测试包编译速度</h4><h4 id="如何做到不同业务代码安全"><a href="#如何做到不同业务代码安全" class="headerlink" title="如何做到不同业务代码安全"></a>如何做到不同业务代码安全</h4><h4 id="如何在客户端实现千人千面，同一个按钮跳转不同的页面？"><a href="#如何在客户端实现千人千面，同一个按钮跳转不同的页面？" class="headerlink" title="如何在客户端实现千人千面，同一个按钮跳转不同的页面？"></a>如何在客户端实现千人千面，同一个按钮跳转不同的页面？</h4>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018/07/25/组件化平台构建记录/#more" rel="contents">
@@ -1034,11 +979,10 @@
 <p>the object file (main.o, temporarily stored in a hashed directory during the xcodebuild process)<br>the method file (main.m)<br>compilation mode (normal - I don’t know the other options - anyone?)<br>architecture (X86_64)<br>language (objective-c)<br>the compiler (com.apple.compilers.llvm.clang.1_0.compiler)<br>You cannot access CompileC from the command line directly, but you can have lots of control over the Xcode build process from the command line if you wish<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div><div class="line">##### 各种文件格式的解释</div><div class="line"></div><div class="line">- 一个.m 对应一个.o</div><div class="line">- 多个.o生成一个.a</div><div class="line">- 多个.a生成一个framework</div><div class="line"></div><div class="line"></div><div class="line">#### 现在开始编译主target</div></pre></td></tr></table></figure></p>
 <p>PhaseScriptExecution …<br>DataModelVersionCompile …<br>Ld …<br>GenerateDSYMFile …<br>CopyStringsFile …<br>CpResource …<br>CopyPNGFile …<br>CompileAssetCatalog …<br>ProcessInfoPlistFile …<br>ProcessProductPackaging /…/some-hash.mobileprovision …<br>ProcessProductPackaging objcio/objcio.entitlements …<br>CodeSign …<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">在上面的任务列表中，根据名称不能区分的唯一任务可能就是 Ld，Ld 是一个 linker 工具的名称，与 libtool 非常相似。实际上，libtool也是简单的调用 ld 和 lipo。&apos;ld&apos;被用来构建可执行文件，而libtool则用来构建 library 文件。阅读Daniel 和 Chris两篇文章，可以了解到更多关于编译和链接的工作原理。</div><div class="line"></div><div class="line"></div><div class="line">### 具体到某一个具体的文件的编译过程</div></pre></td></tr></table></figure></p>
 <p>clang -ccc-print-phases -framework Foundation Demo.m -o Demo<br>0: input, “Foundation”, object<br>1: input, “Demo.m”, objective-c<br>2: preprocessor, {1}, objective-c-cpp-output//预处理<br>3: compiler, {2}, ir //编译生成IR(中间代码)<br>4: backend, {3}, assembler//汇编器生成汇编代码<br>5: assembler, {4}, object//生成机器码<br>6: linker, {0, 5}, image//链接<br>7: bind-arch, “x86_64”, {6}, image//生成Image，也就是最后的可执行文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">又可以分为前端编译和后端编译。</div><div class="line"></div><div class="line">前端编译oc使用clang，swift使用swift()</div><div class="line"></div><div class="line">编译器前端的任务是进行：语法分析，语义分析，生成中间代码(intermediate representation )。在这个过程中，会进行类型检查，如果发现错误或者警告会标注出来在哪一行。</div><div class="line"></div><div class="line">编译器后端会进行机器无关的代码优化，生成机器语言，并且进行机器相关的代码优化。</div><div class="line"></div><div class="line"></div><div class="line">### 关于xcode的基本使用</div></pre></td></tr></table></figure>
+<p>#import &lt;&gt; //这个是引用framework和pod管理的内容</p>
+<p>#import “” //这个是引用自己的文件</p>
 <p>```</p>
-<p>又可以分为前端编译和后端编译。</p>
-<p>前端编译oc使用clang，swift使用swift()</p>
-<p>编译器前端的任务是进行：语法分析，语义分析，生成中间代码(intermediate representation )。在这个过程中，会进行类型检查，如果发现错误或者警告会标注出来在哪一行。</p>
-<p>编译器后端会进行机器无关的代码优化，生成机器语言，并且进行机器相关的代码优化。</p>
 
           
         

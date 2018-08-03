@@ -116,7 +116,7 @@
 <meta property="og:site_name" content="Hanson的博客">
 <meta property="og:description" content="关于指令集模拟器跑在mac上，所以需要支持mac的处理器架构，而真机上就不需要。 armv7｜armv7s｜arm64都是ARM处理器的指令集 i386｜x86_64 是Mac处理器的指令集 这些指令集在那些设备中有用到呢？ 12345678910111213141516171819202122232425262728293031323334arm64：iPhone6s | iphone6s pl">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-07-31T10:16:59.000Z">
+<meta property="og:updated_time" content="2018-08-02T08:28:59.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS编译原理">
 <meta name="twitter:description" content="关于指令集模拟器跑在mac上，所以需要支持mac的处理器架构，而真机上就不需要。 armv7｜armv7s｜arm64都是ARM处理器的指令集 i386｜x86_64 是Mac处理器的指令集 这些指令集在那些设备中有用到呢？ 12345678910111213141516171819202122232425262728293031323334arm64：iPhone6s | iphone6s pl">
@@ -419,11 +419,10 @@
 <p>the object file (main.o, temporarily stored in a hashed directory during the xcodebuild process)<br>the method file (main.m)<br>compilation mode (normal - I don’t know the other options - anyone?)<br>architecture (X86_64)<br>language (objective-c)<br>the compiler (com.apple.compilers.llvm.clang.1_0.compiler)<br>You cannot access CompileC from the command line directly, but you can have lots of control over the Xcode build process from the command line if you wish<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div><div class="line">##### 各种文件格式的解释</div><div class="line"></div><div class="line">- 一个.m 对应一个.o</div><div class="line">- 多个.o生成一个.a</div><div class="line">- 多个.a生成一个framework</div><div class="line"></div><div class="line"></div><div class="line">#### 现在开始编译主target</div></pre></td></tr></table></figure></p>
 <p>PhaseScriptExecution …<br>DataModelVersionCompile …<br>Ld …<br>GenerateDSYMFile …<br>CopyStringsFile …<br>CpResource …<br>CopyPNGFile …<br>CompileAssetCatalog …<br>ProcessInfoPlistFile …<br>ProcessProductPackaging /…/some-hash.mobileprovision …<br>ProcessProductPackaging objcio/objcio.entitlements …<br>CodeSign …<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">在上面的任务列表中，根据名称不能区分的唯一任务可能就是 Ld，Ld 是一个 linker 工具的名称，与 libtool 非常相似。实际上，libtool也是简单的调用 ld 和 lipo。&apos;ld&apos;被用来构建可执行文件，而libtool则用来构建 library 文件。阅读Daniel 和 Chris两篇文章，可以了解到更多关于编译和链接的工作原理。</div><div class="line"></div><div class="line"></div><div class="line">### 具体到某一个具体的文件的编译过程</div></pre></td></tr></table></figure></p>
 <p>clang -ccc-print-phases -framework Foundation Demo.m -o Demo<br>0: input, “Foundation”, object<br>1: input, “Demo.m”, objective-c<br>2: preprocessor, {1}, objective-c-cpp-output//预处理<br>3: compiler, {2}, ir //编译生成IR(中间代码)<br>4: backend, {3}, assembler//汇编器生成汇编代码<br>5: assembler, {4}, object//生成机器码<br>6: linker, {0, 5}, image//链接<br>7: bind-arch, “x86_64”, {6}, image//生成Image，也就是最后的可执行文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">又可以分为前端编译和后端编译。</div><div class="line"></div><div class="line">前端编译oc使用clang，swift使用swift()</div><div class="line"></div><div class="line">编译器前端的任务是进行：语法分析，语义分析，生成中间代码(intermediate representation )。在这个过程中，会进行类型检查，如果发现错误或者警告会标注出来在哪一行。</div><div class="line"></div><div class="line">编译器后端会进行机器无关的代码优化，生成机器语言，并且进行机器相关的代码优化。</div><div class="line"></div><div class="line"></div><div class="line">### 关于xcode的基本使用</div></pre></td></tr></table></figure>
+<p>#import &lt;&gt; //这个是引用framework和pod管理的内容</p>
+<p>#import “” //这个是引用自己的文件</p>
 <p>```</p>
-<p>又可以分为前端编译和后端编译。</p>
-<p>前端编译oc使用clang，swift使用swift()</p>
-<p>编译器前端的任务是进行：语法分析，语义分析，生成中间代码(intermediate representation )。在这个过程中，会进行类型检查，如果发现错误或者警告会标注出来在哪一行。</p>
-<p>编译器后端会进行机器无关的代码优化，生成机器语言，并且进行机器相关的代码优化。</p>
 
       
     </div>
