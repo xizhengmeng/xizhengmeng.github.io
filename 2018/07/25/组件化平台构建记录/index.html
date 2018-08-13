@@ -115,7 +115,7 @@
 <meta property="og:site_name" content="Hanson的博客">
 <meta property="og:description" content="先来思考一些问题如何做到各业务单独开发，单独测试？如何加快测试包编译速度如何做到不同业务代码安全如何在客户端实现千人千面，同一个按钮跳转不同的页面？">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-08-13T10:38:35.789Z">
+<meta property="og:updated_time" content="2018-08-13T10:43:09.350Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="组件化平台构建记录">
 <meta name="twitter:description" content="先来思考一些问题如何做到各业务单独开发，单独测试？如何加快测试包编译速度如何做到不同业务代码安全如何在客户端实现千人千面，同一个按钮跳转不同的页面？">
@@ -527,8 +527,8 @@
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"># Uncomment the next line to define a global platform for your project</div><div class="line">platform :ios, &apos;8.0&apos;</div><div class="line">source &apos;https://github.com/CocoaPods/Specs.git&apos;</div><div class="line">source &apos;http://jcode.cbpmgt.com/git/jrMobileRepo.git&apos;</div><div class="line"></div><div class="line">workspace &apos;cocoaTestEntity.xcworkspace&apos;</div><div class="line"></div><div class="line">project &apos;cocoaTest/cocoaTest.xcodeproj&apos;</div><div class="line"></div><div class="line">target &apos;cocoaTest&apos; do</div><div class="line">  # Uncomment the next line if you&apos;re using Swift or would like to use dynamic frameworks</div><div class="line">  # use_frameworks!</div><div class="line"></div><div class="line">  # Pods for cocoaTest</div><div class="line"></div><div class="line">  pod &apos;JDJRMqttSocket&apos;, :path =&gt; &apos;/Users/jrmacpro/Desktop/JDJRMqttSocket&apos;  // 这是能够进行push代码的写法</div><div class="line">end</div></pre></td></tr></table></figure>
 <h4 id="多模块联合开发如何进行"><a href="#多模块联合开发如何进行" class="headerlink" title="多模块联合开发如何进行"></a>多模块联合开发如何进行</h4><p>对git进行封装，每次进行<code>git push</code>操作，其实后边会自动的对多个库分别进行git的命令操作，<code>git pull</code>同样的道理</p>
-<h4 id="如何切换源码和-framework"><a href="#如何切换源码和-framework" class="headerlink" title="如何切换源码和.framework"></a>如何切换源码和.framework</h4><p>.cocoapod中维护另外一套自己的库，比如说叫做A，当我选择用源码的时候，我直接用A中的同名文件夹去替换目标文件夹中的文件，同时删除Library/Cache/CocoaPod中的缓存。</p>
-<p><code>pod repo update ~/.cocoapods/repos/cbpmgt-git-jrmobilerepo</code>更新私有源的文件</p>
+<h4 id="如何切换源码和-framework"><a href="#如何切换源码和-framework" class="headerlink" title="如何切换源码和.framework"></a>如何切换源码和.framework</h4><p>.cocoapod中维护另外一套自己的库，比如说叫做A，当我选择用源码的时候，我直接用A中的同名文件夹去替换目标文件夹中的文件，同时删除~/Library/Cache/CocoaPod中的缓存。</p>
+<p><code>pod repo update ~/.cocoapods/repos/cbpmgt-git-jrmobilerepo</code>更新私有源的文件，这个只是更新spec文件，并不更新实际的代码</p>
 <h4 id="功能模块里边的git代码长什么样子"><a href="#功能模块里边的git代码长什么样子" class="headerlink" title="功能模块里边的git代码长什么样子"></a>功能模块里边的git代码长什么样子</h4><p>里边应该是有两个project，运行可以打出来一个framework，但是pod进行代码拉取的时候，可以只拉取核心代码，这里不能只持有核心代码，这样你打framework将是一个很麻烦的问题。</p>
 <h4 id="多个工程依赖同一个包的版本如果不一致怎么办？"><a href="#多个工程依赖同一个包的版本如果不一致怎么办？" class="headerlink" title="多个工程依赖同一个包的版本如果不一致怎么办？"></a>多个工程依赖同一个包的版本如果不一致怎么办？</h4><p>低版本升级，如果是不同的feature这样，那要用不同的名字</p>
 <h4 id="怎么打回归包"><a href="#怎么打回归包" class="headerlink" title="怎么打回归包"></a>怎么打回归包</h4><p>全部使用源码</p>
