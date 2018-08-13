@@ -115,7 +115,7 @@
 <meta property="og:site_name" content="Hanson的博客">
 <meta property="og:description" content="JPEG压缩算法理解参考 https://thecodeway.com/blog/?p=69 首先这是一种有损的信息压缩方式，压缩的核心原理是，将信息分为重要和不重要，然后舍弃掉不重要的信息，我们将会通过两部信息区分来完成这个任务，第一个是RGB转YCbCr，第二个是DCT转化和量化，这两步每一步都是有信息损耗，都是不可逆的，而哈夫曼编码和压缩是可逆的，要深刻的理解这些个点。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-07-17T03:56:24.000Z">
+<meta property="og:updated_time" content="2018-08-07T09:27:07.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="移动端图片隐写术的实现思路">
 <meta name="twitter:description" content="JPEG压缩算法理解参考 https://thecodeway.com/blog/?p=69 首先这是一种有损的信息压缩方式，压缩的核心原理是，将信息分为重要和不重要，然后舍弃掉不重要的信息，我们将会通过两部信息区分来完成这个任务，第一个是RGB转YCbCr，第二个是DCT转化和量化，这两步每一步都是有信息损耗，都是不可逆的，而哈夫曼编码和压缩是可逆的，要深刻的理解这些个点。">
@@ -424,6 +424,8 @@
 <h4 id="在RGB中直接隐藏信息"><a href="#在RGB中直接隐藏信息" class="headerlink" title="在RGB中直接隐藏信息"></a>在RGB中直接隐藏信息</h4><p>这种做法是基于LBS，更改信息的最低有效位，首先不会更改人眼可分别的图片认知，因为颜色改变极小，但是如果是jpeg文件，存储再读取你写入的信息就会错乱，就是因为这是一种有损压缩，你把Red值改成了220，等你存储损失之后，再读取可能就变成了119，总之就是这个值不靠谱。</p>
 <h4 id="基于DCT的隐藏"><a href="#基于DCT的隐藏" class="headerlink" title="基于DCT的隐藏"></a>基于DCT的隐藏</h4><p>DCT的信息是比较稳定的，但是仍然会有变化的情况，这是因为图像存在极值，比如一个255的色值，你藏信息的时候增加了这个值，但是返回回来之后计算的值是256，但是这个值是无效的，那么你怎么处理就很重要了，你如果直接将其约为255，那么你的数据将会错乱，如果你不采取这样的点，那么盲提取你仍然会错乱，因为如果你的判断标准是，这个值不能是255，你写的时候不是，更改之后读的时候可能就是了，这也是一种不稳定的处理方法。</p>
 <p>解决办法就是将隐藏信息的处理扩张改为收缩，这样即使遇到极值情况，仍然不会被裁减，就这样轻松绕过这个问题，同时配合四舍五入的规则替换为退一的方法，这样我们能够保证所有的数据是缩减的，这样肯定不会触碰那个临界了，这样的话我们如果不考虑反检测的问题，我们可以大方的将信息写在DC数据上。</p>
+<p><a href="https://blog.csdn.net/abcjennifer/article/details/8074492" target="_blank" rel="external">参考1</a></p>
+<p><a href="https://thecodeway.com/blog/?p=353" target="_blank" rel="external">参考2</a></p>
 
       
     </div>
