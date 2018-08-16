@@ -116,7 +116,7 @@
 <meta property="og:site_name" content="Hanson的博客">
 <meta property="og:description" content="我们其实是对Application Loader功能进行脚本化">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2017-10-18T06:42:45.000Z">
+<meta property="og:updated_time" content="2018-08-14T07:11:10.458Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ipa自动创建上传功能构建">
 <meta name="twitter:description" content="我们其实是对Application Loader功能进行脚本化">
@@ -410,9 +410,11 @@
 </li>
 <li><p>增加关联项目<code>ln -s /Applications/Xcode.app/Contents/Applications/Application\ Loader.app/Contents/itms /usr/local/itms</code></p>
 </li>
-<li><p>打包脚本<code>xcodebuild -workspace JDFinance.xcworkspace -scheme JDMobile -configuration Beta build</code></p>
+<li><p>打包脚本<code>xcodebuild -workspace JDFinance.xcworkspace -scheme JDMobile -configuration Beta build</code>//相当于build这种</p>
 </li>
-<li><p>打包脚本<code>xcodebuild archive -workspace JDFinance.xcworkspace -scheme JDMobile -configuration Beta -archivePath JDMobile.xcarchive</code></p>
+<li><p>打包脚本<code>xcodebuild archive -workspace JDFinance.xcworkspace -scheme JDMobile -configuration Beta -archivePath JDMobile.xcarchive</code>//走的是xcachieve这种</p>
+</li>
+<li><p>生成ipa<code>xcodebuild -exportArchive -archivePath JDFinance.xcarchive -exportPath /Users/jdjr/Desktop -exportOptionsPlist  ExportOptions.plist</code>//用手动创建Payload比较复杂的app是不行的，但是这个方法是通用的</p>
 </li>
 <li><p><code>altool -v -f JDMobile.ipa -u xxxxxxxx@126.com -p xxxxxx -t ios</code>检验是否可以进行上传</p>
 </li>
@@ -537,7 +539,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">114</span>
+                    <span class="site-state-item-count">116</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>

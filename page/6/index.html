@@ -327,6 +327,352 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="/2017/10/10/2018/xcode多版本自动化打包记录/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Hanson">
+      <meta itemprop="description" content="移动端开发，养伤的羽毛球选手">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hanson的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/10/10/2018/xcode多版本自动化打包记录/" itemprop="url">
+                  xcode多版本自动化打包设置
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2017-10-10 12:29:12" itemprop="dateCreated datePublished" datetime="2017-10-10T12:29:12+08:00">2017-10-10</time>
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>如果你升级了xcode但是这个时候你又想降级回去，你发现appstore已经不要指望了，我们需要下载一个你需要版本的xcode。<br>下载各个Xcode版本的地址<code>https://developer.apple.com/download/more</code><br>然后放置到我们的程序目录下，改个名字比如说叫Xcode2<br>但是现在问题又来了，加入你是个打包服务器，你使用的是xcodebuild来打包的，这个时候两个版本的xcode同时存在，它如何选择sdk进行打包呢？</p>
+<ul>
+<li>首先查看sdk版本     <code>xcodebuild -showsdks</code></li>
+<li>然后切换默认的xcode <code>sudo xcode-select -switch /Applications/Xcode2.app</code></li>
+<li>然后在执行<code>xcodebuild -showsdks</code></li>
+</ul>
+<p>你会发现sdk已经变了，这个时候你使用xcodebuild来打包可以选择你需要的这个版本的sdk了</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="/2017/10/09/2018/Mach-O文件解析/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Hanson">
+      <meta itemprop="description" content="移动端开发，养伤的羽毛球选手">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hanson的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/10/09/2018/Mach-O文件解析/" itemprop="url">
+                  Mac中的二进制文件
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2017-10-09 18:31:22" itemprop="dateCreated datePublished" datetime="2017-10-09T18:31:22+08:00">2017-10-09</time>
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>在Unix系统中，任何文件都可以通过chmod+x命令来标记为可执行文件，但是这并不能保证这个文件是能够被执行的，这个标志只是告诉系统这个文件可以读入内容，然后寻找一个头签名，据此可以确定精确的可执行文件格式，这个文件签名通常称为”magic”。<br>例如:</p>
+<ul>
+<li>#!脚本</li>
+<li>0xcafebabe/0xbebafeca包含多种架构支持的二进制，又被称为通用二进制或者胖二进制</li>
+<li>0xfeedface(32位)，0xfeedfacf(64位)Mach-O格式或者叫OSX原生二进制格式</li>
+</ul>
+<h3 id="胖二进制"><a href="#胖二进制" class="headerlink" title="胖二进制"></a>胖二进制</h3><p>通用二进制只不过是其支持的各种架构的二进制文件的打包文件，这种格式的文件包含一个文件头，然后文件头后面依次拷贝了每一种支持架构的二进制文件。</p>
+<ul>
+<li>通用二进制文件的处理工具叫做<code>lipo</code>脂肪的意思，对应胖二进制的意思</li>
+<li>这个工具可以提取，删除和替换通用二进制文件中制定架构的二进制代码，因此可以通过这个工具对二进制文件进行瘦身</li>
+</ul>
+<h3 id="Mach-O"><a href="#Mach-O" class="headerlink" title="Mach-O"></a>Mach-O</h3><p>先来看看整体结构</p>
+<p><img src="/09/2018/Mach-O文件解析/../../images/2018-08-063.37.51.png" alt=""></p>
+<p>这个binary中包含两个可执行文件，分别支持arm_v7架构和arm64架构，一个是32位机器，一个是64位机器。</p>
+<p>再来看一下每个executable文件的内部结构，主要有</p>
+<ul>
+<li>头部(header structrue)</li>
+<li>加载命令(load command)</li>
+<li>段(segment)。可以拥有多个段，每个段可以拥有多个区域(section)，每一个段都拥有一段虚拟的地址映射到进程的空间地址。</li>
+<li>链接信息，包含了动态加载器用来链接可执行文件或者依赖库所需要的符号表，字符串表等等。</li>
+</ul>
+<p>前三种信息的提取可以使用otool工具，最后一个符号表可以使用nm工具，在release的版本中是没有符号表的，我们也可以用strip命令，删除符号表，该命令同时也会删除__DATA中的部分信息，比如class的name，sel的那么等等。</p>
+<p>首先看mach_header<br><code>otool -hV JDMobile</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Mach header</div><div class="line"></div><div class="line">magic cputype cpusubtype  caps    filetype ncmds sizeofcmds      flags</div><div class="line"></div><div class="line">MH_MAGIC_64   ARM64        ALL  0x00     EXECUTE    68       7464   NOUNDEFS DYLDLINK TWOLEVEL WEAK_DEFINES BINDS_TO_WEAK PIE</div></pre></td></tr></table></figure>
+<ul>
+<li>magic魔数代表32或者64位</li>
+<li>cputype和subcuptype代表cup类型，arm64是手机的64位，x86_64代表mac的64位</li>
+<li>filetype代表文件类型(可执行文件，库文件，核心转储文件，内核扩展)</li>
+<li>ncmds和sizeofcmds用于加载的家在命令的条数和大小</li>
+<li>flags代表动态连接器(dyld)的标志</li>
+</ul>
+<p>__TEXT section    用途</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">__text	程序代码</div><div class="line">__stubs	用于动态链接的存根，里边存储的是我们调用系统动态库方法的函数地址</div><div class="line">__stub_helper	用于动态链接的存根</div><div class="line">__const	程序中const关键字修饰的常量变量</div><div class="line">__objc_methname	objc方法名，所有参与编译的方法的名字</div><div class="line">__cstring	c语言字符串</div><div class="line">__objc_classname	objc类名</div><div class="line">__objc_methtype	objc方法类型</div><div class="line">__gcc_except_tab	异常处理相关</div><div class="line">__ustring	unicode字符串</div><div class="line">__unwind_info	异常处理</div><div class="line">__eh_frame	异常处理</div></pre></td></tr></table></figure>
+<p>__DATA section    用途</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">__nl_symbol_ptr	动态符号链接相关,指针数组</div><div class="line">__got	全局偏移表, Global Offset Table</div><div class="line">__la_symbol_ptr	动态符号链接相关，也是指针数组，通过dyld_stub_binder辅助链接</div><div class="line">__mod_init_func	初始化的全局函数地址，会在main之前被调用</div><div class="line">__mod_term_func	终止函数，在main返回之后调用</div><div class="line">__const	const修饰的常量</div><div class="line">__cstring	程序中硬编码的ANSI的字符串</div><div class="line">__cfstring	CF用到的字符串</div><div class="line">__objc_classlist	objc类列表，所有参与编译的列表</div><div class="line">__objc_nlclslist	objcload方法列表</div><div class="line">__objc_catlist	objc category列表</div><div class="line">__objc_protolist	objc protocol列表</div><div class="line">__objc_imageinfo	镜像信息</div><div class="line">__objc_const	objc的常量</div><div class="line">__objc_selrefs	objc引用的SEL列表，所有被使用到的方法的名字</div><div class="line">__objc_protorefs	objc引用的protocol列表</div><div class="line">__objc_classrefs	objc引用的class列表，所有真正有被调用的class列表，用上边那个参与编译的列表，减去这个被使用的列表，就是没有使用的列表。</div><div class="line"></div><div class="line">__objc_superrefs	objc父类的引用列表</div><div class="line">__objc_ivar	objcivar信息</div><div class="line">__objc_data	class信息</div><div class="line">__bss	未初始化的静态变量区</div><div class="line">__data	初始化的可变变量</div></pre></td></tr></table></figure>
+<h4 id="随机地址空间"><a href="#随机地址空间" class="headerlink" title="随机地址空间"></a>随机地址空间</h4><p>进程每一次启动，地址空间都会简单地随机化。该方式对APP的安全性具有重大的意义。如果采用传统的方式，程序的每一次启动的虚拟内存镜像都是一致的，黑客很容易采取重写内存的方式来破解程序。采用ASLR可以有效的避免黑客的中间人攻击等。</p>
+<h4 id="分析方法"><a href="#分析方法" class="headerlink" title="分析方法"></a>分析方法</h4><p>stings</p>
+<p>otool</p>
+<p>nm</p>
+<p><a href="https://github.com/gdbinit/MachOView" target="_blank" rel="external">MachOView</a>使用open方法</p>
+<h5 id="otool"><a href="#otool" class="headerlink" title="otool"></a>otool</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line">-f print the fat headers</div><div class="line">-a print the archive header</div><div class="line">-h print the mach header   #查看支持的架构，常用</div><div class="line">-hV print the mach header  #查看支持的架构，常用 </div><div class="line">-l print the load commands</div><div class="line">-L print shared libraries used #使用到的系统库</div><div class="line">-D print shared library id name #支持的架构arm64 armv7</div><div class="line">-t print the text section (disassemble with -v) #查看数据段，二进制,基本无用</div><div class="line">-tV print the text section (disassemble with -v) #查看数据段，汇编，基本无用</div><div class="line">-p &lt;routine name&gt;  start dissassemble from routine name#无用</div><div class="line">-s &lt;segname&gt; &lt;sectname&gt; print contents of section</div><div class="line">-d print the data section</div><div class="line">-o print the Objective-C segment</div><div class="line">-r print the relocation entries</div><div class="line">-S print the table of contents of a library</div><div class="line">-T print the table of contents of a dynamic shared library</div><div class="line">-M print the module table of a dynamic shared library</div><div class="line">-R print the reference table of a dynamic shared library</div><div class="line">-I print the indirect symbol table</div><div class="line">-H print the two-level hints table</div><div class="line">-G print the data in code table</div><div class="line">-v print verbosely (symbolically) when possible</div><div class="line">-V print disassembled operands symbolically</div><div class="line">-c print argument strings of a core file</div><div class="line">-X print no leading addresses or headers</div><div class="line">-m don&apos;t use archive(member) syntax</div><div class="line">-B force Thumb disassembly (ARM objects only)</div><div class="line">-q use llvm&apos;s disassembler (the default)</div><div class="line">-Q use otool(1)&apos;s disassembler</div><div class="line">-mcpu=arg use `arg&apos; as the cpu for disassembly</div><div class="line">-j print opcode bytes</div><div class="line">-P print the info plist section as strings</div><div class="line">-C print linker optimization hints</div><div class="line">-tV 所有的汇编码</div></pre></td></tr></table></figure>
+<h4 id="瘦身实战"><a href="#瘦身实战" class="headerlink" title="瘦身实战"></a>瘦身实战</h4><h4 id="查看所有编译进去的方法"><a href="#查看所有编译进去的方法" class="headerlink" title="查看所有编译进去的方法"></a>查看所有编译进去的方法</h4><p>也就是查看符号表</p>
+<p><code>nm JDMobile</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
+<h4 id="查看所有被使用的方法"><a href="#查看所有被使用的方法" class="headerlink" title="查看所有被使用的方法"></a>查看所有被使用的方法</h4><p><code>otool -v -s __DATA  __objc_selrefs JDMobile-build-beta</code><br>-s 是说我要看这个seg下的这个section<br>-v 是说尽可能展示可识别内容</p>
+<p><code>GetFileInfo filename| grep modified</code>查看文件信息，包括</p>
+<blockquote>
+<ul>
+<li>directory: “/Users/jrmacpro/Library/Developer/Xcode/DerivedData/JDFinance-eqeqtaeyecxhiqgogjuodubajlyt/Build/Products/Beta-iphoneos/JDMobile.app”</li>
+<li>attributes: avbstclinmedz</li>
+<li>created: 10/18/2017 12:55:09</li>
+<li>modified: 10/18/2017 12:59:11</li>
+</ul>
+</blockquote>
+<h3 id="nm的使用"><a href="#nm的使用" class="headerlink" title="nm的使用"></a>nm的使用</h3><p>nm [option(s)] [file(s)]<br>有用的options:</p>
+<p>-A 在每个符号信息的前面打印所在对象文件名称；</p>
+<p>-C 输出demangle过了的符号名称；</p>
+<p>-D 打印动态符号；</p>
+<p>-l 使用对象文件中的调试信息打印出所在源文件及行号；</p>
+<p>-n 按照地址/符号值来排序；</p>
+<p>-u 打印出那些未定义的符号；</p>
+<p>常见的符号类型:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">A 该符号的值在今后的链接中将不再改变；</div><div class="line">B 该符号放在BSS段中，通常是那些未初始化的全局变量；</div><div class="line">D 该符号放在普通的数据段中，通常是那些已经初始化的全局变量；</div><div class="line">T 该符号放在代码段中，通常是那些全局非静态函数；</div><div class="line">U 该符号未定义过，需要自其他对象文件中链接进来；</div><div class="line">W 未明确指定的弱链接符号；同链接的其他对象文件中有它的定义就用上，</div><div class="line">否则就用一个系统特别指定的默认值。</div></pre></td></tr></table></figure>
+<p>注意几点：<br>-C 总是适用于c++编译出来的对象文件。还记得c++中有重载么？为了区分重载函数，c++编译器会将函数返回值/参数等信息附加到函数名称中去形成一个mangle过的符号，那用这个选项列出符号的时候，做一个逆操作，输出那些原始的、我们可理解的符号名称。<br>使用 -l 时，必须保证你的对象文件中带有符号调式信息，这一般要求你在编译的时候指定一个 -g 选项，见 Linux:Gcc。<br>使用nm前，最好先用Linux:File查看对象文件所属处理器架构，然后再用相应交叉版本的nm工具。</p>
+<h3 id="内存分布理解"><a href="#内存分布理解" class="headerlink" title="内存分布理解"></a>内存分布理解</h3><p>使用.memgraph文件，内存分布，那么怎么获取呢，使用file-export Memory Graph，那么问题来了，我点了file没有这一项啊，因为你需要切换到内存检查状态。</p>
+<p><img src="/09/2018/Mach-O文件解析/../../images/2018-08-0912.24.55.png" alt=""></p>
+<p><img src="/09/2018/Mach-O文件解析/../../images/2018-08-0912.26.53.png" alt=""></p>
+<p>然后我们来看看这个文件有啥用。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">vmmap App.memgraph</div><div class="line"></div><div class="line">vmmap --summary App.memgraph</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="/2017/09/28/2018/otool作用以及使用/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1485,293 +1831,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="/2017/06/12/2018/利用hexo搭建团队博客系统/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Hanson">
-      <meta itemprop="description" content="移动端开发，养伤的羽毛球选手">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hanson的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/06/12/2018/利用hexo搭建团队博客系统/" itemprop="url">
-                  利用hexo搭建团队博客系统
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2017-06-12 15:08:39" itemprop="dateCreated datePublished" datetime="2017-06-12T15:08:39+08:00">2017-06-12</time>
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h3 id="hexo搭建个人博客的原理"><a href="#hexo搭建个人博客的原理" class="headerlink" title="hexo搭建个人博客的原理"></a>hexo搭建个人博客的原理</h3><ul>
-<li>将md渲染为html</li>
-<li>将html以及资源文件上传到github，利用githubpages功能进行展示</li>
-<li>解析的过程是将目录下source/_post文件中的东西，渲染为publick中的html文件，然后将该文件夹下的文件复制到.deploy_git文件下，然后利用git操作将该文件夹下的文件push到对应的git库</li></ul>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/06/12/2018/利用hexo搭建团队博客系统/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="/2017/06/12/2018/Python多进程通信和调用/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Hanson">
-      <meta itemprop="description" content="移动端开发，养伤的羽毛球选手">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hanson的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/06/12/2018/Python多进程通信和调用/" itemprop="url">
-                  Python多进程通信和调用
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2017-06-12 15:00:31" itemprop="dateCreated datePublished" datetime="2017-06-12T15:00:31+08:00">2017-06-12</time>
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="python多进程通信"><a href="#python多进程通信" class="headerlink" title="python多进程通信"></a>python多进程通信</h2><blockquote>
-<p>这里解决的主要是，如果是启动一个命令行，然后执行一个python脚本，如果有多个python脚本就需要多个命令行程序，这不是很明智的选择，最好的做法是，一个命令行搞定所有的python脚本，这里就涉及到两个问题</p>
-<ul>
-<li>如何做到并发</li>
-<li>如何在一个文件中添加一个python的执行入口</li></ul></blockquote>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/06/12/2018/Python多进程通信和调用/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1819,7 +1878,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">114</span>
+                    <span class="site-state-item-count">116</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
