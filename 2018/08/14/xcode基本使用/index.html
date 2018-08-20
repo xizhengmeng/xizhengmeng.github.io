@@ -115,16 +115,16 @@
 <meta property="og:site_name" content="Hanson的博客">
 <meta property="og:description" content="xcode中为我们提供了一系列的工具，帮助我们高效的编写高质量的代码，我们在编写代码的过程中要学会并且练习使用这些工具。 这里注意三点  学会 练习 综合使用">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="/14/images/2018-08-143.04.29.png">
-<meta property="og:image" content="/14/images/2018-08-143.13.36.png">
-<meta property="og:image" content="/14/images/2018-08-144.06.47.png">
-<meta property="og:image" content="/14/images/2018-08-145.51.14.png">
-<meta property="og:image" content="/14/images/2018-08-146.11.10.png">
-<meta property="og:updated_time" content="2018-08-14T10:29:23.582Z">
+<meta property="og:image" content="/images/2018-08-143.04.29.png">
+<meta property="og:image" content="/images/2018-08-143.13.36.png">
+<meta property="og:image" content="/images/2018-08-144.06.47.png">
+<meta property="og:image" content="/images/2018-08-145.51.14.png">
+<meta property="og:image" content="/images/2018-08-146.11.10.png">
+<meta property="og:updated_time" content="2018-08-20T02:13:07.578Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="xcode基本使用">
 <meta name="twitter:description" content="xcode中为我们提供了一系列的工具，帮助我们高效的编写高质量的代码，我们在编写代码的过程中要学会并且练习使用这些工具。 这里注意三点  学会 练习 综合使用">
-<meta name="twitter:image" content="/14/images/2018-08-143.04.29.png">
+<meta name="twitter:image" content="/images/2018-08-143.04.29.png">
 
 
 
@@ -417,22 +417,22 @@
 <li>综合使用</li>
 </ul>
 <a id="more"></a>
-<p><img src="/14/xcode基本使用/../images/2018-08-143.04.29.png" alt=""></p>
+<p><img src="/14/xcode基本使用/../../images/2018-08-143.04.29.png" alt=""></p>
 <p>这些工具是如此之好用，但为什么系统不默认全都打开呢，是因为这些工具的运行是有开销的，但是大部分时候这个开销是可以忽略和容忍的。</p>
 <h3 id="Main-Thread-Checker"><a href="#Main-Thread-Checker" class="headerlink" title="Main Thread Checker"></a>Main Thread Checker</h3><p>点选之后，如果有在子线程操作UI的代码，会提示，在runtime中会有体现。这个选项是默认开启的。</p>
-<p><img src="/14/xcode基本使用/../images/2018-08-143.13.36.png" alt=""></p>
+<p><img src="/14/xcode基本使用/../../images/2018-08-143.13.36.png" alt=""></p>
 <h3 id="内存相关"><a href="#内存相关" class="headerlink" title="内存相关"></a>内存相关</h3><h4 id="Address-Sanitizer"><a href="#Address-Sanitizer" class="headerlink" title="Address Sanitizer"></a>Address Sanitizer</h4><p>检测不安全的指针使用。</p>
 <p>检查非法使用内存或者内存溢出这样的问题，如果我们使用了OC的ARC那么这种情况很少见，但是如果使用了c或者c++来进行编码，这个就显得很有必要了。</p>
 <p>在一些地图，或者流媒体相关的应用中比较常见。</p>
 <p>开启这个功能会让时间消耗增加2倍以上，内存消耗2倍以上。因为它的原理是在你的代码中插入检测代码，当然这个是在编译时做的，但是运行起来跑的代码更多了。所以使用这个工具是需要重新编译的。并且可以在iOS设备上运行。</p>
 <h5 id="detect-use-of-stack-after-return"><a href="#detect-use-of-stack-after-return" class="headerlink" title="detect use of stack after return"></a>detect use of stack after return</h5><p>我们使用了一个地址，但是这个地址指向了一个局部变量引用的地址，后边使用的时候，这个内存已经释放。</p>
-<p><img src="/14/xcode基本使用/../images/2018-08-144.06.47.png" alt=""></p>
+<p><img src="/14/xcode基本使用/../../images/2018-08-144.06.47.png" alt=""></p>
 <h4 id="Zombie-Objects"><a href="#Zombie-Objects" class="headerlink" title="Zombie Objects"></a>Zombie Objects</h4><p>访问已经释放的内存。</p>
 <p>僵尸对象 </p>
 <h4 id="Thread-Sanitizer"><a href="#Thread-Sanitizer" class="headerlink" title="Thread Sanitizer"></a>Thread Sanitizer</h4><p>发现多线程的资源争夺问题</p>
-<p><img src="/14/xcode基本使用/../images/2018-08-145.51.14.png" alt=""></p>
+<p><img src="/14/xcode基本使用/../../images/2018-08-145.51.14.png" alt=""></p>
 <h4 id="Undefined-Behavior-Sanitizer"><a href="#Undefined-Behavior-Sanitizer" class="headerlink" title="Undefined Behavior Sanitizer"></a>Undefined Behavior Sanitizer</h4><p>还需要在这里进行设置</p>
-<p><img src="/14/xcode基本使用/../images/2018-08-146.11.10.png" alt=""></p>
+<p><img src="/14/xcode基本使用/../../images/2018-08-146.11.10.png" alt=""></p>
 <p>未定义行为的捕捉，比如</p>
 <p>Integer Overflow</p>
 <p>Alignment Violation</p>
