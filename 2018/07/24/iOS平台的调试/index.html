@@ -108,17 +108,27 @@
 
 
 
-  <meta name="description" content="x/16xg mem p objc po objc p *objc">
+  <meta name="description" content="主要涉及到一些工具的使用  debug-Only assertion 断言 lldb Diagnostics profile  debug-Only assertion 打断点setting中可以设置是否允许断点生效，release模式下可以设置为yes进行优化，可以减少ipa包大小。Deployment Postprocessing 为YES的时候不可以断点，为No的时候可以。  断点种类我们主">
 <meta property="og:type" content="article">
 <meta property="og:title" content="iOS平台的调试">
 <meta property="og:url" content="/2018/07/24/iOS平台的调试/index.html">
 <meta property="og:site_name" content="Hanson的博客">
-<meta property="og:description" content="x/16xg mem p objc po objc p *objc">
+<meta property="og:description" content="主要涉及到一些工具的使用  debug-Only assertion 断言 lldb Diagnostics profile  debug-Only assertion 打断点setting中可以设置是否允许断点生效，release模式下可以设置为yes进行优化，可以减少ipa包大小。Deployment Postprocessing 为YES的时候不可以断点，为No的时候可以。  断点种类我们主">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-08-03T06:22:39.000Z">
+<meta property="og:image" content="/images/2018-08-205.36.28.png">
+<meta property="og:image" content="/images/2018-08-203.11.37.png">
+<meta property="og:image" content="/images/2018-08-203.54.42.png">
+<meta property="og:image" content="/images/2018-08-204.20.42.png">
+<meta property="og:image" content="/images/2018-08-143.04.29.png">
+<meta property="og:image" content="/images/2018-08-143.13.36.png">
+<meta property="og:image" content="/images/2018-08-144.06.47.png">
+<meta property="og:image" content="/images/2018-08-145.51.14.png">
+<meta property="og:image" content="/images/2018-08-146.11.10.png">
+<meta property="og:updated_time" content="2018-08-20T09:46:52.212Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS平台的调试">
-<meta name="twitter:description" content="x/16xg mem p objc po objc p *objc">
+<meta name="twitter:description" content="主要涉及到一些工具的使用  debug-Only assertion 断言 lldb Diagnostics profile  debug-Only assertion 打断点setting中可以设置是否允许断点生效，release模式下可以设置为yes进行优化，可以减少ipa包大小。Deployment Postprocessing 为YES的时候不可以断点，为No的时候可以。  断点种类我们主">
+<meta name="twitter:image" content="/images/2018-08-205.36.28.png">
 
 
 
@@ -403,10 +413,83 @@
       
 
       
-        <p><code>x/16xg mem</code></p>
+        <p>主要涉及到一些工具的使用</p>
+<ul>
+<li>debug-Only assertion 断言</li>
+<li>lldb</li>
+<li>Diagnostics</li>
+<li>profile</li>
+</ul>
+<h3 id="debug-Only-assertion-打断点"><a href="#debug-Only-assertion-打断点" class="headerlink" title="debug-Only assertion 打断点"></a>debug-Only assertion 打断点</h3><p>setting中可以设置是否允许断点生效，release模式下可以设置为yes进行优化，可以减少ipa包大小。<code>Deployment Postprocessing</code> 为YES的时候不可以断点，为No的时候可以。</p>
+<p><img src="/24/iOS平台的调试/../../images/2018-08-205.36.28.png" alt=""></p>
+<p>断点种类我们主要看Symbolic BreakPoint和Exception BreakPoint</p>
+<h4 id="Symbolic-BreakPoint"><a href="#Symbolic-BreakPoint" class="headerlink" title="Symbolic BreakPoint"></a>Symbolic BreakPoint</h4><p>你可以在里面添加例如 -[NSArray objectAtIndex:] 这样的符号断点。这样每次调用这个函数的时候，程序都会停止，不管是你调用还是苹果调用。</p>
+<ul>
+<li><p>Symbol：填入你想设置断点的方法<br>（例如：-[NSException raise]，-号是实例方法，+号是类方法）。<br>你也可以输入：<br><code>objc_exception_throw</code>或者<br><code>malloc_error_break</code> //跟踪调试释放了2次的对象<br><code>-[NSObject doesNotRecognizeSelector:]</code> //向某个object发送没有的方法<br>当你不知道这个方法属于哪个类的时候，你可以只输入这个方法的名字，然后运行一次，系统会自动列出包含这个方法的类，你再选择就好了，比如<code>addObjec</code>你以为属于NSMutableArray，实际调用的确实<code>[__NSArrayM addObject]</code>这里需要注意。</p>
+</li>
+<li><p>Module：填入要设置断点的方法或函数是否在位于dylib中，默认不填。</p>
+</li>
+<li><p>Conditon：填入条件，例如：(BOOL)[item isEqualToString:@”test”]前面的（BOOL）是必须的。否则console会提示类型不符号，导致条件不能生效。意思是item（NSString）是test时停下。<br>同样可以写一下判断的方法比如用来确定类类型的isKindOfClass:，确定对象在继承体系中的位置的isMemberOfClass:，判断一个对象是否能接收某个特定消息的respondsToSelector:，判断一个对象是否遵循某个协议的conformsToProtocol:，以及提供方法实现地址的methodForSelector:。</p>
+</li>
+</ul>
+<h4 id="Exception-BreakPoint"><a href="#Exception-BreakPoint" class="headerlink" title="Exception BreakPoint"></a>Exception BreakPoint</h4><p>全局异常断点，没啥好说的。</p>
+<h3 id="lldb"><a href="#lldb" class="headerlink" title="lldb"></a>lldb</h3><p><code>x/16xg mem</code>//调试内存分布</p>
 <p><code>p objc</code></p>
 <p><code>po objc</code></p>
 <p><code>p *objc</code></p>
+<h5 id="p-self-view"><a href="#p-self-view" class="headerlink" title="p self.view"></a><code>p self.view</code></h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">(UIView *) $7 = 0x00007f884ef00a00</div></pre></td></tr></table></figure>
+<p>打印一个对象</p>
+<h5 id="po-self-view"><a href="#po-self-view" class="headerlink" title="po self.view"></a><code>po self.view</code></h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;UIView: 0x7f884ef00a00; frame = (0 0; 414 736); autoresize = W+H; layer = &lt;CALayer: 0x60c00003c020&gt;&gt;</div></pre></td></tr></table></figure>
+<p>查看这个对象的description</p>
+<h5 id="p-self-view-1"><a href="#p-self-view-1" class="headerlink" title="p *self.view"></a><code>p *self.view</code></h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">(UIView) $9 = &#123;</div><div class="line">  UIResponder = &#123;</div><div class="line">    NSObject = &#123;</div><div class="line">      isa = UIView</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h5 id="不同进制查看"><a href="#不同进制查看" class="headerlink" title="不同进制查看"></a>不同进制查看</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">(lldb) p 16</div><div class="line">(int) $10 = 16</div><div class="line">(lldb) p/x 16</div><div class="line">(int) $11 = 0x00000010</div><div class="line">(lldb) p/t 16</div><div class="line">(int) $12 = 0b00000000000000000000000000010000</div></pre></td></tr></table></figure>
+<p>查看内存布局</p>
+<h5 id="执行某句话"><a href="#执行某句话" class="headerlink" title="执行某句话"></a>执行某句话</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">call total = 2;</div><div class="line">e total = 2;</div><div class="line">exp total = 2;</div></pre></td></tr></table></figure>
+<p>这三句都可以</p>
+<h4 id="流程控制"><a href="#流程控制" class="headerlink" title="流程控制"></a>流程控制</h4><p><img src="/24/iOS平台的调试/../../images/2018-08-203.11.37.png" alt=""></p>
+<p>按钮分别为continue，step over，step into，step out。</p>
+<h5 id="continue"><a href="#continue" class="headerlink" title="continue"></a>continue</h5><p>简写c，跳过当前这个断点。</p>
+<h5 id="step-over"><a href="#step-over" class="headerlink" title="step over"></a>step over</h5><p>简写n，当前代码一行一行的往下走，不往函数里边跳转。</p>
+<h5 id="step-into"><a href="#step-into" class="headerlink" title="step into"></a>step into</h5><p>简写s，如果能往里边跳转就会往里边跳。</p>
+<h5 id="step-out"><a href="#step-out" class="headerlink" title="step out"></a>step out</h5><p>跳出某个方法，回到</p>
+<h4 id="赋值后继续运行"><a href="#赋值后继续运行" class="headerlink" title="赋值后继续运行"></a>赋值后继续运行</h4><p><img src="/24/iOS平台的调试/../../images/2018-08-203.54.42.png" alt=""></p>
+<p>用<code>e</code>/<code>exp</code>/<code>call</code>去执行一个句子，然后勾选自动继续执行，就可以达到动态更改代码的目的。</p>
+<p>想象一下调试的时候不需要重新运行，这肯定是高效的一件事哈。</p>
+<h4 id="阻止后边代码运行"><a href="#阻止后边代码运行" class="headerlink" title="阻止后边代码运行"></a>阻止后边代码运行</h4><p><img src="/24/iOS平台的调试/../../images/2018-08-204.20.42.png" alt=""></p>
+<p>使用<code>thread return NO</code>，这里直接使用<code>call return</code>是不好使的。</p>
+<h4 id="查看某个函数的完整调用栈"><a href="#查看某个函数的完整调用栈" class="headerlink" title="查看某个函数的完整调用栈"></a>查看某个函数的完整调用栈</h4><ul>
+<li>打断点</li>
+<li>命令行输入<code>thread backtrance</code></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">(lldb) thread backtrace</div><div class="line">* thread #1, queue = &apos;com.apple.main-thread&apos;, stop reason = breakpoint 3.1</div><div class="line">  * frame #0: 0x000000010bea0c26 again`-[ViewController touchesBegan:withEvent:](self=0x00007fac66702100, _cmd=&quot;touchesBegan:withEvent:&quot;, touches=1 element, event=0x000060800011dbe0) at ViewController.m:71</div><div class="line">    frame #1: 0x000000010d7cefcd UIKit`forwardTouchMethod + 347</div><div class="line">    frame #2: 0x000000010d7cee61 UIKit`-[UIResponder touchesBegan:withEvent:] + 49</div><div class="line">    frame #3: 0x000000010d613562 UIKit`-[UIWindow _sendTouchesForEvent:] + 2130</div><div class="line">    frame #4: 0x000000010d614f2a UIKit`-[UIWindow sendEvent:] + 4124</div><div class="line">    frame #5: 0x000000010d5b8365 UIKit`-[UIApplication sendEvent:] + 352</div><div class="line">    frame #6: 0x000000010df04a1d UIKit`__dispatchPreprocessedEventFromEventQueue + 2809</div><div class="line">    frame #7: 0x000000010df07672 UIKit`__handleEventQueueInternal + 5957</div><div class="line">    frame #8: 0x000000010d0c1101 CoreFoundation`__CFRUNLOOP_IS_CALLING_OUT_TO_A_SOURCE0_PERFORM_FUNCTION__ + 17</div><div class="line">    frame #9: 0x000000010d160f71 CoreFoundation`__CFRunLoopDoSource0 + 81</div><div class="line">    frame #10: 0x000000010d0a5a19 CoreFoundation`__CFRunLoopDoSources0 + 185</div><div class="line">    frame #11: 0x000000010d0a4fff CoreFoundation`__CFRunLoopRun + 1279</div><div class="line">    frame #12: 0x000000010d0a4889 CoreFoundation`CFRunLoopRunSpecific + 409</div><div class="line">    frame #13: 0x00000001121359c6 GraphicsServices`GSEventRunModal + 62</div><div class="line">    frame #14: 0x000000010d59c5d6 UIKit`UIApplicationMain + 159</div><div class="line">    frame #15: 0x000000010bea135f again`main(argc=1, argv=0x00007ffee3d5f0e0) at main.m:14</div><div class="line">    frame #16: 0x0000000110b46d81 libdyld.dylib`start + 1</div></pre></td></tr></table></figure>
+<p>看着里边一个词汇，frame，这里是帧的概念，可以展示一个函数调用的具体的上下文，如果是.a的情况下，我们将会看到汇编的代码，所以从这个角度来看，看懂汇编也是很重要的一件事。</p>
+<p><code>frame select 2</code>查看某一个具体的frame的上下文。</p>
+<p>然后执行<code>frame info</code>可以查看切换后的具体的frame情况。</p>
+<h4 id="让程序暂停看看我们能干点什么"><a href="#让程序暂停看看我们能干点什么" class="headerlink" title="让程序暂停看看我们能干点什么"></a>让程序暂停看看我们能干点什么</h4><h5 id="更改view颜色"><a href="#更改view颜色" class="headerlink" title="更改view颜色"></a>更改view颜色</h5><p>程序运行时，Xcode 的调试条上会出现暂停按钮，而不是继续按钮。现在看起来可以做的事情不多，因为在当前作用域没有变量，也没有特定的代码让你看，但是我们仍然可以访问全局变量。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">po [[[UIApplication sharedApplication] keyWindow] recursiveDescription]</div><div class="line">&lt;UIWindow: 0x7f82b1fa8140; frame = (0 0; 320 568); gestureRecognizers = &lt;NSArray: 0x7f82b1fa92d0&gt;; layer = &lt;UIWindowLayer: 0x7f82b1fa8400&gt;&gt;</div><div class="line">   | &lt;UIView: 0x7f82b1d01fd0; frame = (0 0; 320 568); autoresize = W+H; layer = &lt;CALayer: 0x7f82b1e2e0a0&gt;&gt;</div></pre></td></tr></table></figure>
+<p>##### </p>
+<p><a href="https://www.objccn.io/issue-19-2/" target="_blank" rel="external">与调试器共舞 - LLDB 的华尔兹</a></p>
+<h3 id="Diagnostics"><a href="#Diagnostics" class="headerlink" title="Diagnostics"></a>Diagnostics</h3><p><img src="/24/iOS平台的调试/../../images/2018-08-143.04.29.png" alt=""></p>
+<p>这些工具是如此之好用，但为什么系统不默认全都打开呢，是因为这些工具的运行是有开销的，但是大部分时候这个开销是可以忽略和容忍的。</p>
+<h3 id="Main-Thread-Checker"><a href="#Main-Thread-Checker" class="headerlink" title="Main Thread Checker"></a>Main Thread Checker</h3><p>点选之后，如果有在子线程操作UI的代码，会提示，在runtime中会有体现。这个选项是默认开启的。</p>
+<p><img src="/24/iOS平台的调试/../../images/2018-08-143.13.36.png" alt=""></p>
+<h3 id="内存相关"><a href="#内存相关" class="headerlink" title="内存相关"></a>内存相关</h3><h4 id="Address-Sanitizer"><a href="#Address-Sanitizer" class="headerlink" title="Address Sanitizer"></a>Address Sanitizer</h4><p>检测不安全的指针使用。</p>
+<p>检查非法使用内存或者内存溢出这样的问题，如果我们使用了OC的ARC那么这种情况很少见，但是如果使用了c或者c++来进行编码，这个就显得很有必要了。</p>
+<p>在一些地图，或者流媒体相关的应用中比较常见。</p>
+<p>开启这个功能会让时间消耗增加2倍以上，内存消耗2倍以上。因为它的原理是在你的代码中插入检测代码，当然这个是在编译时做的，但是运行起来跑的代码更多了。所以使用这个工具是需要重新编译的。并且可以在iOS设备上运行。</p>
+<h5 id="detect-use-of-stack-after-return"><a href="#detect-use-of-stack-after-return" class="headerlink" title="detect use of stack after return"></a>detect use of stack after return</h5><p>我们使用了一个地址，但是这个地址指向了一个局部变量引用的地址，后边使用的时候，这个内存已经释放。</p>
+<p><img src="/24/iOS平台的调试/../../images/2018-08-144.06.47.png" alt=""></p>
+<h4 id="Zombie-Objects"><a href="#Zombie-Objects" class="headerlink" title="Zombie Objects"></a>Zombie Objects</h4><p>访问已经释放的内存。</p>
+<p>僵尸对象 </p>
+<h4 id="Thread-Sanitizer"><a href="#Thread-Sanitizer" class="headerlink" title="Thread Sanitizer"></a>Thread Sanitizer</h4><p>发现多线程的资源争夺问题</p>
+<p><img src="/24/iOS平台的调试/../../images/2018-08-145.51.14.png" alt=""></p>
+<h4 id="Undefined-Behavior-Sanitizer"><a href="#Undefined-Behavior-Sanitizer" class="headerlink" title="Undefined Behavior Sanitizer"></a>Undefined Behavior Sanitizer</h4><p>还需要在这里进行设置</p>
+<p><img src="/24/iOS平台的调试/../../images/2018-08-146.11.10.png" alt=""></p>
+<p>未定义行为的捕捉，比如</p>
+<p>Integer Overflow</p>
+<p>Alignment Violation</p>
+<p><a href="https://developer.apple.com/videos/play/wwdc2015/413" target="_blank" rel="external">WWDC 2015 Advanced Debugging and the Address Sanitizer</a></p>
+<p><a href="https://developer.apple.com/videos/play/wwdc2017/406" target="_blank" rel="external">WWDC 2016 Finding Bugs Using Xcode Runtime Tools</a></p>
 
       
     </div>
@@ -500,8 +583,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -516,7 +608,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">114</span>
+                    <span class="site-state-item-count">113</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -634,6 +726,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#debug-Only-assertion-打断点"><span class="nav-number">1.</span> <span class="nav-text">debug-Only assertion 打断点</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Symbolic-BreakPoint"><span class="nav-number">1.1.</span> <span class="nav-text">Symbolic BreakPoint</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Exception-BreakPoint"><span class="nav-number">1.2.</span> <span class="nav-text">Exception BreakPoint</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#lldb"><span class="nav-number">2.</span> <span class="nav-text">lldb</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#p-self-view"><span class="nav-number">2.0.1.</span> <span class="nav-text">p self.view</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#po-self-view"><span class="nav-number">2.0.2.</span> <span class="nav-text">po self.view</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#p-self-view-1"><span class="nav-number">2.0.3.</span> <span class="nav-text">p *self.view</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#不同进制查看"><span class="nav-number">2.0.4.</span> <span class="nav-text">不同进制查看</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#执行某句话"><span class="nav-number">2.0.5.</span> <span class="nav-text">执行某句话</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#流程控制"><span class="nav-number">2.1.</span> <span class="nav-text">流程控制</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#continue"><span class="nav-number">2.1.1.</span> <span class="nav-text">continue</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#step-over"><span class="nav-number">2.1.2.</span> <span class="nav-text">step over</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#step-into"><span class="nav-number">2.1.3.</span> <span class="nav-text">step into</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#step-out"><span class="nav-number">2.1.4.</span> <span class="nav-text">step out</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#赋值后继续运行"><span class="nav-number">2.2.</span> <span class="nav-text">赋值后继续运行</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#阻止后边代码运行"><span class="nav-number">2.3.</span> <span class="nav-text">阻止后边代码运行</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查看某个函数的完整调用栈"><span class="nav-number">2.4.</span> <span class="nav-text">查看某个函数的完整调用栈</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#让程序暂停看看我们能干点什么"><span class="nav-number">2.5.</span> <span class="nav-text">让程序暂停看看我们能干点什么</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#更改view颜色"><span class="nav-number">2.5.1.</span> <span class="nav-text">更改view颜色</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Diagnostics"><span class="nav-number">3.</span> <span class="nav-text">Diagnostics</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Main-Thread-Checker"><span class="nav-number">4.</span> <span class="nav-text">Main Thread Checker</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#内存相关"><span class="nav-number">5.</span> <span class="nav-text">内存相关</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Address-Sanitizer"><span class="nav-number">5.1.</span> <span class="nav-text">Address Sanitizer</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#detect-use-of-stack-after-return"><span class="nav-number">5.1.1.</span> <span class="nav-text">detect use of stack after return</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Zombie-Objects"><span class="nav-number">5.2.</span> <span class="nav-text">Zombie Objects</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Thread-Sanitizer"><span class="nav-number">5.3.</span> <span class="nav-text">Thread Sanitizer</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Undefined-Behavior-Sanitizer"><span class="nav-number">5.4.</span> <span class="nav-text">Undefined Behavior Sanitizer</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
