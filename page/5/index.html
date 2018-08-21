@@ -1503,7 +1503,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="/2017/10/09/2018/Mach-O文件解析/">
+    <link itemprop="mainEntityOfPage" href="/2017/10/09/2018/iOS可执行文件/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Hanson">
@@ -1522,8 +1522,8 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/10/09/2018/Mach-O文件解析/" itemprop="url">
-                  Mac中的二进制文件
+                <a class="post-title-link" href="/2017/10/09/2018/iOS可执行文件/" itemprop="url">
+                  iOS中的可执行文件
                 </a>
               
             
@@ -1597,7 +1597,7 @@
 <li>这个工具可以提取，删除和替换通用二进制文件中制定架构的二进制代码，因此可以通过这个工具对二进制文件进行瘦身</li>
 </ul>
 <h3 id="Mach-O"><a href="#Mach-O" class="headerlink" title="Mach-O"></a>Mach-O</h3><p>先来看看整体结构</p>
-<p><img src="/09/2018/Mach-O文件解析/../../images/2018-08-063.37.51.png" alt=""></p>
+<p><img src="/09/2018/iOS可执行文件/../../images/2018-08-063.37.51.png" alt=""></p>
 <p>这个binary中包含两个可执行文件，分别支持arm_v7架构和arm64架构，一个是32位机器，一个是64位机器。</p>
 <p>再来看一下每个executable文件的内部结构，主要有</p>
 <ul>
@@ -1650,10 +1650,46 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">A 该符号的值在今后的链接中将不再改变；</div><div class="line">B 该符号放在BSS段中，通常是那些未初始化的全局变量；</div><div class="line">D 该符号放在普通的数据段中，通常是那些已经初始化的全局变量；</div><div class="line">T 该符号放在代码段中，通常是那些全局非静态函数；</div><div class="line">U 该符号未定义过，需要自其他对象文件中链接进来；</div><div class="line">W 未明确指定的弱链接符号；同链接的其他对象文件中有它的定义就用上，</div><div class="line">否则就用一个系统特别指定的默认值。</div></pre></td></tr></table></figure>
 <p>注意几点：<br>-C 总是适用于c++编译出来的对象文件。还记得c++中有重载么？为了区分重载函数，c++编译器会将函数返回值/参数等信息附加到函数名称中去形成一个mangle过的符号，那用这个选项列出符号的时候，做一个逆操作，输出那些原始的、我们可理解的符号名称。<br>使用 -l 时，必须保证你的对象文件中带有符号调式信息，这一般要求你在编译的时候指定一个 -g 选项，见 Linux:Gcc。<br>使用nm前，最好先用Linux:File查看对象文件所属处理器架构，然后再用相应交叉版本的nm工具。</p>
 <h3 id="内存分布理解"><a href="#内存分布理解" class="headerlink" title="内存分布理解"></a>内存分布理解</h3><p>使用.memgraph文件，内存分布，那么怎么获取呢，使用file-export Memory Graph，那么问题来了，我点了file没有这一项啊，因为你需要切换到内存检查状态。</p>
-<p><img src="/09/2018/Mach-O文件解析/../../images/2018-08-0912.24.55.png" alt=""></p>
-<p><img src="/09/2018/Mach-O文件解析/../../images/2018-08-0912.26.53.png" alt=""></p>
+<p><img src="/09/2018/iOS可执行文件/../../images/2018-08-0912.24.55.png" alt=""></p>
+<p><img src="/09/2018/iOS可执行文件/../../images/2018-08-0912.26.53.png" alt=""></p>
 <p>然后我们来看看这个文件有啥用。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">vmmap App.memgraph</div><div class="line"></div><div class="line">vmmap --summary App.memgraph</div></pre></td></tr></table></figure>
+<h3 id="CPU的理解"><a href="#CPU的理解" class="headerlink" title="CPU的理解"></a>CPU的理解</h3><ul>
+<li>控制器</li>
+<li>运算器</li>
+<li>寄存器</li>
+<li>时钟</li>
+</ul>
+<p>其中最重要的是寄存器，寄存器也有很多种我们从存储内容出发来理解一下这个问题。</p>
+<p>存储内容</p>
+<ul>
+<li>指令<ul>
+<li>指令寄存器</li>
+<li>程序计数器(或者叫指令计数器)</li>
+</ul>
+</li>
+<li>数据<ul>
+<li>地址 (基址/变址寄存器)</li>
+<li>运算数据(累加寄存器)</li>
+<li>缓冲(数据寄存器) </li>
+</ul>
+</li>
+</ul>
+<h5 id="指令寄存器"><a href="#指令寄存器" class="headerlink" title="指令寄存器"></a>指令寄存器</h5><p>指令寄存器（Instruction Register，IR）用来保存当前正在执行的一条指令。</p>
+<p>当执行一条指令时，首先把该指令从主存读取到数据寄存器中，然后再传送至指令寄存器。</p>
+<p>指令包括操作码和地址码两个字段，为了执行指令，必须对操作码进行测试，识别出所要求的操作，指令译码器（Instruction Decoder，ID）就是完成这项工作的。指令译码器对指令寄存器的操作码部分进行译码，以产生指令所要求操作的控制电位，并将其送到微操作控制线路上，在时序部件定时信号的作用下，产生具体的操作控制信号。</p>
+<p>指令寄存器中操作码字段的输出就是指令译码器的输入。操作码一经译码，即可向操作控制器发出具体操作的特定信号。    </p>
+<h5 id="程序计数器"><a href="#程序计数器" class="headerlink" title="程序计数器"></a>程序计数器</h5><p>程序计数器（Program Counter，PC）用来指出下一条指令在主存储器中的地址。</p>
+<p>在程序执行之前，首先必须将程序的首地址，即程序第一条指令所在主存单元的地址送入PC，因此PC的内容即是从主存提取的第一条指令的地址。</p>
+<p>当执行指令时，CPU能自动递增PC的内容，使其始终保存将要执行的下一条指令的主存地址，为取下一条指令做好准备。若为单字长指令，则(PC)+1àPC，若为双字长指令，则(PC)+2àPC，以此类推。</p>
+<p>但是，当遇到转移指令时，下一条指令的地址将由转移指令的地址码字段来指定，而不是像通常的那样通过顺序递增PC的内容来取得。</p>
+<p>因此，程序计数器的结构应当是具有寄存信息和计数两种功能的结构。</p>
+<h5 id="数据寄存器"><a href="#数据寄存器" class="headerlink" title="数据寄存器"></a>数据寄存器</h5><p>数据寄存器（Data Register，DR）又称数据缓冲寄存器，其主要功能是作为CPU和主存、外设之间信息传输的中转站，用以弥补CPU和主存、外设之间操作速度上的差异。</p>
+<p>数据寄存器用来暂时存放由主存储器读出的一条指令或一个数据字；反之，当向主存存入一条指令或一个数据字时，也将它们暂时存放在数据寄存器中。</p>
+<p>数据寄存器的作用是 ：</p>
+<p>（1）作为CPU和主存、外围设备之间信息传送的中转站；</p>
+<p>（2）弥补CPU和主存、外围设备之间在操作速度上的差异；</p>
+<p>（3）在单累加器结构的运算器中，数据寄存器还可兼作操作数寄存器。</p>
 
           
         

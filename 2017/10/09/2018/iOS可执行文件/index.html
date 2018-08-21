@@ -108,25 +108,29 @@
 
 
 
-  <meta name="description" content="首先来看看那些命令">
-<meta name="keywords" content="工具">
+  <meta name="description" content="在Unix系统中，任何文件都可以通过chmod+x命令来标记为可执行文件，但是这并不能保证这个文件是能够被执行的，这个标志只是告诉系统这个文件可以读入内容，然后寻找一个头签名，据此可以确定精确的可执行文件格式，这个文件签名通常称为”magic”。例如:  #!脚本 0xcafebabe/0xbebafeca包含多种架构支持的二进制，又被称为通用二进制或者胖二进制 0xfeedface(32位)，0">
+<meta name="keywords" content="iOS进阶">
 <meta property="og:type" content="article">
-<meta property="og:title" content="otool作用以及使用">
-<meta property="og:url" content="/2017/09/28/2018/otool作用以及使用/index.html">
+<meta property="og:title" content="iOS中的可执行文件">
+<meta property="og:url" content="/2017/10/09/2018/iOS可执行文件/index.html">
 <meta property="og:site_name" content="Hanson的博客">
-<meta property="og:description" content="首先来看看那些命令">
+<meta property="og:description" content="在Unix系统中，任何文件都可以通过chmod+x命令来标记为可执行文件，但是这并不能保证这个文件是能够被执行的，这个标志只是告诉系统这个文件可以读入内容，然后寻找一个头签名，据此可以确定精确的可执行文件格式，这个文件签名通常称为”magic”。例如:  #!脚本 0xcafebabe/0xbebafeca包含多种架构支持的二进制，又被称为通用二进制或者胖二进制 0xfeedface(32位)，0">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2017-10-11T10:13:43.000Z">
+<meta property="og:image" content="/09/images/2018-08-063.37.51.png">
+<meta property="og:image" content="/09/images/2018-08-0912.24.55.png">
+<meta property="og:image" content="/09/images/2018-08-0912.26.53.png">
+<meta property="og:updated_time" content="2018-08-21T04:48:19.942Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="otool作用以及使用">
-<meta name="twitter:description" content="首先来看看那些命令">
+<meta name="twitter:title" content="iOS中的可执行文件">
+<meta name="twitter:description" content="在Unix系统中，任何文件都可以通过chmod+x命令来标记为可执行文件，但是这并不能保证这个文件是能够被执行的，这个标志只是告诉系统这个文件可以读入内容，然后寻找一个头签名，据此可以确定精确的可执行文件格式，这个文件签名通常称为”magic”。例如:  #!脚本 0xcafebabe/0xbebafeca包含多种架构支持的二进制，又被称为通用二进制或者胖二进制 0xfeedface(32位)，0">
+<meta name="twitter:image" content="/09/images/2018-08-063.37.51.png">
 
 
 
 
 
 
-  <link rel="canonical" href="/2017/09/28/2018/otool作用以及使用/"/>
+  <link rel="canonical" href="/2017/10/09/2018/iOS可执行文件/"/>
 
 
 
@@ -136,7 +140,7 @@
   };
 </script>
 
-  <title>otool作用以及使用 | Hanson的博客</title>
+  <title>iOS中的可执行文件 | Hanson的博客</title>
   
 
 
@@ -328,7 +332,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="/2017/09/28/2018/otool作用以及使用/">
+    <link itemprop="mainEntityOfPage" href="/2017/10/09/2018/iOS可执行文件/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Hanson">
@@ -345,7 +349,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">otool作用以及使用
+          <h1 class="post-title" itemprop="name headline">iOS中的可执行文件
               
             
           </h1>
@@ -370,7 +374,7 @@
                 
               
 
-              <time title="创建时间：2017-09-28 09:46:28" itemprop="dateCreated datePublished" datetime="2017-09-28T09:46:28+08:00">2017-09-28</time>
+              <time title="创建时间：2017-10-09 18:31:22" itemprop="dateCreated datePublished" datetime="2017-10-09T18:31:22+08:00">2017-10-09</time>
             
 
             
@@ -404,11 +408,111 @@
       
 
       
-        <p>首先来看看那些命令<br><a id="more"></a></p>
+        <p>在Unix系统中，任何文件都可以通过chmod+x命令来标记为可执行文件，但是这并不能保证这个文件是能够被执行的，这个标志只是告诉系统这个文件可以读入内容，然后寻找一个头签名，据此可以确定精确的可执行文件格式，这个文件签名通常称为”magic”。<br>例如:</p>
 <ul>
-<li>-h print the mach header打印头部</li>
-<li></li>
+<li>#!脚本</li>
+<li>0xcafebabe/0xbebafeca包含多种架构支持的二进制，又被称为通用二进制或者胖二进制</li>
+<li>0xfeedface(32位)，0xfeedfacf(64位)Mach-O格式或者叫OSX原生二进制格式</li>
 </ul>
+<h3 id="胖二进制"><a href="#胖二进制" class="headerlink" title="胖二进制"></a>胖二进制</h3><p>通用二进制只不过是其支持的各种架构的二进制文件的打包文件，这种格式的文件包含一个文件头，然后文件头后面依次拷贝了每一种支持架构的二进制文件。</p>
+<ul>
+<li>通用二进制文件的处理工具叫做<code>lipo</code>脂肪的意思，对应胖二进制的意思</li>
+<li>这个工具可以提取，删除和替换通用二进制文件中制定架构的二进制代码，因此可以通过这个工具对二进制文件进行瘦身</li>
+</ul>
+<h3 id="Mach-O"><a href="#Mach-O" class="headerlink" title="Mach-O"></a>Mach-O</h3><p>先来看看整体结构</p>
+<p><img src="/09/2018/iOS可执行文件/../../images/2018-08-063.37.51.png" alt=""></p>
+<p>这个binary中包含两个可执行文件，分别支持arm_v7架构和arm64架构，一个是32位机器，一个是64位机器。</p>
+<p>再来看一下每个executable文件的内部结构，主要有</p>
+<ul>
+<li>头部(header structrue)</li>
+<li>加载命令(load command)</li>
+<li>段(segment)。可以拥有多个段，每个段可以拥有多个区域(section)，每一个段都拥有一段虚拟的地址映射到进程的空间地址。</li>
+<li>链接信息，包含了动态加载器用来链接可执行文件或者依赖库所需要的符号表，字符串表等等。</li>
+</ul>
+<p>前三种信息的提取可以使用otool工具，最后一个符号表可以使用nm工具，在release的版本中是没有符号表的，我们也可以用strip命令，删除符号表，该命令同时也会删除__DATA中的部分信息，比如class的name，sel的那么等等。</p>
+<p>首先看mach_header<br><code>otool -hV JDMobile</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Mach header</div><div class="line"></div><div class="line">magic cputype cpusubtype  caps    filetype ncmds sizeofcmds      flags</div><div class="line"></div><div class="line">MH_MAGIC_64   ARM64        ALL  0x00     EXECUTE    68       7464   NOUNDEFS DYLDLINK TWOLEVEL WEAK_DEFINES BINDS_TO_WEAK PIE</div></pre></td></tr></table></figure>
+<ul>
+<li>magic魔数代表32或者64位</li>
+<li>cputype和subcuptype代表cup类型，arm64是手机的64位，x86_64代表mac的64位</li>
+<li>filetype代表文件类型(可执行文件，库文件，核心转储文件，内核扩展)</li>
+<li>ncmds和sizeofcmds用于加载的家在命令的条数和大小</li>
+<li>flags代表动态连接器(dyld)的标志</li>
+</ul>
+<p>__TEXT section    用途</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">__text	程序代码</div><div class="line">__stubs	用于动态链接的存根，里边存储的是我们调用系统动态库方法的函数地址</div><div class="line">__stub_helper	用于动态链接的存根</div><div class="line">__const	程序中const关键字修饰的常量变量</div><div class="line">__objc_methname	objc方法名，所有参与编译的方法的名字</div><div class="line">__cstring	c语言字符串</div><div class="line">__objc_classname	objc类名</div><div class="line">__objc_methtype	objc方法类型</div><div class="line">__gcc_except_tab	异常处理相关</div><div class="line">__ustring	unicode字符串</div><div class="line">__unwind_info	异常处理</div><div class="line">__eh_frame	异常处理</div></pre></td></tr></table></figure>
+<p>__DATA section    用途</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">__nl_symbol_ptr	动态符号链接相关,指针数组</div><div class="line">__got	全局偏移表, Global Offset Table</div><div class="line">__la_symbol_ptr	动态符号链接相关，也是指针数组，通过dyld_stub_binder辅助链接</div><div class="line">__mod_init_func	初始化的全局函数地址，会在main之前被调用</div><div class="line">__mod_term_func	终止函数，在main返回之后调用</div><div class="line">__const	const修饰的常量</div><div class="line">__cstring	程序中硬编码的ANSI的字符串</div><div class="line">__cfstring	CF用到的字符串</div><div class="line">__objc_classlist	objc类列表，所有参与编译的列表</div><div class="line">__objc_nlclslist	objcload方法列表</div><div class="line">__objc_catlist	objc category列表</div><div class="line">__objc_protolist	objc protocol列表</div><div class="line">__objc_imageinfo	镜像信息</div><div class="line">__objc_const	objc的常量</div><div class="line">__objc_selrefs	objc引用的SEL列表，所有被使用到的方法的名字</div><div class="line">__objc_protorefs	objc引用的protocol列表</div><div class="line">__objc_classrefs	objc引用的class列表，所有真正有被调用的class列表，用上边那个参与编译的列表，减去这个被使用的列表，就是没有使用的列表。</div><div class="line"></div><div class="line">__objc_superrefs	objc父类的引用列表</div><div class="line">__objc_ivar	objcivar信息</div><div class="line">__objc_data	class信息</div><div class="line">__bss	未初始化的静态变量区</div><div class="line">__data	初始化的可变变量</div></pre></td></tr></table></figure>
+<h4 id="随机地址空间"><a href="#随机地址空间" class="headerlink" title="随机地址空间"></a>随机地址空间</h4><p>进程每一次启动，地址空间都会简单地随机化。该方式对APP的安全性具有重大的意义。如果采用传统的方式，程序的每一次启动的虚拟内存镜像都是一致的，黑客很容易采取重写内存的方式来破解程序。采用ASLR可以有效的避免黑客的中间人攻击等。</p>
+<h4 id="分析方法"><a href="#分析方法" class="headerlink" title="分析方法"></a>分析方法</h4><p>stings</p>
+<p>otool</p>
+<p>nm</p>
+<p><a href="https://github.com/gdbinit/MachOView" target="_blank" rel="external">MachOView</a>使用open方法</p>
+<h5 id="otool"><a href="#otool" class="headerlink" title="otool"></a>otool</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line">-f print the fat headers</div><div class="line">-a print the archive header</div><div class="line">-h print the mach header   #查看支持的架构，常用</div><div class="line">-hV print the mach header  #查看支持的架构，常用 </div><div class="line">-l print the load commands</div><div class="line">-L print shared libraries used #使用到的系统库</div><div class="line">-D print shared library id name #支持的架构arm64 armv7</div><div class="line">-t print the text section (disassemble with -v) #查看数据段，二进制,基本无用</div><div class="line">-tV print the text section (disassemble with -v) #查看数据段，汇编，基本无用</div><div class="line">-p &lt;routine name&gt;  start dissassemble from routine name#无用</div><div class="line">-s &lt;segname&gt; &lt;sectname&gt; print contents of section</div><div class="line">-d print the data section</div><div class="line">-o print the Objective-C segment</div><div class="line">-r print the relocation entries</div><div class="line">-S print the table of contents of a library</div><div class="line">-T print the table of contents of a dynamic shared library</div><div class="line">-M print the module table of a dynamic shared library</div><div class="line">-R print the reference table of a dynamic shared library</div><div class="line">-I print the indirect symbol table</div><div class="line">-H print the two-level hints table</div><div class="line">-G print the data in code table</div><div class="line">-v print verbosely (symbolically) when possible</div><div class="line">-V print disassembled operands symbolically</div><div class="line">-c print argument strings of a core file</div><div class="line">-X print no leading addresses or headers</div><div class="line">-m don&apos;t use archive(member) syntax</div><div class="line">-B force Thumb disassembly (ARM objects only)</div><div class="line">-q use llvm&apos;s disassembler (the default)</div><div class="line">-Q use otool(1)&apos;s disassembler</div><div class="line">-mcpu=arg use `arg&apos; as the cpu for disassembly</div><div class="line">-j print opcode bytes</div><div class="line">-P print the info plist section as strings</div><div class="line">-C print linker optimization hints</div><div class="line">-tV 所有的汇编码</div></pre></td></tr></table></figure>
+<h4 id="瘦身实战"><a href="#瘦身实战" class="headerlink" title="瘦身实战"></a>瘦身实战</h4><h4 id="查看所有编译进去的方法"><a href="#查看所有编译进去的方法" class="headerlink" title="查看所有编译进去的方法"></a>查看所有编译进去的方法</h4><p>也就是查看符号表</p>
+<p><code>nm JDMobile</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
+<h4 id="查看所有被使用的方法"><a href="#查看所有被使用的方法" class="headerlink" title="查看所有被使用的方法"></a>查看所有被使用的方法</h4><p><code>otool -v -s __DATA  __objc_selrefs JDMobile-build-beta</code><br>-s 是说我要看这个seg下的这个section<br>-v 是说尽可能展示可识别内容</p>
+<p><code>GetFileInfo filename| grep modified</code>查看文件信息，包括</p>
+<blockquote>
+<ul>
+<li>directory: “/Users/jrmacpro/Library/Developer/Xcode/DerivedData/JDFinance-eqeqtaeyecxhiqgogjuodubajlyt/Build/Products/Beta-iphoneos/JDMobile.app”</li>
+<li>attributes: avbstclinmedz</li>
+<li>created: 10/18/2017 12:55:09</li>
+<li>modified: 10/18/2017 12:59:11</li>
+</ul>
+</blockquote>
+<h3 id="nm的使用"><a href="#nm的使用" class="headerlink" title="nm的使用"></a>nm的使用</h3><p>nm [option(s)] [file(s)]<br>有用的options:</p>
+<p>-A 在每个符号信息的前面打印所在对象文件名称；</p>
+<p>-C 输出demangle过了的符号名称；</p>
+<p>-D 打印动态符号；</p>
+<p>-l 使用对象文件中的调试信息打印出所在源文件及行号；</p>
+<p>-n 按照地址/符号值来排序；</p>
+<p>-u 打印出那些未定义的符号；</p>
+<p>常见的符号类型:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">A 该符号的值在今后的链接中将不再改变；</div><div class="line">B 该符号放在BSS段中，通常是那些未初始化的全局变量；</div><div class="line">D 该符号放在普通的数据段中，通常是那些已经初始化的全局变量；</div><div class="line">T 该符号放在代码段中，通常是那些全局非静态函数；</div><div class="line">U 该符号未定义过，需要自其他对象文件中链接进来；</div><div class="line">W 未明确指定的弱链接符号；同链接的其他对象文件中有它的定义就用上，</div><div class="line">否则就用一个系统特别指定的默认值。</div></pre></td></tr></table></figure>
+<p>注意几点：<br>-C 总是适用于c++编译出来的对象文件。还记得c++中有重载么？为了区分重载函数，c++编译器会将函数返回值/参数等信息附加到函数名称中去形成一个mangle过的符号，那用这个选项列出符号的时候，做一个逆操作，输出那些原始的、我们可理解的符号名称。<br>使用 -l 时，必须保证你的对象文件中带有符号调式信息，这一般要求你在编译的时候指定一个 -g 选项，见 Linux:Gcc。<br>使用nm前，最好先用Linux:File查看对象文件所属处理器架构，然后再用相应交叉版本的nm工具。</p>
+<h3 id="内存分布理解"><a href="#内存分布理解" class="headerlink" title="内存分布理解"></a>内存分布理解</h3><p>使用.memgraph文件，内存分布，那么怎么获取呢，使用file-export Memory Graph，那么问题来了，我点了file没有这一项啊，因为你需要切换到内存检查状态。</p>
+<p><img src="/09/2018/iOS可执行文件/../../images/2018-08-0912.24.55.png" alt=""></p>
+<p><img src="/09/2018/iOS可执行文件/../../images/2018-08-0912.26.53.png" alt=""></p>
+<p>然后我们来看看这个文件有啥用。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">vmmap App.memgraph</div><div class="line"></div><div class="line">vmmap --summary App.memgraph</div></pre></td></tr></table></figure>
+<h3 id="CPU的理解"><a href="#CPU的理解" class="headerlink" title="CPU的理解"></a>CPU的理解</h3><ul>
+<li>控制器</li>
+<li>运算器</li>
+<li>寄存器</li>
+<li>时钟</li>
+</ul>
+<p>其中最重要的是寄存器，寄存器也有很多种我们从存储内容出发来理解一下这个问题。</p>
+<p>存储内容</p>
+<ul>
+<li>指令<ul>
+<li>指令寄存器</li>
+<li>程序计数器(或者叫指令计数器)</li>
+</ul>
+</li>
+<li>数据<ul>
+<li>地址 (基址/变址寄存器)</li>
+<li>运算数据(累加寄存器)</li>
+<li>缓冲(数据寄存器) </li>
+</ul>
+</li>
+</ul>
+<h5 id="指令寄存器"><a href="#指令寄存器" class="headerlink" title="指令寄存器"></a>指令寄存器</h5><p>指令寄存器（Instruction Register，IR）用来保存当前正在执行的一条指令。</p>
+<p>当执行一条指令时，首先把该指令从主存读取到数据寄存器中，然后再传送至指令寄存器。</p>
+<p>指令包括操作码和地址码两个字段，为了执行指令，必须对操作码进行测试，识别出所要求的操作，指令译码器（Instruction Decoder，ID）就是完成这项工作的。指令译码器对指令寄存器的操作码部分进行译码，以产生指令所要求操作的控制电位，并将其送到微操作控制线路上，在时序部件定时信号的作用下，产生具体的操作控制信号。</p>
+<p>指令寄存器中操作码字段的输出就是指令译码器的输入。操作码一经译码，即可向操作控制器发出具体操作的特定信号。    </p>
+<h5 id="程序计数器"><a href="#程序计数器" class="headerlink" title="程序计数器"></a>程序计数器</h5><p>程序计数器（Program Counter，PC）用来指出下一条指令在主存储器中的地址。</p>
+<p>在程序执行之前，首先必须将程序的首地址，即程序第一条指令所在主存单元的地址送入PC，因此PC的内容即是从主存提取的第一条指令的地址。</p>
+<p>当执行指令时，CPU能自动递增PC的内容，使其始终保存将要执行的下一条指令的主存地址，为取下一条指令做好准备。若为单字长指令，则(PC)+1àPC，若为双字长指令，则(PC)+2àPC，以此类推。</p>
+<p>但是，当遇到转移指令时，下一条指令的地址将由转移指令的地址码字段来指定，而不是像通常的那样通过顺序递增PC的内容来取得。</p>
+<p>因此，程序计数器的结构应当是具有寄存信息和计数两种功能的结构。</p>
+<h5 id="数据寄存器"><a href="#数据寄存器" class="headerlink" title="数据寄存器"></a>数据寄存器</h5><p>数据寄存器（Data Register，DR）又称数据缓冲寄存器，其主要功能是作为CPU和主存、外设之间信息传输的中转站，用以弥补CPU和主存、外设之间操作速度上的差异。</p>
+<p>数据寄存器用来暂时存放由主存储器读出的一条指令或一个数据字；反之，当向主存存入一条指令或一个数据字时，也将它们暂时存放在数据寄存器中。</p>
+<p>数据寄存器的作用是 ：</p>
+<p>（1）作为CPU和主存、外围设备之间信息传送的中转站；</p>
+<p>（2）弥补CPU和主存、外围设备之间在操作速度上的差异；</p>
+<p>（3）在单累加器结构的运算器中，数据寄存器还可兼作操作数寄存器。</p>
 
       
     </div>
@@ -429,7 +533,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/工具/" rel="tag"># 工具</a>
+            <a href="/tags/iOS进阶/" rel="tag"># iOS进阶</a>
           
         </div>
       
@@ -442,8 +546,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/09/22/2017/find命令/" rel="next" title="find与grep命令">
-                <i class="fa fa-chevron-left"></i> find与grep命令
+              <a href="/2017/09/28/2018/otool作用以及使用/" rel="next" title="otool作用以及使用">
+                <i class="fa fa-chevron-left"></i> otool作用以及使用
               </a>
             
           </div>
@@ -452,8 +556,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/10/09/2018/iOS可执行文件/" rel="prev" title="iOS中的可执行文件">
-                iOS中的可执行文件 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/10/10/2018/xcode多版本自动化打包记录/" rel="prev" title="xcode多版本自动化打包设置">
+                xcode多版本自动化打包设置 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -508,8 +612,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -642,6 +755,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#胖二进制"><span class="nav-number">1.</span> <span class="nav-text">胖二进制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Mach-O"><span class="nav-number">2.</span> <span class="nav-text">Mach-O</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#随机地址空间"><span class="nav-number">2.1.</span> <span class="nav-text">随机地址空间</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#分析方法"><span class="nav-number">2.2.</span> <span class="nav-text">分析方法</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#otool"><span class="nav-number">2.2.1.</span> <span class="nav-text">otool</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#瘦身实战"><span class="nav-number">2.3.</span> <span class="nav-text">瘦身实战</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查看所有编译进去的方法"><span class="nav-number">2.4.</span> <span class="nav-text">查看所有编译进去的方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查看所有被使用的方法"><span class="nav-number">2.5.</span> <span class="nav-text">查看所有被使用的方法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#nm的使用"><span class="nav-number">3.</span> <span class="nav-text">nm的使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#内存分布理解"><span class="nav-number">4.</span> <span class="nav-text">内存分布理解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CPU的理解"><span class="nav-number">5.</span> <span class="nav-text">CPU的理解</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#指令寄存器"><span class="nav-number">5.0.1.</span> <span class="nav-text">指令寄存器</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#程序计数器"><span class="nav-number">5.0.2.</span> <span class="nav-text">程序计数器</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#数据寄存器"><span class="nav-number">5.0.3.</span> <span class="nav-text">数据寄存器</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
