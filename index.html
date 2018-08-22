@@ -327,6 +327,147 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="/2018/08/22/iOS中的滑动/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Hanson">
+      <meta itemprop="description" content="移动端开发，养伤的羽毛球选手">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hanson的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/22/iOS中的滑动/" itemprop="url">
+                  iOS中的滑动
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-08-22 17:44:36" itemprop="dateCreated datePublished" datetime="2018-08-22T17:44:36+08:00">2018-08-22</time>
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="scrollView上连续滑动的问题"><a href="#scrollView上连续滑动的问题" class="headerlink" title="scrollView上连续滑动的问题"></a>scrollView上连续滑动的问题</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line">@interface ViewController ()&lt;UIScrollViewDelegate&gt;</div><div class="line">@property (nonatomic, strong) TestScrollView *scr1;</div><div class="line">@property (nonatomic, strong) UIScrollView *scr2;</div><div class="line">@end</div><div class="line"></div><div class="line">@implementation ViewController</div><div class="line"></div><div class="line">- (void)viewDidLoad &#123;</div><div class="line">    [super viewDidLoad];</div><div class="line">    [self.view addSubview:self.scr1];</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (UIScrollView *)scr1 &#123;</div><div class="line">    if (!_scr1) &#123;</div><div class="line">        _scr1 = [[UIScrollView alloc] init];</div><div class="line">        CGFloat width = [UIScreen mainScreen].bounds.size.width;</div><div class="line">        CGFloat height = [UIScreen mainScreen].bounds.size.height;</div><div class="line">        _scr1.frame = CGRectMake(0, 0, width, height);</div><div class="line">        _scr1.backgroundColor = [UIColor orangeColor];</div><div class="line">        _scr1.contentSize = CGSizeMake(width * 2, height);</div><div class="line">        _scr1.pagingEnabled = YES;</div><div class="line">        _scr1.delegate = self;</div><div class="line">        [_scr1 addSubview:self.scr2];</div><div class="line">    &#125;</div><div class="line">    return _scr1;</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (UIScrollView *)scr2 &#123;</div><div class="line">    if (!_scr2) &#123;</div><div class="line">        _scr2 = [[UIScrollView alloc] init];</div><div class="line">        CGFloat width = [UIScreen mainScreen].bounds.size.width;</div><div class="line">        CGFloat height = [UIScreen mainScreen].bounds.size.height;</div><div class="line">        _scr2.frame = CGRectMake(0, 50, width, height - 50);</div><div class="line">        _scr2.backgroundColor = [UIColor blueColor];</div><div class="line">        _scr2.contentSize = CGSizeMake(width * 2, 0);</div><div class="line">        _scr2.pagingEnabled = YES;</div><div class="line">        _scr2.delegate = self;</div><div class="line">    &#125;</div><div class="line">    return _scr2;</div><div class="line">&#125;</div><div class="line"></div><div class="line">@end</div></pre></td></tr></table></figure>
+<p>scrollView上叠加scrollVie的时候，当滑动上边的Scr的时候</p>
+<ul>
+<li>如果上边的可以滑动，那么就是上边的scrollView来响应事件</li>
+<li>如果已经滑动到边界，那么就是下边的scrollView来响应事件</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="/2018/07/25/iOS中的crash/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1608,147 +1749,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="/2018/03/21/2018/Seaborn数据展示入门/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Hanson">
-      <meta itemprop="description" content="移动端开发，养伤的羽毛球选手">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hanson的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/03/21/2018/Seaborn数据展示入门/" itemprop="url">
-                  Seaborn数据展示入门
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2018-03-21 11:19:10" itemprop="dateCreated datePublished" datetime="2018-03-21T11:19:10+08:00">2018-03-21</time>
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <ul>
-<li>都有什么类型的图</li>
-<li>都能做哪几种分析</li>
-</ul>
-<p>Seaborn有五个预设好的主题：darkgrid, whitegrid, dark, white,和ticks</p>
-<h3 id="distplot-kdeplot"><a href="#distplot-kdeplot" class="headerlink" title="distplot()  kdeplot()"></a>distplot()  kdeplot()</h3><p>distplot()为hist加强版，kdeplot()为密度曲线图 </p>
-<h3 id="箱型图-boxplot"><a href="#箱型图-boxplot" class="headerlink" title="箱型图 boxplot()"></a>箱型图 boxplot()</h3><h3 id="联合分布jointplot"><a href="#联合分布jointplot" class="headerlink" title="联合分布jointplot()"></a>联合分布jointplot()</h3><h3 id="热点图heatmap"><a href="#热点图heatmap" class="headerlink" title="热点图heatmap()"></a>热点图heatmap()</h3><h3 id="Histograms直方图"><a href="#Histograms直方图" class="headerlink" title="Histograms直方图"></a>Histograms直方图</h3><h3 id="Kernel-density-estimaton核密度估计"><a href="#Kernel-density-estimaton核密度估计" class="headerlink" title="Kernel density estimaton核密度估计"></a>Kernel density estimaton核密度估计</h3>
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1796,7 +1796,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">113</span>
+                    <span class="site-state-item-count">114</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>

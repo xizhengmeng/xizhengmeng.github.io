@@ -108,25 +108,24 @@
 
 
 
-  <meta name="description" content="过程是看看有没有装这个软件，如果没有装就先下载再装上，然后开始进行检索所有的图片，然后把图片传入这个软件，打开进行压缩 12345678910111213141516171819202122232425262728293031323334353637383940#!/usr/bin/env python#coding:utf-8import sys,os,time,shutilimport url">
-<meta name="keywords" content="工具">
+  <meta name="description" content="scrollView上连续滑动的问题123456789101112131415161718192021222324252627282930313233343536373839404142@interface ViewController ()&amp;lt;UIScrollViewDelegate&amp;gt;@property (nonatomic, strong) TestScrollView *scr1;">
 <meta property="og:type" content="article">
-<meta property="og:title" content="图片压缩工具ImageOptim在git的集成">
-<meta property="og:url" content="/2017/10/23/2018/图片压缩工具ImageOptim在git的集成/index.html">
+<meta property="og:title" content="iOS中的滑动">
+<meta property="og:url" content="/2018/08/22/iOS中的滑动/index.html">
 <meta property="og:site_name" content="Hanson的博客">
-<meta property="og:description" content="过程是看看有没有装这个软件，如果没有装就先下载再装上，然后开始进行检索所有的图片，然后把图片传入这个软件，打开进行压缩 12345678910111213141516171819202122232425262728293031323334353637383940#!/usr/bin/env python#coding:utf-8import sys,os,time,shutilimport url">
+<meta property="og:description" content="scrollView上连续滑动的问题123456789101112131415161718192021222324252627282930313233343536373839404142@interface ViewController ()&amp;lt;UIScrollViewDelegate&amp;gt;@property (nonatomic, strong) TestScrollView *scr1;">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2017-10-23T01:27:19.000Z">
+<meta property="og:updated_time" content="2018-08-22T10:25:14.091Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="图片压缩工具ImageOptim在git的集成">
-<meta name="twitter:description" content="过程是看看有没有装这个软件，如果没有装就先下载再装上，然后开始进行检索所有的图片，然后把图片传入这个软件，打开进行压缩 12345678910111213141516171819202122232425262728293031323334353637383940#!/usr/bin/env python#coding:utf-8import sys,os,time,shutilimport url">
+<meta name="twitter:title" content="iOS中的滑动">
+<meta name="twitter:description" content="scrollView上连续滑动的问题123456789101112131415161718192021222324252627282930313233343536373839404142@interface ViewController ()&amp;lt;UIScrollViewDelegate&amp;gt;@property (nonatomic, strong) TestScrollView *scr1;">
 
 
 
 
 
 
-  <link rel="canonical" href="/2017/10/23/2018/图片压缩工具ImageOptim在git的集成/"/>
+  <link rel="canonical" href="/2018/08/22/iOS中的滑动/"/>
 
 
 
@@ -136,7 +135,7 @@
   };
 </script>
 
-  <title>图片压缩工具ImageOptim在git的集成 | Hanson的博客</title>
+  <title>iOS中的滑动 | Hanson的博客</title>
   
 
 
@@ -328,7 +327,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="/2017/10/23/2018/图片压缩工具ImageOptim在git的集成/">
+    <link itemprop="mainEntityOfPage" href="/2018/08/22/iOS中的滑动/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Hanson">
@@ -345,7 +344,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">图片压缩工具ImageOptim在git的集成
+          <h1 class="post-title" itemprop="name headline">iOS中的滑动
               
             
           </h1>
@@ -370,7 +369,7 @@
                 
               
 
-              <time title="创建时间：2017-10-23 09:25:06" itemprop="dateCreated datePublished" datetime="2017-10-23T09:25:06+08:00">2017-10-23</time>
+              <time title="创建时间：2018-08-22 17:44:36" itemprop="dateCreated datePublished" datetime="2018-08-22T17:44:36+08:00">2018-08-22</time>
             
 
             
@@ -404,8 +403,12 @@
       
 
       
-        <p>过程是看看有没有装这个软件，如果没有装就先下载再装上，然后开始进行检索所有的图片，然后把图片传入这个软件，打开进行压缩</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line">#!/usr/bin/env python</div><div class="line">#coding:utf-8</div><div class="line"></div><div class="line">import sys,os,time,shutil</div><div class="line">import urllib </div><div class="line">import urllib2</div><div class="line">import zipfile</div><div class="line">import tarfile</div><div class="line"></div><div class="line">def un_tar(file_name):</div><div class="line">    tar = tarfile.open(file_name)</div><div class="line">    names = tar.getnames()</div><div class="line">    if os.path.isdir(file_name + &quot;_files&quot;):</div><div class="line">        pass</div><div class="line">    else:</div><div class="line">        os.mkdir(file_name + &quot;_files&quot;)</div><div class="line">    #因为解压后是很多文件，预先建立同名目录</div><div class="line">    for name in names:</div><div class="line">        tar.extract(name, file_name + &quot;_files/&quot;)</div><div class="line">    tar.close()</div><div class="line"></div><div class="line">if os.path.exists(&apos;/Applications/ImageOptim.app&apos;) == False:</div><div class="line">   print &apos;下载&apos;	</div><div class="line">   un_tar(&apos;ImageOptim.tar&apos;)</div><div class="line">   shutil.copytree(&apos;ImageOptim.tar_files/ImageOptim.app&apos;,&apos;/Applications/ImageOptim.app&apos;)</div><div class="line"></div><div class="line">text = os.popen(&apos;find . -name *.png&apos;).read()</div><div class="line">images = text.split(&apos;\n&apos;)</div><div class="line"></div><div class="line">imagepaths = &apos;&apos;</div><div class="line"></div><div class="line">for x in xrange(1,200):</div><div class="line">    image = images[x]</div><div class="line">    if chr(32) in image:</div><div class="line">       print &apos;该文件不可用，请去除文件名字的空格&apos; + image	</div><div class="line">       continue</div><div class="line"></div><div class="line">    imagepaths = imagepaths + &apos; &apos; + image</div><div class="line"></div><div class="line">os.system(&apos;open -a ImageOptim &apos; + imagepaths)</div></pre></td></tr></table></figure>
+        <h3 id="scrollView上连续滑动的问题"><a href="#scrollView上连续滑动的问题" class="headerlink" title="scrollView上连续滑动的问题"></a>scrollView上连续滑动的问题</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line">@interface ViewController ()&lt;UIScrollViewDelegate&gt;</div><div class="line">@property (nonatomic, strong) TestScrollView *scr1;</div><div class="line">@property (nonatomic, strong) UIScrollView *scr2;</div><div class="line">@end</div><div class="line"></div><div class="line">@implementation ViewController</div><div class="line"></div><div class="line">- (void)viewDidLoad &#123;</div><div class="line">    [super viewDidLoad];</div><div class="line">    [self.view addSubview:self.scr1];</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (UIScrollView *)scr1 &#123;</div><div class="line">    if (!_scr1) &#123;</div><div class="line">        _scr1 = [[UIScrollView alloc] init];</div><div class="line">        CGFloat width = [UIScreen mainScreen].bounds.size.width;</div><div class="line">        CGFloat height = [UIScreen mainScreen].bounds.size.height;</div><div class="line">        _scr1.frame = CGRectMake(0, 0, width, height);</div><div class="line">        _scr1.backgroundColor = [UIColor orangeColor];</div><div class="line">        _scr1.contentSize = CGSizeMake(width * 2, height);</div><div class="line">        _scr1.pagingEnabled = YES;</div><div class="line">        _scr1.delegate = self;</div><div class="line">        [_scr1 addSubview:self.scr2];</div><div class="line">    &#125;</div><div class="line">    return _scr1;</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (UIScrollView *)scr2 &#123;</div><div class="line">    if (!_scr2) &#123;</div><div class="line">        _scr2 = [[UIScrollView alloc] init];</div><div class="line">        CGFloat width = [UIScreen mainScreen].bounds.size.width;</div><div class="line">        CGFloat height = [UIScreen mainScreen].bounds.size.height;</div><div class="line">        _scr2.frame = CGRectMake(0, 50, width, height - 50);</div><div class="line">        _scr2.backgroundColor = [UIColor blueColor];</div><div class="line">        _scr2.contentSize = CGSizeMake(width * 2, 0);</div><div class="line">        _scr2.pagingEnabled = YES;</div><div class="line">        _scr2.delegate = self;</div><div class="line">    &#125;</div><div class="line">    return _scr2;</div><div class="line">&#125;</div><div class="line"></div><div class="line">@end</div></pre></td></tr></table></figure>
+<p>scrollView上叠加scrollVie的时候，当滑动上边的Scr的时候</p>
+<ul>
+<li>如果上边的可以滑动，那么就是上边的scrollView来响应事件</li>
+<li>如果已经滑动到边界，那么就是下边的scrollView来响应事件</li>
+</ul>
 
       
     </div>
@@ -424,12 +427,6 @@
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/工具/" rel="tag"># 工具</a>
-          
-        </div>
-      
 
       
       
@@ -439,8 +436,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/10/20/2017/iOS安全-符号表/" rel="next" title="iOS安全--符号表">
-                <i class="fa fa-chevron-left"></i> iOS安全--符号表
+              <a href="/2018/07/25/iOS中的crash/" rel="next" title="iOS中的crash">
+                <i class="fa fa-chevron-left"></i> iOS中的crash
               </a>
             
           </div>
@@ -448,10 +445,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/10/23/2018/数据科学入门/" rel="prev" title="数据科学入门">
-                数据科学入门 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -505,8 +498,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -639,6 +641,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#scrollView上连续滑动的问题"><span class="nav-number">1.</span> <span class="nav-text">scrollView上连续滑动的问题</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
