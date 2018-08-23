@@ -115,7 +115,7 @@
 <meta property="og:site_name" content="Hanson的博客">
 <meta property="og:description" content="先来思考一些问题如何做到各业务单独开发，单独测试？如何加快测试包编译速度如何做到不同业务代码安全如何在客户端实现千人千面，同一个按钮跳转不同的页面？">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-08-23T04:45:42.349Z">
+<meta property="og:updated_time" content="2018-08-23T06:15:36.485Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="组件化平台构建记录">
 <meta name="twitter:description" content="先来思考一些问题如何做到各业务单独开发，单独测试？如何加快测试包编译速度如何做到不同业务代码安全如何在客户端实现千人千面，同一个按钮跳转不同的页面？">
@@ -541,11 +541,16 @@
 <li>找到spec之后先去看看缓存中有没有，有的话直接copy过去，没有再从远端开始下载，同时进行缓存</li>
 <li>看看所有的依赖有没有版本不兼容的，不兼容直接报错</li>
 </ul>
-<p>总结一下情况：</p>
+<p>总结一下代码的来源情况：</p>
 <ul>
 <li>指定了path</li>
 <li>有缓存</li>
 <li>从网络下载</li>
+</ul>
+<p>再总结一下spec文件的寻找的情况:</p>
+<ul>
+<li>指定了path</li>
+<li>在.cocoapods中</li>
 </ul>
 <h4 id="功能模块里边的git代码长什么样子"><a href="#功能模块里边的git代码长什么样子" class="headerlink" title="功能模块里边的git代码长什么样子"></a>功能模块里边的git代码长什么样子</h4><p>里边应该是有两个project，运行可以打出来一个framework，但是pod进行代码拉取的时候，可以只拉取核心代码，这里不能只持有核心代码，这样你打framework将是一个很麻烦的问题。</p>
 <h4 id="多个工程依赖同一个包的版本如果不一致怎么办？"><a href="#多个工程依赖同一个包的版本如果不一致怎么办？" class="headerlink" title="多个工程依赖同一个包的版本如果不一致怎么办？"></a>多个工程依赖同一个包的版本如果不一致怎么办？</h4><p>低版本升级，如果是不同的feature这样，那要用不同的名字</p>
